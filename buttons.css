@@ -304,6 +304,12 @@ div {
     width:100px;
     height:100px;
     position: relative;
+    opacity: 0;
+    transition: all 1s;
+}
+
+.charcontainer[turnon="true"] {
+    opacity: 1;
 }
 
 .charicon {

@@ -3007,6 +3007,10 @@ $(function () {
             waitForElm("#" + key + ' > #rarity').then((ele) => {ele.setAttribute("src", stars[cdata[key].Rarity - 1])})
             waitForElm("#" + key + ' > #type').then((ele) => {ele.setAttribute("src", types[cdata[key].Type] || cdata[key].Type)})
             waitForElm("#" + key + ' > #name').then((ele) => {ele.innerHTML = cdata[key].Name.split(" ")[0]})
+            $(para).ready(function() {
+                para.setAttribute("turnon", "true")
+            });
+            
         });
     })
     
