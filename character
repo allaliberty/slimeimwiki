@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="statsback">
-                        <p class="statstitle">Skills</p>
+                        <p id = "skillstitle" class="statstitle">Skills</p>
                         <div class="skilldiv">
                             <img class = "skillicon" id= "skill1icon" src="https://cdn.discordapp.com/attachments/633768073068806144/982555946498805822/IcSkill_007_04_3_L.png" alt="">
                             <div>
@@ -103,7 +103,7 @@
                             </p>-->
                     </div>
                     <div class="statsback">
-                        <p class="statstitle">Ultimate</p>
+                        <p id = "ultimatetitle" class="statstitle">Ultimate</p>
                         <div class="skilldiv">
                             <img class = "skillicon" id= "secreticon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt="">
                             <div>
@@ -205,13 +205,14 @@
                 <div class="skilldiv">
                     <!--img class = "skillicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt=""-->
                     <div>
-                        <p><Strong id= "trait1" >Troop - Protection UP</Strong></p>
+                        <p><Strong class= "traittitle" id= "trait1" >Troop - Protection UP</Strong></p>
+                        <p><Strong  >Awakened Trait - Lvl:84</Strong></p>
                         <p class="skilltext" id = "trait1desc">When your troop contains 3 or more battle characters, increases protection gauge by 4 every 3 turns (available in support formation)
                         </p>
                     </div>
                 </div>
                 <div>
-                    <p><Strong id = "trait1a">Awakened Trait</Strong></p>
+                    <p><Strong id = "trait1a">Awakened Trait - Lvl:92</Strong></p>
                     <p class="skilltext" id = "trait1adesc">When your troop contains 3 or more battle characters, increases protection gauge by 6 every 3 turns (available in support formation)
                     </p>
                 </div>

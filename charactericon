@@ -2,4 +2,5 @@
     <img id = "icon" class = "charicon" src="https://cdn.discordapp.com/attachments/633768073068806144/985216755565752391/pRFG8vH.png" alt="">
     <img id = "rarity" class = "charstars" src="https://cdn.discordapp.com/attachments/633768073068806144/982527856162799626/5star.png" alt="">
     <img id = "type" class = "chartype" src="https://cdn.discordapp.com/attachments/633768073068806144/982520477790634014/TargetIcon_001_06.png" alt="">
+    <img id = "secondtype" class = "chartypesecond" src="https://cdn.discordapp.com/attachments/633768073068806144/982520477790634014/TargetIcon_001_06.png" alt="">
     <div id = "name" class="charname">Ramiris</div>

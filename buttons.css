@@ -236,6 +236,10 @@ div {
     object-fit: contain;
 }
 
+.skillicon[src=""] {
+    width: 0px;
+}
+
 .skilltext {
     font-size:16px;
     hyphens: auto;
@@ -312,6 +316,7 @@ div {
     opacity: 1;
 }
 
+
 .charicon {
     width: 100%;
     height: 100%;
@@ -333,6 +338,20 @@ div {
     width:auto;
 }
 
+.chartypesecond {
+    position: absolute;
+    height:30%;
+    top:20%;
+    right:-10%;
+    opacity: 0;
+    width:auto;
+}
+
+.charcontainer[secondtype="true"] > .chartypesecond {
+    opacity: 1;
+}
+
+
 .charname {
     position: absolute;
     top:-7%;
@@ -341,6 +360,10 @@ div {
     padding-right: 10%;
     padding-left: 10%;
     font-size:12px;
+}
+
+.traittitle {
+    font-size: 20px;
 }
 
 
