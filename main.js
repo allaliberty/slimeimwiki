@@ -35,9 +35,9 @@ const atktype = {
     Magic: "https://i.imgur.com/tOS4FvO.png"
 }
 const growth = {
-    Attack: "https://i.imgur.com/yduAVsz.png",
-    Health: "https://i.imgur.com/MLuLYZy.png",
-    Defense: "https://i.imgur.com/P4N7gFs.png"
+    Attack: "https://i.imgur.com/4y1HZ4n.png",
+    Health: "https://i.imgur.com/p0fW1mV.png",
+    Defense: "https://i.imgur.com/BCJSaul.png"
 }
 
 const secrettype = {
