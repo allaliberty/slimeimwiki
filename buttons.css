@@ -22,6 +22,7 @@ div {
     font-size: 20px;
     font-size: 20px;
     margin-right: 10px;
+    text-decoration: inherit;
 }
 
 .buttonsdiv {
@@ -53,6 +54,7 @@ div {
     left:0px;
     right:0px;
     top:0px;
+    z-index:999;
 
 }
 
@@ -77,6 +79,7 @@ div {
     font-weight: 600;
     margin-left: 15px;
     opacity: 0.5;
+    text-decoration: inherit;
 }
 
 .pagebody {
@@ -272,7 +275,71 @@ div {
 }
 
 
-@media (max-width: 1000px) {
+.charactersbasecontainer {
+    background-color: rgba(255,255,255,0);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: block;
+
+}
+
+.charactersbase {
+    background-color:#152232;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px;
+    box-sizing: border-box;
+    gap: 20px;
+    border-radius: 15px;
+}
+
+.charcontainer {
+    width:100px;
+    height:100px;
+    position: relative;
+}
+
+.charicon {
+    width: 100%;
+    height: 100%;
+}
+
+.charstars {
+    position: absolute;
+    bottom: 0px;
+    height:25%;
+    left:0px;
+    width:auto;
+}
+
+.chartype {
+    position: absolute;
+    height:30%;
+    top:-10%;
+    right:-10%;
+    width:auto;
+}
+
+.charname {
+    position: absolute;
+    top:-7%;
+    background-color: rgba(0,0,0,0.75);
+    border-radius: 15px;
+    padding-right: 10%;
+    padding-left: 10%;
+    font-size:12px;
+}
+
+
+@media (max-width: 45rem) {
     .characterart {
         width: 100%;
     }
@@ -333,5 +400,15 @@ div {
     .topbarinside {
         padding-right: 25px;
         padding-left: 25px;
+    }
+
+    .charcontainer {
+        width: 30%;
+        height: 30%;
+        margin-bottom: 5%;
+    }
+
+    .charactersbase {
+        gap: 5%;
     }
   }
