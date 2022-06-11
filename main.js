@@ -87,7 +87,7 @@ const cdata = {
         },
         Milim1: {
             Name: "Milim Nava [The Proud Dragon Demon Lord]",
-            Art: "",
+            Art: "https://i.imgur.com/IzTdsrB.png",
             Icon: "https://i.imgur.com/H3KP5zP.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -122,7 +122,7 @@ const cdata = {
         },
         Leon1: {
             Name: "Leon Cromwell [The Flashing Blade]",
-            Art: "",
+            Art: "https://i.imgur.com/F0cov2N.png",
             Icon: "https://i.imgur.com/IpNmTsm.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -157,7 +157,7 @@ const cdata = {
         },
         Guy1: {
             Name: "Guy Crimson [The Beginning]",
-            Art: "",
+            Art: "https://i.imgur.com/PZJAbbJ.png",
             Icon: "https://i.imgur.com/G7mb7zO.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -192,7 +192,7 @@ const cdata = {
         },
         Treyni1: {
             Name: "Treyni [Budding of Deep Green]",
-            Art: "",
+            Art: "https://i.imgur.com/ba6YwIn.png",
             Icon: "https://i.imgur.com/aEKewa3.png",
             Type: "https://i.imgur.com/AHPti72.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -227,7 +227,7 @@ const cdata = {
         },
         Shizue1: {
             Name: "Shizue Izawa [Date Night Beauty]",
-            Art: "",
+            Art: "https://i.imgur.com/eoZBCxf.png",
             Icon: "https://i.imgur.com/6uzC3lT.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -262,7 +262,7 @@ const cdata = {
         },
         Rimuru1: {
             Name: "Rimuru Tempest [Harmonizer of Monsters and Humans]",
-            Art: "",
+            Art: "https://i.imgur.com/Ic7VjMx.png",
             Icon: "https://i.imgur.com/T7wNg1P.png",
             Type: "https://i.imgur.com/NchScWh.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -297,7 +297,7 @@ const cdata = {
         },
         Rimuru2: {
             Name: "Rimuru Tempest [The Master of Maids]",
-            Art: "",
+            Art: "https://i.imgur.com/2CL7XZB.png",
             Icon: "https://i.imgur.com/9IVS9cd.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -332,7 +332,7 @@ const cdata = {
         },
         Hinata1: {
             Name: "Hinata Sakaguchi [Captain of the Holy Knights]",
-            Art: "",
+            Art: "https://i.imgur.com/sCuXrzF.png",
             Icon: "https://i.imgur.com/kQWYdp5.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -367,7 +367,7 @@ const cdata = {
         },
         Shizue2: {
             Name: "Shizue [Conqueror of Flames]",
-            Art: "",
+            Art: "https://i.imgur.com/zJGik7Y.png",
             Icon: "https://i.imgur.com/fy0Dlhy.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -402,7 +402,7 @@ const cdata = {
         },
         Souei1: {
             Name: "Souei [Successful Shinobi]",
-            Art: "",
+            Art: "https://i.imgur.com/ut7Nl2V.png",
             Icon: "https://i.imgur.com/79TCLB0.png",
             Type: "https://i.imgur.com/AHPti72.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -437,7 +437,7 @@ const cdata = {
         },
         Rimuru3: {
             Name: "Rimuru Tempest [Chancellor of Tempest]",
-            Art: "",
+            Art: "https://i.imgur.com/KxE4rQr.png",
             Icon: "https://i.imgur.com/zLGHp7G.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -472,7 +472,7 @@ const cdata = {
         },
         Rimuru4: {
             Name: "Rimuru Tempest [Chancellor of Tempest]",
-            Art: "",
+            Art: "https://i.imgur.com/mArH5St.png",
             Icon: "https://i.imgur.com/gXtUDyK.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -507,7 +507,7 @@ const cdata = {
         },
         Shuna1: {
             Name: "Shuna [Holy Princess]",
-            Art: "",
+            Art: "https://i.imgur.com/Dva7vqv.png",
             Icon: "https://i.imgur.com/fJWzoXo.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -542,7 +542,7 @@ const cdata = {
         },
         Souei2: {
             Name: "Souei [Spy in Shadows]",
-            Art: "",
+            Art: "https://i.imgur.com/9eMSYk3.png",
             Icon: "https://i.imgur.com/otWcbmZ.png",
             Type: "https://i.imgur.com/NchScWh.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -577,7 +577,7 @@ const cdata = {
         },
         Luminus1: {
             Name: "Luminus Valentine [Queen of Yule] ",
-            Art: "",
+            Art: "https://i.imgur.com/aIY7d7e.png",
             Icon: "https://i.imgur.com/D6ctP3v.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -612,7 +612,7 @@ const cdata = {
         },
         Diablo1: {
             Name: "Diablo [The Black Progenitor]",
-            Art: "",
+            Art: "https://i.imgur.com/hLmw6xy.png",
             Icon: "https://i.imgur.com/W6wyAfd.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -647,7 +647,7 @@ const cdata = {
         },
         Beretta1: {
             Name: "Beretta [Arch Golem]",
-            Art: "",
+            Art: "https://i.imgur.com/zP57Yfi.png",
             Icon: "https://i.imgur.com/vM872go.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -682,7 +682,7 @@ const cdata = {
         },
         Rimuru5: {
             Name: "Rimuru Tempest [Lord of Wisdom]",
-            Art: "",
+            Art: "https://i.imgur.com/aVB5hqR.png",
             Icon: "https://i.imgur.com/oBUGmLr.png",
             Type: "https://i.imgur.com/NchScWh.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -717,7 +717,7 @@ const cdata = {
         },
         Alice1: {
             Name: "Alice Rondo [Brave Knight Girl]",
-            Art: "",
+            Art: "https://i.imgur.com/JVCQWHw.png",
             Icon: "https://i.imgur.com/dfc2m0g.png",
             Type: "https://i.imgur.com/NchScWh.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -752,7 +752,7 @@ const cdata = {
         },
         Gobta1: {
             Name: "Gobta [Captain of the Goblin Riders]",
-            Art: "",
+            Art: "https://i.imgur.com/OJGCVrz.png",
             Icon: "https://i.imgur.com/1IwymQH.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -787,7 +787,7 @@ const cdata = {
         },
         Rimuru6: {
             Name: "Rimuru Tempest [Awakened Demon Lord]",
-            Art: "",
+            Art: "https://i.imgur.com/WK2iIUf.png",
             Icon: "https://i.imgur.com/11xHPNK.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -822,7 +822,7 @@ const cdata = {
         },
         Masked1: {
             Name: "Masked Hero [Time Traveler]",
-            Art: "",
+            Art: "https://i.imgur.com/nPmqKKH.png",
             Icon: "https://i.imgur.com/wKOHjfN.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -857,7 +857,7 @@ const cdata = {
         },
         Leon2: {
             Name: "Leon Cromwell [The Platinum Devil]",
-            Art: "",
+            Art: "https://i.imgur.com/uqOnu3V.png",
             Icon: "https://i.imgur.com/Qfcxbbq.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -892,7 +892,7 @@ const cdata = {
         },
         Ranga1: {
             Name: "Ranga [Tempest Star Wolf]",
-            Art: "",
+            Art: "https://i.imgur.com/lfZD1t2.png",
             Icon: "https://i.imgur.com/Bqi7P8m.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -927,7 +927,7 @@ const cdata = {
         },
         Milim2: {
             Name: "Milim Nava [The Enthusiastic Player]",
-            Art: "",
+            Art: "https://i.imgur.com/KuYfLkp.png",
             Icon: "https://i.imgur.com/Nc9PTsX.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -962,7 +962,7 @@ const cdata = {
         },
         Shion1: {
             Name: "Shion [Steel Annihilator]",
-            Art: "",
+            Art: "https://i.imgur.com/LgbstkD.png",
             Icon: "https://i.imgur.com/B8vhqUp.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -997,7 +997,7 @@ const cdata = {
         },
         Velzard1: {
             Name: "Velzard [The White Ice Dragon]",
-            Art: "",
+            Art: "https://i.imgur.com/UoA3mrK.png",
             Icon: "https://i.imgur.com/LNLspAn.png",
             Type: "https://i.imgur.com/NchScWh.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1032,7 +1032,7 @@ const cdata = {
         },
         Guy2: {
             Name: "Guy Crimson [Lord of Darkness]",
-            Art: "",
+            Art: "https://i.imgur.com/m3kePsm.png",
             Icon: "https://i.imgur.com/LVspSnM.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1067,7 +1067,7 @@ const cdata = {
         },
         Diablo2: {
             Name: "Diablo [Ebony Demon]",
-            Art: "",
+            Art: "https://i.imgur.com/PsNyd6a.png",
             Icon: "https://i.imgur.com/Z1INgUB.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1102,7 +1102,7 @@ const cdata = {
         },
         Milim3: {
             Name: "Milim Nava [The Dragon Fist]",
-            Art: "",
+            Art: "https://i.imgur.com/3ziL84K.png",
             Icon: "https://i.imgur.com/NPGoCpt.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1137,7 +1137,7 @@ const cdata = {
         },
         Luminus2: {
             Name: "Luminus [The Queen of Nightmares]",
-            Art: "",
+            Art: "https://i.imgur.com/sBjxtqS.png",
             Icon: "https://i.imgur.com/tJclorA.png",
             Type: "https://i.imgur.com/AHPti72.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1172,7 +1172,7 @@ const cdata = {
         },
         Carrion1: {
             Name: "Carrion [Beastmaster] ",
-            Art: "",
+            Art: "https://i.imgur.com/sHpUmjo.png",
             Icon: "https://i.imgur.com/zzwmDw4.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1207,7 +1207,7 @@ const cdata = {
         },
         Veldora1: {
             Name: "Veldora Tempest [The True Butler]",
-            Art: "",
+            Art: "https://i.imgur.com/uRgMBvh.png",
             Icon: "https://i.imgur.com/G2ES5QD.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1242,7 +1242,7 @@ const cdata = {
         },
         Hakurou1: {
             Name: "Hakurou [Instructor of Flashing Sword]",
-            Art: "",
+            Art: "https://i.imgur.com/UQ2yjvm.png",
             Icon: "https://i.imgur.com/YbOF5fR.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1277,7 +1277,7 @@ const cdata = {
         },
         Milim4: {
             Name: "Milim Nava [Manifestation of the Dragon]",
-            Art: "",
+            Art: "https://i.imgur.com/UFP8Z8r.png",
             Icon: "https://i.imgur.com/iDq0yWQ.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1312,7 +1312,7 @@ const cdata = {
         },
         Shion2: {
             Name: "Shion [Runaway Bride]",
-            Art: "",
+            Art: "https://i.imgur.com/KL2ZxIF.png",
             Icon: "https://i.imgur.com/D45PsTC.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1347,7 +1347,7 @@ const cdata = {
         },
         Veldora2: {
             Name: "Veldora [Seal Releaser]",
-            Art: "",
+            Art: "https://i.imgur.com/Hw3Anff.png",
             Icon: "https://i.imgur.com/vDMGQeU.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1382,7 +1382,7 @@ const cdata = {
         },
         Milim5: {
             Name: "Milim Nava [One of Oldest Demon Lords]",
-            Art: "",
+            Art: "https://i.imgur.com/1huDYDf.png",
             Icon: "https://i.imgur.com/CrXK94G.png",
             Type: "https://i.imgur.com/AHPti72.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1417,7 +1417,7 @@ const cdata = {
         },
         Benimaru1: {
             Name: "Benimaru [Samurai General of Hellfire]",
-            Art: "",
+            Art: "https://i.imgur.com/nMJ0N7A.png",
             Icon: "https://i.imgur.com/V9ZWWX5.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1452,7 +1452,7 @@ const cdata = {
         },
         Gazel1: {
             Name: "Gazel Dwargo [King of an Armed Nation]",
-            Art: "",
+            Art: "https://i.imgur.com/SYI7Oqm.png",
             Icon: "https://i.imgur.com/Dn4zis4.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1487,7 +1487,7 @@ const cdata = {
         },
         Milim6: {
             Name: "Milim Nava [Dragonoid]",
-            Art: "",
+            Art: "https://i.imgur.com/h1DG8iA.png",
             Icon: "https://i.imgur.com/ZIXrWrO.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1522,7 +1522,7 @@ const cdata = {
         },
         Benimaru2: {
             Name: "Benimaru [Undefeated General]",
-            Art: "",
+            Art: "https://i.imgur.com/yw8Wc2L.png",
             Icon: "https://i.imgur.com/uXu736J.png",
             Type: "https://i.imgur.com/AHPti72.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1557,7 +1557,7 @@ const cdata = {
         },
         Shuna2: {
             Name: "Shuna [Pink Ogre of Heavenly Light]",
-            Art: "",
+            Art: "https://i.imgur.com/kmeZvFX.png",
             Icon: "https://i.imgur.com/svqUOwR.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1592,7 +1592,7 @@ const cdata = {
         },
         Trya1: {
             Name: "Trya [Summer Breeze of Benevolence]",
-            Art: "",
+            Art: "https://i.imgur.com/52m9B5H.png",
             Icon: "https://i.imgur.com/bdK9a1H.png",
             Type: "https://i.imgur.com/AHPti72.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1627,7 +1627,7 @@ const cdata = {
         },
         Shion3: {
             Name: "Shion [Ardent Attendant]",
-            Art: "",
+            Art: "https://i.imgur.com/LDtzfde.png",
             Icon: "https://i.imgur.com/PEliko1.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1662,7 +1662,7 @@ const cdata = {
         },
         Gabiru1: {
             Name: "Gabiru [Waving Spear]",
-            Art: "",
+            Art: "https://i.imgur.com/rIPZt4q.png",
             Icon: "https://i.imgur.com/TVFFYfn.png",
             Type: "https://i.imgur.com/NchScWh.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1697,7 +1697,7 @@ const cdata = {
         },
         Shuna3: {
             Name: "Shuna [Excellent Tailor]",
-            Art: "",
+            Art: "https://i.imgur.com/Biifeaf.png",
             Icon: "https://i.imgur.com/SNj9EbC.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1732,7 +1732,7 @@ const cdata = {
         },
         Milim7: {
             Name: "Milim Nava [Delighter in Everyday Life]",
-            Art: "",
+            Art: "https://i.imgur.com/FLW6IuF.png",
             Icon: "https://i.imgur.com/46EbzAS.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1767,7 +1767,7 @@ const cdata = {
         },
         Gelmud1: {
             Name: "Gelmud [Secret Operator]",
-            Art: "",
+            Art: "https://i.imgur.com/F4WghDu.png",
             Icon: "https://i.imgur.com/oqBL34H.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1802,7 +1802,7 @@ const cdata = {
         },
         Geld1: {
             Name: "Geld [Orc King]",
-            Art: "",
+            Art: "https://i.imgur.com/VViWh7f.png",
             Icon: "https://i.imgur.com/HQ2kPIY.png",
             Type: "https://i.imgur.com/AHPti72.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1837,7 +1837,7 @@ const cdata = {
         },
         Ranga2: {
             Name: "Ranga [Loyal Horn]",
-            Art: "",
+            Art: "https://i.imgur.com/yi29CTc.png",
             Icon: "https://i.imgur.com/D8sId0H.png",
             Type: "https://i.imgur.com/NchScWh.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1872,7 +1872,7 @@ const cdata = {
         },
         Albis1: {
             Name: "Albis [The Golden Serpent]",
-            Art: "",
+            Art: "https://i.imgur.com/CmffPis.png",
             Icon: "https://i.imgur.com/VQI5P3g.png",
             Type: "https://i.imgur.com/AHPti72.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1907,7 +1907,7 @@ const cdata = {
         },
         Rimuru7: {
             Name: "Rimuru Tempest [Reincarnated]",
-            Art: "",
+            Art: "https://i.imgur.com/H8tsCsd.png",
             Icon: "https://i.imgur.com/lQvoiLI.png",
             Type: "https://i.imgur.com/NchScWh.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -1942,7 +1942,7 @@ const cdata = {
         },
         Suphia1: {
             Name: "Suphia [White Tiger Claw]",
-            Art: "",
+            Art: "https://i.imgur.com/ftEkegQ.png",
             Icon: "https://i.imgur.com/WQib9TD.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -1977,7 +1977,7 @@ const cdata = {
         },
         Chloe1: {
             Name: "Chloe Aubert [Lovely Innocence]",
-            Art: "",
+            Art: "https://i.imgur.com/C8KE1KS.png",
             Icon: "https://i.imgur.com/rDoEl2O.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -2012,7 +2012,7 @@ const cdata = {
         },
         Gobta2: {
             Name: "Gobta [Hobgoblin Ascendant]",
-            Art: "",
+            Art: "https://i.imgur.com/tHUsnHG.png",
             Icon: "https://i.imgur.com/eKixjNq.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2047,7 +2047,7 @@ const cdata = {
         },
         Souei3: {
             Name: "Souei [Blue Gale]",
-            Art: "",
+            Art: "https://i.imgur.com/vWTwBp2.png",
             Icon: "https://i.imgur.com/4lC8clr.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2082,7 +2082,7 @@ const cdata = {
         },
         Shuna4: {
             Name: "Shuna [Pink Ogre Princess]",
-            Art: "",
+            Art: "https://i.imgur.com/lEcTp28.png",
             Icon: "https://i.imgur.com/whn0pHB.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -2117,7 +2117,7 @@ const cdata = {
         },
         Hakurou2: {
             Name: "Hakurou [White Slash]",
-            Art: "",
+            Art: "https://i.imgur.com/tRfIh0c.png",
             Icon: "https://i.imgur.com/EwB2lAR.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2152,7 +2152,7 @@ const cdata = {
         },
         Kurobe1: {
             Name: "Kurobe [Steel Heart of Forge]",
-            Art: "",
+            Art: "https://i.imgur.com/5cQWCy8.png",
             Icon: "https://i.imgur.com/j4eztrv.png",
             Type: "https://i.imgur.com/AHPti72.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2187,7 +2187,7 @@ const cdata = {
         },
         Rimuru8: {
             Name: "Rimuru Tempest [Swordsmanship Forge]",
-            Art: "",
+            Art: "https://i.imgur.com/kftcjTW.png",
             Icon: "https://i.imgur.com/T983KYV.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -2222,7 +2222,7 @@ const cdata = {
         },
         Myulan1: {
             Name: "Myulan [Leisurely Lady]",
-            Art: "",
+            Art: "https://i.imgur.com/ruxslcA.png",
             Icon: "https://i.imgur.com/HIUNb4E.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -2257,7 +2257,7 @@ const cdata = {
         },
         Shinsha1: {
             Name: "Shinsha [Precocious Bride]",
-            Art: "",
+            Art: "https://i.imgur.com/ilNQpEp.png",
             Icon: "https://i.imgur.com/R73eFTZ.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2292,7 +2292,7 @@ const cdata = {
         },
         Shuna5: {
             Name: "Shuna [The Holy Sunrise]",
-            Art: "",
+            Art: "https://i.imgur.com/jTee43O.png",
             Icon: "https://i.imgur.com/soQ19j8.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -2327,7 +2327,7 @@ const cdata = {
         },
         Shion4: {
             Name: "Shion [The Bold Servant]",
-            Art: "",
+            Art: "https://i.imgur.com/wpWVxi0.png",
             Icon: "https://i.imgur.com/d1sbZFd.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2362,7 +2362,7 @@ const cdata = {
         },
         Frey1: {
             Name: "Frey [The Sky Queen]",
-            Art: "",
+            Art: "https://i.imgur.com/99ufpC4.png",
             Icon: "https://i.imgur.com/Olkblw6.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -2397,7 +2397,7 @@ const cdata = {
         },
         Grucius1: {
             Name: "Grucius [Lupine Fighter]",
-            Art: "",
+            Art: "https://i.imgur.com/wRngPaM.png",
             Icon: "https://i.imgur.com/maq96nT.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2432,7 +2432,7 @@ const cdata = {
         },
         Benimaru3: {
             Name: "Benimaru [Valiant Kijin]",
-            Art: "",
+            Art: "https://i.imgur.com/pOC2Ulr.png",
             Icon: "https://i.imgur.com/WhE37WV.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2467,7 +2467,7 @@ const cdata = {
         },
         Ranga3: {
             Name: "Ranga [Loyal Wolf]",
-            Art: "",
+            Art: "https://i.imgur.com/K7LHBvp.png",
             Icon: "https://i.imgur.com/AAwN24v.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -2502,7 +2502,7 @@ const cdata = {
         },
         Yuuki1: {
             Name: "Yuuki Kagurazaka [Grandmaster]",
-            Art: "",
+            Art: "https://i.imgur.com/mh2veQd.png",
             Icon: "https://i.imgur.com/yvcGF0I.png",
             Type: "https://i.imgur.com/NchScWh.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2537,7 +2537,7 @@ const cdata = {
         },
         Phobio1: {
             Name: "Phobio [Leopard Fang]",
-            Art: "",
+            Art: "https://i.imgur.com/22heF7B.png",
             Icon: "https://i.imgur.com/PikL46R.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -2572,7 +2572,7 @@ const cdata = {
         },
         Benimaru4: {
             Name: "Benimaru [Next Clan Leader]",
-            Art: "",
+            Art: "https://i.imgur.com/14aW8sz.png",
             Icon: "https://i.imgur.com/3Nu4kOl.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2607,7 +2607,7 @@ const cdata = {
         },
         Souei4: {
             Name: "Souei [Instant Spy]",
-            Art: "",
+            Art: "https://i.imgur.com/jB6H9uK.png",
             Icon: "https://i.imgur.com/Owj1Or2.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2642,7 +2642,7 @@ const cdata = {
         },
         Shion5: {
             Name: "Shion [Purple Smash]",
-            Art: "",
+            Art: "https://i.imgur.com/YSAgUQo.png",
             Icon: "https://i.imgur.com/GP9OFZs.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2677,7 +2677,7 @@ const cdata = {
         },
         Benimaru5: {
             Name: "Benimaru [Crimson Ogre Warrior]",
-            Art: "",
+            Art: "https://i.imgur.com/hDyFSBR.png",
             Icon: "https://i.imgur.com/DsI1r5V.png",
             Type: "https://i.imgur.com/pzX6NRL.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2712,7 +2712,7 @@ const cdata = {
         },
         Rigurd1: {
             Name: "Rigurd [Hobgoblin Monarch]",
-            Art: "",
+            Art: "https://i.imgur.com/0kTbVS5.png",
             Icon: "https://i.imgur.com/d0LJevx.png",
             Type: "https://i.imgur.com/pQYVkI3.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2747,7 +2747,7 @@ const cdata = {
         },
         Alice2: {
             Name: "Alice Rondo [Golem Master]",
-            Art: "",
+            Art: "https://i.imgur.com/Lds5tV8.png",
             Icon: "https://i.imgur.com/1hhxCwj.png",
             Type: "https://i.imgur.com/z8bnSYg.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -2782,7 +2782,7 @@ const cdata = {
         },
         Kurobe2: {
             Name: "Kurobe [Immobile Black Ogre]",
-            Art: "",
+            Art: "https://i.imgur.com/2GSfgkc.png",
             Icon: "https://i.imgur.com/5K05JMH.png",
             Type: "https://i.imgur.com/QndVudD.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2817,7 +2817,7 @@ const cdata = {
         },
         Gale1: {
             Name: "Gale Gibson [Earth Spirit Lodger]",
-            Art: "",
+            Art: "https://i.imgur.com/VsoXKTk.png",
             Icon: "https://i.imgur.com/GtQP5c1.png",
             Type: "https://i.imgur.com/AHPti72.png",
             AtkType: "https://i.imgur.com/tOS4FvO.png",
@@ -2852,7 +2852,7 @@ const cdata = {
         },
         Ryota1: {
             Name: "Ryota Sekiguchi [Harmonizer of Insanity and Calm]",
-            Art: "",
+            Art: "https://i.imgur.com/whRd2e0.png",
             Icon: "https://i.imgur.com/Uneh3sn.png",
             Type: "https://i.imgur.com/NchScWh.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
@@ -2887,7 +2887,7 @@ const cdata = {
         },
         Kenya1: {
             Name: "Kenya Misaki [Heroic Vessel]",
-            Art: "",
+            Art: "https://i.imgur.com/QatDpdL.png",
             Icon: "https://i.imgur.com/rFjZCnv.png",
             Type: "https://i.imgur.com/hX15sR0.png",
             AtkType: "https://i.imgur.com/P8lUDX0.png",
