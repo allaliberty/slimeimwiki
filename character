@@ -1,0 +1,235 @@
+<main class="pagebody">
+            <div class="charactertop">
+                <img src="https://appmedia.jp/wp-content/uploads/2021/11/f298d6bdafd89a882890c30cdaf59c6b.jpg" class="charactericon">
+                <div class="characternames">
+                    <p class="title">Federal Lord of the Devil</p>
+                    <p class="charactername">Rimuru Tempest</p>
+                    <div class="characteristics">
+                        <img src="https://cdn.discordapp.com/attachments/633768073068806144/982518720536641557/5star.png" class="characteristicsicons">
+                        <img src="https://cdn.discordapp.com/attachments/633768073068806144/982520477237018634/TargetIcon_001_04.png" class="characteristicsicons">
+                        <img src="https://cdn.discordapp.com/attachments/633768073068806144/982520420471300116/TargetIcon_002_01.png" class="characteristicsicons">
+                        <img src="https://cdn.discordapp.com/attachments/633768073068806144/982527713015373824/Layer_3.png" class="characteristicsicons">
+                    </div>
+                </div>
+            </div>
+            <div class ="secondpart">
+                <div class = "firstpartofsecondpart">
+                <img class = "characterart" src="https://cdn.discordapp.com/attachments/633768073068806144/982530834420604978/RimuruDefault_6_CharaInfo.png" alt="">
+                <div>
+                    <div class="statsback">
+                        <p class="statstitle">Stats</p>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <img style="margin-right: 10px;object-fit: contain;" src="https://cdn.discordapp.com/attachments/633768073068806144/982542179346051082/icHp.png" alt="">
+                                <p>Health</p>
+                            </div>
+                            <p class = "statnumber">988-7142</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <img style="margin-right: 10px;object-fit: contain;" src="https://cdn.discordapp.com/attachments/633768073068806144/982542253207748668/icAtk.png" alt="">
+                                <p>Attack</p>
+                            </div>
+                            <p class = "statnumber">494-3007</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <img style="margin-right: 10px;object-fit: contain;" src="https://cdn.discordapp.com/attachments/633768073068806144/982542305280024577/icDef.png" alt="">
+                                <p>Defense</p>
+                            </div>
+                            <p class = "statnumber">492-3005</p>
+                        </div>
+                    </div>
+                    <div class="statsback">
+                        <p class="statstitle">Skills</p>
+                        <div class="skilldiv">
+                            <img class = "skillicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982555946498805822/IcSkill_007_04_3_L.png" alt="">
+                            <div>
+                                <p><Strong>Everything</Strong></p>
+                                <p class="skilltext">Increases the attack power of all allies by 35-40% for 1 turn</p>
+                            </div>
+                        </div>
+                        <p><Strong>Multipliers</Strong></p>
+                            <p class="skilltext">【Lv:1】
+                                35%
+                                【Lv:2】
+                                35.5%
+                                【Lv:3】
+                                36%
+                                【Lv:4】
+                                36%
+                                【Lv:5】
+                                36.5%
+                                【Lv:6】
+                                37%
+                                【Lv:7】
+                                37%
+                                【Lv:8】
+                                38%
+                                【Lv:9】
+                                39%
+                                【Lv:10】
+                                40%
+                            </p>
+                        <div class="skilldiv">
+                            <img class = "skillicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982558257606455327/IcSkill_015_07_1_L.png" alt="">
+                            <div>
+                                <p><Strong>Magic detection</Strong></p>
+                                <p class="skilltext">Increases the defense of all allies by 20-25% for 2 turns</p>
+                            </div> 
+                        </div>
+                        <p><Strong>Multipliers</Strong></p>
+                            <p class="skilltext">【Lv:1】
+                                20%
+                                【Lv:2】
+                                20.5%
+                                【Lv:3】
+                                21%
+                                【Lv:4】
+                                21%
+                                【Lv:5】
+                                21.5%
+                                【Lv:6】
+                                22%
+                                【Lv:7】
+                                22%
+                                【Lv:8】
+                                23%
+                                【Lv:9】
+                                24%
+                                【Lv:10】
+                                25%
+                            </p>
+                    </div>
+                    <div class="statsback">
+                        <p class="statstitle">Ultimate</p>
+                        <div class="skilldiv">
+                            <img class = "skillicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt="">
+                            <div>
+                                <p><Strong>Megiddo</Strong></p>
+                                <p class="skilltext">Sky attribute physical attack on all enemies
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <p><Strong>Multipliers</Strong></p>
+                            <p class="skilltext">230/235/240/245/250/270%
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="statsback2">
+                    <p class="statstitle">Stats</p>
+                    <div class ="detailedstats">
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Critical Rate</p>
+                            </div>
+                            <p class = "statnumber2">4%</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Critical Damage</p>
+                            </div>
+                            <p class = "statnumber2">0%</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Critical Resist</p>
+                            </div>
+                            <p class = "statnumber2">0%</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Pierce Rate</p>
+                            </div>
+                            <p class = "statnumber2">4%</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Pierce Power</p>
+                            </div>
+                            <p class = "statnumber2">0%</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Pierce Resist</p>
+                            </div>
+                            <p class = "statnumber2">0%</p>
+                        </div>
+                    </div>
+                    <div class="sep"></div>
+                    <div class ="detailedstats">
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Guard Rate</p>
+                            </div>
+                            <p class = "statnumber2">2%</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Guard Power</p>
+                            </div>
+                            <p class = "statnumber2">0%</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Guard Penetration</p>
+                            </div>
+                            <p class = "statnumber2">0%</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Counter Rate</p>
+                            </div>
+                            <p class = "statnumber2">2%</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Counter Power</p>
+                            </div>
+                            <p class = "statnumber2">0%</p>
+                        </div>
+                        <div class = "stat">
+                            <div class = "statname">
+                                <p>Counter Resist</p>
+                            </div>
+                            <p class = "statnumber2">0%</p>
+                        </div>
+                </div>
+            </div>
+            <div class="statsback">
+                <p class="statstitle">Trait</p>
+                <div class="skilldiv">
+                    <img class = "skillicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt="">
+                    <div>
+                        <p><Strong>Troop - Protection UP</Strong></p>
+                        <p class="skilltext">When your troop contains 3 or more battle characters, increases protection gauge by 4 every 3 turns (available in support formation)
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <p><Strong>Awakened Trait</Strong></p>
+                    <p class="skilltext">When your troop contains 3 or more battle characters, increases protection gauge by 6 every 3 turns (available in support formation)
+                    </p>
+                </div>
+                <p class="statstitle">Output</p>
+                <div class="skilldiv">
+                    <img class = "skillicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt="">
+                    <div>
+                        <p><Strong>Tavern</Strong></p>
+                        <p class="skilltext">+30%
+                        </p>
+                    </div>
+                </div>
+                <div class="skilldiv">
+                    <img class = "skillicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt="">
+                    <div>
+                        <p><Strong>Digsite for Training Magistones</Strong></p>
+                        <p class="skilltext">+10%
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>

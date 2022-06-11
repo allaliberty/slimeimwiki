@@ -1,0 +1,11 @@
+<nav class="topbar">
+    <div class="topbarinside">
+        <p class="sitename">SLIMEIM.QUEST</p>
+        <div clicked = false class="buttonsdiv">
+            <a class="navbutton">Characters</a>
+            <a class="navbuttoninactive">Tier List</a>
+            <a class="navbuttoninactive">Items</a>
+        </div>
+        <button class = "hamb"></button>
+    </div>
+</nav>
