@@ -72,11 +72,11 @@ const cdata = {
     All-target wind magic attack for 270%.`,
             SecretType: "All",
             Skill1: `Charge Forth Lv.1/Lv.10:
-    Heals all allies' by 55%/60% of their max HP.
+    Heals all allies' by 55%/60% of their max HP.  
     Lv.1/Lv.10 Cost: 65/55`,
             Skill1Icon: "",
             Skill2: `Linked Operations Lv.1/Lv10:
-    Increases all allies' wind ATK by 5%/15% (Turns: 1).
+    Increases all allies' wind ATK by 5%/15% (Turns: 1).  
     Lv.1/Lv.10 Cost: 25/15`,
             Skill2Icon: "",
             Trait1: `Troop - Skill UP (5* Awaken x1):
