@@ -1,6 +1,7 @@
 
 var linksplit = window.location.href.split("/");
 var page = linksplit[linksplit.length - 2];
+let created = 1
 
 
 
@@ -17,7 +18,6 @@ const weapons = {
     Greatsword: "https://cdn.discordapp.com/attachments/633768073068806144/982523229736402964/unknown.png",
     Tome: "https://cdn.discordapp.com/attachments/633768073068806144/982523214364291112/unknown.png",
     Fist: "https://cdn.discordapp.com/attachments/633768073068806144/985207460614774835/Layer_32.png",
-    "Magic Tome": "https://cdn.discordapp.com/attachments/633768073068806144/982523214364291112/unknown.png",
 }
 
 const types = {
@@ -28,6 +28,8 @@ const types = {
     Dark: "https://i.imgur.com/pzX6NRL.png",
     Earth: "https://i.imgur.com/AHPti72.png",
     Water: "https://i.imgur.com/NchScWh.png",
+    Melee: "https://i.imgur.com/EWYVugy.png",
+    Magic: "https://i.imgur.com/SsC1hEj.png" 
 }
 
 const atktype = {
@@ -45,9 +47,20 @@ const secrettype = {
     Single: "https://cdn.discordapp.com/attachments/633768073068806144/982528147880828948/icSpTypeSingle.png",
 }
 
+let Filters = {
+    UnitType: "All",
+    Type: "All",
+    Weapons: "All",
+    AttackType: "All",
+    Growth: "All",
+}
 
-console.log(page)
-console.log(window.top)
+const UnitTypeButtonTL = {
+    all: "All",
+    battleunit: "Battle Characters",
+    protectionunit: "Protection Characters",
+
+}
 
 const cdata = {
     Ramiris1: {
@@ -83,6 +96,8 @@ Lv.1/Lv.10 Cost: 25/15`,
 When your troop contains 3 or more battle characters, increases skill points by 4 at the start of the battle (available in support formation).`,
         Trait1A: `Troop - Skill UP (5* Awaken x3):
 When your troop contains 3 or more battle characters, increases skill points by 6 at the start of the battle (available in support formation).`,
+Trait1Icon: "https://i.imgur.com/FWJ586B.png",
+Trait1AIcon: "https://i.imgur.com/OLfX2cS.png",
         Stats: [2, 0, 0, 2, 0, 0, 2, 0, 0, 4, 0, 0]
     },
     Milim1: {
@@ -118,7 +133,9 @@ Lv.1/Lv.10 Cost: 65/55`,
 When your troop contains 3 or more battle characters, increases own Secret Skill Gauge by 5% at start of battle (Turns: 3) (available in support formation).`,
         Trait1A: `Troop - Secret Skill UP 3 (5* Awaken x3):
 When your troop contains 3 or more battle characters, increases own Secret Skill Gauge by 8% at start of battle (Turns: 3) (available in support formation).`,
-        Stats: [4, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0]
+        Stats: [4, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0],
+        Trait1Icon: "https://i.imgur.com/lunHEj7.png",
+        Trait1AIcon: "https://i.imgur.com/zQCB0Gf.png",
     },
     Leon1: {
         Name: "Leon Cromwell [The Flashing Blade]",
@@ -153,7 +170,9 @@ Lv.1/Lv.10 Cost: 25/15`,
 When you unleash a 6 combo attack with Soul of Secrets, increases own ATK by 5% for the next turn (available in support formation).`,
         Trait1A: `Soul Combo - ATK UP (5* Awaken x3):
 When you unleash a 6 combo attack with Soul of Secrets, increases own ATK by 8% for the next turn (available in support formation).`,
-        Stats: [2, 0, 0, 8, 0, 0, 2, 0, 0, 2, 0, 0]
+        Stats: [2, 0, 0, 8, 0, 0, 2, 0, 0, 2, 0, 0],
+        Trait1Icon: "https://i.imgur.com/bTdTVRY.png",
+        Trait1AIcon: "https://i.imgur.com/Ob5ce8I.png",
     },
     Guy1: {
         Name: "Guy Crimson [The Beginning]",
@@ -188,7 +207,9 @@ Lv.1/Lv.10 Cost: 35/25`,
 When your troop contains 3 or more battle characters, increases own Secret Skill Gauge by 12% at the start of battle (available in support formation).`,
         Trait1A: `Troop - Secret Skill UP (5* Awaken x3):
 When your troop contains 3 or more battle characters, increases own Secret Skill Gauge by 18% at the start of battle (available in support formation).`,
-        Stats: [8, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0]
+        Stats: [8, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0],
+        Trait1Icon: "https://i.imgur.com/lunHEj7.png",
+        Trait1AIcon: "https://i.imgur.com/zQCB0Gf.png",
     },
     Treyni1: {
         Name: "Treyni [Budding of Deep Green]",
@@ -197,7 +218,7 @@ When your troop contains 3 or more battle characters, increases own Secret Skill
         Type: "https://i.imgur.com/AHPti72.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 5,
         MinHp: 7095,
         MaxHp: 7095,
@@ -223,6 +244,8 @@ Lv.1/Lv.10 Cost: 25/15`,
 When affected by Pierce Resistance UP, increases own DEF by 7% at the start of turn (available in support formation).`,
         Trait1A: `Effect - DEF UP (5* Awaken x3):
 When affected by Pierce Resistance UP, increases own DEF by 11% at the start of turn (available in support formation).`,
+Trait1Icon: "https://i.imgur.com/w8Ohyz2.png",
+        Trait1AIcon: "https://i.imgur.com/YibqE0O.png",
         Stats: [0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0]
     },
     Shizue1: {
@@ -258,7 +281,9 @@ Lv.1/Lv.10 Cost: 25/15`,
 When you unleash a 6 combo attack with Soul of Secrets, increase all targets' DEF by 12% for the next turn (available in support formation).`,
         Trait1A: `Soul Combo - DEF UP (5* Awaken x3):
 When you unleash a 6 combo attack with Soul of Secrets, increase all targets' DEF by 18% for the next turn (available in support formation).`,
-        Stats: [2, 0, 0, 2, 0, 0, 4, 4, 0, 2, 0, 0]
+        Stats: [2, 0, 0, 2, 0, 0, 4, 4, 0, 2, 0, 0],
+        Trait1Icon: "https://i.imgur.com/q71UjgC.png",
+        Trait1AIcon: "https://i.imgur.com/7CV9bqO.png",
     },
     Rimuru1: {
         Name: "Rimuru Tempest [Harmonizer of Monsters and Humans]",
@@ -267,7 +292,7 @@ When you unleash a 6 combo attack with Soul of Secrets, increase all targets' DE
         Type: "https://i.imgur.com/NchScWh.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 5,
         MinHp: 7091,
         MaxHp: 7091,
@@ -293,7 +318,8 @@ Lv.1/Lv.10 Cost: 40/30`,
 When affected by Critical Resistance UP, increases own DEF by 7% at start of the turn (available in support formation).`,
         Trait1A: `Effect - DEF UP 2 (5* Awaken x3):
 When affected by Critical Resistance UP, increases own DEF by 11% at start of the turn (available in support formation).`,
-        Stats: [2, 0, 0, 8, 0, 0, 2, 0, 0, 2, 0, 0]
+        Stats: [2, 0, 0, 8, 0, 0, 2, 0, 0, 2, 0, 0],Trait1Icon: "https://i.imgur.com/w8Ohyz2.png",
+        Trait1AIcon: "https://i.imgur.com/YibqE0O.png",
     },
     Rimuru2: {
         Name: "Rimuru Tempest [The Master of Maids]",
@@ -328,7 +354,9 @@ Lv.1/Lv.10 Cost: 25/15`,
 When affected by Guard Rate UP, increases own critical rate by 7% at start of turn (available in support formation).`,
         Trait1A: `Effect - Critical Rate UP 2 (5* Awaken x3):
 When affected by Guard Rate UP, increases own critical rate by 11% at start of turn (available in support formation).`,
-        Stats: [8, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0]
+        Stats: [8, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0],
+        Trait1Icon: "https://i.imgur.com/bTdTVRY.png",
+        Trait1AIcon: "https://i.imgur.com/Ob5ce8I.png",
     },
     Hinata1: {
         Name: "Hinata Sakaguchi [Captain of the Holy Knights]",
@@ -512,7 +540,7 @@ When your troop contains 3 or more battle characters, increases protection gauge
         Type: "https://i.imgur.com/hX15sR0.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/MLuLYZy.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 5,
         MinHp: 7134,
         MaxHp: 7134,
@@ -652,7 +680,7 @@ When you unleash a 6 combo attack with Soul of Divine Protection, decreases all 
         Type: "https://i.imgur.com/pzX6NRL.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/MLuLYZy.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 5,
         MinHp: 7129,
         MaxHp: 7129,
@@ -1422,7 +1450,7 @@ When your troop contains 3 or more battle characters, increases protection gauge
         Type: "https://i.imgur.com/QndVudD.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/yduAVsz.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 5,
         MinHp: 6894,
         MaxHp: 6894,
@@ -1562,7 +1590,7 @@ When your troop contains 3 or more battle characters, increases own Secret Skill
         Type: "https://i.imgur.com/pQYVkI3.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 5,
         MinHp: 5958,
         MaxHp: 5958,
@@ -1597,7 +1625,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
         Type: "https://i.imgur.com/AHPti72.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 4,
         MinHp: 5983,
         MaxHp: 5983,
@@ -1702,7 +1730,7 @@ When affected by Guard Rate UP, increases own guard power by 9% at start of turn
         Type: "https://i.imgur.com/z8bnSYg.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 4,
         MinHp: 5986,
         MaxHp: 5986,
@@ -1772,7 +1800,7 @@ When you have max HP, increases own pierce power by 9% at start of turn (availab
         Type: "https://i.imgur.com/pzX6NRL.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 4,
         MinHp: 5988,
         MaxHp: 5988,
@@ -1912,7 +1940,7 @@ When you have 50% or lower HP, increases own DEF by 9% at start of turn (availab
         Type: "https://i.imgur.com/NchScWh.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/MLuLYZy.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 4,
         MinHp: 6035,
         MaxHp: 6035,
@@ -1982,7 +2010,7 @@ When you have 75% or higher HP, increases own critical damage by 12% at start of
         Type: "https://i.imgur.com/hX15sR0.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/MLuLYZy.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 4,
         MinHp: 6025,
         MaxHp: 6025,
@@ -2087,7 +2115,7 @@ When you have 50% or lower HP, increases own critical damage by 8% at start of t
         Type: "https://i.imgur.com/QndVudD.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/MLuLYZy.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 4,
         MinHp: 6024,
         MaxHp: 6024,
@@ -2752,7 +2780,7 @@ When your troop contains 3 or more battle characters, increases own guard rate b
         Type: "https://i.imgur.com/z8bnSYg.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 3,
         MinHp: 5679,
         MaxHp: 5679,
@@ -2822,7 +2850,7 @@ When you have max HP, increases own guard power by 9% at start of turn (availabl
         Type: "https://i.imgur.com/AHPti72.png",
         AtkType: "https://i.imgur.com/tOS4FvO.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
-        Weapon: "Magic Tome",
+        Weapon: "Tome",
         Rarity: 3,
         MinHp: 5679,
         MaxHp: 5679,
@@ -2920,933 +2948,931 @@ When you have 50% or higher HP, increases own critical damage by 5% at start of 
 When you have 50% or higher HP, increases own critical damage by 8% at start of turn (available in support formation).`,
         Stats: [8, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0]
     },
-    Milim8:{
-    Name: "Milim Nava [Bellicose Dragoneye]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/OQ6kcVD.png",
-    Type: "https://i.imgur.com/NchScWh.png",
-    SecondType: "https://i.imgur.com/z8bnSYg.png",
-    Growth: "https://i.imgur.com/P4N7gFs.png",
-    Rarity: 5,
-    MinHp: 3585,
-    MaxHp: 3585,
-    MinAtk: 1164,
-    MaxAtk: 1164,
-    MinDef: 1471,
-    MaxDef: 1471,
-    MaxOutput: 220,
-    Town1: "Water Magic Device +200%",
-    Town2: "Space Magic Device +100%",
-    DivineProtection: `Eternal Dragon Empress Lv.MAX:
+    Milim8: {
+        Name: "Milim Nava [Bellicose Dragoneye]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/OQ6kcVD.png",
+        Type: "https://i.imgur.com/NchScWh.png",
+        SecondType: "https://i.imgur.com/z8bnSYg.png",
+        Growth: "https://i.imgur.com/P4N7gFs.png",
+        Rarity: 5,
+        MinHp: 3585,
+        MaxHp: 3585,
+        MinAtk: 1164,
+        MaxAtk: 1164,
+        MinDef: 1471,
+        MaxDef: 1471,
+        MaxOutput: 220,
+        Town1: "Water Magic Device +200%",
+        Town2: "Space Magic Device +100%",
+        DivineProtection: `Eternal Dragon Empress Lv.MAX:
     Increases all allies' water ATK at start of battle by 16%. Increases all allies' space ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Eternal Dragon Empress Lv.MAX:
+        SupportDivineProtection: `Eternal Dragon Empress Lv.MAX:
     Increases all allies' water ATK at start of battle by 16%. Increases all allies' space ATK at start of battle by 8%.`,
-    ProtectionSkill: `Drago Changer Lv.1/Lv.10:
+        ProtectionSkill: `Drago Changer Lv.1/Lv.10:
     Increases all allies' guard rate by 60%/80% (Turns: 3). Increases Soul of Divine Protection damage until the end of battle by 20% (Max: 100%).`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - Critical Resistance (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - Critical Resistance (5* Awaken x1):
     When 3 vanguard have 50% or more HP, increases all allies' critical resistance by 10% at start of turn.`,
-    Trait1A: `HP - Critical Resistance (5* Awaken x3):
+        Trait1A: `HP - Critical Resistance (5* Awaken x3):
     When 3 vanguard have 50% or more HP, increases all allies' critical resistance by 15% at start of turn.`,
     },
-    Elemental1:{
-    Name: "Elemental Colossus [Golem]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/6AmIGRh.png",
-    Type: "https://i.imgur.com/AHPti72.png",
-    SecondType: "https://i.imgur.com/NchScWh.png",
-    Growth: "https://i.imgur.com/P4N7gFs.png",
-    Rarity: 5,
-    MinHp: 3579,
-    MaxHp: 3579,
-    MinAtk: 1165,
-    MaxAtk: 1165,
-    MinDef: 1469,
-    MaxDef: 1469,
-    MaxOutput: 220,
-    Town1: "Earth Magic Device +200%",
-    Town2: "Water Magic Device +100%",
-    DivineProtection: `Spirit Engineering Crystal Lv.MAX:
+    Elemental1: {
+        Name: "Elemental Colossus [Golem]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/6AmIGRh.png",
+        Type: "https://i.imgur.com/AHPti72.png",
+        SecondType: "https://i.imgur.com/NchScWh.png",
+        Growth: "https://i.imgur.com/P4N7gFs.png",
+        Rarity: 5,
+        MinHp: 3579,
+        MaxHp: 3579,
+        MinAtk: 1165,
+        MaxAtk: 1165,
+        MinDef: 1469,
+        MaxDef: 1469,
+        MaxOutput: 220,
+        Town1: "Earth Magic Device +200%",
+        Town2: "Water Magic Device +100%",
+        DivineProtection: `Spirit Engineering Crystal Lv.MAX:
     Increases all allies' earth ATK at start of battle by 16%. Increases all allies' water ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Spirit Engineering Crystal Lv.MAX:
+        SupportDivineProtection: `Spirit Engineering Crystal Lv.MAX:
     Increases all allies' earth ATK at start of battle by 16%. Increases all allies' water ATK at start of battle by 8%.`,
-    ProtectionSkill: `Limit Break Lv.1/Lv.10:
+        ProtectionSkill: `Limit Break Lv.1/Lv.10:
     Increases all allies' guard rate by 60%/80% (Turns: 3). Increases all allies' counterattack rate by 60% (Turns: 2).`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - Pierce Resistance (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - Pierce Resistance (5* Awaken x1):
     When 3 vanguard have 50% or more HP, increases all allies' pierce resistance by 10% at the start of turn.`,
-    Trait1A: `HP - Pierce Resistance (5* Awaken x3):
+        Trait1A: `HP - Pierce Resistance (5* Awaken x3):
     When 3 vanguard have 50% or more HP, increases all allies' pierce resistance by 15% at the start of turn.`,
     },
-    Shuna6:{
-    Name: "Shuna [The Faithful Housemaid]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/0sVXae5.png",
-    Type: "https://i.imgur.com/pQYVkI3.png",
-    SecondType: "https://i.imgur.com/NchScWh.png",
-    Growth: "https://i.imgur.com/P4N7gFs.png",
-    Rarity: 5,
-    MinHp: 3581,
-    MaxHp: 3581,
-    MinAtk: 1171,
-    MaxAtk: 1171,
-    MinDef: 1446,
-    MaxDef: 1446,
-    MaxOutput: 220,
-    Town1: "Wind Magic Device +200%",
-    Town2: "Water Magic Device +100%",
-    DivineProtection: `Training of the Maid Lv.MAX:
+    Shuna6: {
+        Name: "Shuna [The Faithful Housemaid]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/0sVXae5.png",
+        Type: "https://i.imgur.com/pQYVkI3.png",
+        SecondType: "https://i.imgur.com/NchScWh.png",
+        Growth: "https://i.imgur.com/P4N7gFs.png",
+        Rarity: 5,
+        MinHp: 3581,
+        MaxHp: 3581,
+        MinAtk: 1171,
+        MaxAtk: 1171,
+        MinDef: 1446,
+        MaxDef: 1446,
+        MaxOutput: 220,
+        Town1: "Wind Magic Device +200%",
+        Town2: "Water Magic Device +100%",
+        DivineProtection: `Training of the Maid Lv.MAX:
     Increases all allies' wind ATK at start of battle by 16%. Increases all allies' water ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Training of the Maid Lv.MAX:
+        SupportDivineProtection: `Training of the Maid Lv.MAX:
     Increases all allies' wind ATK at start of battle by 16%. Increases all allies' water ATK at start of battle by 8%.`,
-    ProtectionSkill: `Yuletide Sparkle Lv.1/Lv.10:
+        ProtectionSkill: `Yuletide Sparkle Lv.1/Lv.10:
     Increases all allies' guard rate by 60%/80% (Turns: 3). Increases all Soul of Skills gauges' increase by 50% (Turns: 3).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Combo - Pierce Resistance DOWN 2 (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Combo - Pierce Resistance DOWN 2 (5* Awaken x1):
     When the enemy makes a combo attack, increases all allies' pierce resistance by 10% at the start of the next turn.`,
-    Trait1A: `Combo - Pierce Resistance DOWN 2 (5* Awaken x3):
+        Trait1A: `Combo - Pierce Resistance DOWN 2 (5* Awaken x3):
     When the enemy makes a combo attack, increases all allies' pierce resistance by 15% at the start of the next turn.`,
     },
-    Veldora3:{
-    Name: "Veldora Tempest [The Mighty Roar]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/NxON4Pq.png",
-    Type: "https://i.imgur.com/z8bnSYg.png",
-    SecondType: "https://i.imgur.com/pzX6NRL.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 5,
-    MinHp: 3084,
-    MaxHp: 3084,
-    MinAtk: 1368,
-    MaxAtk: 1368,
-    MinDef: 1289,
-    MaxDef: 1289,
-    MaxOutput: 220,
-    Town1: "Space Magic Device +200%",
-    Town2: "Dark Magic Device +100%",
-    DivineProtection: `Supreme Flight Lv.MAX:
+    Veldora3: {
+        Name: "Veldora Tempest [The Mighty Roar]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/NxON4Pq.png",
+        Type: "https://i.imgur.com/z8bnSYg.png",
+        SecondType: "https://i.imgur.com/pzX6NRL.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 5,
+        MinHp: 3084,
+        MaxHp: 3084,
+        MinAtk: 1368,
+        MaxAtk: 1368,
+        MinDef: 1289,
+        MaxDef: 1289,
+        MaxOutput: 220,
+        Town1: "Space Magic Device +200%",
+        Town2: "Dark Magic Device +100%",
+        DivineProtection: `Supreme Flight Lv.MAX:
     Increases all allies' space ATK at start of battle by 16%. Increases all allies' dark ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Supreme Flight Lv.MAX:
+        SupportDivineProtection: `Supreme Flight Lv.MAX:
     Increases all allies' space ATK at start of battle by 16%. Increases all allies' dark ATK at start of battle by 8%.`,
-    ProtectionSkill: `Tempest Blaster Lv.1/Lv.10:
+        ProtectionSkill: `Tempest Blaster Lv.1/Lv.10:
     Increases all allies' space ATK until the end of battle by 5%/10% (Unlimited). Increases all souls' skill point increase until the end of battle by 50% (Max: 250%). Increases skill cost limit until the end of battle by 40 (Max: 999).`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - ATK UP (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - ATK UP (5* Awaken x1):
     When 1 or more enemies have 50% or lower HP, increases all allies' ATK by 4% at start of turn.`,
-    Trait1A: `HP - ATK UP (5* Awaken x3):
+        Trait1A: `HP - ATK UP (5* Awaken x3):
     When 1 or more enemies have 50% or lower HP, increases all allies' ATK by 6% at start of turn.`,
     },
-    Shizue3:{
-    Name: "Shizue Izawa [Dream Bride]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/cmcJR2T.png",
-    Type: "https://i.imgur.com/hX15sR0.png",
-    SecondType: "https://i.imgur.com/EWYVugy.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 5,
-    MinHp: 3065,
-    MaxHp: 3065,
-    MinAtk: 1350,
-    MaxAtk: 1350,
-    MinDef: 1317,
-    MaxDef: 1317,
-    MaxOutput: 220,
-    Town1: "Light Magic Device +200%",
-    Town2: "Symbol of Protection +100%",
-    DivineProtection: `Ceremonial Light Lv.MAX:
+    Shizue3: {
+        Name: "Shizue Izawa [Dream Bride]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/cmcJR2T.png",
+        Type: "https://i.imgur.com/hX15sR0.png",
+        SecondType: "https://i.imgur.com/EWYVugy.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 5,
+        MinHp: 3065,
+        MaxHp: 3065,
+        MinAtk: 1350,
+        MaxAtk: 1350,
+        MinDef: 1317,
+        MaxDef: 1317,
+        MaxOutput: 220,
+        Town1: "Light Magic Device +200%",
+        Town2: "Symbol of Protection +100%",
+        DivineProtection: `Ceremonial Light Lv.MAX:
     Increases light ATK by 12%. Increases P-ATK by 5%/10%`,
-    SupportDivineProtection: `Ceremonial Light Lv.MAX:
+        SupportDivineProtection: `Ceremonial Light Lv.MAX:
     Increases light ATK by 12%. Increases P-ATK by 5%/10%`,
-    ProtectionSkill: `Rain Ends Lv.1/Lv.10:
+        ProtectionSkill: `Rain Ends Lv.1/Lv.10:
     Changes Soul of Protection and Soul of Secrets x3 each into Soul of SkillsIncreases all allies' pierce rate by 50%/70% (Turns: 2). Effect increases by 5% each time allies use battle skills from the start of battle to the end of Turn 3. Increases Soul of Combos damage by 10% (Turns: 2).`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - Pierce Resistance DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - Pierce Resistance DOWN (5* Awaken x1):
     When 3 vanguard have 75% or more HP, decreases all targets' pierce resistance by 6% at start of turn.`,
-    Trait1A: `HP - Pierce Resistance DOWN (5* Awaken x3):
+        Trait1A: `HP - Pierce Resistance DOWN (5* Awaken x3):
     When 3 vanguard have 75% or more HP, decreases all targets' pierce resistance by 9% at start of turn.`,
     },
-    Veldora4:{
-    Name: "Veldora Tempest [Storm Dragon]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/tge1oxf.png",
-    Type: "https://i.imgur.com/pQYVkI3.png",
-    SecondType: "https://i.imgur.com/pzX6NRL.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 5,
-    MinHp: 3062,
-    MaxHp: 3062,
-    MinAtk: 1316,
-    MaxAtk: 1316,
-    MinDef: 1316,
-    MaxDef: 1316,
-    MaxOutput: 220,
-    Town1: "Wind Magic Device +200%",
-    Town2: "Dark Magic Device +100%",
-    DivineProtection: `Ambition of the Four True Dragons Lv.MAX:
+    Veldora4: {
+        Name: "Veldora Tempest [Storm Dragon]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/tge1oxf.png",
+        Type: "https://i.imgur.com/pQYVkI3.png",
+        SecondType: "https://i.imgur.com/pzX6NRL.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 5,
+        MinHp: 3062,
+        MaxHp: 3062,
+        MinAtk: 1316,
+        MaxAtk: 1316,
+        MinDef: 1316,
+        MaxDef: 1316,
+        MaxOutput: 220,
+        Town1: "Wind Magic Device +200%",
+        Town2: "Dark Magic Device +100%",
+        DivineProtection: `Ambition of the Four True Dragons Lv.MAX:
     Increases all allies' wind ATK at start of battle by 16%. Increases all allies' dark ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Ambition of the Four True Dragons Lv.MAX:
+        SupportDivineProtection: `Ambition of the Four True Dragons Lv.MAX:
     Increases all allies' wind ATK at start of battle by 16%. Increases all allies' dark ATK at start of battle by 8%.`,
-    ProtectionSkill: `Tempest Shout Lv.1/Lv.10:
+        ProtectionSkill: `Tempest Shout Lv.1/Lv.10:
     Increases skill cost limit until the end of battle by 20/30 (Max: 999). Increases Soul of Combos damage by 10% (Max: 50%). Increases skill points by 30.`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - Critical Rate UP (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - Critical Rate UP (5* Awaken x1):
     When 3 vanguard have 50% or lower HP, increases all allies' critical rate by 8% at start of turn.`,
-    Trait1A: `HP - Critical Rate UP (5* Awaken x3):
+        Trait1A: `HP - Critical Rate UP (5* Awaken x3):
     When 3 vanguard have 50% or lower HP, increases all allies' critical rate by 12% at start of turn.`,
     },
-    Soka1:{
-    Name: "Soka [The Lovestruck Maiden]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/qjERmjP.png",
-    Type: "https://i.imgur.com/hX15sR0.png",
-    SecondType: "https://i.imgur.com/AHPti72.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 5,
-    MinHp: 3059,
-    MaxHp: 3059,
-    MinAtk: 1315,
-    MaxAtk: 1315,
-    MinDef: 1317,
-    MaxDef: 1317,
-    MaxOutput: 220,
-    Town1: "Light Magic Device +200%",
-    Town2: "Earth Magic Device +100%",
-    DivineProtection: `Feelings Concealed Lv.Max:
+    Soka1: {
+        Name: "Soka [The Lovestruck Maiden]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/qjERmjP.png",
+        Type: "https://i.imgur.com/hX15sR0.png",
+        SecondType: "https://i.imgur.com/AHPti72.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 5,
+        MinHp: 3059,
+        MaxHp: 3059,
+        MinAtk: 1315,
+        MaxAtk: 1315,
+        MinDef: 1317,
+        MaxDef: 1317,
+        MaxOutput: 220,
+        Town1: "Light Magic Device +200%",
+        Town2: "Earth Magic Device +100%",
+        DivineProtection: `Feelings Concealed Lv.Max:
     Increases all allies' light ATK at start of battle by 16%. Increases all allies' earth ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Feelings Concealed Lv.Max:
+        SupportDivineProtection: `Feelings Concealed Lv.Max:
     Increases all allies' light ATK at start of battle by 16%. Increases all allies' earth ATK at start of battle by 8%.`,
-    ProtectionSkill: `Pure Emotion Lv.1/Lv.10:
+        ProtectionSkill: `Pure Emotion Lv.1/Lv.10:
     Increases all allies' guard rate by 60%/80% (Turns: 3). Decreases the skill cost by 20 for vanguard allies (Cannot go below each skill's initial cost). Increases Soul of Secrets secret skill gauge increase by 20% (Turns: 3).`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - Critical Resistance (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - Critical Resistance (5* Awaken x1):
     When 3 vanguard have 50% or more HP, increases all allies' critical resistance by 10% at start of turn.`,
-    Trait1A: `HP - Critical Resistance (5* Awaken x3):
+        Trait1A: `HP - Critical Resistance (5* Awaken x3):
     When 3 vanguard have 50% or more HP, increases all allies' critical resistance by 15% at start of turn.`,
     },
-    Rimuru9:{
-    Name: "Rimuru Tempest [Stately Sovereign]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/sp0TBou.png",
-    Type: "https://i.imgur.com/pzX6NRL.png",
-    SecondType: "https://i.imgur.com/z8bnSYg.png",
-    Growth: "https://i.imgur.com/yduAVsz.png",
-    Rarity: 5,
-    MinHp: 3529,
-    MaxHp: 3529,
-    MinAtk: 1295,
-    MaxAtk: 1295,
-    MinDef: 1144,
-    MaxDef: 1144,
-    MaxOutput: 220,
-    Town1: "Dark Magic Device +200%",
-    Town2: "Space Magic Device +100%",
-    DivineProtection: `Demon Lord's Resolve Lv.MAX:
+    Rimuru9: {
+        Name: "Rimuru Tempest [Stately Sovereign]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/sp0TBou.png",
+        Type: "https://i.imgur.com/pzX6NRL.png",
+        SecondType: "https://i.imgur.com/z8bnSYg.png",
+        Growth: "https://i.imgur.com/yduAVsz.png",
+        Rarity: 5,
+        MinHp: 3529,
+        MaxHp: 3529,
+        MinAtk: 1295,
+        MaxAtk: 1295,
+        MinDef: 1144,
+        MaxDef: 1144,
+        MaxOutput: 220,
+        Town1: "Dark Magic Device +200%",
+        Town2: "Space Magic Device +100%",
+        DivineProtection: `Demon Lord's Resolve Lv.MAX:
     Increases all allies' dark ATK at start of battle by 16%. Increases all allies' space ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Demon Lord's Resolve Lv.MAX:
+        SupportDivineProtection: `Demon Lord's Resolve Lv.MAX:
     Increases all allies' dark ATK at start of battle by 16%. Increases all allies' space ATK at start of battle by 8%.`,
-    ProtectionSkill: `Tempest Guardian Lv.1/Lv.10:
+        ProtectionSkill: `Tempest Guardian Lv.1/Lv.10:
     Increases all allies' DEF by 40%/50% (Turns: 2). Increases all allies' dark ATK by 15% (Turns: 2). Decreases the skill cost by 20 for vanguard allies (Cannot go below each skill's initial cost).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Effect - DEF UP (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Effect - DEF UP (5* Awaken x1):
     When 1 or more enemies are affected by ATK UP, increases all allies' DEF by 6% at start of turn.`,
-    Trait1A: `Effect - DEF UP (5* Awaken x3):
+        Trait1A: `Effect - DEF UP (5* Awaken x3):
     When 1 or more enemies are affected by ATK UP, increases all allies' DEF by 9% at start of turn.`,
     },
-    Hakurou3:{
-    Name: "Hakurou [Ultimate Blade]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/QGp1ZJS.png",
-    Type: "https://i.imgur.com/AHPti72.png",
-    SecondType: "https://i.imgur.com/QndVudD.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 5,
-    MinHp: 3060,
-    MaxHp: 3060,
-    MinAtk: 1328,
-    MaxAtk: 1328,
-    MinDef: 1300,
-    MaxDef: 1300,
-    MaxOutput: 220,
-    Town1: "Earth Magic Device +200%",
-    Town2: "Fire Magic Device +100%",
-    DivineProtection: `Steadfast Swordsman Lv.MAX:
+    Hakurou3: {
+        Name: "Hakurou [Ultimate Blade]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/QGp1ZJS.png",
+        Type: "https://i.imgur.com/AHPti72.png",
+        SecondType: "https://i.imgur.com/QndVudD.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 5,
+        MinHp: 3060,
+        MaxHp: 3060,
+        MinAtk: 1328,
+        MaxAtk: 1328,
+        MinDef: 1300,
+        MaxDef: 1300,
+        MaxOutput: 220,
+        Town1: "Earth Magic Device +200%",
+        Town2: "Fire Magic Device +100%",
+        DivineProtection: `Steadfast Swordsman Lv.MAX:
     Increases all allies' earth ATK at the start of battle by 16%. Increases all allies ' fire ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Steadfast Swordsman Lv.MAX:
+        SupportDivineProtection: `Steadfast Swordsman Lv.MAX:
     Increases all allies' earth ATK at the start of battle by 16%. Increases all allies ' fire ATK at start of battle by 8%.`,
-    ProtectionSkill: `World Cutter Lv.1/Lv.10:
+        ProtectionSkill: `World Cutter Lv.1/Lv.10:
     Changes Soul of Skills and Soul of Divine Protection x3 each into Soul of Secrets. Increases skill points by 30/40.`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - DEF DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - DEF DOWN (5* Awaken x1):
     When 3 vanguard have 75% or more HP, decreases all targets' DEF by 4% at start of turn.`,
-    Trait1A: `HP - DEF DOWN (5* Awaken x3):
+        Trait1A: `HP - DEF DOWN (5* Awaken x3):
     When 3 vanguard have 75% or more HP, decreases all targets' DEF by 6% at start of turn.`,
     },
-    Rimuru10:{
-    Name: "Rimuru Tempest [The Chancellor of Prosperity]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/1T3F6vl.png",
-    Type: "https://i.imgur.com/QndVudD.png",
-    SecondType: "https://i.imgur.com/pQYVkI3.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 5,
-    MinHp: 3045,
-    MaxHp: 3045,
-    MinAtk: 1321,
-    MaxAtk: 1321,
-    MinDef: 1309,
-    MaxDef: 1309,
-    MaxOutput: 220,
-    Town1: "Fire Magic Device +200%",
-    Town2: "Wind Magic Device +100%",
-    DivineProtection: `Hour of Prosperity Lv.MAX:
+    Rimuru10: {
+        Name: "Rimuru Tempest [The Chancellor of Prosperity]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/1T3F6vl.png",
+        Type: "https://i.imgur.com/QndVudD.png",
+        SecondType: "https://i.imgur.com/pQYVkI3.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 5,
+        MinHp: 3045,
+        MaxHp: 3045,
+        MinAtk: 1321,
+        MaxAtk: 1321,
+        MinDef: 1309,
+        MaxDef: 1309,
+        MaxOutput: 220,
+        Town1: "Fire Magic Device +200%",
+        Town2: "Wind Magic Device +100%",
+        DivineProtection: `Hour of Prosperity Lv.MAX:
     Increase all allies' fire ATK at the start of battle by 16%. Increase all allies' wind ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Hour of Prosperity Lv.MAX:
+        SupportDivineProtection: `Hour of Prosperity Lv.MAX:
     Increase all allies' fire ATK at the start of battle by 16%. Increase all allies' wind ATK at start of battle by 8%.`,
-    ProtectionSkill: `Tempest Daybreak Lv.1/Lv.10:
+        ProtectionSkill: `Tempest Daybreak Lv.1/Lv.10:
     Decrease all targets' fire resistance by 20%/30% (Turns: 3). Increase Soul of Divine Protection gauges' increase until the end of the battle by 20% (Max: 100%). Increase skill cost limit until the end of battle by 25 (Max: 999).`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - DEF DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - DEF DOWN (5* Awaken x1):
     When 3 vanguard have 50% or more HP, decreases all targets' DEF by 3% at start of turn.`,
-    Trait1A: `HP - DEF DOWN (5* Awaken x3):
+        Trait1A: `HP - DEF DOWN (5* Awaken x3):
     When 3 vanguard have 50% or more HP, decreases all targets' DEF by 5% at start of turn.`,
     },
-    Orc1:{
-    Name: "Orc Disaster [Starved]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/1H4E9N5.png",
-    Type: "https://i.imgur.com/pzX6NRL.png",
-    SecondType: "https://i.imgur.com/QndVudD.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 5,
-    MinHp: 3051,
-    MaxHp: 3051,
-    MinAtk: 1312,
-    MaxAtk: 1312,
-    MinDef: 1311,
-    MaxDef: 1311,
-    MaxOutput: 220,
-    Town1: "Dark Magic Device +200%",
-    Town2: "Fire Magic Device +100%",
-    DivineProtection: `Unending Thirst Lv.MAX:
+    Orc1: {
+        Name: "Orc Disaster [Starved]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/1H4E9N5.png",
+        Type: "https://i.imgur.com/pzX6NRL.png",
+        SecondType: "https://i.imgur.com/QndVudD.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 5,
+        MinHp: 3051,
+        MaxHp: 3051,
+        MinAtk: 1312,
+        MaxAtk: 1312,
+        MinDef: 1311,
+        MaxDef: 1311,
+        MaxOutput: 220,
+        Town1: "Dark Magic Device +200%",
+        Town2: "Fire Magic Device +100%",
+        DivineProtection: `Unending Thirst Lv.MAX:
     Increases all allies' dark ATK at start of battle by 16%. Increases all allies' fire ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Unending Thirst Lv.MAX:
+        SupportDivineProtection: `Unending Thirst Lv.MAX:
     Increases all allies' dark ATK at start of battle by 16%. Increases all allies' fire ATK at start of battle by 8%.`,
-    ProtectionSkill: `Chaos Control Lv.1/Lv.10:
+        ProtectionSkill: `Chaos Control Lv.1/Lv.10:
     Increases skill cost limit until the end of battle by 10/20 (Max: 999). Changes Soul of Skills into Soul of Secrets. Increases skill points by 20.`,
-    ProtectionSkillIcon: "",
-    Trait1: `Effect - Pierce Resistance DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Effect - Pierce Resistance DOWN (5* Awaken x1):
     When 1 or more enemies are affected by DEF UP, decreases all targets' pierce resistance by 7% at start of turn.`,
-    Trait1A: `Effect - Pierce Resistance DOWN (5* Awaken x3):
+        Trait1A: `Effect - Pierce Resistance DOWN (5* Awaken x3):
     When 1 or more enemies are affected by DEF UP, decreases all targets' pierce resistance by 11% at start of turn.`,
     },
-    Charybdis1:{
-    Name: "Charybdis [Swimming Calamity]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/Z3Ywuyj.png",
-    Type: "https://i.imgur.com/z8bnSYg.png",
-    SecondType: "https://i.imgur.com/pQYVkI3.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 5,
-    MinHp: 3058,
-    MaxHp: 3058,
-    MinAtk: 1309,
-    MaxAtk: 1309,
-    MinDef: 1310,
-    MaxDef: 1310,
-    MaxOutput: 220,
-    Town1: "Space Magic Device +200%",
-    Town2: "Wind Magic Device +100%",
-    DivineProtection: `Swimming Calamity Lv.MAX:
+    Charybdis1: {
+        Name: "Charybdis [Swimming Calamity]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/Z3Ywuyj.png",
+        Type: "https://i.imgur.com/z8bnSYg.png",
+        SecondType: "https://i.imgur.com/pQYVkI3.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 5,
+        MinHp: 3058,
+        MaxHp: 3058,
+        MinAtk: 1309,
+        MaxAtk: 1309,
+        MinDef: 1310,
+        MaxDef: 1310,
+        MaxOutput: 220,
+        Town1: "Space Magic Device +200%",
+        Town2: "Wind Magic Device +100%",
+        DivineProtection: `Swimming Calamity Lv.MAX:
     Increases all allies' space ATK at start of battle by 16%. Increases all allies' wind ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Swimming Calamity Lv.MAX:
+        SupportDivineProtection: `Swimming Calamity Lv.MAX:
     Increases all allies' space ATK at start of battle by 16%. Increases all allies' wind ATK at start of battle by 8%.`,
-    ProtectionSkill: `Wicked Eye Lv.1/Lv.10:
+        ProtectionSkill: `Wicked Eye Lv.1/Lv.10:
     Increases skill cost limit until end of battle by 30/40 (Max: 999). Increases all Soul of Skills gauges' increase by 150% (Turns: 3).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Effect - DEF DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Effect - DEF DOWN (5* Awaken x1):
     When 1 or more enemies are affected by Guard Rate UP, decreases all targets' DEF by 4% at start of turn.`,
-    Trait1A: `Effect - DEF DOWN (5* Awaken x3):
+        Trait1A: `Effect - DEF DOWN (5* Awaken x3):
     When 1 or more enemies are affected by Guard Rate UP, decreases all targets' DEF by 6% at start of turn.`,
     },
-    Chloe2:{
-    Name: "Chloe Aubert [Quiet Knight Girl]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/cSFbENz.png",
-    Type: "https://i.imgur.com/NchScWh.png",
-    SecondType: "https://i.imgur.com/hX15sR0.png",
-    Growth: "https://i.imgur.com/yduAVsz.png",
-    Rarity: 5,
-    MinHp: 3474,
-    MaxHp: 3474,
-    MinAtk: 1290,
-    MaxAtk: 1290,
-    MinDef: 1136,
-    MaxDef: 1136,
-    MaxOutput: 220,
-    Town1: "Water Magic Device +200%",
-    Town2: "Light Magic Device +100%",
-    DivineProtection: `Just Path Lv.MAX:
+    Chloe2: {
+        Name: "Chloe Aubert [Quiet Knight Girl]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/cSFbENz.png",
+        Type: "https://i.imgur.com/NchScWh.png",
+        SecondType: "https://i.imgur.com/hX15sR0.png",
+        Growth: "https://i.imgur.com/yduAVsz.png",
+        Rarity: 5,
+        MinHp: 3474,
+        MaxHp: 3474,
+        MinAtk: 1290,
+        MaxAtk: 1290,
+        MinDef: 1136,
+        MaxDef: 1136,
+        MaxOutput: 220,
+        Town1: "Water Magic Device +200%",
+        Town2: "Light Magic Device +100%",
+        DivineProtection: `Just Path Lv.MAX:
     Increases all allies' water ATK at the start of battle by 16%. Increases all allies ' light ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Just Path Lv.MAX:
+        SupportDivineProtection: `Just Path Lv.MAX:
     Increases all allies' water ATK at the start of battle by 16%. Increases all allies ' light ATK at start of battle by 8%.`,
-    ProtectionSkill: `Peaceful Mind Lv.1/Lv.10:
+        ProtectionSkill: `Peaceful Mind Lv.1/Lv.10:
     Increases Activating Soul of Combos damage by 30%/40% (Turns: 3). Change Soul of Secrets into Soul of Skills. Increases skill cost limit until the end of battle by 40 (Max:999)`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - DEF DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - DEF DOWN (5* Awaken x1):
     When 3 vanguard have 50% or more HP, decreases all targets' DEF by 3% at start of turn.`,
-    Trait1A: `HP - DEF DOWN (5* Awaken x3):
+        Trait1A: `HP - DEF DOWN (5* Awaken x3):
     When 3 vanguard have 50% or more HP, decreases all targets' DEF by 5% at start of turn.`,
     },
-    Ifrit1:{
-    Name: "Ifrit [Burning Spirit]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/X07Dq1N.png",
-    Type: "https://i.imgur.com/QndVudD.png",
-    SecondType: "https://i.imgur.com/hX15sR0.png",
-    Growth: "https://i.imgur.com/yduAVsz.png",
-    Rarity: 5,
-    MinHp: 3471,
-    MaxHp: 3471,
-    MinAtk: 1285,
-    MaxAtk: 1285,
-    MinDef: 1129,
-    MaxDef: 1129,
-    MaxOutput: 220,
-    Town1: "Fire Magic Device +200%",
-    Town2: "Light Magic Device +100%",
-    DivineProtection: `Burning Siege Lv.MAX:
+    Ifrit1: {
+        Name: "Ifrit [Burning Spirit]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/X07Dq1N.png",
+        Type: "https://i.imgur.com/QndVudD.png",
+        SecondType: "https://i.imgur.com/hX15sR0.png",
+        Growth: "https://i.imgur.com/yduAVsz.png",
+        Rarity: 5,
+        MinHp: 3471,
+        MaxHp: 3471,
+        MinAtk: 1285,
+        MaxAtk: 1285,
+        MinDef: 1129,
+        MaxDef: 1129,
+        MaxOutput: 220,
+        Town1: "Fire Magic Device +200%",
+        Town2: "Light Magic Device +100%",
+        DivineProtection: `Burning Siege Lv.MAX:
     Increases all allies' fire ATK at start of battle by 16%. Increases all allies' light ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Burning Siege Lv.MAX:
+        SupportDivineProtection: `Burning Siege Lv.MAX:
     Increases all allies' fire ATK at start of battle by 16%. Increases all allies' light ATK at start of battle by 8%.`,
-    ProtectionSkill: `Flame Zone Lv.1/Lv.10:
+        ProtectionSkill: `Flame Zone Lv.1/Lv.10:
     Increases all allies' Secret Skill Gauge by 30%/40%. Increases all allies' fire ATK by 15% (Turns: 2).`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - DEF DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - DEF DOWN (5* Awaken x1):
     When 3 vanguard have 75% or more HP, decreases all targets' DEF by 4% at start of turn.`,
-    Trait1A: `HP - DEF DOWN (5* Awaken x3):
+        Trait1A: `HP - DEF DOWN (5* Awaken x3):
     When 3 vanguard have 75% or more HP, decreases all targets' DEF by 6% at start of turn.`,
     },
-    Ramiris2:{
-    Name: "Ramiris [Fairy of the Labryrinth]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/XUqI1Ab.png",
-    Type: "https://i.imgur.com/hX15sR0.png",
-    SecondType: "https://i.imgur.com/AHPti72.png",
-    Growth: "https://i.imgur.com/yduAVsz.png",
-    Rarity: 5,
-    MinHp: 3470,
-    MaxHp: 3470,
-    MinAtk: 1289,
-    MaxAtk: 1289,
-    MinDef: 1119,
-    MaxDef: 1119,
-    MaxOutput: 220,
-    Town1: "Light Magic Device +200%",
-    Town2: "Earth Magic Device +100%",
-    DivineProtection: `Prank Illusion Lv.MAX:
+    Ramiris2: {
+        Name: "Ramiris [Fairy of the Labryrinth]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/XUqI1Ab.png",
+        Type: "https://i.imgur.com/hX15sR0.png",
+        SecondType: "https://i.imgur.com/AHPti72.png",
+        Growth: "https://i.imgur.com/yduAVsz.png",
+        Rarity: 5,
+        MinHp: 3470,
+        MaxHp: 3470,
+        MinAtk: 1289,
+        MaxAtk: 1289,
+        MinDef: 1119,
+        MaxDef: 1119,
+        MaxOutput: 220,
+        Town1: "Light Magic Device +200%",
+        Town2: "Earth Magic Device +100%",
+        DivineProtection: `Prank Illusion Lv.MAX:
     Increases all allies' light ATK at start of battle by 16%. Increases all allies' earth ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Prank Illusion Lv.MAX:
+        SupportDivineProtection: `Prank Illusion Lv.MAX:
     Increases all allies' light ATK at start of battle by 16%. Increases all allies' earth ATK at start of battle by 8%.`,
-    ProtectionSkill: `Small World Lv.1/Lv.10:
+        ProtectionSkill: `Small World Lv.1/Lv.10:
     Changes Soul of Secrets into Soul of Divine Protection. Increases all allies' light ATK by 10%/20% (Turns: 2).`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - ATK UP (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - ATK UP (5* Awaken x1):
     When all 3 vanguard have 75% or more HP, increases all allies' ATK by 4% at start of turn.`,
-    Trait1A: `HP - ATK UP (5* Awaken x3):
+        Trait1A: `HP - ATK UP (5* Awaken x3):
     When all 3 vanguard have 75% or more HP, increases all allies' ATK by 6% at start of turn.`,
     },
-    Shion6:{
-    Name: "Shion [The Talented Secretary]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/OcpjnwW.png",
-    Type: "https://i.imgur.com/pzX6NRL.png",
-    SecondType: "https://i.imgur.com/QndVudD.png",
-    Growth: "https://i.imgur.com/yduAVsz.png",
-    Rarity: 5,
-    MinHp: 3469,
-    MaxHp: 3469,
-    MinAtk: 1280,
-    MaxAtk: 1280,
-    MinDef: 1129,
-    MaxDef: 1129,
-    MaxOutput: 220,
-    Town1: "Dark Magic Device +200%",
-    Town2: "Fire Magic Device +100%",
-    DivineProtection: `Unconcealed Power Lv.MAX:
+    Shion6: {
+        Name: "Shion [The Talented Secretary]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/OcpjnwW.png",
+        Type: "https://i.imgur.com/pzX6NRL.png",
+        SecondType: "https://i.imgur.com/QndVudD.png",
+        Growth: "https://i.imgur.com/yduAVsz.png",
+        Rarity: 5,
+        MinHp: 3469,
+        MaxHp: 3469,
+        MinAtk: 1280,
+        MaxAtk: 1280,
+        MinDef: 1129,
+        MaxDef: 1129,
+        MaxOutput: 220,
+        Town1: "Dark Magic Device +200%",
+        Town2: "Fire Magic Device +100%",
+        DivineProtection: `Unconcealed Power Lv.MAX:
     Increases all allies' dark ATK at start of battle by 16%. Increases all allies' fire ATK at start of battle by 8%.`,
-    SupportDivineProtection: `Unconcealed Power Lv.MAX:
+        SupportDivineProtection: `Unconcealed Power Lv.MAX:
     Increases all allies' dark ATK at start of battle by 16%. Increases all allies' fire ATK at start of battle by 8%.`,
-    ProtectionSkill: `Flawless Secretary Lv.1/Lv.10:
+        ProtectionSkill: `Flawless Secretary Lv.1/Lv.10:
     Changes Soul of Skills into Soul of Divine Protection. Increases all allies' Secret Skill Gauge by 15%/25%.`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - DEF DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - DEF DOWN (5* Awaken x1):
     When 3 vanguard have 75% or more HP, decreases all targets' DEF by 4% at start of turn.`,
-    Trait1A: `HP - DEF DOWN (5* Awaken x3):
+        Trait1A: `HP - DEF DOWN (5* Awaken x3):
     When 3 vanguard have 75% or more HP, decreases all targets' DEF by 6% at start of turn.`,
     },
-    Sky1:{
-    Name: "Sky Dragon [Soaring Dragon Calamity]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/YtveCWp.png",
-    Type: "https://i.imgur.com/pzX6NRL.png",
-    SecondType: "https://i.imgur.com/z8bnSYg.png",
-    Growth: "https://i.imgur.com/P4N7gFs.png",
-    Rarity: 4,
-    MinHp: 3091,
-    MaxHp: 3091,
-    MinAtk: 969,
-    MaxAtk: 969,
-    MinDef: 1178,
-    MaxDef: 1178,
-    MaxOutput: 220,
-    Town1: "Dark Magic Device +200%",
-    Town2: "Space Magic Device +100%",
-    DivineProtection: `Falling Lightning Lv.MAX:
+    Sky1: {
+        Name: "Sky Dragon [Soaring Dragon Calamity]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/YtveCWp.png",
+        Type: "https://i.imgur.com/pzX6NRL.png",
+        SecondType: "https://i.imgur.com/z8bnSYg.png",
+        Growth: "https://i.imgur.com/P4N7gFs.png",
+        Rarity: 4,
+        MinHp: 3091,
+        MaxHp: 3091,
+        MinAtk: 969,
+        MaxAtk: 969,
+        MinDef: 1178,
+        MaxDef: 1178,
+        MaxOutput: 220,
+        Town1: "Dark Magic Device +200%",
+        Town2: "Space Magic Device +100%",
+        DivineProtection: `Falling Lightning Lv.MAX:
     Increases all allies' dark ATK at start of battle by 13%. Increases all allies' space ATK at start of battle by 5%.`,
-    SupportDivineProtection: `Falling Lightning Lv.MAX:
+        SupportDivineProtection: `Falling Lightning Lv.MAX:
     Increases all allies' dark ATK at start of battle by 13%. Increases all allies' space ATK at start of battle by 5%.`,
-    ProtectionSkill: `Thunder and Rain Lv.1/Lv.10:
+        ProtectionSkill: `Thunder and Rain Lv.1/Lv.10:
     Increases skill cost limit until the end of battle by 5/15 (Max: 999). Changes Soul of Divine Protection into Soul of Skills.`,
-    ProtectionSkillIcon: "",
-    Trait1: `Effect - Light Resistance (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Effect - Light Resistance (5* Awaken x1):
     When 1 or more enemies are affected by ATK UP, increases all allies' light resistance by 7% at start of turn.`,
-    Trait1A: `Effect - Light Resistance (5* Awaken x3):
+        Trait1A: `Effect - Light Resistance (5* Awaken x3):
     When 1 or more enemies are affected by ATK UP, increases all allies' light resistance by 11% at start of turn.`,
     },
-    Fuze1:{
-    Name: "Fuze [Guildmaster]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/ExxEzPL.png",
-    Type: "https://i.imgur.com/pQYVkI3.png",
-    SecondType: "https://i.imgur.com/pzX6NRL.png",
-    Growth: "https://i.imgur.com/P4N7gFs.png",
-    Rarity: 4,
-    MinHp: 3088,
-    MaxHp: 3088,
-    MinAtk: 968,
-    MaxAtk: 968,
-    MinDef: 1180,
-    MaxDef: 1180,
-    MaxOutput: 220,
-    Town1: "Wind Magic Device +200%",
-    Town2: "Dark Magic Device +100%",
-    DivineProtection: `Guildmaster's Lead Lv.MAX:
+    Fuze1: {
+        Name: "Fuze [Guildmaster]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/ExxEzPL.png",
+        Type: "https://i.imgur.com/pQYVkI3.png",
+        SecondType: "https://i.imgur.com/pzX6NRL.png",
+        Growth: "https://i.imgur.com/P4N7gFs.png",
+        Rarity: 4,
+        MinHp: 3088,
+        MaxHp: 3088,
+        MinAtk: 968,
+        MaxAtk: 968,
+        MinDef: 1180,
+        MaxDef: 1180,
+        MaxOutput: 220,
+        Town1: "Wind Magic Device +200%",
+        Town2: "Dark Magic Device +100%",
+        DivineProtection: `Guildmaster's Lead Lv.MAX:
     Increases all allies' wind ATK at start of battle by 13%. Increases all allies' dark ATK at start of battle by 5%.`,
-    SupportDivineProtection: `Guildmaster's Lead Lv.MAX:
+        SupportDivineProtection: `Guildmaster's Lead Lv.MAX:
     Increases all allies' wind ATK at start of battle by 13%. Increases all allies' dark ATK at start of battle by 5%.`,
-    ProtectionSkill: `Information Gathering Lv.1/Lv.10:
+        ProtectionSkill: `Information Gathering Lv.1/Lv.10:
     Increases skill cost limit until the end of battle by 5/15 (Max: 999). Changes Soul of Secrets into Soul of Skills.`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - DEF UP 3 (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - DEF UP 3 (5* Awaken x1):
     When 3 vanguard have max HP, increases all allies' DEF by 10% at start of turn.`,
-    Trait1A: `HP - DEF UP 3 (5* Awaken x3):
+        Trait1A: `HP - DEF UP 3 (5* Awaken x3):
     When 3 vanguard have max HP, increases all allies' DEF by 15% at start of turn.`,
     },
-    Salamander1:{
-    Name: "Salamander [The Flame Master]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/dAt7JWo.png",
-    Type: "https://i.imgur.com/QndVudD.png",
-    SecondType: "https://i.imgur.com/AHPti72.png",
-    Growth: "https://i.imgur.com/P4N7gFs.png",
-    Rarity: 4,
-    MinHp: 3088,
-    MaxHp: 3088,
-    MinAtk: 968,
-    MaxAtk: 968,
-    MinDef: 1178,
-    MaxDef: 1178,
-    MaxOutput: 220,
-    Town1: "Fire Magic Device +200%",
-    Town2: "Earth Magic Device +100%",
-    DivineProtection: `Burning Invasion Lv.MAX:
+    Salamander1: {
+        Name: "Salamander [The Flame Master]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/dAt7JWo.png",
+        Type: "https://i.imgur.com/QndVudD.png",
+        SecondType: "https://i.imgur.com/AHPti72.png",
+        Growth: "https://i.imgur.com/P4N7gFs.png",
+        Rarity: 4,
+        MinHp: 3088,
+        MaxHp: 3088,
+        MinAtk: 968,
+        MaxAtk: 968,
+        MinDef: 1178,
+        MaxDef: 1178,
+        MaxOutput: 220,
+        Town1: "Fire Magic Device +200%",
+        Town2: "Earth Magic Device +100%",
+        DivineProtection: `Burning Invasion Lv.MAX:
     Increases all allies' fire ATK at start of battle by 13%. Increases all allies' earth ATK at start of battle by 5%.`,
-    SupportDivineProtection: `Burning Invasion Lv.MAX:
+        SupportDivineProtection: `Burning Invasion Lv.MAX:
     Increases all allies' fire ATK at start of battle by 13%. Increases all allies' earth ATK at start of battle by 5%.`,
-    ProtectionSkill: `Fire Blast Lv.1/Lv.10:
+        ProtectionSkill: `Fire Blast Lv.1/Lv.10:
     Increases all Soul of Secrets gauges' increase by 25%/35% (Turns: 3). Increases all allies' fire ATK by 10% (Turns: 2).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Combo - Pierce Resistance DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Combo - Pierce Resistance DOWN (5* Awaken x1):
     When the enemy makes a combo attack, decreases all target's pierce resistance by 6% for the next turn.`,
-    Trait1A: `Combo - Pierce Resistance DOWN (5* Awaken x3):
+        Trait1A: `Combo - Pierce Resistance DOWN (5* Awaken x3):
     When the enemy makes a combo attack, decreases all target's pierce resistance by 9% for the next turn.`,
     },
-    Light1:{
-    Name: "Light Spirit [Heroic Conductor]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/D9aZOZT.png",
-    Type: "https://i.imgur.com/hX15sR0.png",
-    SecondType: "https://i.imgur.com/NchScWh.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 4,
-    MinHp: 2549,
-    MaxHp: 2549,
-    MinAtk: 1089,
-    MaxAtk: 1089,
-    MinDef: 1089,
-    MaxDef: 1089,
-    MaxOutput: 220,
-    Town1: "Light Magic Device +200%",
-    Town2: "Water Magic Device +100%",
-    DivineProtection: `Happy Happy Happy Lv.MAX:
+    Light1: {
+        Name: "Light Spirit [Heroic Conductor]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/D9aZOZT.png",
+        Type: "https://i.imgur.com/hX15sR0.png",
+        SecondType: "https://i.imgur.com/NchScWh.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 4,
+        MinHp: 2549,
+        MaxHp: 2549,
+        MinAtk: 1089,
+        MaxAtk: 1089,
+        MinDef: 1089,
+        MaxDef: 1089,
+        MaxOutput: 220,
+        Town1: "Light Magic Device +200%",
+        Town2: "Water Magic Device +100%",
+        DivineProtection: `Happy Happy Happy Lv.MAX:
     Increases all allies' light ATK at start of battle by 13%. Increases all allies' water ATK at start of battle by 5%.`,
-    SupportDivineProtection: `Happy Happy Happy Lv.MAX:
+        SupportDivineProtection: `Happy Happy Happy Lv.MAX:
     Increases all allies' light ATK at start of battle by 13%. Increases all allies' water ATK at start of battle by 5%.`,
-    ProtectionSkill: `Protection of Arrival Lv.1/Lv.10:
+        ProtectionSkill: `Protection of Arrival Lv.1/Lv.10:
     Increases all Soul of Divine Protection gauges' increase by 40%/50% (Turns: 2). Increases all allies' light ATK by 10% (Turns: 2).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Effect - Dark Resistance (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Effect - Dark Resistance (5* Awaken x1):
     When 1 or more enemies are affected by ATK UP, increases all allies' dark resistance by at start of turn.`,
-    Trait1A: `Effect - Dark Resistance (5* Awaken x3):
+        Trait1A: `Effect - Dark Resistance (5* Awaken x3):
     When 1 or more enemies are affected by ATK UP, increases all allies' dark resistance by at start of turn.`,
     },
-    Veldora5:{
-    Name: "Veldora Tempest [Proud Kin of Dragons]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/vRmyHSS.png",
-    Type: "https://i.imgur.com/NchScWh.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 4,
-    MinHp: 2551,
-    MaxHp: 2551,
-    MinAtk: 1085,
-    MaxAtk: 1085,
-    MinDef: 1084,
-    MaxDef: 1084,
-    MaxOutput: 220,
-    Town1: "Water Magic Device +200%",
-    Town2: "Symbol of Protection +100%",
-    DivineProtection: `Terrifying Winds Lv.MAX:
+    Veldora5: {
+        Name: "Veldora Tempest [Proud Kin of Dragons]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/vRmyHSS.png",
+        Type: "https://i.imgur.com/NchScWh.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 4,
+        MinHp: 2551,
+        MaxHp: 2551,
+        MinAtk: 1085,
+        MaxAtk: 1085,
+        MinDef: 1084,
+        MaxDef: 1084,
+        MaxOutput: 220,
+        Town1: "Water Magic Device +200%",
+        Town2: "Symbol of Protection +100%",
+        DivineProtection: `Terrifying Winds Lv.MAX:
     Increases all allies' water ATK at start of battle by 13%.`,
-    SupportDivineProtection: `Terrifying Winds Lv.MAX:
+        SupportDivineProtection: `Terrifying Winds Lv.MAX:
     Increases all allies' water ATK at start of battle by 13%.`,
-    ProtectionSkill: `Protection of the Storm Dragon Lv.1/Lv.10:
+        ProtectionSkill: `Protection of the Storm Dragon Lv.1/Lv.10:
     Changes Soul of Skills into Soul of Secrets. Increases Soul of Secrets damage by 5%/15% (Turns: 1).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Combo - ATK DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Combo - ATK DOWN (5* Awaken x1):
     When the enemy makes a combo attack, decreases all targets' ATK by 5% for the next turn.`,
-    Trait1A: `Combo - ATK DOWN (5* Awaken x3):
+        Trait1A: `Combo - ATK DOWN (5* Awaken x3):
     When the enemy makes a combo attack, decreases all targets' ATK by 8% for the next turn.`,
     },
-    Vesta1:{
-    Name: "Vesta [Seeker]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/3www7X3.png",
-    Type: "https://i.imgur.com/z8bnSYg.png",
-    SecondType: "https://i.imgur.com/pQYVkI3.png",
-    Growth: "https://i.imgur.com/yduAVsz.png",
-    Rarity: 4,
-    MinHp: 2974,
-    MaxHp: 2974,
-    MinAtk: 1045,
-    MaxAtk: 1045,
-    MinDef: 928,
-    MaxDef: 928,
-    MaxOutput: 220,
-    Town1: "Space Magic Device +200%",
-    Town2: "Wind Magic Device +100%",
-    DivineProtection: `Lab Results Lv.MAX:
+    Vesta1: {
+        Name: "Vesta [Seeker]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/3www7X3.png",
+        Type: "https://i.imgur.com/z8bnSYg.png",
+        SecondType: "https://i.imgur.com/pQYVkI3.png",
+        Growth: "https://i.imgur.com/yduAVsz.png",
+        Rarity: 4,
+        MinHp: 2974,
+        MaxHp: 2974,
+        MinAtk: 1045,
+        MaxAtk: 1045,
+        MinDef: 928,
+        MaxDef: 928,
+        MaxOutput: 220,
+        Town1: "Space Magic Device +200%",
+        Town2: "Wind Magic Device +100%",
+        DivineProtection: `Lab Results Lv.MAX:
     Increases all allies' space ATK at start of battle by 13%. Increases all allies' wind ATK at start of battle by 5%.`,
-    SupportDivineProtection: `Lab Results Lv.MAX:
+        SupportDivineProtection: `Lab Results Lv.MAX:
     Increases all allies' space ATK at start of battle by 13%. Increases all allies' wind ATK at start of battle by 5%.`,
-    ProtectionSkill: `End of Searching Lv.1/Lv.10:
+        ProtectionSkill: `End of Searching Lv.1/Lv.10:
     Increases skill cost limit until the end of battle by 5/15 (Max: 999). Changes Soul of Secrets into Soul of Divine Protection.`,
-    ProtectionSkillIcon: "",
-    Trait1: `Effect - Critical Resistance DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Effect - Critical Resistance DOWN (5* Awaken x1):
     When 1 or more enemies are affected by Guard Rate UP, decreases all targets' critical resistance by 7% at start of turn.`,
-    Trait1A: `Effect - Critical Resistance DOWN (5* Awaken x3):
+        Trait1A: `Effect - Critical Resistance DOWN (5* Awaken x3):
     When 1 or more enemies are affected by Guard Rate UP, decreases all targets' critical resistance by 11% at start of turn.`,
     },
-    Kaijin1:{
-    Name: "Kaijin [The Forge Artisan]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/W776VYH.png",
-    Type: "https://i.imgur.com/AHPti72.png",
-    SecondType: "https://i.imgur.com/QndVudD.png",
-    Growth: "https://i.imgur.com/yduAVsz.png",
-    Rarity: 4,
-    MinHp: 2978,
-    MaxHp: 2978,
-    MinAtk: 1047,
-    MaxAtk: 1047,
-    MinDef: 922,
-    MaxDef: 922,
-    MaxOutput: 220,
-    Town1: "Earth Magic Device +200%",
-    Town2: "Fire Magic Device 100%",
-    DivineProtection: `Sophisticated Armor Lv.MAX:
+    Kaijin1: {
+        Name: "Kaijin [The Forge Artisan]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/W776VYH.png",
+        Type: "https://i.imgur.com/AHPti72.png",
+        SecondType: "https://i.imgur.com/QndVudD.png",
+        Growth: "https://i.imgur.com/yduAVsz.png",
+        Rarity: 4,
+        MinHp: 2978,
+        MaxHp: 2978,
+        MinAtk: 1047,
+        MaxAtk: 1047,
+        MinDef: 922,
+        MaxDef: 922,
+        MaxOutput: 220,
+        Town1: "Earth Magic Device +200%",
+        Town2: "Fire Magic Device 100%",
+        DivineProtection: `Sophisticated Armor Lv.MAX:
     Increases all allies' earth ATK at start of battle by 13%. Increases all allies' fire ATK at start of battle by 5%.`,
-    SupportDivineProtection: `Sophisticated Armor Lv.MAX:
+        SupportDivineProtection: `Sophisticated Armor Lv.MAX:
     Increases all allies' earth ATK at start of battle by 13%. Increases all allies' fire ATK at start of battle by 5%.`,
-    ProtectionSkill: `Supreme Sword Lv.1/Lv.10:
+        ProtectionSkill: `Supreme Sword Lv.1/Lv.10:
     Increases all allies' guard rate by 50%/70% (Turns: 2). Increases Soul of Skills damage by 10% (Turns: 3).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Secret Skill - ATK DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Secret Skill - ATK DOWN (5* Awaken x1):
     When the enemy activates secret skill, decreases all targets' ATK by 6% for the next turn.`,
-    Trait1A: `Secret Skill - ATK DOWN (5* Awaken x3):
+        Trait1A: `Secret Skill - ATK DOWN (5* Awaken x3):
     When the enemy activates secret skill, decreases all targets' ATK by 9% for the next turn.`,
     },
-    Gard1:{
-    Name: "Gard Mjolmire [The Competent Merchant]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/0HI45mk.png",
-    Type: "https://i.imgur.com/NchScWh.png",
-    SecondType: "https://i.imgur.com/hX15sR0.png",
-    Growth: "https://i.imgur.com/yduAVsz.png",
-    Rarity: 4,
-    MinHp: 2973,
-    MaxHp: 2973,
-    MinAtk: 1047,
-    MaxAtk: 1047,
-    MinDef: 924,
-    MaxDef: 924,
-    MaxOutput: 220,
-    Town1: "Water Magic Device +200%",
-    Town2: "Light Magic Device +100%",
-    DivineProtection: `Tough Business Lv.MAX:
+    Gard1: {
+        Name: "Gard Mjolmire [The Competent Merchant]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/0HI45mk.png",
+        Type: "https://i.imgur.com/NchScWh.png",
+        SecondType: "https://i.imgur.com/hX15sR0.png",
+        Growth: "https://i.imgur.com/yduAVsz.png",
+        Rarity: 4,
+        MinHp: 2973,
+        MaxHp: 2973,
+        MinAtk: 1047,
+        MaxAtk: 1047,
+        MinDef: 924,
+        MaxDef: 924,
+        MaxOutput: 220,
+        Town1: "Water Magic Device +200%",
+        Town2: "Light Magic Device +100%",
+        DivineProtection: `Tough Business Lv.MAX:
     Increases all allies' water ATK at start of battle by 13%. Increases all allies' light ATK at start of battle by 5%.`,
-    SupportDivineProtection: `Tough Business Lv.MAX:
+        SupportDivineProtection: `Tough Business Lv.MAX:
     Increases all allies' water ATK at start of battle by 13%. Increases all allies' light ATK at start of battle by 5%.`,
-    ProtectionSkill: `Distribution Support Lv.1/Lv.10:
+        ProtectionSkill: `Distribution Support Lv.1/Lv.10:
     Increases all allies' guard rate by 50%/70% (Turns: 2). Increases all allies' guard power by 10% (Turns: 2).`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - Pierce Resistance DOWN (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - Pierce Resistance DOWN (5* Awaken x1):
     When 3 vanguard have 50% or lower HP, decreases all targets' pierce resistance by 5% at start of turn.`,
-    Trait1A: `HP - Pierce Resistance DOWN (5* Awaken x3):
+        Trait1A: `HP - Pierce Resistance DOWN (5* Awaken x3):
     When 3 vanguard have 50% or lower HP, decreases all targets' pierce resistance by 8% at start of turn.`,
     },
-    Garm1:{
-    Name: "Garm [The Armor Artisan]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/zIeVbH7.png",
-    Type: "https://i.imgur.com/EWYVugy.png",
-    Growth: "https://i.imgur.com/P4N7gFs.png",
-    Rarity: 3,
-    MinHp: 2980,
-    MaxHp: 2980,
-    MinAtk: 925,
-    MaxAtk: 925,
-    MinDef: 1118,
-    MaxDef: 1118,
-    MaxOutput: 220,
-    Town1: "Symbol of Protection +200%",
-    Town2: "Fire Magic Device +100%",
-    DivineProtection: `Forged Armor Lv.MAX:
+    Garm1: {
+        Name: "Garm [The Armor Artisan]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/zIeVbH7.png",
+        Type: "https://i.imgur.com/EWYVugy.png",
+        Growth: "https://i.imgur.com/P4N7gFs.png",
+        Rarity: 3,
+        MinHp: 2980,
+        MaxHp: 2980,
+        MinAtk: 925,
+        MaxAtk: 925,
+        MinDef: 1118,
+        MaxDef: 1118,
+        MaxOutput: 220,
+        Town1: "Symbol of Protection +200%",
+        Town2: "Fire Magic Device +100%",
+        DivineProtection: `Forged Armor Lv.MAX:
     Increases all allies' P-ATK at start of battle by 11%.`,
-    SupportDivineProtection: `Forged Armor Lv.MAX:
+        SupportDivineProtection: `Forged Armor Lv.MAX:
     Increases all allies' P-ATK at start of battle by 11%.`,
-    ProtectionSkill: `Craftsmanship Revelation Lv.1/Lv.10:
+        ProtectionSkill: `Craftsmanship Revelation Lv.1/Lv.10:
     Increases all allies' guard rate by 30%/40% (Turns: 2).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Effect - DEF DOWN 2 (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Effect - DEF DOWN 2 (5* Awaken x1):
     When 1 or more allies are affected by ATK DOWN, decrease all targets' DEF by 4% at start of turn.`,
-    Trait1A: `Effect - DEF DOWN 2 (5* Awaken x3):
+        Trait1A: `Effect - DEF DOWN 2 (5* Awaken x3):
     When 1 or more allies are affected by ATK DOWN, decrease all targets' DEF by 6% at start of turn.`,
     },
-    Gobuichi1:{
-    Name: "Gobuichi [The Hobgoblin Chef]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/xj9fpjm.png",
-    Type: "https://i.imgur.com/EWYVugy.png",
-    Growth: "https://i.imgur.com/P4N7gFs.png",
-    Rarity: 3,
-    MinHp: 2983,
-    MaxHp: 2983,
-    MinAtk: 922,
-    MaxAtk: 922,
-    MinDef: 1119,
-    MaxDef: 1119,
-    MaxOutput: 220,
-    Town1: "Symbol of Protection +200%",
-    Town2: "Light Magic Device +100%",
-    DivineProtection: `Healthy Food Master Lv.MAX:
+    Gobuichi1: {
+        Name: "Gobuichi [The Hobgoblin Chef]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/xj9fpjm.png",
+        Type: "https://i.imgur.com/EWYVugy.png",
+        Growth: "https://i.imgur.com/P4N7gFs.png",
+        Rarity: 3,
+        MinHp: 2983,
+        MaxHp: 2983,
+        MinAtk: 922,
+        MaxAtk: 922,
+        MinDef: 1119,
+        MaxDef: 1119,
+        MaxOutput: 220,
+        Town1: "Symbol of Protection +200%",
+        Town2: "Light Magic Device +100%",
+        DivineProtection: `Healthy Food Master Lv.MAX:
     Increases all allies' P-ATK at start of battle by 11%.`,
-    SupportDivineProtection: `Healthy Food Master Lv.MAX:
+        SupportDivineProtection: `Healthy Food Master Lv.MAX:
     Increases all allies' P-ATK at start of battle by 11%.`,
-    ProtectionSkill: `Cooking Technique Lv.1/Lv.10:
+        ProtectionSkill: `Cooking Technique Lv.1/Lv.10:
     Increases Soul of Skills damage by 30%/40% (Turns: 3). Increases all Soul of Skills gauges' increase by 40% (Turns: 3).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Effect - Pierce Resistance DOWN 2 (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Effect - Pierce Resistance DOWN 2 (5* Awaken x1):
     When 1 or more enemies are affected by Critical Rate UP, decreases all targets' pierce resistance by 7% at start of turn.`,
-    Trait1A: `Effect - Pierce Resistance DOWN 2 (5* Awaken x3):
+        Trait1A: `Effect - Pierce Resistance DOWN 2 (5* Awaken x3):
     When 1 or more enemies are affected by Critical Rate UP, decreases all targets' pierce resistance by 11% at start of turn.`,
     },
-    Psychic1:{
-    Name: "Psychic Elf [Fortuneteller]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/NLOwWqY.png",
-    Type: "https://i.imgur.com/SsC1hEj.png",
-    Growth: "https://i.imgur.com/P4N7gFs.png",
-    Rarity: 3,
-    MinHp: 2982,
-    MaxHp: 2982,
-    MinAtk: 924,
-    MaxAtk: 924,
-    MinDef: 1116,
-    MaxDef: 1116,
-    MaxOutput: 220,
-    Town1: "Symbol of Protection +200%",
-    Town2: "Water Magic Device +100%",
-    DivineProtection: `Peek Into the Future Lv.MAX:
+    Psychic1: {
+        Name: "Psychic Elf [Fortuneteller]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/NLOwWqY.png",
+        Type: "https://i.imgur.com/SsC1hEj.png",
+        Growth: "https://i.imgur.com/P4N7gFs.png",
+        Rarity: 3,
+        MinHp: 2982,
+        MaxHp: 2982,
+        MinAtk: 924,
+        MaxAtk: 924,
+        MinDef: 1116,
+        MaxDef: 1116,
+        MaxOutput: 220,
+        Town1: "Symbol of Protection +200%",
+        Town2: "Water Magic Device +100%",
+        DivineProtection: `Peek Into the Future Lv.MAX:
     Increases all allies' M-ATK at start of battle by 11%.`,
-    SupportDivineProtection: `Peek Into the Future Lv.MAX:
+        SupportDivineProtection: `Peek Into the Future Lv.MAX:
     Increases all allies' M-ATK at start of battle by 11%.`,
-    ProtectionSkill: `Astrology Lv.1/Lv.10:
+        ProtectionSkill: `Astrology Lv.1/Lv.10:
     Increases Soul of Secrets damage by 30%/40% (Turns: 3). Increases all Soul of Secrets gauges' increase by 40% (Turns: 3).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Troop - Evade Poison 2 (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Troop - Evade Poison 2 (5* Awaken x1):
     When your troop contains 3 or more battle characters, increases all allies' poison evasion rate by 10% during battle.`,
-    Trait1A: `Troop - Evade Poison 2 (5* Awaken x3):
+        Trait1A: `Troop - Evade Poison 2 (5* Awaken x3):
     When your troop contains 3 or more battle characters, increases all allies' poison evasion rate by 15% during battle.`,
     },
-    Myrd1:{
-    Name: "Myrd [The Construction Artisan]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/c61nALz.png",
-    Type: "https://i.imgur.com/SsC1hEj.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 3,
-    MinHp: 2453,
-    MaxHp: 2453,
-    MinAtk: 1037,
-    MaxAtk: 1037,
-    MinDef: 1036,
-    MaxDef: 1036,
-    MaxOutput: 220,
-    Town1: "Symbol of Protection +200%",
-    Town2: "Space Magic Device +100%",
-    DivineProtection: `Building a Base Lv.MAX:
+    Myrd1: {
+        Name: "Myrd [The Construction Artisan]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/c61nALz.png",
+        Type: "https://i.imgur.com/SsC1hEj.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 3,
+        MinHp: 2453,
+        MaxHp: 2453,
+        MinAtk: 1037,
+        MaxAtk: 1037,
+        MinDef: 1036,
+        MaxDef: 1036,
+        MaxOutput: 220,
+        Town1: "Symbol of Protection +200%",
+        Town2: "Space Magic Device +100%",
+        DivineProtection: `Building a Base Lv.MAX:
     Increases all allies' M-ATK at start of battle by 11%.`,
-    SupportDivineProtection: `Building a Base Lv.MAX:
+        SupportDivineProtection: `Building a Base Lv.MAX:
     Increases all allies' M-ATK at start of battle by 11%.`,
-    ProtectionSkill: `Silent Support Lv.1/Lv.10:
+        ProtectionSkill: `Silent Support Lv.1/Lv.10:
     Increases skill cost limit until the end of battle by 30/40 (Max: 999). Increases all Soul of Skills gauges' increase by 40% (Turns: 3).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Effect - Critical Resistance DOWN 2 (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Effect - Critical Resistance DOWN 2 (5* Awaken x1):
     When 1 or more enemies are affected by ATK UP, decreases all targets' critical resistance by 7% at start of turn.`,
-    Trait1A: `Effect - Critical Resistance DOWN 2 (5* Awaken x3):
+        Trait1A: `Effect - Critical Resistance DOWN 2 (5* Awaken x3):
     When 1 or more enemies are affected by ATK UP, decreases all targets' critical resistance by 11% at start of turn.`,
     },
-    Haruna1:{
-    Name: "Haruna [The Affectionate Hobgoblin]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/VcjUvRw.png",
-    Type: "https://i.imgur.com/EWYVugy.png",
-    Growth: "https://i.imgur.com/MLuLYZy.png",
-    Rarity: 3,
-    MinHp: 2456,
-    MaxHp: 2456,
-    MinAtk: 1035,
-    MaxAtk: 1035,
-    MinDef: 1035,
-    MaxDef: 1035,
-    MaxOutput: 220,
-    Town1: "Symbol of Protection +200%",
-    Town2: "Dark Magic Device +100%",
-    DivineProtection: `Blooming Smile Lv.MAX:
+    Haruna1: {
+        Name: "Haruna [The Affectionate Hobgoblin]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/VcjUvRw.png",
+        Type: "https://i.imgur.com/EWYVugy.png",
+        Growth: "https://i.imgur.com/MLuLYZy.png",
+        Rarity: 3,
+        MinHp: 2456,
+        MaxHp: 2456,
+        MinAtk: 1035,
+        MaxAtk: 1035,
+        MinDef: 1035,
+        MaxDef: 1035,
+        MaxOutput: 220,
+        Town1: "Symbol of Protection +200%",
+        Town2: "Dark Magic Device +100%",
+        DivineProtection: `Blooming Smile Lv.MAX:
     Increases all allies' P-ATK at start of battle by 11%.`,
-    SupportDivineProtection: `Blooming Smile Lv.MAX:
+        SupportDivineProtection: `Blooming Smile Lv.MAX:
     Increases all allies' P-ATK at start of battle by 11%.`,
-    ProtectionSkill: `Gentle Prayer Lv.1/Lv.10:
+        ProtectionSkill: `Gentle Prayer Lv.1/Lv.10:
     Increases skill cost limit until the end of battle by 20/30 (Max: 999). Increases skill points by 20.`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - ATK UP 2 (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - ATK UP 2 (5* Awaken x1):
     When all 3 vanguard have 50% or more HP, increases all allies' ATK by 3% at start of turn.`,
-    Trait1A: `HP - ATK UP 2 (5* Awaken x3):
+        Trait1A: `HP - ATK UP 2 (5* Awaken x3):
     When all 3 vanguard have 50% or more HP, increases all allies' ATK by 5% at start of turn.`,
     },
-    Butterflies1:{
-    Name: "Butterflies of the Night Owner [Bewitching Shopkeeper]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/GAREbBj.png",
-    Type: "https://i.imgur.com/EWYVugy.png",
-    Growth: "https://i.imgur.com/yduAVsz.png",
-    Rarity: 3,
-    MinHp: 2874,
-    MaxHp: 2874,
-    MinAtk: 992,
-    MaxAtk: 992,
-    MinDef: 882,
-    MaxDef: 882,
-    MaxOutput: 220,
-    Town1: "Symbol of Protection +200%",
-    Town2: "Earth Magic Device +100%",
-    DivineProtection: `Charitable Smile Lv.MAX:
+    Butterflies1: {
+        Name: "Butterflies of the Night Owner [Bewitching Shopkeeper]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/GAREbBj.png",
+        Type: "https://i.imgur.com/EWYVugy.png",
+        Growth: "https://i.imgur.com/yduAVsz.png",
+        Rarity: 3,
+        MinHp: 2874,
+        MaxHp: 2874,
+        MinAtk: 992,
+        MaxAtk: 992,
+        MinDef: 882,
+        MaxDef: 882,
+        MaxOutput: 220,
+        Town1: "Symbol of Protection +200%",
+        Town2: "Earth Magic Device +100%",
+        DivineProtection: `Charitable Smile Lv.MAX:
     Increases all allies' P-ATK at start of battle by 11%.`,
-    SupportDivineProtection: `Charitable Smile Lv.MAX:
+        SupportDivineProtection: `Charitable Smile Lv.MAX:
     Increases all allies' P-ATK at start of battle by 11%.`,
-    ProtectionSkill: `A Moment of Peace Lv.1/Lv.10:
+        ProtectionSkill: `A Moment of Peace Lv.1/Lv.10:
     Increases Soul of Divine Protection damage by 50%/60% (Turns: 3). Increases all Soul of Divine Protection gauges' increase by 20% (Turns: 3).`,
-    ProtectionSkillIcon: "",
-    Trait1: `HP - Counterattack Resistance (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `HP - Counterattack Resistance (5* Awaken x1):
     When 3 vanguard have max HP, increases all allies' counterattack resistance by 20% at start of turn.`,
-    Trait1A: `HP - Counterattack Resistance (5* Awaken x3):
+        Trait1A: `HP - Counterattack Resistance (5* Awaken x3):
     When 3 vanguard have max HP, increases all allies' counterattack resistance by 30% at start of turn.`,
     },
-    Dord1:{
-    Name: "Dord [The Skilled Artisan]",
-    UnitType: "Protection Characters",
-    Art: "",
-    Icon: "https://i.imgur.com/8FfD8t2.png",
-    Type: "https://i.imgur.com/SsC1hEj.png",
-    Growth: "https://i.imgur.com/yduAVsz.png",
-    Rarity: 3,
-    MinHp: 2872,
-    MaxHp: 2872,
-    MinAtk: 993,
-    MaxAtk: 993,
-    MinDef: 881,
-    MaxDef: 881,
-    MaxOutput: 220,
-    Town1: "Symbol of Protection +200%",
-    Town2: "Wind Magic Device +100%",
-    DivineProtection: `Jewelcraft Lv.MAX:
+    Dord1: {
+        Name: "Dord [The Skilled Artisan]",
+        UnitType: "Protection Characters",
+        Art: "",
+        Icon: "https://i.imgur.com/8FfD8t2.png",
+        Type: "https://i.imgur.com/SsC1hEj.png",
+        Growth: "https://i.imgur.com/yduAVsz.png",
+        Rarity: 3,
+        MinHp: 2872,
+        MaxHp: 2872,
+        MinAtk: 993,
+        MaxAtk: 993,
+        MinDef: 881,
+        MaxDef: 881,
+        MaxOutput: 220,
+        Town1: "Symbol of Protection +200%",
+        Town2: "Wind Magic Device +100%",
+        DivineProtection: `Jewelcraft Lv.MAX:
     Increases all allies' M-ATK at start of battle by 11%.`,
-    SupportDivineProtection: `Jewelcraft Lv.MAX:
+        SupportDivineProtection: `Jewelcraft Lv.MAX:
     Increases all allies' M-ATK at start of battle by 11%.`,
-    ProtectionSkill: `Proficiency and Expertise Lv.1/Lv.10:
+        ProtectionSkill: `Proficiency and Expertise Lv.1/Lv.10:
     Increases Soul of Skills damage by 30%/40% (Turns: 3). Increases all Soul of Skills gauges' increase by 30% (Turns: 3).`,
-    ProtectionSkillIcon: "",
-    Trait1: `Troop - Evade Poison 2 (5* Awaken x1):
+        ProtectionSkillIcon: "",
+        Trait1: `Troop - Evade Poison 2 (5* Awaken x1):
     When your troop contains 3 or more battle characters, increases all allies' poison evasion rate by 10% during battle.`,
-    Trait1A: `Troop - Evade Poison 2 (5* Awaken x3):
+        Trait1A: `Troop - Evade Poison 2 (5* Awaken x3):
     When your troop contains 3 or more battle characters, increases all allies' poison evasion rate by 15% during battle.`,
     },
-    }
-    
-    
-    
-    
+}
+
+console.log(cdata)
 
 function waitForElm(selector) {
     return new Promise(resolve => {
@@ -3869,101 +3895,204 @@ function waitForElm(selector) {
 }
 
 
-if (linksplit[linksplit.length-3] === "characters") {
+if (linksplit[linksplit.length - 3] === "characters") {
     $(function () {
         $("#character-placeholder").load("/character");
     })
-    waitForElm('title').then((elem) => {elem.innerHTML = cdata[page].Name})
-    waitForElm('#title').then((elem) => {elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0]})
-    waitForElm('#name').then((elem) => {elem.innerHTML = cdata[page].Name.split(" [")[0]})
-    waitForElm('#icon').then((elem) => {elem.setAttribute("src", cdata[page].Icon)})
-    waitForElm('#art').then((elem) => {elem.setAttribute("src", cdata[page].Art)})
-    waitForElm('#rarity').then((elem) => {elem.setAttribute("src", stars[cdata[page].Rarity - 1])})
-    waitForElm('#type').then((elem) => {elem.setAttribute("src", types[cdata[page].Type] || cdata[page].Type)})
-    waitForElm('#growth').then((elem) => {elem.setAttribute("src", growth[cdata[page].Growth] || cdata[page].Growth)})
-    waitForElm('#attack').then((elem) => {elem.innerHTML = cdata[page].MinAtk.toString().concat(" - ", cdata[page].MaxAtk.toString())})
-    waitForElm('#health').then((elem) => {elem.innerHTML = cdata[page].MinHp.toString().concat(" - ", cdata[page].MaxHp.toString())})
-    waitForElm('#defense').then((elem) => {elem.innerHTML = cdata[page].MinDef.toString().concat(" - ", cdata[page].MaxDef.toString())})
-    waitForElm('#attack').then((elem) => {elem.innerHTML = cdata[page].MaxAtk.toString()})
-    waitForElm('#health').then((elem) => {elem.innerHTML =cdata[page].MaxHp.toString()})
-    waitForElm('#defense').then((elem) => {elem.innerHTML =cdata[page].MaxDef.toString()})
-    waitForElm('#output1').then((elem) => {elem.innerHTML = cdata[page].Town1.split(" +")[0]})
-    waitForElm('#output1percent').then((elem) => {elem.innerHTML = "+".concat(cdata[page].Town1.split(" +")[1])})
-    waitForElm('#output2').then((elem) => {elem.innerHTML = cdata[page].Town2.split(" +")[0]})
-    waitForElm('#output2percent').then((elem) => {elem.innerHTML = "+".concat(cdata[page].Town2.split(" +")[1])})
-    waitForElm('#trait1').then((elem) => {elem.innerHTML = cdata[page].Trait1.split(" (5* Awaken x1):")[0]})
-    waitForElm('#trait1desc').then((elem) => {elem.innerHTML = cdata[page].Trait1.split(" (5* Awaken x1):")[1]})
-    waitForElm('#trait1adesc').then((elem) => {elem.innerHTML = cdata[page].Trait1A.split(" (5* Awaken x3):")[1]})
+    waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name })
+    waitForElm('#title').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0] })
+    waitForElm('#name').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[0] })
+    waitForElm('#icon').then((elem) => { elem.setAttribute("src", cdata[page].Icon) })
+    waitForElm('#art').then((elem) => { elem.setAttribute("src", cdata[page].Art) })
+    waitForElm('#rarity').then((elem) => { elem.setAttribute("src", stars[cdata[page].Rarity - 1]) })
+    waitForElm('#type').then((elem) => { elem.setAttribute("src", types[cdata[page].Type] || cdata[page].Type) })
+    waitForElm('#growth').then((elem) => { elem.setAttribute("src", growth[cdata[page].Growth] || cdata[page].Growth) })
+    waitForElm('#attack').then((elem) => { elem.innerHTML = cdata[page].MinAtk.toString().concat(" - ", cdata[page].MaxAtk.toString()) })
+    waitForElm('#health').then((elem) => { elem.innerHTML = cdata[page].MinHp.toString().concat(" - ", cdata[page].MaxHp.toString()) })
+    waitForElm('#defense').then((elem) => { elem.innerHTML = cdata[page].MinDef.toString().concat(" - ", cdata[page].MaxDef.toString()) })
+    waitForElm('#attack').then((elem) => { elem.innerHTML = cdata[page].MaxAtk.toString() })
+    waitForElm('#health').then((elem) => { elem.innerHTML = cdata[page].MaxHp.toString() })
+    waitForElm('#defense').then((elem) => { elem.innerHTML = cdata[page].MaxDef.toString() })
+    waitForElm('#output1').then((elem) => { elem.innerHTML = cdata[page].Town1.split(" +")[0] })
+    waitForElm('#output1percent').then((elem) => { elem.innerHTML = "+".concat(cdata[page].Town1.split(" +")[1]) })
+    waitForElm('#output2').then((elem) => { elem.innerHTML = cdata[page].Town2.split(" +")[0] })
+    waitForElm('#output2percent').then((elem) => { elem.innerHTML = "+".concat(cdata[page].Town2.split(" +")[1]) })
+    waitForElm('#trait1').then((elem) => { elem.innerHTML = cdata[page].Trait1.split(" (5* Awaken x1):")[0] })
+    waitForElm('#trait1desc').then((elem) => { elem.innerHTML = cdata[page].Trait1.split(" (5* Awaken x1):")[1] })
+    waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = cdata[page].Trait1A.split(" (5* Awaken x3):")[1] })
+    waitForElm('#trait1icon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon) })
+    waitForElm('#trait1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon) })
 
     console.log(cdata[page].Type)
-    if (cdata[page].UnitType != "Protection Characters")
-    {
-        waitForElm('#weapon').then((elem) => {elem.setAttribute("src", weapons[cdata[page].Weapon]|| cdata[page].Weapon)})
-        waitForElm('#atktype').then((elem) => {elem.setAttribute("src", atktype[cdata[page].AtkType] || cdata[page].AtkType)}) 
-        waitForElm('#skill1').then((elem) => {elem.innerHTML = cdata[page].Skill1.split(" Lv.1")[0]})
-        waitForElm('#skill1desc').then((elem) => {elem.innerHTML = cdata[page].Skill1.split("10:")[1]})
-        waitForElm('#skill2').then((elem) => {elem.innerHTML = cdata[page].Skill2.split(" Lv.1")[0]})
-        waitForElm('#skill2desc').then((elem) => {elem.innerHTML = cdata[page].Skill2.split("10:")[1]})
-        waitForElm('#skill1icon').then((elem) => {elem.setAttribute("src", cdata[page].Skill1Icon)})
-        waitForElm('#skill2icon').then((elem) => {elem.setAttribute("src", cdata[page].Skill2Icon)})
-        waitForElm('#secreticon').then((elem) => {elem.setAttribute("src", secrettype[cdata[page].SecretType] || cdata[page].SecretType)})
-        waitForElm('#secret').then((elem) => {elem.innerHTML = cdata[page].Secret.split(" Lv.")[0]})
-        waitForElm('#secretdesc').then((elem) => {elem.innerHTML = cdata[page].Secret.split("Lv.MAX:")[1]})
+    if (cdata[page].UnitType != "Protection Characters") {
+        waitForElm('#weapon').then((elem) => { elem.setAttribute("src", weapons[cdata[page].Weapon] || cdata[page].Weapon) })
+        waitForElm('#atktype').then((elem) => { elem.setAttribute("src", atktype[cdata[page].AtkType] || cdata[page].AtkType) })
+        waitForElm('#skill1').then((elem) => { elem.innerHTML = cdata[page].Skill1.split(" Lv.1")[0] })
+        waitForElm('#skill1desc').then((elem) => { elem.innerHTML = cdata[page].Skill1.split("10:")[1] })
+        waitForElm('#skill2').then((elem) => { elem.innerHTML = cdata[page].Skill2.split(" Lv.1")[0] })
+        waitForElm('#skill2desc').then((elem) => { elem.innerHTML = cdata[page].Skill2.split("10:")[1] })
+        waitForElm('#skill1icon').then((elem) => { elem.setAttribute("src", cdata[page].Skill1Icon) })
+        waitForElm('#skill2icon').then((elem) => { elem.setAttribute("src", cdata[page].Skill2Icon) })
+        waitForElm('#secreticon').then((elem) => { elem.setAttribute("src", secrettype[cdata[page].SecretType] || cdata[page].SecretType) })
+        waitForElm('#secret').then((elem) => { elem.innerHTML = cdata[page].Secret.split(" Lv.")[0] })
+        waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].Secret.split("Lv.MAX:")[1] })
+        cdata[page].Stats.forEach((element, index) => {
+            if (index < 6)
+                waitForElm('.statsleft').then((elem) => { elem.children.item(index).children.item(1).innerHTML = element.toString().concat("%") })
+            else
+                waitForElm('.statsright').then((elem) => { elem.children.item(index - 6).children.item(1).innerHTML = element.toString().concat("%") })
+
+        })
     }
-    else
-    {
-        waitForElm('#weapon').then((elem) =>  {elem.setAttribute("src", types[cdata[page].SecondType] || cdata[page].SecondType)})
-        waitForElm('#skillstitle').then((elem) => {elem.innerHTML = "Divine Protection"}) 
-        waitForElm('#ultimatetitle').then((elem) => {elem.innerHTML = "Protection Skill"}) 
-        waitForElm('#atktype').then((elem) => {elem.setAttribute("src", "")}) 
-        waitForElm('#skill1').then((elem) => {elem.innerHTML = cdata[page].DivineProtection.split(" Lv.")[0]})
-        waitForElm('#skill1desc').then((elem) => {elem.innerHTML = cdata[page].DivineProtection.split("Lv.MAX:")[1]})
-        waitForElm('#skill2').then((elem) => {elem.innerHTML = cdata[page].SupportDivineProtection.split(" Lv.")[0]})
-        waitForElm('#skill2desc').then((elem) => {elem.innerHTML = cdata[page].SupportDivineProtection.split("Lv.MAX:")[1]})
-        waitForElm('#skill1icon').then((elem) => {elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png")})
-        waitForElm('#skill2icon').then((elem) => {elem.setAttribute("src", "")})
-        waitForElm('#secreticon').then((elem) => {elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png")})
-        waitForElm('#secret').then((elem) => {elem.innerHTML = cdata[page].ProtectionSkill.split(" Lv.1")[0]})
-        waitForElm('#secretdesc').then((elem) => {elem.innerHTML = cdata[page].ProtectionSkill.split("10:")[1]})
+    else {
+        if ("SecondType" in cdata[page])
+            waitForElm('#weapon').then((elem) => { elem.setAttribute("src", types[cdata[page].SecondType] || cdata[page].SecondType) })
+        waitForElm('#skillstitle').then((elem) => { elem.innerHTML = "Divine Protection" })
+        waitForElm('#ultimatetitle').then((elem) => { elem.innerHTML = "Protection Skill" })
+        waitForElm('#atktype').then((elem) => { elem.setAttribute("src", "") })
+        waitForElm('#skill1').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split(" Lv.")[0] })
+        waitForElm('#skill1desc').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split("Lv.MAX:")[1] })
+        waitForElm('#skill2').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split(" Lv.")[0] })
+        waitForElm('#skill2desc').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split("Lv.MAX:")[1] })
+        waitForElm('#skill1icon').then((elem) => { elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png") })
+        waitForElm('#skill2icon').then((elem) => { elem.setAttribute("src", "") })
+        waitForElm('#secreticon').then((elem) => { elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png") })
+        waitForElm('#secret').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split(" Lv.1")[0] })
+        waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split("10:")[1] })
+        waitForElm('.statsback2').then((elem) => { elem.remove() })
+
     }
-
-
-    cdata[page].Stats.forEach((element, index) => {
-        if (index < 6)
-            waitForElm('.statsleft').then((elem) => {elem.children.item(index).children.item(1).innerHTML = element.toString().concat("%")})
-        else
-            waitForElm('.statsright').then((elem) => {elem.children.item(index - 6).children.item(1).innerHTML = element.toString().concat("%")})
-
-    })
 }
-else
-{
-$(function () {
-    $("#character-placeholder").load("/charactersbody");
-})
-    waitForElm('.charactersbase').then((elem) => {
-        Object.keys(cdata).forEach(key => {
-            const para = document.createElement("a");
-            para.setAttribute("class", "charcontainer")
-            para.setAttribute("id", key)
-            para.setAttribute("href", "/characters/"+key)
-            elem.appendChild(para);
-            $(para).load('/charactericon')
-            waitForElm("#" + key + ' > #icon').then((ele) => {console.log("found"); ele.setAttribute("src", cdata[key].Icon)})
-            waitForElm("#" + key + ' > #rarity').then((ele) => {ele.setAttribute("src", stars[cdata[key].Rarity - 1])})
-            waitForElm("#" + key + ' > #type').then((ele) => {ele.setAttribute("src", types[cdata[key].Type] || cdata[key].Type)})
-            waitForElm("#" + key + ' > #name').then((ele) => {ele.innerHTML = cdata[key].Name.split(" ")[0]})
-            $(para).ready(function() {
-                para.setAttribute("turnon", "true")
+else {
+    $(function () {
+        $("#character-placeholder").load("/charactersbody");
+    })
+    function updatelist() {
+        $('.charcontainer').hide()
+        const docfrag = document.createDocumentFragment();
+        let currentcreated = created
+        waitForElm('.charactersbase').then((elem) => {
+            Object.keys(cdata).forEach(key => {
+                    if (cdata[key].UnitType === undefined)
+                        UnitType = "Battle Characters"
+                    else
+                        UnitType = cdata[key].UnitType
+                    if (Filters.UnitType != "All" && UnitType != Filters.UnitType)
+                        return; 
+                    if (Filters.Type != "All" && (cdata[key].Type != types[Filters.Type] && cdata[key].SecondType != types[Filters.Type]))
+                        return;
+                    if (Filters.Weapons != "All" && (cdata[key].Weapon != Filters.Weapons))
+                        return;
+                    if (Filters.Growth != "All" && (cdata[key].Growth != growth[Filters.Growth]))
+                        return;
+                    if (Filters.AttackType != "All" && (cdata[key].AtkType != atktype[Filters.AttackType]))
+                        return;
+                    if (currentcreated == 1)
+                    {
+                        const para = document.createElement("a");
+                        para.setAttribute("class", "charcontainer")
+                        para.setAttribute("id", key)
+                        para.setAttribute("href", "/characters/" + key)
+                        elem.appendChild(para);
+                        $(para).load('/charactericon')
+                        waitForElm("#" + key + ' > #icon').then((ele) => {
+                            ele.onload = function () { para.setAttribute("turnon", "true") };
+                            ele.src = cdata[key].Icon;
+
+                        })
+                        waitForElm("#" + key + ' > #rarity').then((ele) => { ele.setAttribute("src", stars[cdata[key].Rarity - 1]) })
+                        waitForElm("#" + key + ' > #type').then((ele) => { ele.setAttribute("src", types[cdata[key].Type] || cdata[key].Type) })
+                        waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key].Name.split(" ")[0] })
+                        if ("SecondType" in cdata[key]) {
+                            para.setAttribute("secondtype", "true")
+                            waitForElm("#" + key + ' > #secondtype').then((ele) => { ele.setAttribute("src", types[cdata[key].SecondType] || cdata[key].SecondType) })
+                        }
+                    }
+                    else
+                        $('#'+key).show()
+
             });
-            if ("SecondType" in cdata[key]) {
-                para.setAttribute("secondtype", "true")
-                waitForElm("#" + key + ' > #secondtype').then((ele) => {ele.setAttribute("src", types[cdata[key].SecondType] || cdata[key].SecondType)})
-            }
-            
+        })
+
+        created = 0
+    }
+
+    
+    updatelist()
+    waitForElm(".unittypebutton").then((ele) => { 
+        $( ".unittypebutton" ).click(function() {
+            $( ".unittypebutton" ).attr("toggle", "false")
+            $( this ).attr("toggle", "true")
+            Filters.UnitType = UnitTypeButtonTL[$( this ).attr("id")]
+            updatelist()
         });
     })
-    
+
+    waitForElm("#types > button").then((ele) => { 
+        $( "#types > button" ).click(function() {
+            $( "#types > button" ).attr("toggle", "false")
+            if (Filters.Type == $( this ).attr("id"))
+            {
+                Filters.Type = "All"
+            }
+            else
+            {
+                $( this ).attr("toggle", "true")
+                Filters.Type = $( this ).attr("id")
+            }
+            updatelist()
+        });
+    })
+
+    waitForElm("#weapon > button").then((ele) => { 
+        $( "#weapon > button" ).click(function() {
+            $( "#weapon > button" ).attr("toggle", "false")
+            if (Filters.Weapons == $( this ).attr("id"))
+            {
+                Filters.Weapons = "All"
+            }
+            else
+            {
+                $( this ).attr("toggle", "true")
+                Filters.Weapons = $( this ).attr("id")
+            }
+            updatelist()
+        });
+    })
+
+    waitForElm("#growth > button").then((ele) => { 
+        $( "#growth > button" ).click(function() {
+            $( "#growth > button" ).attr("toggle", "false")
+            if (Filters.Growth == $( this ).attr("id"))
+            {
+                Filters.Growth = "All"
+            }
+            else
+            {
+                $( this ).attr("toggle", "true")
+                Filters.Growth = $( this ).attr("id")
+            }
+            updatelist()
+        });
+    })
+
+    waitForElm("#attacktype > button").then((ele) => { 
+        $( "#attacktype > button" ).click(function() {
+            $( "#attacktype > button" ).attr("toggle", "false")
+            if (Filters.AttackType == $( this ).attr("id"))
+            {
+                Filters.AttackType = "All"
+            }
+            else
+            {
+                $( this ).attr("toggle", "true")
+                Filters.AttackType = $( this ).attr("id")
+            }
+            updatelist()
+        });
+    })
+
+
 }
 
 waitForElm('.hamb').then(() => {

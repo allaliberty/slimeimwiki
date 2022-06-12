@@ -9,6 +9,7 @@
 body {
     background-color: #0B1622;
     padding-top: 75px;
+    min-height:2000px;
 }
 
 div {
@@ -161,12 +162,27 @@ div {
 
 .firstpartofsecondpart {
     display: flex;
+    justify-content:flex-end;
+}
+
+.firstpartofsecondpart > div {
+    width: 40%;
 }
 
 .characterart {
     width: 60%;
     object-fit: contain;
 }
+
+.characterart[src=""] {
+    width: 0%;
+    object-fit: contain;
+}
+
+.characterart[src=""] ~ div {
+    width: 100%;
+}
+
 
 .statsback {
     background-color: #0B1622;
@@ -289,8 +305,9 @@ div {
     flex-direction: column;
     margin-top: 25px;
     margin-bottom: 25px;
-
 }
+
+
 
 .charactersbase {
     background-color:#152232;
@@ -300,8 +317,106 @@ div {
     flex-wrap: wrap;
     padding: 30px;
     box-sizing: border-box;
+    position: relative;
     gap: 20px;
     border-radius: 15px;
+    padding-top:100px;
+    margin-top:25px
+}
+
+.sortingbox {
+    position: absolute;
+    width: 100%;
+    height:100px;
+    top:-25px;
+    left:0px;
+}
+
+.unittypeselectcontainer {
+    position: relative;
+}
+
+.unittypeselect {
+    display: flex;
+    padding: 5px 5px 5px 5px;
+    position: absolute;
+    background-color: #0c121a;
+    border-radius: 15px;
+}
+
+.unittypebutton {
+    background-color: #152232;
+    padding: 5px 30px 5px 30px;
+    border-radius: 15px;
+    border: 0px;
+    flex:1;
+}
+
+.typeselectcontainer {
+    background-color: #0c121a;
+    position: relative;
+    width:250px;
+    height:30px;
+    display:flex;
+    border-radius: 15px;
+    align-items: center;
+    justify-content:center;
+    padding: 5px 5px 5px 5px;
+}
+
+.typeselectcontainer[big="true"] {
+    width:310px;
+}
+
+.typeselectcontainer[small="true"] {
+    width:130px;
+}
+
+.typeselectcontainer[smallest="true"] {
+    width:100px;
+}
+
+.typeselectcontainer > button {
+    background: 0;
+    border:0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:30px;
+    aspect-ratio: 1;
+}
+
+button > img {
+    width:100%;
+    filter: brightness(50%)
+}
+
+button:hover > img {
+    filter: brightness(75%);
+}
+
+button[toggle="true"] > img {
+    filter: brightness(100%);
+}
+
+.types {
+    width:100%;
+    height:75px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    position: absolute;
+    top:40px;
+    gap:1%;
+
+}
+
+.unittypebutton:hover {
+    filter: brightness(85%);
+}
+
+.unittypebutton[toggle="true"] {
+    filter: brightness(50%);
 }
 
 .charcontainer {
@@ -309,7 +424,7 @@ div {
     height:100px;
     position: relative;
     opacity: 0;
-    transition: opacity 2s;
+    transition: opacity 0.5s;
 }
 
 .charcontainer[turnon="true"] {
@@ -382,6 +497,9 @@ div {
         flex-direction: column;
         width: 100%;
     }
+    .firstpartofsecondpart > div {
+        width: 100%;
+    }
     .sep {
         flex: 0;
     }
@@ -437,6 +555,62 @@ div {
     }
 
     .charactersbase {
-        gap: 5%;
+        gap: 2%;
+    }
+
+    .unittypeselect {
+        width: 100%;
+        height: 50px;
+        box-sizing: border-box;
+    }
+    .typeselectcontainer {
+        width:100%;
+        height:20%;
+    } 
+    .typeselectcontainer > button{
+        height:90%
+    }
+
+    .types{
+        flex-direction: row;
+        box-sizing: border-box;
+        justify-content: space-between;
+        align-items: center;
+
+        flex-wrap: wrap;
+        top:50px;
+        height:260px;
+        padding-right:50px;
+        padding-left:50px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    .typeselectcontainer[big="true"] {
+        width:100%;
+    }
+    .typeselectcontainer[small="true"]  {
+        width:49%;
+    }
+    .typeselectcontainer[smallest="true"] {
+        width:40%;
+    }
+
+    .charactersbase {
+        padding-top: 300px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .typeselectcontainer > button {
+        width:10%;
+    }
+    .typeselectcontainer[small="true"] > button {
+        width:29%;
+        height:auto;
+    }
+    .typeselectcontainer[smallest="true"] > button {
+        width:37%;
+        height:auto;
     }
   }

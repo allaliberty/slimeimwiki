@@ -5,17 +5,17 @@
                     <p id = "title" class="title">Federal Lord of the Devil</p>
                     <p id = "name" class="charactername">Rimuru Tempest</p>
                     <div class="characteristics">
-                        <img id= "rarity" src="https://cdn.discordapp.com/attachments/633768073068806144/982518720536641557/5star.png" class="characteristicsicons">
-                        <img id= "type" src="https://cdn.discordapp.com/attachments/633768073068806144/982520477237018634/TargetIcon_001_04.png" class="characteristicsicons">
-                        <img id= "atktype" src="https://cdn.discordapp.com/attachments/633768073068806144/982520420471300116/TargetIcon_002_01.png" class="characteristicsicons">
-                        <img id= "weapon" src="https://cdn.discordapp.com/attachments/633768073068806144/982527713015373824/Layer_3.png" class="characteristicsicons">
-                        <img id= "growth" src="https://cdn.discordapp.com/attachments/633768073068806144/985155633592545380/unknown.png" class="characteristicsicons">
+                        <img id= "rarity" src="" class="characteristicsicons">
+                        <img id= "type" src="" class="characteristicsicons">
+                        <img id= "atktype" src="" class="characteristicsicons">
+                        <img id= "weapon" src="" class="characteristicsicons">
+                        <img id= "growth" src="" class="characteristicsicons">
                     </div>
                 </div>
             </div>
             <div class ="secondpart">
                 <div class = "firstpartofsecondpart">
-                <img id= "art" class = "characterart" src="https://cdn.discordapp.com/attachments/633768073068806144/982530834420604978/RimuruDefault_6_CharaInfo.png" alt="">
+                <img id= "art" class = "characterart" src="" alt="">
                 <div>
                     <div class="statsback">
                         <p class="statstitle">Stats</p>
@@ -42,12 +42,12 @@
                         </div>
                     </div>
                     <div class="statsback">
-                        <p id = "skillstitle" class="statstitle">Skills</p>
+                        <p id = "skillstitle" class="statstitle">Battle Skills</p>
                         <div class="skilldiv">
-                            <img class = "skillicon" id= "skill1icon" src="https://cdn.discordapp.com/attachments/633768073068806144/982555946498805822/IcSkill_007_04_3_L.png" alt="">
+                            <img class = "skillicon" id= "skill1icon" src="" alt="">
                             <div>
-                                <p><Strong id= "skill1" >Everything</Strong></p>
-                                <p id= "skill1desc" class="skilltext">Increases the attack power of all allies by 35-40% for 1 turn</p>
+                                <p><Strong id= "skill1" ></Strong></p>
+                                <p id= "skill1desc" class="skilltext"></p>
                             </div>
                         </div>
                         <!--<p><Strong>Multipliers</Strong></p>
@@ -73,10 +73,10 @@
                                 40%
                             </p>-->
                         <div class="skilldiv">
-                            <img class = "skillicon" id= "skill2icon" src="https://cdn.discordapp.com/attachments/633768073068806144/982558257606455327/IcSkill_015_07_1_L.png" alt="">
+                            <img class = "skillicon" id= "skill2icon" src="" alt="">
                             <div>
-                                <p><Strong id= "skill2" >Magic detection</Strong></p>
-                                <p class="skilltext" id= "skill2desc" >Increases the defense of all allies by 20-25% for 2 turns</p>
+                                <p><Strong id= "skill2" ></Strong></p>
+                                <p class="skilltext" id= "skill2desc" ></p>
                             </div> 
                         </div>
                         <!--<p><Strong>Multipliers</Strong></p>
@@ -103,12 +103,12 @@
                             </p>-->
                     </div>
                     <div class="statsback">
-                        <p id = "ultimatetitle" class="statstitle">Ultimate</p>
+                        <p id = "ultimatetitle" class="statstitle">Secret Skills</p>
                         <div class="skilldiv">
-                            <img class = "skillicon" id= "secreticon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt="">
+                            <img class = "skillicon" id= "secreticon" src="" alt="">
                             <div>
-                                <p><Strong id= "secret" >Megiddo</Strong></p>
-                                <p class="skilltext" id= "secretdesc" >Sky attribute physical attack on all enemies
+                                <p><Strong id= "secret" ></Strong></p>
+                                <p class="skilltext" id= "secretdesc" >
                                 </p>
                             </div>
                         </div>
@@ -203,7 +203,7 @@
             <div class="statsback">
                 <p class="statstitle">Trait</p>
                 <div class="skilldiv">
-                    <!--img class = "skillicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt=""-->
+                    <img id = "trait1icon" class = "skillicon" src="" alt=""-->
                     <div>
                         <p><Strong class= "traittitle" id= "trait1" >Troop - Protection UP</Strong></p>
                         <p><Strong  >Awakened Trait - Lvl:84</Strong></p>
@@ -211,14 +211,16 @@
                         </p>
                     </div>
                 </div>
-                <div>
-                    <p><Strong id = "trait1a">Awakened Trait - Lvl:92</Strong></p>
-                    <p class="skilltext" id = "trait1adesc">When your troop contains 3 or more battle characters, increases protection gauge by 6 every 3 turns (available in support formation)
-                    </p>
+                <div class="skilldiv">
+                    <img id = "trait1aicon" class = "skillicon" src="" alt=""-->
+                    <div>
+                        <p><Strong id = "trait1a">Awakened Trait - Lvl:92</Strong></p>
+                        <p class="skilltext" id = "trait1adesc">When your troop contains 3 or more battle characters, increases protection gauge by 6 every 3 turns (available in support formation)</p>
+                    </div>
                 </div>
                 <p class="statstitle">Output</p>
                 <div class="skilldiv">
-                    <!--img class = "skillicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt=""-->
+                    <!--img class = "trait1aicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt=""-->
                     <div>
                         <p><Strong id = "output1">Tavern</Strong></p>
                         <p class="skilltext" id = "output1percent">+30%
