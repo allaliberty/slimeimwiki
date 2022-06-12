@@ -28,7 +28,7 @@
                     <button id = "Lance"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982523242931683328/unknown.png" alt=""></button>
                     <button id = "Greatsword"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982523229736402964/unknown.png" alt=""></button>
                     <button id = "Tome"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982523214364291112/unknown.png" alt=""></button>
-                    <button id = "Fists"><img src="https://cdn.discordapp.com/attachments/633768073068806144/985207460614774835/Layer_32.png" alt=""></button>
+                    <button id = "Fist"><img src="https://cdn.discordapp.com/attachments/633768073068806144/985207460614774835/Layer_32.png" alt=""></button>
                 </div>
 
                 <div id = "growth" class="typeselectcontainer" small = "true">
