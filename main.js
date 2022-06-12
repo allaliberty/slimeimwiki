@@ -83,6 +83,8 @@ Lv.1/Lv.10 Cost: 25/15`,
 When your troop contains 3 or more battle characters, increases skill points by 4 at the start of the battle (available in support formation).`,
         Trait1A: `Troop - Skill UP (5* Awaken x3):
 When your troop contains 3 or more battle characters, increases skill points by 6 at the start of the battle (available in support formation).`,
+        Trait1Icon: "https://imgur.com/FWJ586B",
+        Trait1AIcon: "https://imgur.com/OLfX2cS",
         Stats: [2, 0, 0, 2, 0, 0, 2, 0, 0, 4, 0, 0]
     },
     Milim1: {
@@ -118,6 +120,8 @@ Lv.1/Lv.10 Cost: 65/55`,
 When your troop contains 3 or more battle characters, increases own Secret Skill Gauge by 5% at start of battle (Turns: 3) (available in support formation).`,
         Trait1A: `Troop - Secret Skill UP 3 (5* Awaken x3):
 When your troop contains 3 or more battle characters, increases own Secret Skill Gauge by 8% at start of battle (Turns: 3) (available in support formation).`,
+        Trait1Icon: "https://imgur.com/lunHEj7",
+        Trait1AIcon: "https://imgur.com/zQCB0Gf",
         Stats: [4, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0]
     },
     Leon1: {
@@ -153,6 +157,8 @@ Lv.1/Lv.10 Cost: 25/15`,
 When you unleash a 6 combo attack with Soul of Secrets, increases own ATK by 5% for the next turn (available in support formation).`,
         Trait1A: `Soul Combo - ATK UP (5* Awaken x3):
 When you unleash a 6 combo attack with Soul of Secrets, increases own ATK by 8% for the next turn (available in support formation).`,
+        Trait1Icon: "https://imgur.com/bTdTVRY",
+        Trait1AIcon: "https://imgur.com/Ob5ce8I",
         Stats: [2, 0, 0, 8, 0, 0, 2, 0, 0, 2, 0, 0]
     },
     Guy1: {
@@ -188,6 +194,8 @@ Lv.1/Lv.10 Cost: 35/25`,
 When your troop contains 3 or more battle characters, increases own Secret Skill Gauge by 12% at the start of battle (available in support formation).`,
         Trait1A: `Troop - Secret Skill UP (5* Awaken x3):
 When your troop contains 3 or more battle characters, increases own Secret Skill Gauge by 18% at the start of battle (available in support formation).`,
+        Trait1Icon: "https://imgur.com/lunHEj7",
+        Trait1AIcon: "https://imgur.com/zQCB0Gf",
         Stats: [8, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0]
     },
     Treyni1: {
@@ -223,6 +231,8 @@ Lv.1/Lv.10 Cost: 25/15`,
 When affected by Pierce Resistance UP, increases own DEF by 7% at the start of turn (available in support formation).`,
         Trait1A: `Effect - DEF UP (5* Awaken x3):
 When affected by Pierce Resistance UP, increases own DEF by 11% at the start of turn (available in support formation).`,
+        Trait1Icon: "https://imgur.com/w8Ohyz2",
+        Trait1AIcon: "https://imgur.com/YibqE0O",
         Stats: [0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0]
     },
     Shizue1: {
