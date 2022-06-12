@@ -268,6 +268,8 @@ Lv.1/Lv.10 Cost: 25/15`,
 When you unleash a 6 combo attack with Soul of Secrets, increase all targets' DEF by 12% for the next turn (available in support formation).`,
         Trait1A: `Soul Combo - DEF UP (5* Awaken x3):
 When you unleash a 6 combo attack with Soul of Secrets, increase all targets' DEF by 18% for the next turn (available in support formation).`,
+        Trait1Icon: "https://imgur.com/q71UjgC",
+        Trait1AIcon: "https://imgur.com/7CV9bqO",
         Stats: [2, 0, 0, 2, 0, 0, 4, 4, 0, 2, 0, 0]
     },
     Rimuru1: {
@@ -303,6 +305,8 @@ Lv.1/Lv.10 Cost: 40/30`,
 When affected by Critical Resistance UP, increases own DEF by 7% at start of the turn (available in support formation).`,
         Trait1A: `Effect - DEF UP 2 (5* Awaken x3):
 When affected by Critical Resistance UP, increases own DEF by 11% at start of the turn (available in support formation).`,
+        Trait1Icon: "https://imgur.com/w8Ohyz2",
+        Trait1AIcon: "https://imgur.com/YibqE0O",
         Stats: [2, 0, 0, 8, 0, 0, 2, 0, 0, 2, 0, 0]
     },
     Rimuru2: {
@@ -338,6 +342,8 @@ Lv.1/Lv.10 Cost: 25/15`,
 When affected by Guard Rate UP, increases own critical rate by 7% at start of turn (available in support formation).`,
         Trait1A: `Effect - Critical Rate UP 2 (5* Awaken x3):
 When affected by Guard Rate UP, increases own critical rate by 11% at start of turn (available in support formation).`,
+        Trait1Icon: "https://imgur.com/bTdTVRY",
+        Trait1AIcon: "https://imgur.com/Ob5ce8I",
         Stats: [8, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 0]
     },
     Hinata1: {
