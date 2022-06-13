@@ -2953,7 +2953,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Milim8: {
         Name: "Milim Nava [Bellicose Dragoneye]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/W6OTYu5.png",
         Icon: "https://i.imgur.com/OQ6kcVD.png",
         Type: "https://i.imgur.com/NchScWh.png",
         SecondType: "https://i.imgur.com/z8bnSYg.png",
@@ -2983,7 +2983,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Elemental1: {
         Name: "Elemental Colossus [Golem]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/Iv7k1gp.png",
         Icon: "https://i.imgur.com/6AmIGRh.png",
         Type: "https://i.imgur.com/AHPti72.png",
         SecondType: "https://i.imgur.com/NchScWh.png",
@@ -3013,7 +3013,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Shuna6: {
         Name: "Shuna [The Faithful Housemaid]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/3qnn7Gg.png",
         Icon: "https://i.imgur.com/0sVXae5.png",
         Type: "https://i.imgur.com/pQYVkI3.png",
         SecondType: "https://i.imgur.com/NchScWh.png",
@@ -3043,7 +3043,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Veldora3: {
         Name: "Veldora Tempest [The Mighty Roar]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/MzhmtrU.png",
         Icon: "https://i.imgur.com/NxON4Pq.png",
         Type: "https://i.imgur.com/z8bnSYg.png",
         SecondType: "https://i.imgur.com/pzX6NRL.png",
@@ -3073,7 +3073,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Shizue3: {
         Name: "Shizue Izawa [Dream Bride]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/HOsDkgT.png",
         Icon: "https://i.imgur.com/cmcJR2T.png",
         Type: "https://i.imgur.com/hX15sR0.png",
         SecondType: "https://i.imgur.com/EWYVugy.png",
@@ -3103,7 +3103,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Veldora4: {
         Name: "Veldora Tempest [Storm Dragon]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/IoMmupm.png",
         Icon: "https://i.imgur.com/tge1oxf.png",
         Type: "https://i.imgur.com/pQYVkI3.png",
         SecondType: "https://i.imgur.com/pzX6NRL.png",
@@ -3133,7 +3133,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Soka1: {
         Name: "Soka [The Lovestruck Maiden]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/Rj9TYq6.png",
         Icon: "https://i.imgur.com/qjERmjP.png",
         Type: "https://i.imgur.com/hX15sR0.png",
         SecondType: "https://i.imgur.com/AHPti72.png",
@@ -3163,7 +3163,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Rimuru9: {
         Name: "Rimuru Tempest [Stately Sovereign]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/tYqOAy3.png",
         Icon: "https://i.imgur.com/sp0TBou.png",
         Type: "https://i.imgur.com/pzX6NRL.png",
         SecondType: "https://i.imgur.com/z8bnSYg.png",
@@ -3193,7 +3193,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Hakurou3: {
         Name: "Hakurou [Ultimate Blade]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/Di1wAQv.png",
         Icon: "https://i.imgur.com/QGp1ZJS.png",
         Type: "https://i.imgur.com/AHPti72.png",
         SecondType: "https://i.imgur.com/QndVudD.png",
@@ -3223,7 +3223,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Rimuru10: {
         Name: "Rimuru Tempest [The Chancellor of Prosperity]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/Sx3A82b.png",
         Icon: "https://i.imgur.com/1T3F6vl.png",
         Type: "https://i.imgur.com/QndVudD.png",
         SecondType: "https://i.imgur.com/pQYVkI3.png",
@@ -3253,7 +3253,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Orc1: {
         Name: "Orc Disaster [Starved]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/fkdI43E.png",
         Icon: "https://i.imgur.com/1H4E9N5.png",
         Type: "https://i.imgur.com/pzX6NRL.png",
         SecondType: "https://i.imgur.com/QndVudD.png",
@@ -3283,7 +3283,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Charybdis1: {
         Name: "Charybdis [Swimming Calamity]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/fkdI43E.png",
         Icon: "https://i.imgur.com/Z3Ywuyj.png",
         Type: "https://i.imgur.com/z8bnSYg.png",
         SecondType: "https://i.imgur.com/pQYVkI3.png",
@@ -3313,7 +3313,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Chloe2: {
         Name: "Chloe Aubert [Quiet Knight Girl]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/xBSHDYV.png",
         Icon: "https://i.imgur.com/cSFbENz.png",
         Type: "https://i.imgur.com/NchScWh.png",
         SecondType: "https://i.imgur.com/hX15sR0.png",
@@ -3343,7 +3343,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Ifrit1: {
         Name: "Ifrit [Burning Spirit]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/VD64F33.png",
         Icon: "https://i.imgur.com/X07Dq1N.png",
         Type: "https://i.imgur.com/QndVudD.png",
         SecondType: "https://i.imgur.com/hX15sR0.png",
@@ -3373,7 +3373,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Ramiris2: {
         Name: "Ramiris [Fairy of the Labryrinth]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/0Ia2C6j.png",
         Icon: "https://i.imgur.com/XUqI1Ab.png",
         Type: "https://i.imgur.com/hX15sR0.png",
         SecondType: "https://i.imgur.com/AHPti72.png",
@@ -3403,7 +3403,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Shion6: {
         Name: "Shion [The Talented Secretary]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/jJyVwbY.png",
         Icon: "https://i.imgur.com/OcpjnwW.png",
         Type: "https://i.imgur.com/pzX6NRL.png",
         SecondType: "https://i.imgur.com/QndVudD.png",
@@ -3433,7 +3433,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Sky1: {
         Name: "Sky Dragon [Soaring Dragon Calamity]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/WfkfCCa.png",
         Icon: "https://i.imgur.com/YtveCWp.png",
         Type: "https://i.imgur.com/pzX6NRL.png",
         SecondType: "https://i.imgur.com/z8bnSYg.png",
@@ -3463,7 +3463,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Fuze1: {
         Name: "Fuze [Guildmaster]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/CADxrdN.png",
         Icon: "https://i.imgur.com/ExxEzPL.png",
         Type: "https://i.imgur.com/pQYVkI3.png",
         SecondType: "https://i.imgur.com/pzX6NRL.png",
@@ -3493,7 +3493,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Salamander1: {
         Name: "Salamander [The Flame Master]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/1ircS3x.png",
         Icon: "https://i.imgur.com/dAt7JWo.png",
         Type: "https://i.imgur.com/QndVudD.png",
         SecondType: "https://i.imgur.com/AHPti72.png",
@@ -3523,7 +3523,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Light1: {
         Name: "Light Spirit [Heroic Conductor]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/Ym3Yt5Z.png",
         Icon: "https://i.imgur.com/D9aZOZT.png",
         Type: "https://i.imgur.com/hX15sR0.png",
         SecondType: "https://i.imgur.com/NchScWh.png",
@@ -3553,7 +3553,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Veldora5: {
         Name: "Veldora Tempest [Proud Kin of Dragons]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/1foKxR0.png",
         Icon: "https://i.imgur.com/vRmyHSS.png",
         Type: "https://i.imgur.com/NchScWh.png",
         Growth: "https://i.imgur.com/MLuLYZy.png",
@@ -3582,7 +3582,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Vesta1: {
         Name: "Vesta [Seeker]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/jtg2joP.png",
         Icon: "https://i.imgur.com/3www7X3.png",
         Type: "https://i.imgur.com/z8bnSYg.png",
         SecondType: "https://i.imgur.com/pQYVkI3.png",
@@ -3612,7 +3612,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Kaijin1: {
         Name: "Kaijin [The Forge Artisan]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/WQpSjXK.png",
         Icon: "https://i.imgur.com/W776VYH.png",
         Type: "https://i.imgur.com/AHPti72.png",
         SecondType: "https://i.imgur.com/QndVudD.png",
@@ -3642,7 +3642,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Gard1: {
         Name: "Gard Mjolmire [The Competent Merchant]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/keXmlP1.png",
         Icon: "https://i.imgur.com/0HI45mk.png",
         Type: "https://i.imgur.com/NchScWh.png",
         SecondType: "https://i.imgur.com/hX15sR0.png",
@@ -3672,7 +3672,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Garm1: {
         Name: "Garm [The Armor Artisan]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/w0rgfuW.png",
         Icon: "https://i.imgur.com/zIeVbH7.png",
         Type: "https://i.imgur.com/EWYVugy.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
@@ -3701,7 +3701,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Gobuichi1: {
         Name: "Gobuichi [The Hobgoblin Chef]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/6UOv4rz.png",
         Icon: "https://i.imgur.com/xj9fpjm.png",
         Type: "https://i.imgur.com/EWYVugy.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
@@ -3730,7 +3730,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Psychic1: {
         Name: "Psychic Elf [Fortuneteller]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/IZ2dJw8.png",
         Icon: "https://i.imgur.com/NLOwWqY.png",
         Type: "https://i.imgur.com/SsC1hEj.png",
         Growth: "https://i.imgur.com/P4N7gFs.png",
@@ -3759,7 +3759,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Myrd1: {
         Name: "Myrd [The Construction Artisan]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/6r5Zfu5.png",
         Icon: "https://i.imgur.com/c61nALz.png",
         Type: "https://i.imgur.com/SsC1hEj.png",
         Growth: "https://i.imgur.com/MLuLYZy.png",
@@ -3788,7 +3788,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Haruna1: {
         Name: "Haruna [The Affectionate Hobgoblin]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/OQOow6f.png",
         Icon: "https://i.imgur.com/VcjUvRw.png",
         Type: "https://i.imgur.com/EWYVugy.png",
         Growth: "https://i.imgur.com/MLuLYZy.png",
@@ -3817,7 +3817,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Butterflies1: {
         Name: "Butterflies of the Night Owner [Bewitching Shopkeeper]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/Wxg44eP.png",
         Icon: "https://i.imgur.com/GAREbBj.png",
         Type: "https://i.imgur.com/EWYVugy.png",
         Growth: "https://i.imgur.com/yduAVsz.png",
@@ -3846,7 +3846,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Dord1: {
         Name: "Dord [The Skilled Artisan]",
         UnitType: "Protection Characters",
-        Art: "",
+        Art: "https://i.imgur.com/0b1HuS6.png",
         Icon: "https://i.imgur.com/8FfD8t2.png",
         Type: "https://i.imgur.com/SsC1hEj.png",
         Growth: "https://i.imgur.com/yduAVsz.png",
