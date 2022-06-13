@@ -51,6 +51,11 @@
                     <button id = "Melee"><img src="https://i.imgur.com/P8lUDX0.png" alt=""></button>
                     <button id = "Magic"><img src="https://i.imgur.com/tOS4FvO.png" alt=""></button>
                 </div>
+
+                <div id = "secrettype" class="typeselectcontainer" smallest = "true">
+                    <button id = "TypeAll"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt=""></button>
+                    <button id = "TypeSingle"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982528147880828948/icSpTypeSingle.png" alt=""></button>
+                </div>
             </div>
         </div>
     </div>

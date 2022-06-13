@@ -60,10 +60,6 @@ div {
 }
 
 .topbarbuttons {
-    
-    
-    
-    
     padding-right: 300px; 
 }
 
@@ -307,8 +303,6 @@ div {
     margin-bottom: 25px;
 }
 
-
-
 .charactersbase {
     background-color:#152232;
     width: 100%;
@@ -407,6 +401,9 @@ div {
 
 button > img {
     width:100%;
+    height:100%;
+    aspect-ratio: 1;
+    object-fit: contain;
     filter: brightness(50%)
 }
 
@@ -507,7 +504,7 @@ button[toggle="true"] > img {
 }
 
 
-@media (max-width: 45rem) {
+@media (max-width: 52rem) {
     .characterart {
         width: 100%;
     }
@@ -624,10 +621,10 @@ button[toggle="true"] > img {
         width:100%;
     }
     .typeselectcontainer[small="true"]  {
-        width:49%;
+        width:40%;
     }
     .typeselectcontainer[smallest="true"] {
-        width:40%;
+        width:24%;
     }
 
     .charactersbase {
@@ -639,14 +636,9 @@ button[toggle="true"] > img {
 
   @media (max-width: 500px) {
     .typeselectcontainer > button {
-        width:8.5%;
     }
     .typeselectcontainer[small="true"] > button {
-        width:17.5%;
-        height:auto;
     }
     .typeselectcontainer[smallest="true"] > button {
-        width:20%;
-        height:auto;
     }
   }
