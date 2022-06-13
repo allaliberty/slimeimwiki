@@ -53,6 +53,8 @@ let Filters = {
     Weapons: "All",
     AttackType: "All",
     Growth: "All",
+    Sort: "Name",
+    SortDir: 1,
 }
 
 const UnitTypeButtonTL = {
@@ -3920,8 +3922,8 @@ if (linksplit[linksplit.length - 3] === "characters") {
     waitForElm('#trait1').then((elem) => { elem.innerHTML = cdata[page].Trait1.split(" (5* Awaken x1):")[0] })
     waitForElm('#trait1desc').then((elem) => { elem.innerHTML = cdata[page].Trait1.split(" (5* Awaken x1):")[1] })
     waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = cdata[page].Trait1A.split(" (5* Awaken x3):")[1] })
-    waitForElm('#trait1icon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon) })
-    waitForElm('#trait1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon) })
+    waitForElm('#trait1icon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon || "") })
+    waitForElm('#trait1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon || "") })
 
     console.log(cdata[page].Type)
     if (cdata[page].UnitType != "Protection Characters") {
@@ -3971,8 +3973,18 @@ else {
         $('.charcontainer').hide()
         const docfrag = document.createDocumentFragment();
         let currentcreated = created
+        //let sortedarray = Object.keys(cdata).sort(function(a, b) {return -(cdata[a].MaxAtk - cdata[b].MaxAtk)})
+        let sortedarray = Object.keys(cdata)
+        console.log(Filters.Sort)
+        if (Filters.Sort == "Name") 
+                sortedarray = sortedarray.sort(function(a, b) {return (cdata[a].Name.localeCompare(cdata[b].Name))})
+        else
+                sortedarray = sortedarray.sort(function(a, b) {return -(cdata[a][Filters.Sort] - cdata[b][Filters.Sort])})
+        if (Filters.SortDir == -1)
+                sortedarray.reverse()
+
         waitForElm('.charactersbase').then((elem) => {
-            Object.keys(cdata).forEach(key => {
+                sortedarray.forEach(function(key) {
                     if (cdata[key].UnitType === undefined)
                         UnitType = "Battle Characters"
                     else
@@ -4002,14 +4014,25 @@ else {
                         })
                         waitForElm("#" + key + ' > #rarity').then((ele) => { ele.setAttribute("src", stars[cdata[key].Rarity - 1]) })
                         waitForElm("#" + key + ' > #type').then((ele) => { ele.setAttribute("src", types[cdata[key].Type] || cdata[key].Type) })
-                        waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key].Name.split(" ")[0] })
+                        
+
+
+
                         if ("SecondType" in cdata[key]) {
                             para.setAttribute("secondtype", "true")
                             waitForElm("#" + key + ' > #secondtype').then((ele) => { ele.setAttribute("src", types[cdata[key].SecondType] || cdata[key].SecondType) })
                         }
                     }
                     else
+                    {
                         $('#'+key).show()
+                        waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key][Filters.Sort] })
+                    }
+                    $('#'+key).css("order", sortedarray.indexOf(key))
+                    if (Filters.Sort == "Name") 
+                        waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key].Name.split(" ")[0] })
+                        else
+                     waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key][Filters.Sort] })
 
             });
         })
@@ -4019,9 +4042,9 @@ else {
 
     
     updatelist()
-    waitForElm(".unittypebutton").then((ele) => { 
-        $( ".unittypebutton" ).click(function() {
-            $( ".unittypebutton" ).attr("toggle", "false")
+    waitForElm(".unittypeselect > .unittypebutton").then((ele) => { 
+        $( ".unittypeselect > .unittypebutton" ).click(function() {
+            $( ".unittypeselect > .unittypebutton" ).attr("toggle", "false")
             $( this ).attr("toggle", "true")
             Filters.UnitType = UnitTypeButtonTL[$( this ).attr("id")]
             updatelist()
@@ -4088,6 +4111,35 @@ else {
                 $( this ).attr("toggle", "true")
                 Filters.AttackType = $( this ).attr("id")
             }
+            updatelist()
+        });
+    })
+
+    waitForElm("#attacktype > button").then((ele) => { 
+        $( "#attacktype > button" ).click(function() {
+            $( "#attacktype > button" ).attr("toggle", "false")
+            if (Filters.AttackType == $( this ).attr("id"))
+            {
+                Filters.AttackType = "All"
+            }
+            else
+            {
+                $( this ).attr("toggle", "true")
+                Filters.AttackType = $( this ).attr("id")
+            }
+            updatelist()
+        });
+    })
+
+    waitForElm(".sortselect > button").then((ele) => { 
+        $( ".sortselect > button" ).click(function() {
+            $( ".sortselect > button" ).attr("toggle", "false")
+            $( this ).attr("toggle", "true")
+            if (Filters.Sort == $( this ).attr("id").split("Sort")[0])
+            {
+                Filters.SortDir *= -1
+            }
+            Filters.Sort = $( this ).attr("id").split("Sort")[0]
             updatelist()
         });
     })

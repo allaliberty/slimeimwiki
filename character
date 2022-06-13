@@ -21,21 +21,21 @@
                         <p class="statstitle">Stats</p>
                         <div class = "stat">
                             <div class = "statname">
-                                <img style="margin-right: 10px;object-fit: contain;" src="https://cdn.discordapp.com/attachments/633768073068806144/982542179346051082/icHp.png" alt="">
+                                <img style="width:30px; height:30px; aspect-ratio:1; margin-right: 10px;object-fit: contain;" src="https://cdn.discordapp.com/attachments/633768073068806144/982542179346051082/icHp.png" alt="">
                                 <p>Health</p>
                             </div>
                             <p id= "health" class = "statnumber">988-7142</p>
                         </div>
                         <div class = "stat">
                             <div class = "statname">
-                                <img style="margin-right: 10px;object-fit: contain;" src="https://cdn.discordapp.com/attachments/633768073068806144/982542253207748668/icAtk.png" alt="">
+                                <img style="width:30px; height:30px; aspect-ratio:1; margin-right: 10px;object-fit: contain;" src="https://cdn.discordapp.com/attachments/633768073068806144/982542253207748668/icAtk.png" alt="">
                                 <p>Attack</p>
                             </div>
                             <p id= "attack" class = "statnumber">494-3007</p>
                         </div>
                         <div class = "stat">
                             <div class = "statname">
-                                <img style="margin-right: 10px;object-fit: contain;" src="https://cdn.discordapp.com/attachments/633768073068806144/982542305280024577/icDef.png" alt="">
+                                <img style="width:30px;height:30px; aspect-ratio:1;margin-right: 10px;object-fit: contain;" src="https://cdn.discordapp.com/attachments/633768073068806144/982542305280024577/icDef.png" alt="">
                                 <p>Defense</p>
                             </div>
                             <p id= "defense" class = "statnumber">492-3005</p>
@@ -220,7 +220,7 @@
                 </div>
                 <p class="statstitle">Output</p>
                 <div class="skilldiv">
-                    <!--img class = "trait1aicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt=""-->
+                    <img id = "town1icon" class = "skillicon" src="" alt=""-->
                     <div>
                         <p><Strong id = "output1">Tavern</Strong></p>
                         <p class="skilltext" id = "output1percent">+30%
@@ -228,7 +228,7 @@
                     </div>
                 </div>
                 <div class="skilldiv">
-                    <!--img class = "skillicon" src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt=""-->
+                    <img id = "town2icon" class = "skillicon" src="" alt=""-->
                     <div>
                         <p><Strong id = "output2">Digsite for Training Magistones</Strong></p>
                         <p class="skilltext" id = "output2percent">+10%

@@ -344,12 +344,31 @@ div {
     border-radius: 15px;
 }
 
+.sortcontainer {
+    position: relative;
+}
+
+.sortselect {
+    right:0px;
+    top:5px;
+    display: flex;
+    padding: 5px 5px 5px 5px;
+    position: absolute;
+    background-color: #0c121a;
+    border-radius: 15px;
+}
+
 .unittypebutton {
     background-color: #152232;
     padding: 5px 30px 5px 30px;
     border-radius: 15px;
     border: 0px;
     flex:1;
+}
+
+.sortselect > .unittypebutton {
+    font-size: 10px;
+    padding: 3px 15px 3px 15px;
 }
 
 .typeselectcontainer {
@@ -418,6 +437,12 @@ button[toggle="true"] > img {
 .unittypebutton[toggle="true"] {
     filter: brightness(50%);
 }
+
+
+.sortselect > .unittypebutton[toggle="true"]:hover {
+    filter: brightness(90%);
+}
+
 
 .charcontainer {
     width:100px;
@@ -563,6 +588,15 @@ button[toggle="true"] > img {
         height: 50px;
         box-sizing: border-box;
     }
+
+    .sortselect {
+        width: 100%;
+        top:50px;
+        box-sizing: border-box;
+    }
+
+
+
     .typeselectcontainer {
         width:100%;
         height:20%;
@@ -578,8 +612,8 @@ button[toggle="true"] > img {
         align-items: center;
 
         flex-wrap: wrap;
-        top:50px;
-        height:260px;
+        top:80px;
+        height:230px;
         padding-right:50px;
         padding-left:50px;
         padding-top: 25px;
@@ -599,18 +633,20 @@ button[toggle="true"] > img {
     .charactersbase {
         padding-top: 300px;
     }
+
+
   }
 
   @media (max-width: 500px) {
     .typeselectcontainer > button {
-        width:10%;
+        width:8.5%;
     }
     .typeselectcontainer[small="true"] > button {
-        width:29%;
+        width:17.5%;
         height:auto;
     }
     .typeselectcontainer[smallest="true"] > button {
-        width:37%;
+        width:20%;
         height:auto;
     }
   }

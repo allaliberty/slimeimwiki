@@ -8,6 +8,15 @@
                     <button type = "button" id ="protectionunit" class="unittypebutton">Protection</button>
                 </div>
             </div>
+            <div class="sortcontainer">
+                <div class="sortselect">
+                    <button type = "button" id ="NameSort" class="unittypebutton" toggle = "true">Name</button>
+                    <button type = "button" id ="RaritySort" class="unittypebutton" >Rarity</button>
+                    <button type = "button" id ="MaxAtkSort" class="unittypebutton">Attack</button>
+                    <button type = "button" id ="MaxDefSort" class="unittypebutton">Defense</button>
+                    <button type = "button" id ="MaxHpSort" class="unittypebutton">Health</button>
+                </div>
+            </div>
             <div class="types">
                 <div id = "types" class="typeselectcontainer" big = true>
                     <button id = "Fire"><img src="https://i.imgur.com/QndVudD.png" alt=""></button>
