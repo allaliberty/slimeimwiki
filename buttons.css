@@ -242,7 +242,7 @@ div {
     width: 100%;
     overflow-y: hidden;
     transition: all 0.25s;
-    max-height: 0;
+    max-height: 0px;
 }
 
 .skillfilter[toggle="true"] {
@@ -403,6 +403,13 @@ div {
     border-radius: 15px;
 }
 
+.unittypeselect > p {
+    margin: 0px 20px 0px 20px;
+    font-size: 15px;
+    line-height: 30px;
+    font-weight: 600;
+}
+
 .sortcontainer {
     position: relative;
 }
@@ -415,6 +422,13 @@ div {
     position: absolute;
     background-color: #0c121a;
     border-radius: 15px;
+}
+
+.sortselect > p {
+    margin: 0px 20px 0px 20px;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 500;
 }
 
 .unittypebutton {
@@ -729,10 +743,6 @@ button[toggle="true"] > img {
 
     .skillfilter{
         margin-bottom: 30px;
-    }
-
-    .skillfilter[toggle="true"]{
-        margin-bottom: 40px;
     }
 
   }

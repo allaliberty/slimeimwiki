@@ -6,6 +6,7 @@
         <div class ="sortingbox">
             <div class="unittypeselectcontainer">
                 <div class="unittypeselect">
+                    <p>List </p>
                     <button type = "button" id ="all" class="unittypebutton" toggle = "true">All</button>
                     <button type = "button" id ="battleunit" class="unittypebutton">Battle</button>
                     <button type = "button" id ="protectionunit" class="unittypebutton">Protection</button>
@@ -13,6 +14,7 @@
             </div>
             <div class="sortcontainer">
                 <div class="sortselect">
+                    <p>Sort by</p>
                     <button type = "button" id ="NameSort" class="unittypebutton" toggle = "true">Name</button>
                     <button type = "button" id ="RaritySort" class="unittypebutton" >Rarity</button>
                     <button type = "button" id ="MaxAtkSort" class="unittypebutton">Attack</button>
