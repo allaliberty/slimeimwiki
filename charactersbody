@@ -56,6 +56,12 @@
                     <button id = "TypeAll"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982528148191186984/icSpTypeAll.png" alt=""></button>
                     <button id = "TypeSingle"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982528147880828948/icSpTypeSingle.png" alt=""></button>
                 </div>
+
+                <div id = "stars" class="typeselectcontainer" biggest = true>
+                    <button id = "3"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982527856418648135/3star.png" alt=""></button>
+                    <button id = "4"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982527856775143484/4star.png" alt=""></button>
+                    <button id = "5"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982527856162799626/5star.png" alt=""></button>
+                </div>
             </div>
         </div>
     </div>

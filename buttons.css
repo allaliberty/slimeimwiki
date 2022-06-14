@@ -314,7 +314,7 @@ div {
     position: relative;
     gap: 20px;
     border-radius: 15px;
-    padding-top:100px;
+    padding-top:125px;
     margin-top:25px
 }
 
@@ -377,6 +377,24 @@ div {
     padding: 5px 5px 5px 5px;
 }
 
+.typeselectcontainer[biggest = "true"] {
+    width:275px;
+}
+
+.typeselectcontainer[biggest = "true"] > button {
+    width:auto;
+    height: 100%;
+    aspect-ratio: 0;
+}
+
+.typeselectcontainer[biggest = "true"] > button > img {
+    width:75%;
+    height: 100%;
+    aspect-ratio: 0;
+}
+
+
+
 .typeselectcontainer[big="true"] {
     width:310px;
 }
@@ -417,14 +435,14 @@ button[toggle="true"] > img {
 
 .types {
     width:100%;
-    height:75px;
+    height:100px;
     display: flex;
     justify-content:center;
+    flex-wrap: wrap;
     align-items:center;
     position: absolute;
     top:40px;
     gap:1%;
-
 }
 
 .unittypebutton:hover {
@@ -620,6 +638,10 @@ button[toggle="true"] > img {
     .typeselectcontainer[big="true"] {
         width:100%;
     }
+
+    .typeselectcontainer[biggest="true"] {
+        width:100%;
+    }
     .typeselectcontainer[small="true"]  {
         width:40%;
     }
@@ -635,6 +657,9 @@ button[toggle="true"] > img {
   }
 
   @media (max-width: 500px) {
+    .typeselectcontainer[smallest="true"] {
+        width:20%;
+    }
     .typeselectcontainer > button {
     }
     .typeselectcontainer[small="true"] > button {
