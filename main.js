@@ -1,7 +1,15 @@
 
-var linksplit = window.location.href.split("/");
-var page = linksplit[linksplit.length - 2];
+let linksplit = window.location.href.split("/");
+console.log(linksplit[linksplit.length - 1])
+if (linksplit[linksplit.length - 1].length == 0) {
+        linksplit.pop()
+}
+let page = linksplit[linksplit.length - 1].split("?")[1];
+console.log(linksplit[linksplit.length - 1])
 let created = 1
+
+
+
 
 
 
@@ -48,13 +56,13 @@ const secrettype = {
 }
 
 let Filters = {
-        UnitType: "All",
-        Type: "All",
-        Weapons: "All",
-        AttackType: "All",
-        Growth: "All",
-        SecretType: "All",
-        Sort: "Name",
+        UnitType: sessionStorage.getItem("UnitType") || "All",
+        Type: sessionStorage.getItem("Type") || "All",
+        Weapons: sessionStorage.getItem("Weapons") || "All",
+        AttackType: sessionStorage.getItem("AttackType") || "All",
+        Growth: sessionStorage.getItem("Growth") || "All",
+        SecretType: sessionStorage.getItem("SecretType") || "All",
+        Sort: sessionStorage.getItem("Sort") || "Name",
         SortDir: 1,
 }
 
@@ -3898,7 +3906,7 @@ function waitForElm(selector) {
 }
 
 
-if (linksplit[linksplit.length - 3] === "characters") {
+if (linksplit[linksplit.length - 2].split("?")[0] === "characters") {
         $(function () {
                 $("#character-placeholder").load("/character");
         })
@@ -4006,7 +4014,7 @@ else {
                                         const para = document.createElement("a");
                                         para.setAttribute("class", "charcontainer")
                                         para.setAttribute("id", key)
-                                        para.setAttribute("href", "/characters/" + key)
+                                        para.setAttribute("href", "/characters/?" + key)
                                         elem.appendChild(para);
                                         $(para).load('/charactericon')
                                         waitForElm("#" + key + ' > #icon').then((ele) => {
@@ -4048,6 +4056,7 @@ else {
                         $(".unittypeselect > .unittypebutton").attr("toggle", "false")
                         $(this).attr("toggle", "true")
                         Filters.UnitType = UnitTypeButtonTL[$(this).attr("id")]
+                        sessionStorage.setItem("UnitType", Filters.UnitType)
                         updatelist()
                 });
         })
@@ -4062,6 +4071,7 @@ else {
                                 $(this).attr("toggle", "true")
                                 Filters.Type = $(this).attr("id")
                         }
+                        sessionStorage.setItem("Type", Filters.Type)
                         updatelist()
                 });
         })
@@ -4076,6 +4086,7 @@ else {
                                 $(this).attr("toggle", "true")
                                 Filters.Weapons = $(this).attr("id")
                         }
+                        sessionStorage.setItem("Weapons", Filters.Weapons)
                         updatelist()
                 });
         })
@@ -4090,6 +4101,7 @@ else {
                                 $(this).attr("toggle", "true")
                                 Filters.Growth = $(this).attr("id")
                         }
+                        sessionStorage.setItem("Growth", Filters.Growth)
                         updatelist()
                 });
         })
@@ -4104,6 +4116,7 @@ else {
                                 $(this).attr("toggle", "true")
                                 Filters.AttackType = $(this).attr("id")
                         }
+                        sessionStorage.setItem("AttackType", Filters.AttackType)
                         updatelist()
                 });
         })
@@ -4118,6 +4131,7 @@ else {
                                 $(this).attr("toggle", "true")
                                 Filters.SecretType = $(this).attr("id")
                         }
+                        sessionStorage.setItem("SecretType", Filters.SecretType)
                         updatelist()
                 });
         })
@@ -4130,6 +4144,7 @@ else {
                                 Filters.SortDir *= -1
                         }
                         Filters.Sort = $(this).attr("id").split("Sort")[0]
+                        sessionStorage.setItem("Sort", Filters.Sort)
                         updatelist()
                 });
         })
