@@ -167,7 +167,14 @@ div {
 
 .characterart {
     width: 60%;
+    height: 758px;
     object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s
+}
+
+.characterart[turnon="true"] {
+    opacity: 1;
 }
 
 .characterart[src=""] {

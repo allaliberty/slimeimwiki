@@ -3969,7 +3969,7 @@ if (linksplit[linksplit.length - 2].split("?")[0] === "characters") {
     waitForElm('#title').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0] })
     waitForElm('#name').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[0] })
     waitForElm('#icon').then((elem) => { elem.setAttribute("src", cdata[page].Icon) })
-    waitForElm('#art').then((elem) => { elem.setAttribute("src", cdata[page].Art) })
+    waitForElm('#art').then((elem) => { elem.setAttribute("src", cdata[page].Art); elem.onload = function () { elem.setAttribute("turnon", "true") }; })
     waitForElm('#rarity').then((elem) => { elem.setAttribute("src", stars[cdata[page].Rarity - 1]) })
     waitForElm('#type').then((elem) => { elem.setAttribute("src", types[cdata[page].Type] || cdata[page].Type) })
     waitForElm('#growth').then((elem) => { elem.setAttribute("src", growth[cdata[page].Growth] || cdata[page].Growth) })
