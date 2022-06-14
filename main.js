@@ -7,7 +7,9 @@ let page = linksplit[linksplit.length - 1].split("?")[1];
 let created = 1
 
 
-
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
 $(function () {
@@ -15,11 +17,11 @@ $(function () {
 })
 
 const stars = ["https://cdn.discordapp.com/attachments/633768073068806144/982527855407792168/1star.png",
-"https://cdn.discordapp.com/attachments/633768073068806144/982527856968073227/2star.png",
-"https://cdn.discordapp.com/attachments/633768073068806144/982527856418648135/3star.png",
-"https://cdn.discordapp.com/attachments/633768073068806144/982527856775143484/4star.png",
-"https://cdn.discordapp.com/attachments/633768073068806144/982527856162799626/5star.png",
-"https://cdn.discordapp.com/attachments/633768073068806144/982527855953063976/6star.png"]
+    "https://cdn.discordapp.com/attachments/633768073068806144/982527856968073227/2star.png",
+    "https://cdn.discordapp.com/attachments/633768073068806144/982527856418648135/3star.png",
+    "https://cdn.discordapp.com/attachments/633768073068806144/982527856775143484/4star.png",
+    "https://cdn.discordapp.com/attachments/633768073068806144/982527856162799626/5star.png",
+    "https://cdn.discordapp.com/attachments/633768073068806144/982527855953063976/6star.png"]
 const weapons = {
     Sword: "https://cdn.discordapp.com/attachments/633768073068806144/982523252985446460/unknown.png",
     Katana: "https://cdn.discordapp.com/attachments/633768073068806144/982523309382053898/unknown.png",
@@ -67,7 +69,197 @@ let Filters = {
     Sort: sessionStorage.getItem("Sort") ?? "Name",
     SortDir: sessionStorage.getItem("SortDir") ?? 1,
     Stars: sessionStorage.getItem("Stars") ?? "All",
+    Skills:
+    JSON.parse(sessionStorage.getItem("Skills")) ??
+    [],
+    SkillsOpen: sessionStorage.getItem("SkillsOpen") ?? "false",
+
 }
+
+function jqSelector( id ) { 
+    return "#" + id.replace( /(:|\.|\[|\]|,)/g, "\\$1" ); 
+}
+
+
+let BattleOptionsHeal = {
+    "All Heal": ["Heals all allies"],
+    "Lowest Ally Heal": ["Heals the ally with the lowest"],
+    "Heal Self": ["Heals self"],
+    "All Recover Poison": ["Recovers all allies from Poison"],
+    "All Recover Stun": ["Recovers all allies from Stun"],
+}
+
+let Unfair = {
+    "Make Another Move": ["Make another move"],
+    "Redraw": ["Redraws soul in hand"],
+}
+
+
+let BuffAll = {
+    "ATK": ["all allies' ATK"],
+    "DEF": ["all allies' DEF"],
+    "Max HP": ["all allies' max HP"],
+
+    "Wind ATK": ["all allies' wind ATK"],
+    "Fire ATK": ["all allies' fire ATK"],
+    "Light ATK": ["all allies' light ATK"],
+    "Dark ATK": ["all allies' dark ATK"],
+    "Space ATK": ["all allies' space ATK"],
+    "Earth ATK": ["all allies' earth ATK"],
+    "Water ATK": ["all allies' water ATK"],
+
+    "Critical Rate": ["all allies' critical rate"],
+    "Critical Resistance": ["all allies' critical resistance"],
+    "Critical Damage": ["all allies' critical damage"],
+
+    "Pierce Resistance": ["all allies' pierce resistance"],
+    "Pierce Power": ["all allies' pierce power"],
+    "Pierce Rate": ["all allies' pierce rate"],
+
+    "Stun Evasion Rate": ["all allies' stun evasion rate"],
+    "Poison Evasion Rate": ["all allies' poison evasion rate"],
+    "Counter Power": ["all allies' counter power"],
+
+    "Guard Penetration": ["all allies' guard penetration"],
+    "Guard Power": ["all allies' guard power"],
+    "Guard Rate": ["all allies' guard rate"],
+    "Soul of Combos": ["activating Soul of Combos damage"],
+}
+
+
+let BuffSelf = {
+    "Pierce Rate": ["own pierce rate"],
+    "Pierce Power": ["own pierce power"],
+    "Pierce Resistance": ["own pierce resistance"],
+    "Soul of Combos Damage": ["own Soul of Combos damage"],
+    "Critical Rate": ["own CRIT rate", "own critical rate"],
+    "Critical Damage": ["own CRIT damage", "own critical damage"],
+    "ATK": ["own ATK"],
+    "Poison Evasion Rate": ["own poison evasion rate"],
+    "All Attribute Resistance": ["own all attribute resistance"],
+    "Counterattack Rate": ["own counterattack rate"],
+    "Counter Power": ["own counter power"],
+    "M-ATK": ["own M-ATK"],
+    "Secret Skill Gauge": ["own secret skill gauge"],
+    "Drago": ["Chance to give Drago to self"],
+    "Guard Penetration": ["own guard penetration"],
+}
+
+let DebuffAll = {
+    "Guard Power": ["all targets' guard power"],
+    "Guard Rate": ["all targets' guard rate"],
+    "Pierce Resistance": ["all targets' pierce resistance"],
+    "Pierce Power": ["all targets' pierce power"],
+    "Counterattack Rate": ["all targets' counterattack rate"],
+    "Critical Rate": ["all targets' critical rate"],
+    "Critical Damage": ["all targets' critical damage"],
+    "Critical Resistance": ["all targets' critical resistance"],
+    "DEF": ["all targets' DEF", "all targets' defense"],
+    "ATK": ["all targets' ATK", "all targets' attack"],
+    "Seal DEF UP": ["Chance to seal DEF UP on all"],
+    "Seal ATK UP": ["Chance to seal ATK UP on all"],
+    "Seal Critical Resistance UP": ["Chance to seal Critical Resistance UP on all targets"],
+    "Counterattack Resistance": ["all targets' counterattack resistance"],
+
+
+    "Dark Resistance": ["all targets' dark resistance"],
+    "Light Resistance": ["all targets' light resistance"],
+    "Fire Resistance": ["all targets' fire resistance"],
+    "Water Resistance": ["all targets' water resistance"],
+    "Space Resistance": ["all targets' space resistance"],
+    "Earth Resistance": ["all targets' earth resistance"],
+    "Wind Resistance": ["all targets' wind resistance"],
+
+}
+
+let DebuffSingle = {
+    "Guard Power": ["a single target's guard power"],
+    "Pierce Resistance": ["single target's pierce resistance"],
+    "Pierce Resistance": ["single target's pierce power"],
+    "Counterattack Rate": ["single target's counterattack rate"],
+    "Critical Rate": ["single target's critical rate"],
+    "Critical Damage": ["single target's critical damage"],
+    "Critical Resistance": ["single target's critical resistance"],
+    "Stun": ["Chance to stun"],
+    "DEF": ["a single target's DEF"],
+    "ATK": ["a single target's ATK"],
+    "Magic Attack Resistance": ["a single targets' magic attack resistance"],
+    "Physical Attack Resistance": ["a single targets' physical attack resistance"],
+    "Guard Rate": ["a single target's guard rate"],
+    "Poison": ["Chance to poison"],
+    "Counterattack Resistance": ["a single targets' counterattack resistance"],
+}
+
+let SoulsFrom = {
+    "Own Souls": ["own soul"],
+    "Soul of Secrets": ["Changes Soul of Secrets", "and Soul of Secrets"],
+    "Soul of Skills": ["Changes Soul of Skills", "and Soul of Skills"],
+    "Soul of Divine Protection": ["Changes Soul of Divine Protection", "and Soul of Divine Protection"],
+}
+
+
+let SoulsAmount = {
+    "x1": ["x1"],
+    "x2": ["x2"],
+    "x3": ["x3"],
+    "All": ["ecrets into", "rotection into", "kills into", "own souls", "own soul"],
+}
+
+
+let SoulsTo = {
+    "Soul of Secrets": ["to Soul of Secrets"],
+    "Soul of Skills": ["to Soul of Skills"],
+    "Soul of Divine Protection": ["to Soul of Divine Protection"],
+    "Another Vanguard Character": ["to another vanguard character"],
+}
+
+
+let SoulsBuff = {
+    "Soul of Secrets Skill Point": ["Soul of Secrets skill point increase"],
+    "Soul of Secrets Gauge": ["Soul of Secrets gauge"],
+    "Soul of Secrets Secret Gauges": ["Soul of Secrets secret skill gauge"],
+
+    "Soul of Skills Skill Point": ["Soul of Skills' skill point increase"],
+    "Soul of Skills Secret Gauge": ["Soul of Skills' secret skill gauge increase"],
+    "Soul of Skills Gauges": ["Soul of Skills gauges' increase"],
+    
+    "Soul of Divine Protection Gauge": ["Soul of Divine Protection gauge"],
+    "Soul of Divine Protection Skill Point": ["Soul of Divine Protection skill point"],
+    "Soul of Divine Protection Secret Gauges": ["Soul of Divine Protection secret skill gauge"],
+
+    "All Souls Protection Gauge": ["all souls' protection gauge increase"],
+    "All Souls Secret Gauge": ["all souls' secrets skill gauge increase"],
+    "All Souls Gauges": ["all souls' gauge", "all souls gauge"],
+
+    "Soul of Skills Damage": ["Soul of Skills damage"],
+    "Soul of Divine Protection Damage": ["Soul of Divine Protection damage"],
+    "Soul of Secrets Damage": ["Soul of Secrets damage"],
+}
+
+SoulsBuff 
+
+let FilterKeywords = {
+    "Heal": BattleOptionsHeal,
+    "Unfair": Unfair,
+    "Buff All": BuffAll,
+    "Buff Self": BuffSelf,
+    "Debuff All": DebuffAll,
+    "Debuff Single": DebuffSingle, 
+    "From Soul": SoulsFrom,
+    "Soul Amount": SoulsAmount,
+    "To Soul": SoulsTo,
+    "Soul Buff": SoulsBuff
+}
+
+Object.keys(FilterKeywords).forEach(function (index) {
+    FilterKeywords[index] = Object.keys(FilterKeywords[index])
+    .sort()
+    .reduce((accumulator, key) => {
+      accumulator[key] = FilterKeywords[index][key];
+    
+      return accumulator;
+    }, {});
+    })
 
 
 const UnitTypeButtonTL = {
@@ -118,6 +310,11 @@ waitForElm('#stars > button').then(() => {
     $("#stars > #" + Filters.Stars).attr("toggle", "true")
 })
 
+waitForElm('#skillsfilterbutton').then(() => {
+    $("#skillsfilterbutton").attr("toggle", Filters.SkillsOpen)
+    $(".skillfilter").attr("toggle", Filters.SkillsOpen)
+})
+
 
 
 const cdata = {
@@ -146,7 +343,7 @@ All-target wind magic attack for 270%.`,
 Heals all allies' by 55%/60% of their max HP.
 Lv.1/Lv.10 Cost: 65/55`,
         Skill1Icon: "",
-        Skill2: `Linked Operations Lv.1/Lv10:
+        Skill2: `Linked Operations Lv.1/Lv.10:
 Increases all allies' wind ATK by 5%/15% (Turns: 1).
 Lv.1/Lv.10 Cost: 25/15`,
         Skill2Icon: "",
@@ -441,7 +638,7 @@ Single-target light magic attack for 450%.`,
 Increase all allies' DEF by 35%/40% (Turns: 1). Increases own all attribute resistance by 20% (Turns: 3).
 Lv.1/Lv.10 Cost: 25/15`,
         Skill1Icon: "",
-        Skill2: `Usurper Lv.1/Lv10:
+        Skill2: `Usurper Lv.1/Lv.10:
 Changes Soul of Skills and Soul of Divine Protection x1 each into Soul of Secrets. Increases Soul of Secrets secret skill gauge increase until the end of battle by 3%/5% (Max: 100%).
 Lv.1/Lv.10 Cost: 40/30`,
         Skill2Icon: "",
@@ -858,7 +1055,7 @@ When your troop contains 3 or more battle characters, increases skill points by 
 Single-target fire physical attack for 450%.`,
         SecretType: "Single",
         Skill1: `Hunter's Shadow Lv.1/Lv.10:
-Changes Soul of Secrets x2 into Soul of Divine ProtectionIncreases all Soul of Divine Protection gauges' increase by 5%/10% (Turns: 1).
+Changes Soul of Secrets x2 into Soul of Divine Protection. Increases all Soul of Divine Protection gauges' increase by 5%/10% (Turns: 1).
 Lv.1/Lv.10 Cost: 25/15`,
         Skill1Icon: "",
         Skill2: `Brave Contact Lv.1/Lv.10:
@@ -959,7 +1156,7 @@ When your troop contains 3 or more battle characters, increases protection gauge
         MaxOutput: 150,
         Town1: "Digsite for Attack Magistones +30%",
         Town2: "Laboratory +10%",
-        Secret: `Punishment Blast Lv.Max:
+        Secret: `Punishment Blast Lv.MAX:
 All-target light magic attack for 270%.`,
         SecretType: "All",
         Skill1: `Sacred Power Lv.1/Lv.10:
@@ -967,7 +1164,7 @@ Increases all allies' light ATK by 40%/50% (Turns: 1)
 Lv.1/Lv.10 Cost: 65/55`,
         Skill1Icon: "",
         Skill2: `Eccentric Force Lv.1/Lv.10:
-Changes Soul of Divine Protection x into Soul of Secrets. Increases all Soul of Secrets gauges' increase by 3%/5% (Max: 100%
+Changes Soul of Divine Protection x1 into Soul of Secrets. Increases all Soul of Secrets gauges' increase by 3%/5% (Max: 100%)
 Lv.1/Lv.10 Cost: 25/15`,
         Skill2Icon: "",
         Trait1: `Troop - Secret Skill UP 2 (5* Awaken x1):
@@ -1036,7 +1233,7 @@ Single-target fire physical attack for 450%.`,
 Increases all allies' critical rate by 80%/100% (Turns: 1). Chance to seal Critical Resistance UP on all targets: 100% (Turns: 1).
 Lv.1/Lv.10 Cost: 65/55`,
         Skill1Icon: "",
-        Skill2: `Draconic Racquet Lv.1:
+        Skill2: `Draconic Racquet Lv.1/Lv.10:
 Changes Soul of Skills x1 into Soul of Divine Protection. Increases all Soul of Divine Protection gauges' increase by 5%/10% (Turns: 1).
 Lv.1/Lv.10 Cost: 25/15`,
         Skill2Icon: "",
@@ -1064,7 +1261,7 @@ When you have 50% or lower HP, increases own critical damage by 8% at start of t
         MaxOutput: 150,
         Town1: "Forest Supply Corps Base +30%",
         Town2: "Clothing Store +10%",
-        Secret: `Ogre Guillotine Lv.Max:
+        Secret: `Ogre Guillotine Lv.MAX:
 All-target dark physical attack for 270%.`,
         SecretType: "All",
         Skill1: `Indigo Charge Lv.1/Lv.10:
@@ -3204,9 +3401,9 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
         MaxOutput: 220,
         Town1: "Light Magic Device +200%",
         Town2: "Earth Magic Device +100%",
-        DivineProtection: `Feelings Concealed Lv.Max:
+        DivineProtection: `Feelings Concealed Lv.MAX:
     Increases all allies' light ATK at start of battle by 16%. Increases all allies' earth ATK at start of battle by 8%.`,
-        SupportDivineProtection: `Feelings Concealed Lv.Max:
+        SupportDivineProtection: `Feelings Concealed Lv.MAX:
     Increases all allies' light ATK at start of battle by 16%. Increases all allies' earth ATK at start of battle by 8%.`,
         ProtectionSkill: `Pure Emotion Lv.1/Lv.10:
     Increases all allies' guard rate by 60%/80% (Turns: 3). Decreases the skill cost by 20 for vanguard allies (Cannot go below each skill's initial cost). Increases Soul of Secrets secret skill gauge increase by 20% (Turns: 3).`,
@@ -3339,7 +3536,7 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     Charybdis1: {
         Name: "Charybdis [Swimming Calamity]",
         UnitType: "Protection Characters",
-        Art: "https://i.imgur.com/fkdI43E.png",
+        Art: "https://i.imgur.com/JUARR5r.png",
         Icon: "https://i.imgur.com/Z3Ywuyj.png",
         Type: "https://i.imgur.com/z8bnSYg.png",
         SecondType: "https://i.imgur.com/pQYVkI3.png",
@@ -3930,6 +4127,18 @@ When you have 50% or higher HP, increases own critical damage by 8% at start of 
     },
 }
 
+function FilterElementText(elem) {
+    elem.innerHTML = elem.innerHTML.replaceAll("Lv.1/", '<br>Lv.1/')
+    elem.innerHTML = elem.innerHTML.replaceAll(" (", '.<br>(')
+    elem.innerHTML = elem.innerHTML.replaceAll(").", ')')
+    elem.innerHTML = elem.innerHTML.replaceAll(")", ')<br>')
+    elem.innerHTML = elem.innerHTML.replaceAll("Lv.1/Lv.10 ", '')
+    elem.innerHTML = elem.innerHTML.replaceAll(". ", '.<br>')
+    //elem.innerHTML = elem.innerHTML.replaceAll(". ", '.<br>')
+    //elem.innerHTML = elem.innerHTML.replaceAll("(Turns", '<br>(Turns')
+    //elem.innerHTML = elem.innerHTML.replaceAll("(Max", '<br>(Max')
+    //elem.innerHTML = elem.innerHTML.replaceAll(")<br>.<br>(", ')<br>(')
+}
 
 function getKeyByValue(object, value) {
     for (var prop in object) {
@@ -3992,10 +4201,10 @@ if (linksplit[linksplit.length - 2].split("?")[0] === "characters") {
     if (cdata[page].UnitType != "Protection Characters") {
         waitForElm('#weapon').then((elem) => { elem.setAttribute("src", weapons[cdata[page].Weapon] || cdata[page].Weapon) })
         waitForElm('#atktype').then((elem) => { elem.setAttribute("src", atktype[cdata[page].AtkType] || cdata[page].AtkType) })
-        waitForElm('#skill1').then((elem) => { elem.innerHTML = cdata[page].Skill1.split(" Lv.1")[0] })
-        waitForElm('#skill1desc').then((elem) => { elem.innerHTML = cdata[page].Skill1.split("10:")[1] })
-        waitForElm('#skill2').then((elem) => { elem.innerHTML = cdata[page].Skill2.split(" Lv.1")[0] })
-        waitForElm('#skill2desc').then((elem) => { elem.innerHTML = cdata[page].Skill2.split("10:")[1] })
+        waitForElm('#skill1').then((elem) => { elem.innerHTML = cdata[page].Skill1.split(" Lv.1")[0] + " Lv.1/Lv.10" })
+        waitForElm('#skill1desc').then((elem) => { elem.innerHTML = cdata[page].Skill1.split("10:")[1]; FilterElementText(elem) })
+        waitForElm('#skill2').then((elem) => { elem.innerHTML = cdata[page].Skill2.split(" Lv.1")[0] + " Lv.1/Lv.10" })
+        waitForElm('#skill2desc').then((elem) => { elem.innerHTML = cdata[page].Skill2.split("10:")[1]; FilterElementText(elem) })
         waitForElm('#skill1icon').then((elem) => { elem.setAttribute("src", cdata[page].Skill1Icon) })
         waitForElm('#skill2icon').then((elem) => { elem.setAttribute("src", cdata[page].Skill2Icon) })
         waitForElm('#secreticon').then((elem) => { elem.setAttribute("src", secrettype[cdata[page].SecretType] || cdata[page].SecretType) })
@@ -4015,15 +4224,15 @@ if (linksplit[linksplit.length - 2].split("?")[0] === "characters") {
         waitForElm('#skillstitle').then((elem) => { elem.innerHTML = "Divine Protection" })
         waitForElm('#ultimatetitle').then((elem) => { elem.innerHTML = "Protection Skill" })
         waitForElm('#atktype').then((elem) => { elem.setAttribute("src", "") })
-        waitForElm('#skill1').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split(" Lv.")[0] })
-        waitForElm('#skill1desc').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split("Lv.MAX:")[1] })
-        waitForElm('#skill2').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split(" Lv.")[0] })
-        waitForElm('#skill2desc').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split("Lv.MAX:")[1] })
+        waitForElm('#skill1').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split(" Lv.")[0] + " Lv.MAX" })
+        waitForElm('#skill1desc').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split("Lv.MAX:")[1]; FilterElementText(elem) })
+        waitForElm('#skill2').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split(" Lv.")[0]; $(elem).hide(); })
+        waitForElm('#skill2desc').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split("Lv.MAX:")[1]; $(elem).hide(); FilterElementText(elem) })
         waitForElm('#skill1icon').then((elem) => { elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png") })
         waitForElm('#skill2icon').then((elem) => { elem.setAttribute("src", "") })
         waitForElm('#secreticon').then((elem) => { elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png") })
-        waitForElm('#secret').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split(" Lv.1")[0] })
-        waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split("10:")[1] })
+        waitForElm('#secret').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split(" Lv.1")[0] + " Lv.1/Lv.10" })
+        waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split("10:")[1]; FilterElementText(elem) })
         waitForElm('.statsback2').then((elem) => { elem.remove() })
 
     }
@@ -4065,6 +4274,21 @@ else {
                     return;
                 if (Filters.Stars != "All" && (cdata[key].Rarity != Filters.Stars))
                     return;
+                if (Filters.Skills.length != 0) {
+                    let can = 0
+                    Filters.Skills.forEach(function (yek) {
+                        let thing= yek.replaceAll(":", ' ').split(".")
+                        FilterKeywords[thing[0]][thing[1]].forEach(function (yek) {
+                            if ((cdata[key].Skill1 ?? "").includes(yek) || (cdata[key].Skill2 ?? "").includes(yek) || (cdata[key].ProtectionSkill ?? "").includes(yek) || (cdata[key].DivineProtection ?? "").includes(yek))
+                            {
+                                can = can + 1
+                                return;
+                            }
+                        })
+                    })
+                    if (can != Filters.Skills.length)
+                        return;
+                }
                 if (!$('#' + key).length) {
                     const para = document.createElement("a");
                     para.setAttribute("class", "charcontainer")
@@ -4221,6 +4445,56 @@ else {
         });
     })
 
+    waitForElm("#skillsfilterbutton").then((ele) => {
+        $("#skillsfilterbutton").click(async function () {
+            if ($(this).attr("toggle") == "true")
+            {
+                Filters.Skills.length = 0
+                sessionStorage.setItem("Skills", JSON.stringify(Filters.Skills))
+                $(".filtercategory > button").attr("toggle", "false")
+                $(this).attr("toggle", "false")
+            }
+            else
+                $(this).attr("toggle", "true")
+            sessionStorage.setItem("SkillsOpen", $(this).attr("toggle"))
+            $(".skillfilter").attr("toggle", $(this).attr("toggle"))
+            await new Promise(r => setTimeout(r, 250));
+            updatelist()
+        });
+    })
+
+    function RenderFilterOptions() {
+        Object.keys(FilterKeywords).forEach(function (Name){
+            let Arr = FilterKeywords[Name]
+            waitForElm(".skillfilter").then((ele) => {
+                $(ele).append('<div class = "filtercategory" id = "' + Name.replaceAll(" ", '') + '"><p>' + Name + ':</p></div>')
+                waitForElm("#" + Name.replaceAll(" ", '')).then((ele) => {
+                    Object.keys(Arr).forEach((key) => {
+                        let ID = (Name + "." + key).replaceAll(" ", ':')
+                        $(ele).append('<button class = "filteroption" id = "'+ ID + '">' + key + '</button>')
+                        if (Filters.Skills.includes(ID))
+                            $(jqSelector(ID)).attr("toggle", "true")
+                        $(jqSelector(ID)).click(function () {
+                            if ($(this).attr("toggle") == "true")
+                            {
+                                $(this).attr("toggle", "false")
+                                Filters.Skills.splice(Filters.Skills.indexOf(ID), 1)
+                            }
+                            else
+                            {
+                                $(this).attr("toggle", "true")
+                                Filters.Skills.push(ID)
+                            }
+                            sessionStorage.setItem("Skills", JSON.stringify(Filters.Skills))
+                            updatelist()
+                        })
+                    })
+                })
+            })
+        })
+
+    }
+    RenderFilterOptions()
 
 }
 
