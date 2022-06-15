@@ -509,7 +509,8 @@
         ]
     },
     "Rimuru3": {
-        "Name": "Rimuru Tempest [Chancellor of Tempest]",
+        "New": true,
+        "Name": "Rimuru Tempest [Bridegroom Slime]",
         "Art": "https://i.imgur.com/KxE4rQr.png",
         "Icon": "https://i.imgur.com/zLGHp7G.png",
         "Type": "https://i.imgur.com/hX15sR0.png",
@@ -3649,6 +3650,7 @@
     },
     "Rimuru10": {
         "Name": "Rimuru Tempest [The Chancellor of Prosperity]",
+
         "UnitType": "Protection Characters",
         "Art": "https://i.imgur.com/Sx3A82b.png",
         "Icon": "https://i.imgur.com/1T3F6vl.png",
