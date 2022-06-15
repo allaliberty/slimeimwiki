@@ -10,6 +10,36 @@ $(function () {
     $("#nav-placeholder").append('<nav class="topbar"><div class="topbarinside"><a  href="/" class="sitename">SLIMEIM.WIKI</p><div clicked = false class="buttonsdiv"><a href="/" class="navbuttoninactive">Characters</a><!--a href="/" class="navbuttoninactive">Tier List</a><a href="/" class="navbuttoninactive">Items</a--></div><button class = "hamb"></button></div></nav>');
 })
 
+import cdata from "/data.json" assert { type: "json" }
+import FilterKeywords from "/filterkeywords.json" assert { type: "json" }
+
+//if (window.history) {
+//    var myOldUrl = window.location.href;
+//    window.addEventListener('hashchange', function(){
+//      console.log('ff')
+//    });
+//}
+
+function MakeCharacterIcon(elem, key) {
+    const para = document.createElement("a");
+    para.setAttribute("class", "charcontainer")
+    para.setAttribute("id", key)
+    para.setAttribute("href", "/characters/?" + key)
+    elem.appendChild(para);
+    $(para).load('/charactericon')
+    waitForElm("#" + key + ' > #icon').then((ele) => {
+        ele.onload = function () { para.setAttribute("turnon", "true") };
+        ele.src = cdata[key].Icon;
+
+    })
+    waitForElm("#" + key + ' > #rarity').then((ele) => { ele.setAttribute("src", stars[cdata[key].Rarity - 1]) })
+    waitForElm("#" + key + ' > #type').then((ele) => { ele.setAttribute("src", types[cdata[key].Type] || cdata[key].Type) })
+
+    if ("SecondType" in cdata[key]) {
+        para.setAttribute("secondtype", "true")
+        waitForElm("#" + key + ' > #secondtype').then((ele) => { ele.setAttribute("src", types[cdata[key].SecondType] || cdata[key].SecondType) })
+    }
+}
 
 async function fetchcdata(file) {
     try {
@@ -21,8 +51,9 @@ async function fetchcdata(file) {
     }
 }
 
-const cdata = await fetchcdata(`/data.json`)
-const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
+//const cdata = await fetchcdata(`/data.json`)
+
+//const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 
 const stars = ["https://cdn.discordapp.com/attachments/633768073068806144/982527855407792168/1star.png",
     "https://cdn.discordapp.com/attachments/633768073068806144/982527856968073227/2star.png",
@@ -79,27 +110,27 @@ let Filters = {
     SortDir: sessionStorage.getItem("SortDir") ?? 1,
     Stars: sessionStorage.getItem("Stars") ?? "All",
     Skills:
-    JSON.parse(sessionStorage.getItem("Skills")) ?? [],
+        JSON.parse(sessionStorage.getItem("Skills")) ?? [],
     Traits:
-    JSON.parse(sessionStorage.getItem("Traits")) ?? [],
+        JSON.parse(sessionStorage.getItem("Traits")) ?? [],
     SkillsOpen: sessionStorage.getItem("SkillsOpen") ?? "false",
     TraitsOpen: sessionStorage.getItem("TraitsOpen") ?? "false",
 
 }
 
-function jqSelector( id ) { 
-    return "#" + id.replace( /(:|\.|\[|\]|,)/g, "\\$1" ); 
+function jqSelector(id) {
+    return "#" + id.replace(/(:|\.|\[|\]|,)/g, "\\$1");
 }
 
 Object.keys(FilterKeywords).forEach(function (index) {
     FilterKeywords[index] = Object.keys(FilterKeywords[index])
-    .sort()
-    .reduce((accumulator, key) => {
-      accumulator[key] = FilterKeywords[index][key];
-    
-      return accumulator;
-    }, {});
-    })
+        .sort()
+        .reduce((accumulator, key) => {
+            accumulator[key] = FilterKeywords[index][key];
+
+            return accumulator;
+        }, {});
+})
 
 const UnitTypeButtonTL = {
     all: "All",
@@ -262,8 +293,25 @@ if (linksplit[linksplit.length - 2].split("?")[0] === "characters") {
         waitForElm('#secret').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split(" Lv.1")[0] + " Lv.1/Lv.10" })
         waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split("10:")[1]; FilterElementText(elem) })
         waitForElm('.statsback2').then((elem) => { elem.remove() })
-
     }
+
+    waitForElm('#samename').then((elem) => {
+        let Name = cdata[page].Name.split("[")[0]
+        let sortedarray = Object.keys(cdata)
+        if (Filters.Sort == "Name")
+            sortedarray = sortedarray.sort(function (a, b) { return (cdata[b].Rarity - cdata[a].Rarity) })
+        waitForElm('#samename > p').then((elem) => { elem.innerHTML = Name })
+        let amount = 0
+        sortedarray.forEach((key) => {
+            if (key != page && cdata[key].Name.split("[")[0] == Name) {
+                MakeCharacterIcon(elem, key)
+                amount = amount + 1
+            }
+        })
+        if (amount == 0)
+            $("#samename").hide()
+    })
+
 }
 else {
     $(function () {
@@ -306,10 +354,9 @@ else {
                 if (Filters.Skills.length != 0) {
                     let can = 0
                     Filters.Skills.forEach(function (yek) {
-                        let thing= yek.replaceAll(":", ' ').split(".")
+                        let thing = yek.replaceAll(":", ' ').split(".")
                         FilterKeywords[thing[0]][thing[1]].forEach(function (yek) {
-                            if ((cdata[key].Skill1 ?? "").includes(yek) || (cdata[key].Skill2 ?? "").includes(yek) || (cdata[key].ProtectionSkill ?? "").includes(yek) || (cdata[key].DivineProtection ?? "").includes(yek))
-                            {
+                            if ((cdata[key].Skill1 ?? "").includes(yek) || (cdata[key].Skill2 ?? "").includes(yek) || (cdata[key].ProtectionSkill ?? "").includes(yek) || (cdata[key].DivineProtection ?? "").includes(yek)) {
                                 can = can + 1
                                 return;
                             }
@@ -321,10 +368,9 @@ else {
                 if (Filters.Traits.length != 0) {
                     let can = 0
                     Filters.Traits.forEach(function (yek) {
-                        let thing= yek.replaceAll(":", ' ').split(".")
+                        let thing = yek.replaceAll(":", ' ').split(".")
                         FilterKeywords[thing[0]][thing[1]].forEach(function (yek) {
-                            if ((cdata[key].Trait1 ?? "").includes(yek) || (cdata[key].Trait1A ?? "").includes(yek))
-                            {
+                            if ((cdata[key].Trait1 ?? "").includes(yek) || (cdata[key].Trait1A ?? "").includes(yek)) {
                                 can = can + 1
                                 return;
                             }
@@ -334,27 +380,7 @@ else {
                         return;
                 }
                 if (!$('#' + key).length) {
-                    const para = document.createElement("a");
-                    para.setAttribute("class", "charcontainer")
-                    para.setAttribute("id", key)
-                    para.setAttribute("href", "/characters/?" + key)
-                    elem.appendChild(para);
-                    $(para).load('/charactericon')
-                    waitForElm("#" + key + ' > #icon').then((ele) => {
-                        ele.onload = function () { para.setAttribute("turnon", "true") };
-                        ele.src = cdata[key].Icon;
-
-                    })
-                    waitForElm("#" + key + ' > #rarity').then((ele) => { ele.setAttribute("src", stars[cdata[key].Rarity - 1]) })
-                    waitForElm("#" + key + ' > #type').then((ele) => { ele.setAttribute("src", types[cdata[key].Type] || cdata[key].Type) })
-
-
-
-
-                    if ("SecondType" in cdata[key]) {
-                        para.setAttribute("secondtype", "true")
-                        waitForElm("#" + key + ' > #secondtype').then((ele) => { ele.setAttribute("src", types[cdata[key].SecondType] || cdata[key].SecondType) })
-                    }
+                    MakeCharacterIcon(elem, key)
                 }
                 else {
                     $('#' + key).show()
@@ -491,8 +517,7 @@ else {
 
     waitForElm("#skillsfilterbutton").then((ele) => {
         $("#skillsfilterbutton").click(async function () {
-            if ($(this).attr("toggle") == "true")
-            {
+            if ($(this).attr("toggle") == "true") {
                 Filters.Skills.length = 0
                 sessionStorage.setItem("Skills", JSON.stringify(Filters.Skills))
                 $(".filtercategory > button").attr("toggle", "false")
@@ -509,8 +534,7 @@ else {
 
     waitForElm("#traitsfilterbutton").then((ele) => {
         $("#traitsfilterbutton").click(async function () {
-            if ($(this).attr("toggle") == "true")
-            {
+            if ($(this).attr("toggle") == "true") {
                 Filters.Traits.length = 0
                 sessionStorage.setItem("Traits", JSON.stringify(Filters.Traits))
                 $(".filtercategory > button").attr("toggle", "false")
@@ -526,42 +550,37 @@ else {
     })
 
     function RenderFilterOptions(Type, ArrName) {
-        Object.keys(FilterKeywords).forEach(function (Name){
+        Object.keys(FilterKeywords).forEach(function (Name) {
             let Arr = FilterKeywords[Name]
-            waitForElm("#"+Type+"filter").then((ele) => {
+            waitForElm("#" + Type + "filter").then((ele) => {
                 $(ele).append('<div class = "filtercategory" id = "' + Name.replaceAll(" ", '') + '"><p>' + Name + ':</p></div>')
-                waitForElm("#"+Type+"filter > " + "#" + Name.replaceAll(" ", '')).then((ele) => {
+                waitForElm("#" + Type + "filter > " + "#" + Name.replaceAll(" ", '')).then((ele) => {
                     $(ele).append('<button class = "filterexpand"><img src = "https://cdn.discordapp.com/attachments/633768073068806144/986552780841955328/vecteezy_triangle_1200602.png"></button>')
-                    $("#"+Type+"filter > " + "#" + Name.replaceAll(" ", '') + " > .filterexpand").click(function (bro) {
+                    $("#" + Type + "filter > " + "#" + Name.replaceAll(" ", '') + " > .filterexpand").click(function (bro) {
                         console.log("clicked")
-                        if ($(this).attr("toggle") == "true")
-                        {
+                        if ($(this).attr("toggle") == "true") {
                             $(ele).attr("toggle", "false")
                             $(this).attr("toggle", "false")
                         }
-                        else
-                        {
+                        else {
                             $(ele).attr("toggle", "true")
                             $(this).attr("toggle", "true")
                         }
-                    })  
+                    })
                     Object.keys(Arr).forEach((key) => {
                         let ID = (Name + "." + key).replaceAll(" ", ':')
-                        $(ele).append('<button class = "filteroption" id = "'+ ID + '">' + key + '</button>')
-                        if (Filters[ArrName].includes(ID))
-                        {
-                            $("#"+Type+"filter" + " > .filtercategory > " + jqSelector(ID)).attr("toggle", "true")
-                            $("#"+Type+"filter" + " > .filtercategory > " + jqSelector(ID)).parent().attr("toggle", "true")
-                            $("#"+Type+"filter" + " > .filtercategory > " + jqSelector(ID)).siblings(".filterexpand").attr("toggle", "true")
+                        $(ele).append('<button class = "filteroption" id = "' + ID + '">' + key + '</button>')
+                        if (Filters[ArrName].includes(ID)) {
+                            $("#" + Type + "filter" + " > .filtercategory > " + jqSelector(ID)).attr("toggle", "true")
+                            $("#" + Type + "filter" + " > .filtercategory > " + jqSelector(ID)).parent().attr("toggle", "true")
+                            $("#" + Type + "filter" + " > .filtercategory > " + jqSelector(ID)).siblings(".filterexpand").attr("toggle", "true")
                         }
-                        $("#"+Type+"filter" + " > .filtercategory > " + jqSelector(ID)).click(function () {
-                            if ($(this).attr("toggle") == "true")
-                            {
+                        $("#" + Type + "filter" + " > .filtercategory > " + jqSelector(ID)).click(function () {
+                            if ($(this).attr("toggle") == "true") {
                                 $(this).attr("toggle", "false")
                                 Filters[ArrName].splice(Filters[ArrName].indexOf(ID), 1)
                             }
-                            else
-                            {
+                            else {
                                 $(this).attr("toggle", "true")
                                 Filters[ArrName].push(ID)
                             }
