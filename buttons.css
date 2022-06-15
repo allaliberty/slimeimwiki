@@ -442,6 +442,7 @@ div {
 
 .logo {
     height: 35px;
+    width:41px;
 }
 
 .logo:hover {
@@ -824,13 +825,14 @@ button[toggle="true"] > img {
         padding-left: 25px;
     }
 
-    .charcontainer, #samename > .charcontainer {
+    .charcontainer {
         width: 30%;
-        height: 30%;
-        margin-bottom: 5%;
+        height:auto;
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
     }
 
-    .charactersbase, #samename {
+    .charactersbase, #samename, #latestcharacters {
         gap: 5%;
     }
 
