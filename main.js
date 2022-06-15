@@ -5,9 +5,14 @@ if (linksplit[linksplit.length - 1].length == 0) {
 }
 let page = linksplit[linksplit.length - 1].split("?")[1];
 console.log(page)
-let index = linksplit[linksplit.length - 1];
+let index = linksplit[3];
 console.log(index)
 let created = 1
+
+
+function jqSelector(id) {
+    return "#" + id.replace(/(:|\.|\[|\]|,)/g, "\\$1");
+}
 
 $(function () {
     $("#nav-placeholder").append(`
@@ -15,15 +20,18 @@ $(function () {
         <div class="topbarinside">
             <a href="/" class="sitename"><img class = "logo" src="https://cdn.discordapp.com/attachments/633768073068806144/985179869463859230/RimuruSlimeManga_1.png"> .WIKI</p>
                 <div clicked=false class="buttonsdiv">
-                    <a href="/characters/" class="navbuttoninactive">Characters</a>
+                    <a href="/characters" class="navbutton">Characters</a>
                 </div><button class="hamb"></button>
         </div>
     </nav>`);
+    console.log('a[href$="/'+index +'"]')
+    $('a[href="/'+linksplit[linksplit.length - 1]+'"]').attr("current","true")
 })
 
 
 const cdata = await fetchcdata(`/data.json`)
 const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
+
 
 //import cdata from "/data.json" assert { type: "json" }
 //import FilterKeywords from "/filterkeywords.json" assert { type: "json" }
@@ -127,10 +135,6 @@ let Filters = {
     SkillsOpen: sessionStorage.getItem("SkillsOpen") ?? "false",
     TraitsOpen: sessionStorage.getItem("TraitsOpen") ?? "false",
 
-}
-
-function jqSelector(id) {
-    return "#" + id.replace(/(:|\.|\[|\]|,)/g, "\\$1");
 }
 
 Object.keys(FilterKeywords).forEach(function (index) {
@@ -612,6 +616,20 @@ else
 {
     $(function () {
         $("#character-placeholder").load("/homebody");
+    })
+    waitForElm('#latestcharacters').then((elem) => {
+        let sortedarray = Object.keys(cdata)
+        //waitForElm('#samename > p').then((elem) => { elem.innerHTML = Name })
+        let amount = 0
+        sortedarray.forEach((key) => {
+            if (cdata[key].New == true) {
+                MakeCharacterIcon(elem, key)
+                amount = amount + 1
+                waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key].Name.split(" ")[0] })
+            }
+        })
+        if (amount == 0)
+            $("#latestcharacters").hide()
     })
 }
 

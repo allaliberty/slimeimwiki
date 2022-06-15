@@ -1,5 +1,6 @@
 <div class="homebasecontainer">
     <div class="homebase">
-        
+        <p class = "statstitle">Latest Characters</p>
+        <div id = "latestcharacters" class="homecategory"></div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 {
     "Daggrull1": {
+        "New": true,
         "Name": "Daggrull [Proud Giant Fist]",
         "Art": "https://i.imgur.com/6XlOxBj.png",
         "Icon": "https://i.imgur.com/ffd6RRg.png",
@@ -1533,6 +1534,7 @@
         ]
     },
     "Shion2": {
+        "New": true,
         "Name": "Shion [Runaway Bride]",
         "Art": "https://i.imgur.com/KL2ZxIF.png",
         "Icon": "https://i.imgur.com/D45PsTC.png",
@@ -2640,6 +2642,7 @@
         ]
     },
     "Shinsha1": {
+        "New": true,
         "Name": "Shinsha [Precocious Bride]",
         "Art": "https://i.imgur.com/ilNQpEp.png",
         "Icon": "https://i.imgur.com/R73eFTZ.png",
@@ -3519,6 +3522,7 @@
         "Trait1A": "HP - ATK UP (5* Awaken x3):\n    When 1 or more enemies have 50% or lower HP, increases all allies' ATK by 6% at start of turn."
     },
     "Shizue3": {
+        "New": true,
         "Name": "Shizue Izawa [Dream Bride]",
         "UnitType": "Protection Characters",
         "Art": "https://i.imgur.com/HOsDkgT.png",
