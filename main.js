@@ -34,15 +34,20 @@ const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 
 if (window.history) {
     var myOldUrl = window.location.href;
-    window.addEventListener('hashchange', function(){
+    window.addEventListener('hashchange', async function(){
         linksplit = window.location.href.split("/");
         if (linksplit[linksplit.length - 1].length == 0) {
             linksplit.pop()
         }
         page = linksplit[5];
         index = linksplit[4];
+        if ($(".buttonsdiv").attr("clicked") == "true")
+        {
+            waitForElm('.buttonsdiv').then((elem) => {elem.setAttribute("clicked", "false")})
+            await new Promise(r => setTimeout(r, 250));
+        }
+            
         UpdatePage()
-        waitForElm('.buttonsdiv').then((elem) => {elem.setAttribute("clicked", "false")})
     });
 }
 
@@ -199,6 +204,7 @@ function waitForElm(selector) {
 
 function UpdatePage()
 {
+    window.scrollTo(0,0)
     $('.navbutton').each(function() {
         if ($(this).attr("href") == ('#/' + linksplit[linksplit.length - 1]))
             $(this).attr("current", "true")
