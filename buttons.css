@@ -691,11 +691,11 @@ button[toggle="true"] > img {
     height:100px;
     position: relative;
     opacity: 0;
-    transition: opacity 0.25s;
+    transition: opacity 0.5s;
 }
 
 #samename > .charcontainer {
-    width: 100px;;
+    width: 100px;
     height:auto;
     aspect-ratio: 1
 }

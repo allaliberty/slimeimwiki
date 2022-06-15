@@ -32,7 +32,7 @@ const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 
 if (window.history) {
     var myOldUrl = window.location.href;
-    window.addEventListener('popstate', async function(){
+    window.addEventListener('hashchange', async function(){
         linksplit = window.location.href.split("/");
         if (linksplit[linksplit.length - 1].length == 0) {
             linksplit.pop()
