@@ -288,15 +288,17 @@ div {
 }
 
 .filterexpand {
-    border-radius: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     height: 23px;
     aspect-ratio: 1;
     position: absolute;
+    background: 0;
+    border: 0;
     right:0px;
     top: 0px;
+    width: 100%
 }
 
 .filterexpand:hover {
@@ -304,10 +306,14 @@ div {
 }
 
 .filterexpand > img {
-    height: 10px;
-    width: 10px;
+    height: 20px;
+    width: 20px;
     transform: rotate(180deg);
-    margin-top: 1.75px;
+    background-color: white;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 100%;
+    filter:brightness(100%)
 }
 
 .filterexpand[toggle="true"] > img {
