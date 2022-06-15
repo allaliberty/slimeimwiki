@@ -795,7 +795,7 @@ button[toggle="true"] > img {
         align-items: center;
         justify-content: start;
         padding-top: 5%;
-        transition: all 0.5s;
+        transition: all 0.25s;
     }
     .buttonsdiv > a {
         height: 10%;

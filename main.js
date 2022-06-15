@@ -42,6 +42,7 @@ if (window.history) {
         page = linksplit[5];
         index = linksplit[4];
         UpdatePage()
+        waitForElm('.buttonsdiv').then((elem) => {elem.setAttribute("clicked", "false")})
     });
 }
 
@@ -650,8 +651,8 @@ function UpdatePage()
 UpdatePage()
 
 waitForElm('.hamb').then(() => {
-    const Hamb = document.querySelector('.hamb')
     const List = document.querySelector('.buttonsdiv')
+    const Hamb = document.querySelector('.hamb')
 
 
     Hamb.addEventListener("click", () => {
