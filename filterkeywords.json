@@ -1,19 +1,131 @@
 {
-    "Heal": {
-        "All Heal": [
-            "Heals all allies"
+    "From Soul": {
+        "Another Random Character": [
+            "Transfer another random character",
+            "Transfers another random character"
         ],
-        "All Recover Poison": [
-            "Recovers all allies from Poison"
+        "Own Souls": [
+            "Transfers own soul",
+            "all of his own souls",
+            "all of her own souls",
+            "all of their own souls"
         ],
-        "All Recover Stun": [
-            "Recovers all allies from Stun"
+        "Soul of Divine Protection": [
+            "Changes Soul of Divine Protection",
+            "Tranfer Soul of Divine Protection",
+            "Tranfers Soul of Divine Protection",
+            "and Soul of Divine Protection"
         ],
-        "Heal Self": [
-            "Heals self"
+        "Soul of Secrets": [
+            "Changes Soul of Secrets",
+            "Transfer Soul of Secrets",
+            "Transfers Soul of Secrets",
+            "and Soul of Secrets"
         ],
-        "Lowest Ally Heal": [
-            "Heals the ally with the lowest"
+        "Soul of Skills": [
+            "Changes Soul of Skills",
+            "Transfer Soul of Skills",
+            "Transfers Soul of Skills",
+            "and Soul of Skills"
+        ]
+    },
+    "Soul Amount": {
+        "All": [
+            "Changes all of",
+            "Transfers all",
+            "Changes Soul of Secrets into Soul of Divine Protection",
+            "Changes Soul of Secrets into Soul of Skills",
+            "Changes Soul of Divine Protection into Soul of Skills",
+            "Changes Soul of Divine Protection into Soul of Secrets",
+            "Changes Soul of Skills into Soul of Divine Protection",
+            "Changes Soul of Skills into Soul of Secrets"
+            ],
+        "x1": [
+            "x1"
+        ],
+        "x2": [
+            "x2"
+        ],
+        "x3": [
+            "x3"
+        ]
+    },
+    "To Soul": {
+        "Self": [
+            "x1 to self",
+            "x2 to self",
+            "x3 to self"
+        ],
+        "Another Vanguard Character": [
+            "to another vanguard character"
+        ],
+        "Soul of Divine Protection": [
+            "to Soul of Divine Protection"
+        ],
+        "Soul of Secrets": [
+            "to Soul of Secrets"
+        ],
+        "Soul of Skills": [
+            "to Soul of Skills"
+        ]
+    },
+    "Soul Buff": {
+        "All Souls Gauges": [
+            "all souls' gauge",
+            "all souls gauge"
+        ],
+        "All Souls Protection Gauge": [
+            "all souls' protection gauge increase"
+        ],
+        "All Souls Secret Gauge": [
+            "all souls' secrets skill gauge increase"
+        ],
+        "Soul of Divine Protection Damage": [
+            "Soul of Divine Protection damage"
+        ],
+        "Soul of Divine Protection Gauge": [
+            "Soul of Divine Protection gauge"
+        ],
+        "Soul of Divine Protection Secret Gauges": [
+            "Soul of Divine Protection secret skill gauge"
+        ],
+        "Soul of Divine Protection Skill Point": [
+            "Soul of Divine Protection skill point"
+        ],
+        "Soul of Secrets Damage": [
+            "Soul of Secrets damage"
+        ],
+        "Soul of Secrets Gauge": [
+            "Soul of Secrets gauge"
+        ],
+        "Soul of Secrets Secret Gauges": [
+            "Soul of Secrets secret skill gauge"
+        ],
+        "Soul of Secrets Skill Point": [
+            "Soul of Secrets skill point increase"
+        ],
+        "Soul of Skills Damage": [
+            "Soul of Skills damage"
+        ],
+        "Soul of Skills Gauges": [
+            "Soul of Skills gauges' increase"
+        ],
+        "Soul of Skills Secret Gauge": [
+            "Soul of Skills' secret skill gauge increase"
+        ],
+        "Soul of Skills Skill Point": [
+            "Soul of Skills' skill point increase"
+        ]
+    },
+    "Gauge": {
+        "Secret Skill Gauge": [
+            "own secret skill gauge"
+        ],
+        "Protection Gauge": [
+            "increases protection gauge", "increase protection gauge"
+        ],
+        "Skill Points": [
+            "increases skill points", "increase skill points"
         ]
     },
     "Unfair": {
@@ -28,9 +140,23 @@
         "ATK": [
             "all allies' ATK"
         ],
+        "DEF": [
+            "all allies' DEF"
+        ],
+        "Max HP": [
+            "all allies' max HP"
+        ],
+
         "Counter Power": [
             "all allies' counter power"
         ],
+        "Counterattack Resistance": [
+            "all allies' counterattack resistance"
+        ],
+        "Counterattack Rate": [
+            "own counterattack rate"
+        ],
+
         "Critical Damage": [
             "all allies' critical damage"
         ],
@@ -40,8 +166,51 @@
         "Critical Resistance": [
             "all allies' critical resistance"
         ],
-        "DEF": [
-            "all allies' DEF"
+        
+        "Guard Penetration": [
+            "all allies' guard penetration"
+        ],
+        "Guard Power": [
+            "all allies' guard power"
+        ],
+        "Guard Rate": [
+            "all allies' guard rate"
+        ],
+
+        "Drago": [
+            "Chance to give Drago to all allies"
+        ],
+        
+        "Pierce Power": [
+            "all allies' pierce power"
+        ],
+        "Pierce Rate": [
+            "all allies' pierce rate"
+        ],
+        "Pierce Resistance": [
+            "all allies' pierce resistance"
+        ],
+
+        "Poison Evasion Rate": [
+            "all allies' poison evasion rate"
+        ],
+        "Stun Evasion Rate": [
+            "all allies' stun evasion rate"
+        ],
+        "Bind Evasion Rate": [
+            "all allies' bind evasion rate"
+        ],
+
+
+        "Soul of Combos": [
+            "activating Soul of Combos damage"
+        ],
+
+        "Space ATK": [
+            "all allies' space ATK"
+        ],
+        "Light ATK": [
+            "all allies' light ATK"
         ],
         "Dark ATK": [
             "all allies' dark ATK"
@@ -52,52 +221,34 @@
         "Fire ATK": [
             "all allies' fire ATK"
         ],
-        "Guard Penetration": [
-            "all allies' guard penetration"
-        ],
-        "Guard Power": [
-            "all allies' guard power"
-        ],
-        "Guard Rate": [
-            "all allies' guard rate"
-        ],
-        "Light ATK": [
-            "all allies' light ATK"
-        ],
-        "Max HP": [
-            "all allies' max HP"
-        ],
-        "Pierce Power": [
-            "all allies' pierce power"
-        ],
-        "Pierce Rate": [
-            "all allies' pierce rate"
-        ],
-        "Pierce Resistance": [
-            "all allies' pierce resistance"
-        ],
-        "Poison Evasion Rate": [
-            "all allies' poison evasion rate"
-        ],
-        "Soul of Combos": [
-            "activating Soul of Combos damage"
-        ],
-        "Space ATK": [
-            "all allies' space ATK"
-        ],
-        "Stun Evasion Rate": [
-            "all allies' stun evasion rate"
-        ],
         "Water ATK": [
             "all allies' water ATK"
         ],
         "Wind ATK": [
             "all allies' wind ATK"
+        ],
+        "All Attribute Resistance": [
+            "all allies' all attribute resistance"
+        ],
+        "M-ATK": [
+            "all allies' M-ATK"
+        ],
+        "P-ATK": [
+            "all allies' P-ATK"
         ]
     },
     "Buff Self": {
         "ATK": [
             "own ATK"
+        ],
+        "DEF": [
+            "own DEF"
+        ],
+        "Guard Rate": [
+            "own Guard Rate"
+        ],
+        "Guard Power": [
+            "own Guard Power"
         ],
         "All Attribute Resistance": [
             "own all attribute resistance"
@@ -108,6 +259,9 @@
         "Counterattack Rate": [
             "own counterattack rate"
         ],
+        "Counterattack Resistance": [
+            "own counterattack resistance"
+        ],
         "Critical Damage": [
             "own CRIT damage",
             "own critical damage"
@@ -115,6 +269,10 @@
         "Critical Rate": [
             "own CRIT rate",
             "own critical rate"
+        ],
+        "Critical Resistance": [
+            "own CRIT resistance",
+            "own critical resistance"
         ],
         "Drago": [
             "Chance to give Drago to self"
@@ -137,11 +295,44 @@
         "Poison Evasion Rate": [
             "own poison evasion rate"
         ],
-        "Secret Skill Gauge": [
-            "own secret skill gauge"
-        ],
-        "Soul of Combos Damage": [
+        "Soul of Combos": [
             "own Soul of Combos damage"
+        ],
+
+        "Max HP": [
+            "own max HP"
+        ],
+
+        "Stun Evasion Rate": [
+            "own stun evasion rate"
+        ],
+        "Bind Evasion Rate": [
+            "own bind evasion rate"
+        ],
+
+        "Space ATK": [
+            "own space ATK"
+        ],
+        "Light ATK": [
+            "own light ATK"
+        ],
+        "Dark ATK": [
+            "own dark ATK"
+        ],
+        "Earth ATK": [
+            "own earth ATK"
+        ],
+        "Fire ATK": [
+            "own fire ATK"
+        ],
+        "Water ATK": [
+            "own water ATK"
+        ],
+        "Wind ATK": [
+            "own wind ATK"
+        ],
+        "P-ATK": [
+            "own P-ATK"
         ]
     },
     "Debuff All": {
@@ -255,101 +446,21 @@
             "Chance to stun"
         ]
     },
-    "From Soul": {
-        "Own Souls": [
-            "own soul"
+    "Heal": {
+        "All Heal": [
+            "Heals all allies"
         ],
-        "Soul of Divine Protection": [
-            "Changes Soul of Divine Protection",
-            "and Soul of Divine Protection"
+        "All Recover Poison": [
+            "Recovers all allies from Poison"
         ],
-        "Soul of Secrets": [
-            "Changes Soul of Secrets",
-            "and Soul of Secrets"
+        "All Recover Stun": [
+            "Recovers all allies from Stun"
         ],
-        "Soul of Skills": [
-            "Changes Soul of Skills",
-            "and Soul of Skills"
-        ]
-    },
-    "Soul Amount": {
-        "All": [
-            "ecrets into",
-            "rotection into",
-            "kills into",
-            "own souls",
-            "own soul"
+        "Heal Self": [
+            "Heals self"
         ],
-        "x1": [
-            "x1"
-        ],
-        "x2": [
-            "x2"
-        ],
-        "x3": [
-            "x3"
-        ]
-    },
-    "To Soul": {
-        "Another Vanguard Character": [
-            "to another vanguard character"
-        ],
-        "Soul of Divine Protection": [
-            "to Soul of Divine Protection"
-        ],
-        "Soul of Secrets": [
-            "to Soul of Secrets"
-        ],
-        "Soul of Skills": [
-            "to Soul of Skills"
-        ]
-    },
-    "Soul Buff": {
-        "All Souls Gauges": [
-            "all souls' gauge",
-            "all souls gauge"
-        ],
-        "All Souls Protection Gauge": [
-            "all souls' protection gauge increase"
-        ],
-        "All Souls Secret Gauge": [
-            "all souls' secrets skill gauge increase"
-        ],
-        "Soul of Divine Protection Damage": [
-            "Soul of Divine Protection damage"
-        ],
-        "Soul of Divine Protection Gauge": [
-            "Soul of Divine Protection gauge"
-        ],
-        "Soul of Divine Protection Secret Gauges": [
-            "Soul of Divine Protection secret skill gauge"
-        ],
-        "Soul of Divine Protection Skill Point": [
-            "Soul of Divine Protection skill point"
-        ],
-        "Soul of Secrets Damage": [
-            "Soul of Secrets damage"
-        ],
-        "Soul of Secrets Gauge": [
-            "Soul of Secrets gauge"
-        ],
-        "Soul of Secrets Secret Gauges": [
-            "Soul of Secrets secret skill gauge"
-        ],
-        "Soul of Secrets Skill Point": [
-            "Soul of Secrets skill point increase"
-        ],
-        "Soul of Skills Damage": [
-            "Soul of Skills damage"
-        ],
-        "Soul of Skills Gauges": [
-            "Soul of Skills gauges' increase"
-        ],
-        "Soul of Skills Secret Gauge": [
-            "Soul of Skills' secret skill gauge increase"
-        ],
-        "Soul of Skills Skill Point": [
-            "Soul of Skills' skill point increase"
+        "Lowest Ally Heal": [
+            "Heals the ally with the lowest"
         ]
     }
 }

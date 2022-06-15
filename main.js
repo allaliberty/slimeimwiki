@@ -80,7 +80,10 @@ let Filters = {
     Stars: sessionStorage.getItem("Stars") ?? "All",
     Skills:
     JSON.parse(sessionStorage.getItem("Skills")) ?? [],
+    Traits:
+    JSON.parse(sessionStorage.getItem("Traits")) ?? [],
     SkillsOpen: sessionStorage.getItem("SkillsOpen") ?? "false",
+    TraitsOpen: sessionStorage.getItem("TraitsOpen") ?? "false",
 
 }
 
@@ -148,7 +151,12 @@ waitForElm('#stars > button').then(() => {
 
 waitForElm('#skillsfilterbutton').then(() => {
     $("#skillsfilterbutton").attr("toggle", Filters.SkillsOpen)
-    $(".skillfilter").attr("toggle", Filters.SkillsOpen)
+    $("#skillfilter").attr("toggle", Filters.SkillsOpen)
+})
+
+waitForElm('#traitsfilterbutton').then(() => {
+    $("#traitsfilterbutton").attr("toggle", Filters.TraitsOpen)
+    $("#traitfilter").attr("toggle", Filters.TraitsOpen)
 })
 
 function FilterElementText(elem) {
@@ -308,6 +316,21 @@ else {
                         })
                     })
                     if (can != Filters.Skills.length)
+                        return;
+                }
+                if (Filters.Traits.length != 0) {
+                    let can = 0
+                    Filters.Traits.forEach(function (yek) {
+                        let thing= yek.replaceAll(":", ' ').split(".")
+                        FilterKeywords[thing[0]][thing[1]].forEach(function (yek) {
+                            if ((cdata[key].Trait1 ?? "").includes(yek) || (cdata[key].Trait1A ?? "").includes(yek))
+                            {
+                                can = can + 1
+                                return;
+                            }
+                        })
+                    })
+                    if (can != Filters.Traits.length)
                         return;
                 }
                 if (!$('#' + key).length) {
@@ -478,44 +501,80 @@ else {
             else
                 $(this).attr("toggle", "true")
             sessionStorage.setItem("SkillsOpen", $(this).attr("toggle"))
-            $(".skillfilter").attr("toggle", $(this).attr("toggle"))
+            $("#skillfilter").attr("toggle", $(this).attr("toggle"))
             await new Promise(r => setTimeout(r, 250));
             updatelist()
         });
     })
 
-    function RenderFilterOptions() {
+    waitForElm("#traitsfilterbutton").then((ele) => {
+        $("#traitsfilterbutton").click(async function () {
+            if ($(this).attr("toggle") == "true")
+            {
+                Filters.Traits.length = 0
+                sessionStorage.setItem("Traits", JSON.stringify(Filters.Traits))
+                $(".filtercategory > button").attr("toggle", "false")
+                $(this).attr("toggle", "false")
+            }
+            else
+                $(this).attr("toggle", "true")
+            sessionStorage.setItem("TraitsOpen", $(this).attr("toggle"))
+            $("#traitfilter").attr("toggle", $(this).attr("toggle"))
+            await new Promise(r => setTimeout(r, 250));
+            updatelist()
+        });
+    })
+
+    function RenderFilterOptions(Type, ArrName) {
         Object.keys(FilterKeywords).forEach(function (Name){
             let Arr = FilterKeywords[Name]
-            waitForElm(".skillfilter").then((ele) => {
+            waitForElm("#"+Type+"filter").then((ele) => {
                 $(ele).append('<div class = "filtercategory" id = "' + Name.replaceAll(" ", '') + '"><p>' + Name + ':</p></div>')
-                waitForElm("#" + Name.replaceAll(" ", '')).then((ele) => {
+                waitForElm("#"+Type+"filter > " + "#" + Name.replaceAll(" ", '')).then((ele) => {
+                    $(ele).append('<button class = "filterexpand"><img src = "https://cdn.discordapp.com/attachments/633768073068806144/986552780841955328/vecteezy_triangle_1200602.png"></button>')
+                    $("#"+Type+"filter > " + "#" + Name.replaceAll(" ", '') + " > .filterexpand").click(function (bro) {
+                        console.log("clicked")
+                        if ($(this).attr("toggle") == "true")
+                        {
+                            $(ele).attr("toggle", "false")
+                            $(this).attr("toggle", "false")
+                        }
+                        else
+                        {
+                            $(ele).attr("toggle", "true")
+                            $(this).attr("toggle", "true")
+                        }
+                    })  
                     Object.keys(Arr).forEach((key) => {
                         let ID = (Name + "." + key).replaceAll(" ", ':')
                         $(ele).append('<button class = "filteroption" id = "'+ ID + '">' + key + '</button>')
-                        if (Filters.Skills.includes(ID))
-                            $(jqSelector(ID)).attr("toggle", "true")
-                        $(jqSelector(ID)).click(function () {
+                        if (Filters[ArrName].includes(ID))
+                        {
+                            $("#"+Type+"filter" + " > .filtercategory > " + jqSelector(ID)).attr("toggle", "true")
+                            $("#"+Type+"filter" + " > .filtercategory > " + jqSelector(ID)).parent().attr("toggle", "true")
+                            $("#"+Type+"filter" + " > .filtercategory > " + jqSelector(ID)).siblings(".filterexpand").attr("toggle", "true")
+                        }
+                        $("#"+Type+"filter" + " > .filtercategory > " + jqSelector(ID)).click(function () {
                             if ($(this).attr("toggle") == "true")
                             {
                                 $(this).attr("toggle", "false")
-                                Filters.Skills.splice(Filters.Skills.indexOf(ID), 1)
+                                Filters[ArrName].splice(Filters[ArrName].indexOf(ID), 1)
                             }
                             else
                             {
                                 $(this).attr("toggle", "true")
-                                Filters.Skills.push(ID)
+                                Filters[ArrName].push(ID)
                             }
-                            sessionStorage.setItem("Skills", JSON.stringify(Filters.Skills))
+                            sessionStorage.setItem(ArrName, JSON.stringify(Filters[ArrName]))
                             updatelist()
                         })
                     })
                 })
             })
         })
-
     }
-    RenderFilterOptions()
+    RenderFilterOptions("skill", "Skills")
+    RenderFilterOptions("trait", "Traits")
 
 }
 

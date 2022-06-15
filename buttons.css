@@ -249,18 +249,18 @@ div {
     max-height: 1000px;
 }
 
-#skillsfilterbutton {
+#skillsfilterbutton, #traitsfilterbutton {
     border: 0;
     width:150px;
     height: 40px;
 }
 
-#skillsfilterbutton[toggle="true"] {
+#skillsfilterbutton[toggle="true"], #traitsfilterbutton[toggle="true"] {
     background-color: rgba(21, 34, 50, 0.75);
     filter:brightness(50%)
 }
 
-#skillsfilterbutton:hover {
+#skillsfilterbutton:hover, #traitsfilterbutton:hover {
     filter:brightness(85%)
 }
 
@@ -273,6 +273,46 @@ div {
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
+    overflow-y: hidden;
+    max-height: 24px;
+    transition: max-height 0.1s;
+    position: relative;
+}
+
+.filtercategory > p {
+    width: 100%;
+}
+
+.filtercategory[toggle="true"] {
+    max-height: 500px;
+}
+
+.filterexpand {
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 23px;
+    aspect-ratio: 1;
+    position: absolute;
+    right:0px;
+    top: 0px;
+}
+
+.filterexpand:hover {
+    filter:brightness(50%)
+}
+
+.filterexpand > img {
+    height: 10px;
+    width: 10px;
+    transform: rotate(180deg);
+    margin-top: 1.75px;
+}
+
+.filterexpand[toggle="true"] > img {
+    transform: rotate(0deg);
+    margin-top: 0px;
 }
 
 .filteroption {
@@ -723,12 +763,12 @@ button[toggle="true"] > img {
         width:100%;
     }
 
-    #skillsfilterbutton {
-        width:30%;
+    #skillsfilterbutton, #traitsfilterbutton {
+        width:26%;
     }
 
     .typeselectcontainer[biggest="true"] {
-        width:60%;
+        width:40%;
     }
     .typeselectcontainer[small="true"]  {
         width:40%;
@@ -741,8 +781,11 @@ button[toggle="true"] > img {
         padding-top: 300px;
     }
 
-    .skillfilter{
-        margin-bottom: 30px;
+    #skillfilter[toggle="true"] {
+        margin-bottom: 15px;
+    }
+    #traitfilter[toggle="true"] {
+        margin-bottom: 15px;
     }
 
   }

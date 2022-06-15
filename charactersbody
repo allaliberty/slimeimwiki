@@ -1,7 +1,10 @@
 <div class="charactersbasecontainer">
     <div class="charactersbase">
-        <div class = "skillfilter">
-            
+        <div id = "skillfilter" class = "skillfilter">
+            <strong>Skills Filter</strong>
+        </div>
+        <div id = "traitfilter" class = "skillfilter">
+            <strong>Traits Filter</strong>
         </div>
         <div class ="sortingbox">
             <div class="unittypeselectcontainer">
@@ -68,6 +71,7 @@
                     <button id = "5"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982527856162799626/5star.png" alt=""></button>
                 </div>
                 <button id = "skillsfilterbutton" class="typeselectcontainer">Skills Filter</button>  
+                <button id = "traitsfilterbutton" class="typeselectcontainer">Traits Filter</button>  
             </div>
         </div>
     </div>
