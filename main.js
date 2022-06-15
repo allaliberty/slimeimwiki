@@ -311,6 +311,7 @@ function UpdatePage()
         })
     }
     else if (index === "characters") {
+        waitForElm('title').then((elem) => { elem.innerHTML = "Characters - SLIMEIM.WIKI"})
         $(function () {
             $("#character-placeholder").load("/charactersbody");
         })
@@ -653,6 +654,7 @@ function UpdatePage()
     
     }
     else {
+        waitForElm('title').then((elem) => { elem.innerHTML = "Home - SLIMEIM.WIKI"})
         $(function () {
             $("#character-placeholder").load("/homebody");
         })
