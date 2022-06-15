@@ -246,7 +246,7 @@ div {
 }
 
 .skillfilter[toggle="true"] {
-    max-height: 1000px;
+    max-height: 1500px;
 }
 
 #skillsfilterbutton, #traitsfilterbutton {
