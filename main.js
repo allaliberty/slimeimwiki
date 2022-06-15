@@ -4,14 +4,29 @@ if (linksplit[linksplit.length - 1].length == 0) {
     linksplit.pop()
 }
 let page = linksplit[linksplit.length - 1].split("?")[1];
+console.log(page)
+let index = linksplit[linksplit.length - 1];
+console.log(index)
 let created = 1
 
 $(function () {
-    $("#nav-placeholder").append('<nav class="topbar"><div class="topbarinside"><a  href="/" class="sitename">SLIMEIM.WIKI</p><div clicked = false class="buttonsdiv"><a href="/" class="navbuttoninactive">Characters</a><!--a href="/" class="navbuttoninactive">Tier List</a><a href="/" class="navbuttoninactive">Items</a--></div><button class = "hamb"></button></div></nav>');
+    $("#nav-placeholder").append(`
+    <nav class="topbar">
+        <div class="topbarinside">
+            <a href="/" class="sitename"><img class = "logo" src="https://cdn.discordapp.com/attachments/633768073068806144/985179869463859230/RimuruSlimeManga_1.png"> .WIKI</p>
+                <div clicked=false class="buttonsdiv">
+                    <a href="/characters/" class="navbuttoninactive">Characters</a>
+                </div><button class="hamb"></button>
+        </div>
+    </nav>`);
 })
 
-import cdata from "/data.json" assert { type: "json" }
-import FilterKeywords from "/filterkeywords.json" assert { type: "json" }
+
+const cdata = await fetchcdata(`/data.json`)
+const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
+
+//import cdata from "/data.json" assert { type: "json" }
+//import FilterKeywords from "/filterkeywords.json" assert { type: "json" }
 
 //if (window.history) {
 //    var myOldUrl = window.location.href;
@@ -50,10 +65,6 @@ async function fetchcdata(file) {
         console.error(error);
     }
 }
-
-//const cdata = await fetchcdata(`/data.json`)
-
-//const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 
 const stars = ["https://cdn.discordapp.com/attachments/633768073068806144/982527855407792168/1star.png",
     "https://cdn.discordapp.com/attachments/633768073068806144/982527856968073227/2star.png",
@@ -106,7 +117,7 @@ let Filters = {
     AttackType: sessionStorage.getItem("AttackType") ?? "All",
     Growth: sessionStorage.getItem("Growth") ?? "All",
     SecretType: sessionStorage.getItem("SecretType") ?? "All",
-    Sort: sessionStorage.getItem("Sort") ?? "Name",
+    Sort: sessionStorage.getItem("Sort") ?? "No",
     SortDir: sessionStorage.getItem("SortDir") ?? 1,
     Stars: sessionStorage.getItem("Stars") ?? "All",
     Skills:
@@ -229,7 +240,7 @@ function waitForElm(selector) {
 }
 
 
-if (linksplit[linksplit.length - 2].split("?")[0] === "characters") {
+if (index === "characters" && page != undefined) {
     $(function () {
         $("#character-placeholder").load("/character");
     })
@@ -311,9 +322,8 @@ if (linksplit[linksplit.length - 2].split("?")[0] === "characters") {
         if (amount == 0)
             $("#samename").hide()
     })
-
 }
-else {
+else if (index === "characters") {
     $(function () {
         $("#character-placeholder").load("/charactersbody");
     })
@@ -323,10 +333,12 @@ else {
         let currentcreated = created
         //let sortedarray = Object.keys(cdata).sort(function(a, b) {return -(cdata[a].MaxAtk - cdata[b].MaxAtk)})
         let sortedarray = Object.keys(cdata)
-        if (Filters.Sort == "Name")
-            sortedarray = sortedarray.sort(function (a, b) { return (cdata[a].Name.localeCompare(cdata[b].Name)) })
-        else
-            sortedarray = sortedarray.sort(function (a, b) { return -(cdata[a][Filters.Sort] - cdata[b][Filters.Sort]) })
+        if (Filters.Sort != "No") {
+            if (Filters.Sort == "Name")
+                sortedarray = sortedarray.sort(function (a, b) { return (cdata[a].Name.localeCompare(cdata[b].Name)) })
+            else
+                sortedarray = sortedarray.sort(function (a, b) { return -(cdata[a][Filters.Sort] - cdata[b][Filters.Sort]) })
+        }
         if (Filters.SortDir == -1)
             sortedarray.reverse()
 
@@ -387,7 +399,7 @@ else {
                     waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key][Filters.Sort] })
                 }
                 $('#' + key).css("order", sortedarray.indexOf(key))
-                if (Filters.Sort == "Name")
+                if (Filters.Sort == "No" || Filters.Sort == "Name")
                     waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key].Name.split(" ")[0] })
                 else
                     waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key][Filters.Sort] })
@@ -595,6 +607,12 @@ else {
     RenderFilterOptions("skill", "Skills")
     RenderFilterOptions("trait", "Traits")
 
+}
+else
+{
+    $(function () {
+        $("#character-placeholder").load("/homebody");
+    })
 }
 
 waitForElm('.hamb').then(() => {

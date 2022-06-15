@@ -1,5 +1,6 @@
 <div class="charactersbasecontainer">
     <div class="charactersbase">
+        <div class = "typechartcontainer"><img src="https://cdn.discordapp.com/attachments/633768073068806144/986706482387107840/attribute.png" alt=""></div>
         <div id = "skillfilter" class = "skillfilter">
             <strong>Skills Filter</strong>
         </div>
@@ -17,7 +18,8 @@
             </div>
             <div class="sortcontainer">
                 <div class="sortselect">
-                    <p>Sort by</p>
+                    <img src="https://cdn.discordapp.com/attachments/633768073068806144/986711635269910578/Sort.png" alt="Sort">
+                    <button type = "button" id ="NoSort" class="unittypebutton" toggle = "true">Release</button>
                     <button type = "button" id ="NameSort" class="unittypebutton" toggle = "true">Name</button>
                     <button type = "button" id ="RaritySort" class="unittypebutton" >Rarity</button>
                     <button type = "button" id ="MaxAtkSort" class="unittypebutton">Attack</button>
