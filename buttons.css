@@ -691,7 +691,7 @@ button[toggle="true"] > img {
     height:100px;
     position: relative;
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.25s;
 }
 
 #samename > .charcontainer {

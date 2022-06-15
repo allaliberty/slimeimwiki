@@ -1,5 +1,3 @@
-
-console.log(window.location.href)
 let linksplit = window.location.href.split("/");
 if (linksplit[linksplit.length - 1].length == 0) {
     linksplit.pop()
@@ -34,7 +32,7 @@ const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 
 if (window.history) {
     var myOldUrl = window.location.href;
-    window.addEventListener('hashchange', async function(){
+    window.addEventListener('popstate', async function(){
         linksplit = window.location.href.split("/");
         if (linksplit[linksplit.length - 1].length == 0) {
             linksplit.pop()
@@ -46,31 +44,47 @@ if (window.history) {
             waitForElm('.buttonsdiv').then((elem) => {elem.setAttribute("clicked", "false")})
             await new Promise(r => setTimeout(r, 250));
         }
-            
+        myOldUrl = window.location.href
         UpdatePage()
     });
 }
 
 
-function MakeCharacterIcon(elem, key) {
+function MakeCharacterIcon(elem, key, fragment) {
     const para = document.createElement("a");
     para.setAttribute("class", "charcontainer")
     para.setAttribute("id", key)
     para.setAttribute("href", "#/characters/" + key)
-    elem.appendChild(para);
-    $(para).load('/charactericon')
-    waitForElm("#" + key + ' > #icon').then((ele) => {
-        ele.onload = function () { para.setAttribute("turnon", "true") };
-        ele.src = cdata[key].Icon;
-
-    })
-    waitForElm("#" + key + ' > #rarity').then((ele) => { ele.setAttribute("src", stars[cdata[key].Rarity - 1]) })
-    waitForElm("#" + key + ' > #type').then((ele) => { ele.setAttribute("src", types[cdata[key].Type] || cdata[key].Type) })
-
+    //$(para).load('/charactericon')
+    para.innerHTML = `
+    <img id = "icon" class = "charicon" src="" alt="" loading = "lazy">
+    <img id = "rarity" class = "charstars" src="" alt="" loading = "lazy">
+    <img id = "type" class = "chartype" src="" alt="" loading = "lazy">
+    <img id = "secondtype" class = "chartypesecond" src="" alt="" loading = "lazy">
+    <div id = "name" class="charname" loading = "lazy"></div>
+`
+    //waitForElm("#" + key + ' > #icon').then((ele) => {
+    //    ele.onload = function () { para.setAttribute("turnon", "true") };
+    //    ele.src = cdata[key].Icon;
+    //
+    //})
+    para.children[0].onload = function () { para.setAttribute("turnon", "true") };
+    para.children[0].src = cdata[key].Icon;
+    para.children[1].src = stars[cdata[key].Rarity - 1];
+    para.children[2].src = types[cdata[key].Type] ?? cdata[key].Type
     if ("SecondType" in cdata[key]) {
         para.setAttribute("secondtype", "true")
-        waitForElm("#" + key + ' > #secondtype').then((ele) => { ele.setAttribute("src", types[cdata[key].SecondType] || cdata[key].SecondType) })
+        para.children[3].src = types[cdata[key].SecondType] ?? cdata[key].SecondType
     }
+    (fragment ?? elem).appendChild(para);
+
+    //waitForElm("#" + key + ' > #rarity').then((ele) => { ele.setAttribute("src", stars[cdata[key].Rarity - 1]) })
+    //waitForElm("#" + key + ' > #type').then((ele) => { ele.setAttribute("src", types[cdata[key].Type] || cdata[key].Type) })
+
+    //if ("SecondType" in cdata[key]) {
+    //    para.setAttribute("secondtype", "true")
+    //    waitForElm("#" + key + ' > #secondtype').then((ele) => { ele.setAttribute("src", types[cdata[key].SecondType] || cdata[key].SecondType) })
+    //}
 }
 
 async function fetchcdata(file) {
@@ -302,7 +316,6 @@ function UpdatePage()
         })
         function updatelist() {
             $('.charcontainer').hide()
-            const docfrag = document.createDocumentFragment();
             let currentcreated = created
             //let sortedarray = Object.keys(cdata).sort(function(a, b) {return -(cdata[a].MaxAtk - cdata[b].MaxAtk)})
             let sortedarray = Object.keys(cdata)
@@ -314,8 +327,10 @@ function UpdatePage()
             }
             if (Filters.SortDir == -1)
                 sortedarray.reverse()
-    
+                
+            const fragment = new DocumentFragment()
             waitForElm('.charactersbase').then((elem) => {
+
                 sortedarray.forEach(function (key) {
                     let UnitType
                     if (cdata[key].UnitType === undefined)
@@ -365,7 +380,7 @@ function UpdatePage()
                             return;
                     }
                     if (!$('#' + key).length) {
-                        MakeCharacterIcon(elem, key)
+                        MakeCharacterIcon(elem, key, fragment)
                     }
                     else {
                         $('#' + key).show()
@@ -378,8 +393,10 @@ function UpdatePage()
                         waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key][Filters.Sort] })
     
                 });
+
+                elem.appendChild(fragment)
             })
-    
+
             created = 0
         }
     
@@ -510,7 +527,8 @@ function UpdatePage()
                 }
                 else
                     $(this).attr("toggle", "true")
-                sessionStorage.setItem("SkillsOpen", $(this).attr("toggle"))
+                Filters.Skills.SkillsOpen = $(this).attr("toggle")
+                sessionStorage.setItem("SkillsOpen", Filters.Skills.SkillsOpen)
                 $("#skillfilter").attr("toggle", $(this).attr("toggle"))
                 await new Promise(r => setTimeout(r, 250));
                 updatelist()
@@ -527,7 +545,8 @@ function UpdatePage()
                 }
                 else
                     $(this).attr("toggle", "true")
-                sessionStorage.setItem("TraitsOpen", $(this).attr("toggle"))
+                Filters.Skills.TraitsOpen = $(this).attr("toggle")
+                sessionStorage.setItem("TraitsOpen", Filters.Skills.TraitsOpen)
                 $("#traitfilter").attr("toggle", $(this).attr("toggle"))
                 await new Promise(r => setTimeout(r, 250));
                 updatelist()
@@ -542,7 +561,6 @@ function UpdatePage()
                     waitForElm("#" + Type + "filter > " + "#" + Name.replaceAll(" ", '')).then((ele) => {
                         $(ele).append('<button class = "filterexpand"><img src = "https://cdn.discordapp.com/attachments/633768073068806144/986552780841955328/vecteezy_triangle_1200602.png"></button>')
                         $("#" + Type + "filter > " + "#" + Name.replaceAll(" ", '') + " > .filterexpand").click(function (bro) {
-                            console.log("clicked")
                             if ($(this).attr("toggle") == "true") {
                                 $(ele).attr("toggle", "false")
                                 $(this).attr("toggle", "false")
@@ -623,6 +641,7 @@ function UpdatePage()
         })
     
         waitForElm('#skillsfilterbutton').then(() => {
+            console.log(Filters.SkillsOpen)
             $("#skillsfilterbutton").attr("toggle", Filters.SkillsOpen)
             $("#skillfilter").attr("toggle", Filters.SkillsOpen)
         })
