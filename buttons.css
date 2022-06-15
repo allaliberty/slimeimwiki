@@ -825,7 +825,7 @@ button[toggle="true"] > img {
         padding-left: 25px;
     }
 
-    .charcontainer {
+    .charcontainer, #samename > .charcontainer {
         width: 30%;
         height:auto;
         margin-top: 2.5%;
