@@ -528,8 +528,8 @@ function UpdatePage()
                 }
                 else
                     $(this).attr("toggle", "true")
-                Filters.Skills.SkillsOpen = $(this).attr("toggle")
-                sessionStorage.setItem("SkillsOpen", Filters.Skills.SkillsOpen)
+                Filters.SkillsOpen = $(this).attr("toggle")
+                sessionStorage.setItem("SkillsOpen", Filters.SkillsOpen)
                 $("#skillfilter").attr("toggle", $(this).attr("toggle"))
                 await new Promise(r => setTimeout(r, 250));
                 updatelist()
@@ -546,8 +546,8 @@ function UpdatePage()
                 }
                 else
                     $(this).attr("toggle", "true")
-                Filters.Skills.TraitsOpen = $(this).attr("toggle")
-                sessionStorage.setItem("TraitsOpen", Filters.Skills.TraitsOpen)
+                Filters.TraitsOpen = $(this).attr("toggle")
+                sessionStorage.setItem("TraitsOpen", Filters.TraitsOpen)
                 $("#traitfilter").attr("toggle", $(this).attr("toggle"))
                 await new Promise(r => setTimeout(r, 250));
                 updatelist()
