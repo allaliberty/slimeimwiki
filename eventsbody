@@ -1,0 +1,10 @@
+<div class="homebasecontainer">
+    <div class="homebase">
+        <p class = "statstitle">Ongoing Events</p>
+        <div id = "ongoingevents" class="homecategory">
+        </div>
+        <p class = "statstitle">Past Events</p>
+        <div id = "ongoingevents" time="all" class="homecategory">
+        </div>
+    </div>
+</div>

@@ -18,7 +18,8 @@ $(function () {
         <div class="topbarinside">
             <a href="/#" class="sitename"><img class = "logo" src="https://cdn.discordapp.com/attachments/633768073068806144/985179869463859230/RimuruSlimeManga_1.png"> .WIKI</p>
                 <div clicked=false class="buttonsdiv">
-                    <a href="#/characters" class="navbutton">Characters</a>
+                <a href="#/characters" class="navbutton">Characters</a>
+                <a href="#/events" class="navbutton">Events</a>
                 </div><button class="hamb"></button>
         </div>
     </nav>`);
@@ -683,6 +684,65 @@ function UpdatePage() {
             })
 
         }
+        else if (index === "events") {
+            waitForElm('title').then((elem) => { elem.innerHTML = "Events - SLIMEIM.WIKI" })
+            $(function () {
+                $("#character-placeholder").load("/eventsbody");
+            })
+             waitForElm('#ongoingevents').then((elem) => {
+                const fragment = new DocumentFragment()
+                Object.keys(EventsData).forEach((key) => {
+                    const now = new Date()
+                    if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){
+                        const frag = document.createElement("div")
+                        frag.setAttribute("id", "event");
+                        frag.setAttribute("class", "homecategory");
+                        frag.innerHTML = `<div><img src="" alt=""></div>
+                        <p><strong id = "title">`+key+`</strong></p>
+                        <p id = "description">`+EventsData[key].Description+`</p>
+                        <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>`
+                        if (!(loadedimages.includes(EventsData[key].Image))) {
+                            frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true"); loadedimages.push(EventsData[key].Image) };
+                            frag.children[0].children[0].src = EventsData[key].Image;
+                        }
+                        else
+                        {  
+                            frag.children[0].children[0].src = EventsData[key].Image;
+                            frag.setAttribute("turnon", "true")
+                        }
+                        fragment.appendChild(frag)
+                    }
+                })
+                elem.appendChild(fragment)
+            })
+
+            waitForElm('#ongoingevents[time="all"]').then((elem) => {
+                const fragment = new DocumentFragment()
+                Object.keys(EventsData).forEach((key) => {
+                    const now = new Date()
+                    if ((now >= new Date(EventsData[key].End))){
+                        const frag = document.createElement("div")
+                        frag.setAttribute("id", "event");
+                        frag.setAttribute("class", "homecategory");
+                        frag.innerHTML = `<div><img src="" alt=""></div>
+                        <p><strong id = "title">`+key+`</strong></p>
+                        <p id = "description">`+EventsData[key].Description+`</p>
+                        <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>`
+                        if (!(loadedimages.includes(EventsData[key].Image))) {
+                            frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true"); loadedimages.push(EventsData[key].Image) };
+                            frag.children[0].children[0].src = EventsData[key].Image;
+                        }
+                        else
+                        {  
+                            frag.children[0].children[0].src = EventsData[key].Image;
+                            frag.setAttribute("turnon", "true")
+                        }
+                        fragment.appendChild(frag)
+                    }
+                })
+                elem.appendChild(fragment)
+            })
+        }
         else {
             waitForElm('title').then((elem) => { elem.innerHTML = "Home - SLIMEIM.WIKI" })
             $(function () {
@@ -728,7 +788,8 @@ function UpdatePage() {
                 })
                 elem.appendChild(fragment)
             })
-        }
+
+        }  
     })
 }
 

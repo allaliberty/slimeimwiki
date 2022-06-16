@@ -14,6 +14,22 @@ button {
 
 }
 
+a.unittypebutton {
+    background-image: url("https://cdn.discordapp.com/attachments/633768073068806144/986712999697981560/btn_pattern.png");
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    
+}
+
+a {
+    text-decoration: none;
+}
+
+#traitfilter {
+    user-select: none;
+}
+
 body {
     background-color: #0B1622;
     padding-top: 75px;
@@ -72,6 +88,8 @@ div {
     right:0px;
     top:0px;
     z-index:999;
+    user-select: none;
+
 
 }
 
@@ -278,6 +296,7 @@ div {
     flex-wrap: wrap;
     padding: 30px;
     gap:30px;
+    padding-bottom: 50px;
 }
 
 #event > p {
@@ -421,7 +440,8 @@ div {
     border: 0;
     right:0px;
     top: 0px;
-    width: 100%
+    width: 100%;
+    user-select: none;
 }
 
 .filterexpand:hover {
@@ -620,6 +640,7 @@ div {
 
 .unittypeselectcontainer {
     position: relative;
+    user-select: none;
 }
 
 .unittypeselect {
@@ -666,6 +687,7 @@ div {
 }
 
 .unittypebutton {
+    user-select: none;
     background-color: #152232;
     padding: 5px 30px 5px 30px;
     border-radius: 15px;
@@ -674,14 +696,17 @@ div {
 }
 
 .homecategory > .unittypebutton {
-    width:15%;
+    width:20%;
     padding: 5px 30px 5px 30px;
+    white-space:nowrap;
+    font-size: 15px;
     border-radius: 15px;
     position: absolute;
     bottom: -10px;
-    right: -10px;
+    right: 10px;
     border: 0px;
 }
+
 
 .sortselect > .unittypebutton {
     font-size: 10px;
