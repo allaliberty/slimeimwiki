@@ -54,6 +54,27 @@ if (window.history) {
 }
 
 
+function ListEvents(selector, show) {
+    waitForElm(selector).then((elem) => {
+        const fragment = new DocumentFragment()
+        Object.keys(EventsData).forEach((key) => {
+            if (show(key)){
+                const frag = document.createElement("div")
+                frag.setAttribute("id", "event");
+                frag.setAttribute("class", "homecategory");
+                frag.innerHTML = `<div><img src="" alt=""></div>
+                <p><strong id = "title">`+key+`</strong></p>
+                <p id = "description">`+EventsData[key].Description.replaceAll("\n", "<br>")+`</p>
+                <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>`
+                frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true") };
+                frag.children[0].children[0].src = EventsData[key].Image;
+                fragment.appendChild(frag)
+            }
+        })
+        elem.appendChild(fragment)
+    })
+}
+
 function MakeCharacterIcon(elem, key, fragment) {
     const para = document.createElement("a");
     para.setAttribute("class", "charcontainer")
@@ -689,59 +710,10 @@ function UpdatePage() {
             $(function () {
                 $("#character-placeholder").load("/eventsbody");
             })
-             waitForElm('#ongoingevents').then((elem) => {
-                const fragment = new DocumentFragment()
-                Object.keys(EventsData).forEach((key) => {
-                    const now = new Date()
-                    if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){
-                        const frag = document.createElement("div")
-                        frag.setAttribute("id", "event");
-                        frag.setAttribute("class", "homecategory");
-                        frag.innerHTML = `<div><img src="" alt=""></div>
-                        <p><strong id = "title">`+key+`</strong></p>
-                        <p id = "description">`+EventsData[key].Description+`</p>
-                        <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>`
-                        if (!(loadedimages.includes(EventsData[key].Image))) {
-                            frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true"); loadedimages.push(EventsData[key].Image) };
-                            frag.children[0].children[0].src = EventsData[key].Image;
-                        }
-                        else
-                        {  
-                            frag.children[0].children[0].src = EventsData[key].Image;
-                            frag.setAttribute("turnon", "true")
-                        }
-                        fragment.appendChild(frag)
-                    }
-                })
-                elem.appendChild(fragment)
-            })
+            ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
+            ListEvents('#ongoingevents[time="all"]', function (key) {const now = new Date(); if ((now >= new Date(EventsData[key].End))){return true}})
 
-            waitForElm('#ongoingevents[time="all"]').then((elem) => {
-                const fragment = new DocumentFragment()
-                Object.keys(EventsData).forEach((key) => {
-                    const now = new Date()
-                    if ((now >= new Date(EventsData[key].End))){
-                        const frag = document.createElement("div")
-                        frag.setAttribute("id", "event");
-                        frag.setAttribute("class", "homecategory");
-                        frag.innerHTML = `<div><img src="" alt=""></div>
-                        <p><strong id = "title">`+key+`</strong></p>
-                        <p id = "description">`+EventsData[key].Description+`</p>
-                        <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>`
-                        if (!(loadedimages.includes(EventsData[key].Image))) {
-                            frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true"); loadedimages.push(EventsData[key].Image) };
-                            frag.children[0].children[0].src = EventsData[key].Image;
-                        }
-                        else
-                        {  
-                            frag.children[0].children[0].src = EventsData[key].Image;
-                            frag.setAttribute("turnon", "true")
-                        }
-                        fragment.appendChild(frag)
-                    }
-                })
-                elem.appendChild(fragment)
-            })
+            
         }
         else {
             waitForElm('title').then((elem) => { elem.innerHTML = "Home - SLIMEIM.WIKI" })
@@ -762,32 +734,7 @@ function UpdatePage() {
                 if (amount == 0)
                     $("#latestcharacters").hide()
             })
-            waitForElm('#ongoingevents').then((elem) => {
-                const fragment = new DocumentFragment()
-                Object.keys(EventsData).forEach((key) => {
-                    const now = new Date()
-                    if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){
-                        const frag = document.createElement("div")
-                        frag.setAttribute("id", "event");
-                        frag.setAttribute("class", "homecategory");
-                        frag.innerHTML = `<div><img src="" alt=""></div>
-                        <p><strong id = "title">`+key+`</strong></p>
-                        <p id = "description">`+EventsData[key].Description+`</p>
-                        <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>`
-                        if (!(loadedimages.includes(EventsData[key].Image))) {
-                            frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true"); loadedimages.push(EventsData[key].Image) };
-                            frag.children[0].children[0].src = EventsData[key].Image;
-                        }
-                        else
-                        {  
-                            frag.children[0].children[0].src = EventsData[key].Image;
-                            frag.setAttribute("turnon", "true")
-                        }
-                        fragment.appendChild(frag)
-                    }
-                })
-                elem.appendChild(fragment)
-            })
+            ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
 
         }  
     })
