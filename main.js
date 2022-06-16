@@ -30,6 +30,7 @@ $(function () {
 
 const cdata = await fetchcdata(`/data.json`)
 const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
+const TraitFilterKeywords = await fetchcdata(`/traitsfilterkeywords.json`)
 
 if (window.history) {
     var myOldUrl = window.location.href;
@@ -171,6 +172,16 @@ Object.keys(FilterKeywords).forEach(function (index) {
         .sort()
         .reduce((accumulator, key) => {
             accumulator[key] = FilterKeywords[index][key];
+
+            return accumulator;
+        }, {});
+})
+
+Object.keys(TraitFilterKeywords).forEach(function (index) {
+    TraitFilterKeywords[index] = Object.keys(TraitFilterKeywords[index])
+        .sort()
+        .reduce((accumulator, key) => {
+            accumulator[key] = TraitFilterKeywords[index][key];
 
             return accumulator;
         }, {});
@@ -386,7 +397,7 @@ function UpdatePage() {
                             let can = 0
                             Filters.Traits.forEach(function (yek) {
                                 let thing = yek.replaceAll(":", ' ').split(".")
-                                FilterKeywords[thing[0]][thing[1]].forEach(function (yek) {
+                                TraitFilterKeywords[thing[0]][thing[1]].forEach(function (yek) {
                                     if ((cdata[key].Trait1 ?? "").includes(yek) || (cdata[key].Trait1A ?? "").includes(yek)) {
                                         can = can + 1
                                         return;
@@ -570,7 +581,7 @@ function UpdatePage() {
                 });
             })
 
-            function RenderFilterOptions(Type, ArrName) {
+            function RenderFilterOptions(Type, ArrName, FilterKeywords) {
                 Object.keys(FilterKeywords).forEach(function (Name) {
                     let Arr = FilterKeywords[Name]
                     waitForElm("#" + Type + "filter").then((ele) => {
@@ -612,8 +623,8 @@ function UpdatePage() {
                     })
                 })
             }
-            RenderFilterOptions("skill", "Skills")
-            RenderFilterOptions("trait", "Traits")
+            RenderFilterOptions("skill", "Skills", FilterKeywords)
+            RenderFilterOptions("trait", "Traits", TraitFilterKeywords)
 
 
 

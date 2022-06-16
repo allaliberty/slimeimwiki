@@ -1,5 +1,10 @@
 <div class="homebasecontainer">
     <div class="homebase">
+        <h1 class = "statstitle">Welcome to SLIMEIM.WIKI!</h1>
+        <div class="homecategory">
+            <h2>SLIMEIM.WIKI is a Database and Wiki for SLIME - Isekai Memories currently in development and aiming to be as complete as can possibly be.</h2>
+            <!--button type = "button" id ="all" class="unittypebutton">Characters</button-->
+        </div>
         <p class = "statstitle">Latest Characters</p>
         <div id = "latestcharacters" class="homecategory"></div>
     </div>
