@@ -259,6 +259,73 @@ div {
     position: relative;
 }
 
+
+#event {
+    width:30%;
+    align-items: center;
+    justify-content:flex-start;
+    background-color: #0c121a;
+    gap:5px;
+    box-sizing: border-box;
+    flex-direction: column;
+    opacity: 0;
+    transition: all 0.25s
+}
+
+#ongoingevents {
+    align-items: flex-start;
+    justify-content:center;
+    flex-wrap: wrap;
+    padding: 30px;
+    gap:30px;
+}
+
+#event > p {
+    text-align: center;
+    height: auto;
+    font-size: 85%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    max-height: 40px;
+    transition: all 0.25s
+}
+
+#event:hover > p {
+    max-height: 200px;
+    -webkit-line-clamp: 100;
+}
+
+#event > #date {
+    min-height: 0px;
+}
+
+#event > #date {
+    text-align: right;
+    width: 100%;
+    font-weight: 200;
+}
+
+#event > div {
+    width: 100%;
+    aspect-ratio: 420 / 148;
+    height: auto;
+    overflow: hidden;
+}
+
+#event > div > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#event[turnon="true"] {
+    opacity: 1;
+}
+
 #latestcharacters {
     align-items: center;
     justify-content:center;
@@ -947,7 +1014,21 @@ button[toggle="true"] > img {
     #traitfilter[toggle="true"] {
         margin-bottom: 15px;
     }
-
+    #event {
+        width:100%;
+    }
+    #event > p {
+        font-size: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 100;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        max-height: 1000px;
+        transition: all 0.25s
+    }
+    
   }
 
   @media (max-width: 500px) {

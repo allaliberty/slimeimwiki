@@ -7,5 +7,8 @@
         </div>
         <p class = "statstitle">Latest Characters</p>
         <div id = "latestcharacters" class="homecategory"></div>
+        <p class = "statstitle">Ongoing Events</p>
+        <div id = "ongoingevents" class="homecategory">
+        </div>
     </div>
 </div>

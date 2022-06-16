@@ -3,7 +3,7 @@ if (linksplit[linksplit.length - 1].length == 0) {
     linksplit.pop()
 }
 let page = linksplit[5];
-let index = linksplit[4];
+let index = linksplit[4]
 let created = 1
 let loadedimages = []
 
@@ -31,6 +31,8 @@ $(function () {
 const cdata = await fetchcdata(`/data.json`)
 const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 const TraitFilterKeywords = await fetchcdata(`/traitsfilterkeywords.json`)
+const EventsData = await fetchcdata(`/events.json`)
+
 
 if (window.history) {
     var myOldUrl = window.location.href;
@@ -195,7 +197,6 @@ const UnitTypeButtonTL = {
     protectionunit: "Protection Characters",
 
 }
-
 
 function FilterElementText(elem) {
     elem.innerHTML = elem.innerHTML.replaceAll("\n", '')
@@ -631,8 +632,6 @@ function UpdatePage() {
             RenderFilterOptions("trait", "Traits", TraitFilterKeywords)
 
 
-
-
             waitForElm('.unittypeselect > .unittypebutton').then(() => {
                 $(".unittypeselect > .unittypebutton").attr("toggle", "false")
                 $(".unittypeselect > #" + getKeyByValue(UnitTypeButtonTL, Filters.UnitType)).attr("toggle", "true")
@@ -702,6 +701,32 @@ function UpdatePage() {
                 })
                 if (amount == 0)
                     $("#latestcharacters").hide()
+            })
+            waitForElm('#ongoingevents').then((elem) => {
+                const fragment = new DocumentFragment()
+                Object.keys(EventsData).forEach((key) => {
+                    const now = new Date()
+                    if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){
+                        const frag = document.createElement("div")
+                        frag.setAttribute("id", "event");
+                        frag.setAttribute("class", "homecategory");
+                        frag.innerHTML = `<div><img src="" alt=""></div>
+                        <p><strong id = "title">`+key+`</strong></p>
+                        <p id = "description">`+EventsData[key].Description+`</p>
+                        <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>`
+                        if (!(loadedimages.includes(EventsData[key].Image))) {
+                            frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true"); loadedimages.push(EventsData[key].Image) };
+                            frag.children[0].children[0].src = EventsData[key].Image;
+                        }
+                        else
+                        {  
+                            frag.children[0].children[0].src = EventsData[key].Image;
+                            frag.setAttribute("turnon", "true")
+                        }
+                        fragment.appendChild(frag)
+                    }
+                })
+                elem.appendChild(fragment)
             })
         }
     })
