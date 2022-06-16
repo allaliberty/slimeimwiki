@@ -198,12 +198,14 @@ const UnitTypeButtonTL = {
 
 
 function FilterElementText(elem) {
+    elem.innerHTML = elem.innerHTML.replaceAll("\n", '')
     elem.innerHTML = elem.innerHTML.replaceAll("Lv.1/", '<br>Lv.1/')
     elem.innerHTML = elem.innerHTML.replaceAll(" (", '.<br>(')
     elem.innerHTML = elem.innerHTML.replaceAll(").", ')')
     elem.innerHTML = elem.innerHTML.replaceAll(")", ')<br>')
     elem.innerHTML = elem.innerHTML.replaceAll("Lv.1/Lv.10 ", '')
-    elem.innerHTML = elem.innerHTML.replaceAll(". ", '.<br>')
+    elem.innerHTML = elem.innerHTML.replaceAll(".<br>Cost", '.<br><br>Cost')
+    console.log(elem.innerHTML)
 }
 
 function getKeyByValue(object, value) {
