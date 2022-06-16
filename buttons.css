@@ -3,6 +3,7 @@
     padding: 0px;
     font-family: "Poppins", sans-serif;
     color: white;
+    border:0;
 
 }
 
@@ -722,6 +723,7 @@ button[toggle="true"] > img {
     position: relative;
     opacity: 0;
     transition: opacity 0.25s;
+    border: 0;
 }
 
 #samename > .charcontainer {
@@ -742,7 +744,9 @@ button[toggle="true"] > img {
 .charicon {
     width: 100%;
     height: 100%;
+    aspect-ratio: 1;
     border-radius: 15px;
+    border: 0;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
 }
@@ -864,6 +868,7 @@ button[toggle="true"] > img {
     .charcontainer, #samename > .charcontainer {
         width: 30%;
         height:auto;
+        aspect-ratio: 1;
         margin-top: 2.5%;
         margin-bottom: 2.5%;
     }

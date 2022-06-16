@@ -58,25 +58,28 @@ function MakeCharacterIcon(elem, key, fragment) {
     para.setAttribute("href", "#/characters/" + key)
     //$(para).load('/charactericon')
     para.innerHTML = `
-    <img id = "icon" class = "charicon" src="" alt="" loading = "lazy">
-    <img id = "rarity" class = "charstars" src="" alt="" loading = "lazy">
-    <img id = "type" class = "chartype" src="" alt="" loading = "lazy">
-    <img id = "secondtype" class = "chartypesecond" src="" alt="" loading = "lazy">
-    <div id = "name" class="charname" loading = "lazy"></div>
+    <img id = "icon" class = "charicon" src="" alt="">
+    <img id = "rarity" class = "charstars" src="" alt="" >
+    <img id = "type" class = "chartype" src="" alt="" >
+    <img id = "secondtype" class = "chartypesecond" src="" alt="" >
+    <div id = "name" class="charname" ></div>
 `
     //waitForElm("#" + key + ' > #icon').then((ele) => {
     //    ele.onload = function () { para.setAttribute("turnon", "true") };
     //    ele.src = cdata[key].Icon;
     //
     //})
-    if (!(loadedimages.includes(cdata[key].Icon)))
+    if (!(loadedimages.includes(cdata[key].Icon))) {
         para.children[0].onload = function () { para.setAttribute("turnon", "true"); loadedimages.push(cdata[key].Icon) };
+        para.children[0].src = cdata[key].Icon;
+
+    }
     else
     {  
+        para.children[0].src = cdata[key].Icon;
         para.setAttribute("removetransition", "true")
         para.setAttribute("turnon", "true")
     }
-    para.children[0].src = cdata[key].Icon;
     para.children[1].src = stars[cdata[key].Rarity - 1];
     para.children[2].src = types[cdata[key].Type] ?? cdata[key].Type
     if ("SecondType" in cdata[key]) {
