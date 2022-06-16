@@ -72,7 +72,6 @@ function MakeCharacterIcon(elem, key, fragment) {
     if (!(loadedimages.includes(cdata[key].Icon))) {
         para.children[0].onload = function () { para.setAttribute("turnon", "true"); loadedimages.push(cdata[key].Icon) };
         para.children[0].src = cdata[key].Icon;
-
     }
     else
     {  
