@@ -335,6 +335,18 @@ div {
     padding-bottom: 50px;
 }
 
+#gachastats > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 100%;
+}
+#gachastats > div > .bannerstars {
+    margin-top: 0px;
+}
+#gachastats > div > p {
+    white-space: nowrap;
+}
 #event > p {
     text-align: center;
     height: auto;
@@ -1240,8 +1252,10 @@ button[toggle="true"] > img {
         right: 52%;
         left: 0%;
     }
-    
-    
+    .moreunits[toggle="true"] {
+        max-height: 3000px;
+    }
+
   }
 
   @media (max-width: 500px) {
