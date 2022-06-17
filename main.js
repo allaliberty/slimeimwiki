@@ -12,6 +12,27 @@ function jqSelector(id) {
     return "#" + id.replace(/(:|\.|\[|\]|,)/g, "\\$1");
 }
 
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function sendMessage() {
+        const request = new XMLHttpRequest();
+        request.open("POST", "https://discord.com/api/webhooks/987294637230264330/ZoYs2XNszGPBgNc3uyhFYGdF7r4wmyutvm4c-ADHPZn27asfb07MhpZpyVR89_vDHXgi");
+
+        request.setRequestHeader('Content-type', 'application/json');
+
+        const params = {
+        username: "someone landed",
+        avatar_url: "",
+        content: window.location.href
+        }
+        request.send(JSON.stringify(params));
+}
+
+if (window.location.href.includes("slimeim.wiki"))
+    sendMessage()
+
 $(function () {
     $("#nav-placeholder").append(`
     <nav class="topbar">
@@ -20,6 +41,7 @@ $(function () {
                 <div clicked=false class="buttonsdiv">
                 <a href="#/characters" class="navbutton">Characters</a>
                 <a href="#/events" class="navbutton">Events</a>
+                <a href="#/gacha" class="navbutton">Gacha Simulator</a>
                 </div><button class="hamb"></button>
         </div>
     </nav>`);
@@ -75,7 +97,7 @@ function ListEvents(selector, show) {
     })
 }
 
-function MakeCharacterIcon(elem, key, fragment) {
+function MakeCharacterIcon(elem, key, fragment, off) {
     const para = document.createElement("a");
     para.setAttribute("class", "charcontainer")
     para.setAttribute("id", key)
@@ -94,23 +116,26 @@ function MakeCharacterIcon(elem, key, fragment) {
     //
     //})
     if (!(loadedimages.includes(cdata[key].Icon))) {
+        if (off != true)
         para.children[0].onload = function () { para.setAttribute("turnon", "true"); loadedimages.push(cdata[key].Icon) };
         para.children[0].src = cdata[key].Icon;
     }
     else
     {  
         para.children[0].src = cdata[key].Icon;
-        para.setAttribute("removetransition", "true")
-        para.setAttribute("turnon", "true")
+        if (off != true) {
+            para.setAttribute("removetransition", "true")
+            para.setAttribute("turnon", "true")}
     }
     para.children[1].src = stars[cdata[key].Rarity - 1];
     para.children[2].src = types[cdata[key].Type] ?? cdata[key].Type
+    para.setAttribute("stars", (cdata[key].Rarity))
     if ("SecondType" in cdata[key]) {
         para.setAttribute("secondtype", "true")
         para.children[3].src = types[cdata[key].SecondType] ?? cdata[key].SecondType
     }
     (fragment ?? elem).appendChild(para);
-
+    return (para);
     //waitForElm("#" + key + ' > #rarity').then((ele) => { ele.setAttribute("src", stars[cdata[key].Rarity - 1]) })
     //waitForElm("#" + key + ' > #type').then((ele) => { ele.setAttribute("src", types[cdata[key].Type] || cdata[key].Type) })
 
@@ -228,7 +253,6 @@ function FilterElementText(elem) {
     elem.innerHTML = elem.innerHTML.replaceAll(")", ')<br>')
     elem.innerHTML = elem.innerHTML.replaceAll("Lv.1/Lv.10 ", '')
     elem.innerHTML = elem.innerHTML.replaceAll(".<br>Cost", '.<br><br>Cost')
-    console.log(elem.innerHTML)
 }
 
 function getKeyByValue(object, value) {
@@ -270,14 +294,11 @@ function UpdatePage() {
             $(this).attr("current", "false")
     })
     waitForElm("#character-placeholder").then((elem) => {
-        console.log(Date.now() - start)
         elem.replaceChildren();
         if (index === "characters" && page != undefined) {
-            console.log(Date.now() - start)
             $(function () {
                 $("#character-placeholder").load("/character");
             })
-            console.log(Date.now() - start)
             waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name })
             waitForElm('#title').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0] })
             waitForElm('#name').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[0] })
@@ -339,7 +360,6 @@ function UpdatePage() {
                 waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split("10:")[1]; FilterElementText(elem) })
                 waitForElm('.statsback2').then((elem) => { elem.remove() })
             }
-            console.log(Date.now() - start)
 
             waitForElm('#samename').then((elem) => {
                 let Name = cdata[page].Name.split("[")[0]
@@ -357,17 +377,13 @@ function UpdatePage() {
                 if (amount == 0)
                     $("#samename").hide()
             })
-            console.log(start - Date.now())
 
         }
         else if (index === "characters") {
-            console.log(Date.now() - start)
             waitForElm('title').then((elem) => { elem.innerHTML = "Characters - SLIMEIM.WIKI" })
-            console.log(Date.now() - start)
             $(function () {
                 $("#character-placeholder").load("/charactersbody");
             })
-            console.log(Date.now() - start)
             function updatelist() {
                 $('.charcontainer').hide()
                 let currentcreated = created
@@ -383,7 +399,6 @@ function UpdatePage() {
                     sortedarray.reverse()
 
                 const fragment = new DocumentFragment()
-                console.log(Date.now() - start)
                 waitForElm('.charactersbase').then((elem) => {
 
                     sortedarray.forEach(function (key) {
@@ -694,7 +709,6 @@ function UpdatePage() {
             })
 
             waitForElm('#skillsfilterbutton').then(() => {
-                console.log(Filters.SkillsOpen)
                 $("#skillsfilterbutton").attr("toggle", Filters.SkillsOpen)
                 $("#skillfilter").attr("toggle", Filters.SkillsOpen)
             })
@@ -712,8 +726,135 @@ function UpdatePage() {
             })
             ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
             ListEvents('#ongoingevents[time="all"]', function (key) {const now = new Date(); if ((now >= new Date(EventsData[key].End))){return true}})
+        }
+        else if (index === "gacha") {
+            waitForElm('title').then((elem) => { elem.innerHTML = "Gacha Simulator - SLIMEIM.WIKI" })
+            $(function () {
+                $("#character-placeholder").load("/gachabody");
+            })
+            waitForElm('.moreunits').then((ele) => { 
+                $("#unitsexpand.filterexpand").click(function (bro) {
+                    if ($(this).attr("toggle") == "true") {
+                        $(ele).attr("toggle", "false")
+                        $(this).attr("toggle", "false")
+                    }
+                    else {
+                        $(ele).attr("toggle", "true")
+                        $(this).attr("toggle", "true")
+                    }
+                })
+            })
+            let currentbanner = "Troop Recruit: Rimuru's Bride Battle!"
+            let Featured5StarsBattle = [];
+            let Featured5StarsProt = [];
+            let Standard5StarsBattle = ["Rimuru6", "Diablo1", "Milim4", "Veldora2", "Veldora1", "Luminus1","Rimuru2","Milim2", "Gobta1","Guy2", "Rimuru4", "Milim6", "Gazel1", "Shion1", "Shizue2", "Shuna1", "Souei2", "Treyni1", "Hakurou1", "Benimaru1", "Beretta1", "Ranga1", "Milim5", "Rimuru1"];
+            let Standard5StarsProt = ["Shion6", "Shuna6", "Rimuru10", "Ifrit1", "Veldora4", "Elemental1", "Orc1", "Charybdis1", "Milim8", "Ramiris2"];
+            let Standard4Stars = ["Suphia1","Grucius1", "Gabiru1", "Chloe1", "Kurobe1","Geld1", "Gelmud1", "Gobta2", "Shion5", "Souei3", "Trya1", "Hakurou2","Phobio1", "Benimaru4", "Milim7", "Yuuki1", "Ranga3", "Rimuru8", "Shuna3","Rimuru7","Shuna4","Shion3","Benimaru3","Souei4","Veldora5","Kaijin1","Gard1","Salamander1","Sky1","Fuze1","Vesta1","Light1"];
+            let Standard3Stars = ["Gale1","Alice2", "Kurobe2","Kenya1","Rigurd1","Ryota1","Psychic1","Garm1","Gobuichi1","Dord1","Haruna1","Butterflies1","Myrd1"];
+            let Units = [EventsData[currentbanner].Banner, Standard5StarsBattle.concat(Standard5StarsProt), Standard4Stars,Standard3Stars]
+            EventsData[currentbanner].Banner.forEach(function(key){
+                if (cdata[key].UnitType == "Protection Characters")
+                    Featured5StarsProt.push(key)
+                else
+                    Featured5StarsBattle.push(key)
+            })
 
-            
+            waitForElm('#bannerunitlist').then((ele) => {
+                let i = 0
+                document.querySelectorAll("#bannerunitlist").forEach(function(element){
+                    const fragment = new DocumentFragment()
+                    Units[i].forEach(function(unit){
+                        MakeCharacterIcon(elem, unit, fragment)
+                    })
+                    i = i+1
+                    element.appendChild(fragment)
+                })
+            })
+
+            function GetRandomCharacter() {
+                let Rarity = Math.random() * 101
+                let FinalChoices = []
+                if (Rarity <= 4)
+                {
+                    if (Rarity <= Featured5StarsProt.length + Featured5StarsBattle.length)
+                        FinalChoices =  Featured5StarsProt.concat(Featured5StarsBattle)
+                    else if (Rarity <= 1 - (Featured5StarsProt.length*0.7))
+                        FinalChoices = Standard5StarsProt
+                    else
+                        FinalChoices = Standard5StarsBattle
+                }
+                else if (Rarity <= 15+4) {
+                    Standard4Stars.forEach(function(pick) {
+                        if (Rarity <= 5+4)
+                        {
+                            if (cdata[pick].UnitType == "Protection Characters")
+                                FinalChoices.push(pick)
+                        }
+                        else if (cdata[pick].UnitType != "Protection Characters")
+                            FinalChoices.push(pick)
+                    })
+                    }
+                else {
+                    Standard3Stars.forEach(function(pick) {
+                        if (Rarity <= 27+4+15)
+                        {
+                            if (cdata[pick].UnitType == "Protection Characters")
+                                FinalChoices.push(pick)
+                        }
+                        else if (cdata[pick].UnitType != "Protection Characters")
+                            FinalChoices.push(pick)
+                    })
+                }
+                return FinalChoices[Math.floor(Math.random()*FinalChoices.length)]
+            }
+            let debounce = false
+            waitForElm('#x10').then((ele) => {
+                waitForElm('.actualrollresults').then((elem) => {
+                    $(ele).click(async function(){
+                        $("#rollresults").attr("toggle", "true")
+                        if (debounce == false){
+                            if ($("#rollresults").attr("flow") != "true")
+                                await new Promise(r => setTimeout(r, 50));
+                            $("#rollresults").attr("flow", "true")
+                            debounce = true
+                            elem.replaceChildren();
+                            for (let i = 0; i < 10; i++) {
+                                const fragment = new DocumentFragment()
+                                let para = MakeCharacterIcon(elem, GetRandomCharacter(), fragment, true)
+                                elem.appendChild(fragment);
+                                await new Promise(r => setTimeout(r, 100));
+                                para.setAttribute("turnon", "true")
+                            }
+                            await new Promise(r => setTimeout(r, 100));
+                            debounce = false
+                        }
+                    })
+                })
+            })
+            waitForElm('#x1').then((ele) => {
+                waitForElm('.actualrollresults').then((elem) => {
+                    $(ele).click(async function(){
+                        $("#rollresults").attr("toggle", "true")
+                        if (debounce == false){
+                            if ($("#rollresults").attr("flow") != "true")
+                                await new Promise(r => setTimeout(r, 50));
+                            $("#rollresults").attr("flow", "true")
+                            debounce = true
+                            elem.replaceChildren();
+                            for (let i = 0; i < 1; i++) {
+                                const fragment = new DocumentFragment()
+                                let para = MakeCharacterIcon(elem, GetRandomCharacter(), fragment, true)
+                                elem.appendChild(fragment);
+                                await new Promise(r => setTimeout(r, 100));
+                                para.setAttribute("turnon", "true")
+                            }
+                            await new Promise(r => setTimeout(r, 100));
+                            debounce = false
+                        }
+                    })
+                })
+            })
+
         }
         else {
             waitForElm('title').then((elem) => { elem.innerHTML = "Home - SLIMEIM.WIKI" })
