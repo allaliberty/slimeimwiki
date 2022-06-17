@@ -215,7 +215,9 @@ let Filters = {
         JSON.parse(sessionStorage.getItem("Traits")) ?? [],
     SkillsOpen: sessionStorage.getItem("SkillsOpen") ?? "false",
     TraitsOpen: sessionStorage.getItem("TraitsOpen") ?? "false",
-
+    LimitedFiveStars: 0,
+    StandardFiveStars: 0,
+    Everything: sessionStorage.getItem("Everything") ?? 0,
 }
 
 Object.keys(FilterKeywords).forEach(function (index) {
@@ -808,49 +810,59 @@ function UpdatePage() {
                 return FinalChoices[Math.floor(Math.random()*FinalChoices.length)]
             }
             let debounce = false
+            function round(value, precision) {
+                var multiplier = Math.pow(10, precision || 0);
+                return Math.round(value * multiplier) / multiplier;
+            }
+            function UpdateStats()
+            {
+                $("#limitedpulled").text(Filters.LimitedFiveStars)
+                $("#standardpulled").text(Filters.StandardFiveStars)
+                $("#percentage").text(round(((Filters.LimitedFiveStars+Filters.StandardFiveStars)/Filters.Everything)*100,1) + "%")
+                $("#magicrystals").text(Filters.Everything*30)
+                $("#usd").text(round((Filters.Everything*30)*(39.99/475),2)+"$")
+            }
+            async function Pull(amount, elem){
+                $("#rollresults").attr("toggle", "true")
+                if (debounce == false){
+                    if ($("#rollresults").attr("flow") != "true")
+                        await new Promise(r => setTimeout(r, 50));
+                    $("#rollresults").attr("flow", "true")
+                    debounce = true
+                    elem.replaceChildren();
+                    for (let i = 0; i < amount; i++) {
+                        Filters.Everything = Filters.Everything + 1
+                        const fragment = new DocumentFragment()
+                        let rand = GetRandomCharacter()
+                        if (Featured5StarsProt.includes(rand) || Featured5StarsBattle.includes(rand))
+                        {
+                            Filters.LimitedFiveStars = Filters.LimitedFiveStars + 1
+                        }
+                        else if (cdata[rand].Rarity == 5)
+                        {
+                            Filters.StandardFiveStars = Filters.StandardFiveStars + 1
+                        }
+                        UpdateStats()
+                        let para = MakeCharacterIcon(elem, rand, fragment, true)
+                        elem.appendChild(fragment);
+                        await new Promise(r => setTimeout(r, 100));
+                        para.setAttribute("turnon", "true")
+                    }
+                    await new Promise(r => setTimeout(r, 100));
+                    debounce = false
+                }
+            }
             waitForElm('#x10').then((ele) => {
                 waitForElm('.actualrollresults').then((elem) => {
                     $(ele).click(async function(){
-                        $("#rollresults").attr("toggle", "true")
-                        if (debounce == false){
-                            if ($("#rollresults").attr("flow") != "true")
-                                await new Promise(r => setTimeout(r, 50));
-                            $("#rollresults").attr("flow", "true")
-                            debounce = true
-                            elem.replaceChildren();
-                            for (let i = 0; i < 10; i++) {
-                                const fragment = new DocumentFragment()
-                                let para = MakeCharacterIcon(elem, GetRandomCharacter(), fragment, true)
-                                elem.appendChild(fragment);
-                                await new Promise(r => setTimeout(r, 100));
-                                para.setAttribute("turnon", "true")
-                            }
-                            await new Promise(r => setTimeout(r, 100));
-                            debounce = false
-                        }
+                        Pull(10, elem)
                     })
                 })
             })
             waitForElm('#x1').then((ele) => {
                 waitForElm('.actualrollresults').then((elem) => {
                     $(ele).click(async function(){
-                        $("#rollresults").attr("toggle", "true")
-                        if (debounce == false){
-                            if ($("#rollresults").attr("flow") != "true")
-                                await new Promise(r => setTimeout(r, 50));
-                            $("#rollresults").attr("flow", "true")
-                            debounce = true
-                            elem.replaceChildren();
-                            for (let i = 0; i < 1; i++) {
-                                const fragment = new DocumentFragment()
-                                let para = MakeCharacterIcon(elem, GetRandomCharacter(), fragment, true)
-                                elem.appendChild(fragment);
-                                await new Promise(r => setTimeout(r, 100));
-                                para.setAttribute("turnon", "true")
-                            }
-                            await new Promise(r => setTimeout(r, 100));
-                            debounce = false
-                        }
+                        Pull(1, elem)
                     })
                 })
             })

@@ -325,6 +325,16 @@ div {
     padding-bottom: 50px;
 }
 
+#gachastats {
+    align-items: flex-start;
+    justify-content:flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 30px;
+    gap:5px;
+    padding-bottom: 50px;
+}
+
 #event > p {
     text-align: center;
     height: auto;
@@ -1111,6 +1121,12 @@ button[toggle="true"] > img {
     .buttonsdiv[clicked="true"] ~ .hamb{
         filter: invert(50%);
     }
+
+    #rollresults[toggle="true"] {
+        height:35vw;
+        padding:6vw;
+    }
+    
     
     .topbarinside {
         padding-right: 25px;
@@ -1213,6 +1229,18 @@ button[toggle="true"] > img {
         max-height: 1000px;
         transition: all 0.25s
     }
+    #x10 {
+        width:auto;
+        right: 0%;
+        left: 52%;
+    }
+    
+    #x1 {
+        width:auto;
+        right: 52%;
+        left: 0%;
+    }
+    
     
   }
 
