@@ -5,6 +5,7 @@ if (linksplit[linksplit.length - 1].length == 0) {
 let page = linksplit[5];
 let index = linksplit[4]
 let created = 1
+let iframeopen = false
 let loadedimages = []
 
 
@@ -104,31 +105,35 @@ function ListEvents(selector, show) {
 }
 
 async function MakeIframe(Link){
-    const fragment = new DocumentFragment()
-    const frag = document.createElement("div")
-    frag.setAttribute("class", "iframepopup")
-    frag.innerHTML = `
-    <div>
-        <iframe class="iframe" id = "linktoapp" src="`+Link+`" ></iframe>
-    </div>
-    <button type = "button" id ="closepopup" class="unittypebutton"> <img src="https://cdn.discordapp.com/attachments/633768073068806144/987785342511882290/Grey_close_x.svg.png" alt=""> </button>
-    `
-    fragment.appendChild(frag)
-    document.querySelector(".homebasecontainer").appendChild(fragment)
-    waitForElm(".iframepopup").then(async function (elem) {
-        elem.querySelector(".iframe").addEventListener("load", async function() {
-            await new Promise(r => setTimeout(r, 100))
-            elem.setAttribute("toggle", "true")
-        });
-    })
-        
-    waitForElm('#closepopup').then(async function (elem) {
-        $(elem).click(async function () {
-            $(".iframepopup").attr("toggle", "false")
-            await new Promise(r => setTimeout(r, 250))
-            $(".iframepopup").remove()
+    if (iframeopen == false) {
+        iframeopen = true
+        const fragment = new DocumentFragment()
+        const frag = document.createElement("div")
+        frag.setAttribute("class", "iframepopup")
+        frag.innerHTML = `
+        <div>
+            <iframe class="iframe" id = "linktoapp" src="`+Link+`" ></iframe>
+        </div>
+        <button type = "button" id ="closepopup" class="unittypebutton"> <img src="https://cdn.discordapp.com/attachments/633768073068806144/987785342511882290/Grey_close_x.svg.png" alt=""> </button>
+        `
+        fragment.appendChild(frag)
+        document.querySelector(".homebasecontainer").appendChild(fragment)
+        waitForElm(".iframepopup").then(async function (elem) {
+            elem.querySelector(".iframe").addEventListener("load", async function() {
+                await new Promise(r => setTimeout(r, 100))
+                elem.setAttribute("toggle", "true")
+            });
         })
-    })
+            
+        waitForElm('#closepopup').then(async function (elem) {
+            $(elem).click(async function () {
+                $(".iframepopup").attr("toggle", "false")
+                await new Promise(r => setTimeout(r, 250))
+                $(".iframepopup").remove()
+                iframeopen = false
+            })
+        })
+    }
 }
 
 function MakeCharacterIcon(elem, key, fragment, off) {
@@ -331,6 +336,7 @@ function UpdatePage() {
     })
     waitForElm("#character-placeholder").then((elem) => {
         elem.replaceChildren();
+        iframeopen = false
         if (index === "characters" && page != undefined) {
             $(function () {
                 $("#character-placeholder").load("/character");
@@ -856,11 +862,14 @@ function UpdatePage() {
             }
             function UpdateStats()
             {
-                $("#limitedpulled").text(Filters.LimitedFiveStars)
-                $("#standardpulled").text(Filters.StandardFiveStars)
-                $("#percentage").text(round(((Filters.LimitedFiveStars+Filters.StandardFiveStars)/Filters.Everything)*100,1) + "%")
-                $("#magicrystals").text(Filters.Everything*30)
-                $("#usd").text(round((Filters.Everything*30)*(39.99/475),2)+"$")
+                waitForElm("#limitedpulled").then((ele) => { 
+                    $("#limitedpulled").text(Filters.LimitedFiveStars)
+                    $("#standardpulled").text(Filters.StandardFiveStars)
+                    $("#percentage").text(round(((Filters.LimitedFiveStars+Filters.StandardFiveStars)/Filters.Everything)*100,1) + "%")
+                    $("#magicrystals").text(Filters.Everything*30)
+                    $("#usd").text(round((Filters.Everything*30)*(39.99/475),2)+"$")
+                })
+                
             }
             async function Pull(amount, elem){
                 $("#rollresults").attr("toggle", "true")
@@ -906,7 +915,7 @@ function UpdatePage() {
                     })
                 })
             })
-
+            UpdateStats()
         }
         else {
             waitForElm('title').then((elem) => { elem.innerHTML = "Home - SLIMEIM.WIKI" })
