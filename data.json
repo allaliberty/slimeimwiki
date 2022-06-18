@@ -1315,7 +1315,6 @@
     },
     "Rimuru10": {
         "Name": "Rimuru Tempest [The Chancellor of Prosperity]",
-
         "UnitType": "Protection Characters",
         "Art": "https://i.imgur.com/Sx3A82b.png",
         "Icon": "https://i.imgur.com/1T3F6vl.png",
@@ -2307,7 +2306,7 @@
         ]
     },
     "Milim5": {
-        "Name": "Milim Nava [One of Oldest Demon Lords]",
+        "Name": "Milim Nava [One of the Oldest Demon Lords]",
         "Art": "https://i.imgur.com/1huDYDf.png",
         "Icon": "https://i.imgur.com/CrXK94G.png",
         "Type": "https://i.imgur.com/AHPti72.png",
@@ -3710,7 +3709,7 @@
         "Trait1A": "HP - Pierce Resistance (5* Awaken x3):\n    When 3 vanguard have 50% or more HP, increases all allies' pierce resistance by 15% at the start of turn."
     },
     "Veldora4": {
-        "Name": "Veldora Tempest [Storm Dragon]",
+        "Name": "Veldora Tempest [The Storm Dragon]",
         "UnitType": "Protection Characters",
         "Art": "https://i.imgur.com/IoMmupm.png",
         "Icon": "https://i.imgur.com/tge1oxf.png",
