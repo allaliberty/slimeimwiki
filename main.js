@@ -56,6 +56,20 @@ const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 const TraitFilterKeywords = await fetchcdata(`/traitsfilterkeywords.json`)
 const EventsData = await fetchcdata(`/events.json`)
 
+let newevents = {
+}
+
+let sortedarray = Object.keys(EventsData)
+sortedarray = sortedarray.sort(function (a, b) { return -((new Date(EventsData[a].Start)) - (new Date(EventsData[b].Start)))})
+
+sortedarray.forEach(function(key){
+    newevents[key] = EventsData[key]
+})
+
+console.log(JSON.stringify(newevents))
+
+
+
 
 if (window.history) {
     var myOldUrl = window.location.href;
