@@ -324,6 +324,12 @@ function UpdatePage() {
             waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = cdata[page].Trait1A.replaceAll("★","*").split(" (5* Awaken x3):")[1] })
             waitForElm('#trait1icon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon || "") })
             waitForElm('#trait1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon || "") })
+            waitForElm('#exability1').then((elem) => { elem.innerHTML = (cdata[page].EXAbility1 ?? ":").split(":")[0] })
+            waitForElm('#exability1desc').then((elem) => { elem.innerHTML = (cdata[page].EXAbility1 ?? ":").split(":")[1] })
+            waitForElm('#exability2').then((elem) => { elem.innerHTML = (cdata[page].EXAbility2 ?? ":").split(":")[0] })
+            waitForElm('#exability2desc').then((elem) => { elem.innerHTML = (cdata[page].EXAbility2 ?? ":").split(":")[1] })
+            waitForElm('#exability1icon').then((elem) => { elem.setAttribute("src", cdata[page].EXAbility1Icon ?? "") })
+            waitForElm('#exability2icon').then((elem) => { elem.setAttribute("src", cdata[page].EXAbility2Icon ?? "") })
 
             if (cdata[page].UnitType != "Protection Characters") {
                 waitForElm('#weapon').then((elem) => { elem.setAttribute("src", weapons[cdata[page].Weapon] || cdata[page].Weapon) })
@@ -342,7 +348,6 @@ function UpdatePage() {
                         waitForElm('.statsleft').then((elem) => { elem.children.item(index).children.item(1).innerHTML = element.toString().concat("%") })
                     else
                         waitForElm('.statsright').then((elem) => { elem.children.item(index - 6).children.item(1).innerHTML = element.toString().concat("%") })
-
                 })
             }
             else {
@@ -353,14 +358,15 @@ function UpdatePage() {
                 waitForElm('#atktype').then((elem) => { elem.setAttribute("src", "") })
                 waitForElm('#skill1').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split(" Lv.")[0] + " Lv.MAX" })
                 waitForElm('#skill1desc').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split("Lv.MAX:")[1]; FilterElementText(elem) })
-                waitForElm('#skill2').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split(" Lv.")[0]; $(elem).hide(); })
-                waitForElm('#skill2desc').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split("Lv.MAX:")[1]; $(elem).hide(); FilterElementText(elem) })
+                waitForElm('#skill2').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split(" Lv.")[0]; })
+                waitForElm('#skill2desc').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split("Lv.MAX:")[1]; FilterElementText(elem) })
                 waitForElm('#skill1icon').then((elem) => { elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png") })
                 waitForElm('#skill2icon').then((elem) => { elem.setAttribute("src", "") })
                 waitForElm('#secreticon').then((elem) => { elem.setAttribute("src", cdata[page].ProtectionSkillIcon ?? "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png") })
                 waitForElm('#secret').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split(" Lv.1")[0] + " Lv.1/Lv.10" })
                 waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split("10:")[1]; FilterElementText(elem) })
                 waitForElm('.statsback2').then((elem) => { elem.remove() })
+                waitForElm('.secondpart > .statsback').then((elem) => { elem.setAttribute("protector", "true") })
             }
 
             waitForElm('#samename').then((elem) => {

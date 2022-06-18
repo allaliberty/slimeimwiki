@@ -226,6 +226,22 @@
                         increases protection gauge by 6 every 3 turns (available in support formation)</p>
                 </div>
             </div>
+            <p noprotector = "true" class="statstitle">EX Ability Release</p>
+            <div noprotector = "true" class="skilldiv">
+                <img id="exability1icon" class="skillicon" src="" alt="" >
+                <div>
+                    <p><Strong class="exability1" id="exability1"></Strong></p>
+                    <p class="skilltext" id="exability1desc">
+                    </p>
+                </div>
+            </div>
+            <div noprotector = "true" class="skilldiv">
+                <img id="exability2icon" class="skillicon" src="" alt="" >
+                <div>
+                    <p><Strong class="exability2" id="exability2"></Strong></p>
+                    <p class="skilltext" id="exability2desc"></p>
+                </div>
+            </div>
             <p class="statstitle">Output</p>
             <div class="skilldiv">
                 <img id="town1icon" class="skillicon" src="" alt="" -->

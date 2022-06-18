@@ -145,6 +145,8 @@ div {
 
 .charactericon {
     height: 100%;
+    aspect-ratio:1;
+    object-fit: cover;
 }
 
 .characternames {
@@ -163,6 +165,10 @@ div {
     word-wrap: break-word;
 }
 
+.statsback[protector="true"] > [noprotector="true"] {
+    display:none;
+}
+
 .charactername {
     font-weight: bold;
     font-size: 30px;
@@ -176,6 +182,11 @@ div {
 
 .characteristicsicons {
     height: 100%;
+}
+
+.characteristicsicons[src="undefined"] {
+    height: 0px;
+    width: 0px
 }
 
 .characteristics {
