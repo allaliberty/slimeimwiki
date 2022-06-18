@@ -36,8 +36,8 @@
                     <button id = "Water"><img src="https://i.imgur.com/NchScWh.png" alt=""></button>
                     <button id = "Light"><img src="https://i.imgur.com/hX15sR0.png" alt=""></button>
                     <button id = "Dark"><img src="https://i.imgur.com/pzX6NRL.png" alt=""></button>
-                    <button id = "Melee"><img src="https://i.imgur.com/P8lUDX0.png" alt=""></button>
-                    <button id = "Magic"><img src="https://i.imgur.com/tOS4FvO.png" alt=""></button>
+                    <button id = "Melee"><img src="https://i.imgur.com/EWYVugy.png" alt=""></button>
+                    <button id = "Magic"><img src="https://i.imgur.com/SsC1hEj.png" alt=""></button>
                 </div>
 
                 <div id = "weapon" class="typeselectcontainer">
