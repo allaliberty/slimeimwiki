@@ -86,7 +86,7 @@ function ListEvents(selector, show) {
                 frag.setAttribute("class", "homecategory");
                 frag.innerHTML = `<div><img src="" alt=""></div>
                 <p><strong id = "title">`+key+`</strong></p>
-                <p id = "description">`+EventsData[key].Description.replaceAll("\n", "<br>")+`</p>
+                <p id = "description">`+(EventsData[key].Description ?? "").replaceAll("\n", "<br>")+`</p>
                 <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>`
                 frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true") };
                 frag.children[0].children[0].src = EventsData[key].Image;
