@@ -11,5 +11,7 @@
         <div id = "ongoingevents" class="homecategory">
                 <a type = "button" href = "#/events" id ="anchor" class="unittypebutton">All Events</a>
         </div>
+
+       
     </div>
 </div>

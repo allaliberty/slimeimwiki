@@ -22,6 +22,78 @@ a.unittypebutton {
     
 }
 
+.iframepopup {
+    position: fixed;
+    left:10%;
+    right: 10%;
+    top: 10%;
+    bottom: 10%;
+    background-color: #0c121a;
+    z-index: 1000;
+    border-radius: 15px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    transform: scale(2);
+    opacity: 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 0.25s;
+}
+
+.iframepopup[toggle="true"] {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#iframeanchor {
+    width:50%;
+}
+
+#iframeanchor[dont="true"] {
+    display:none;
+}
+
+
+.iframepopup > div {
+    width: 100%;
+    height: 90%;
+    position: relative;
+    overflow: hidden;
+    right:-3.5%;
+    
+}
+
+#closepopup {
+    position: absolute;
+    left:-20px;
+    top:-20px;
+    z-index: 600;
+    width:50px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    font-weight: 800;
+    font-size: 200%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#closepopup > img {
+    width:30px;
+    filter: brightness(300%);
+    aspect-ratio:1;
+}
+
+
+
+.iframepopup > div > iframe {
+    left:-7%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
 a {
     text-decoration: none;
 }

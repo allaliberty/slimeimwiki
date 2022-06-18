@@ -3,14 +3,14 @@
         "Image": "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/d295a603f686742157ace874a60c817e.png?16555706387228?16555706387228",
         "Start": "6/17/2022",
         "End": " 6/30/2022",
-        "Description": "Clear all of the quests to get 4★ Memory Stone Shard x10 and Souei, the Instant Spy Memory Stone x5 for the chance to evolve to 5★!    ",
+        "Description": "",
         "Link": "https://api-us.ten-sura-m.wfs.games/web/announcement/4001002068?region=1&language=2&phoneType=1"
     },
     "Extreme 3 Comes to Tempered Edge!": {
         "Image": "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/30b7b62a620d409afd216adb055ac635.png?16555706387228?16555706387228",
         "Start": "6/15/2022",
         "End": "6/15/2022",
-        "Description": "This event features extremely high difficulty quests with a recommended EP of 412,000, so form of party of characters trained to their limit and go into battle at full strength.",
+        "Description": "",
         "Link": "https://api-us.ten-sura-m.wfs.games/web/announcement/4801002060?region=1&language=2&phoneType=1"
     },
     "Daggrull, the Proud Giant Fist Special Recruit Pack": {
@@ -20,14 +20,14 @@
         "Banner": [
             "Daggrull1"
         ],
-        "Description": "Magicrystal x1,100\nBonus Contents:\nDaggrull, the Proud Giant Fist Recruit Selection Ticket x5",
+        "Description": "",
         "Link": "https://api-us.ten-sura-m.wfs.games/web/announcement/400000035?region=1&language=2&phoneType=1"
     },
     "Daggrull, the Proud Giant Fist Recruit Selection": {
         "Image": "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/aa2cd4b63c254150f30daa20508c0de0.png?16555706387228?16555706387228",
         "Start": "6/15/2022",
         "End": " 7/5/2022",
-        "Description": "The new character Daggrull appears at a higher rate!",
+        "Description": "",
         "Link": "https://api-us.ten-sura-m.wfs.games/web/announcement/500000068?region=1&language=2&phoneType=1"
     },
     "Hero's Jubilee IX: Blitz is Here!": {
@@ -51,7 +51,7 @@
         "Banner": [
             "Rimuru3"
         ],
-        "Description": "Tailcoat-clad Rimuru appears at a higher rate!",
+        "Description": "",
         "Link": "https://api-us.ten-sura-m.wfs.games/web/announcement/500000069?region=1&language=2&phoneType=1"
     },
     "(6/15 2:00 UTC Update) Rimuru's Bride Battle!": {
@@ -81,19 +81,19 @@
         "Image": "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/ef322fd012b31ea496e5d49052e43878.png?16555706387228?16555706387228",
         "Start": "5/31/2022",
         "End": " 6/30/2022",
-        "Description": "Buy and get Gems + Food + Ticket for the Shizue/Shion Banner",
+        "Description": "",
         "Link": "https://api-us.ten-sura-m.wfs.games/web/announcement/400000031?region=1&language=2&phoneType=1"
     },
     "EX Ability Release Quest Battle Ticket Pack": {
         "Image": "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/38cb537174550ca1b5e907eb501626f5.png?16555706387228?16555706387228",
         "Start": "5/31/2022",
         "End": " 6/30/2022",
-        "Description": "Whale Pack for EX AR Quest Entry Tickets with Gems",
+        "Description": "",
         "Link": "https://api-us.ten-sura-m.wfs.games/web/announcement/400000032?region=1&language=2&phoneType=1"
     },
     "Rimuru's Bride Battle!": {
         "Image": "https://i.imgur.com/wgQRPOJ.png",
-        "Description": "While cleaning up with Benimaru one day, Rimuru stumbles upon a familiar dress.\n    Together, they recall a previously sealed memory of a contest to decide Rimuru's bride.",
+        "Description": "",
         "Start": "5/31/2022",
         "End": "6/30/2022"
     },
@@ -105,18 +105,18 @@
             "Shion2",
             "Shizue3"
         ],
-        "Description": "Wedding dress Shion and Shizu appear at a higher rate!",
+        "Description": "",
         "Link": "https://api-us.ten-sura-m.wfs.games/web/announcement/500000067?region=1&language=2&phoneType=1"
     },
     "Special Missions": {
         "Image": "https://i.imgur.com/oudb3Xv.png",
-        "Description": "Special Mission for various Materials",
+        "Description": "",
         "Start": "5/31/2022",
         "End": "6/13/2022"
     },
     "Light Tempered Edge Release": {
         "Image": "https://i.imgur.com/NPg7yLV.png",
-        "Description": "Release of Light Tempered Edge",
+        "Description": "",
         "Start": "5/31/2022",
         "End": "5/31/2022"
     },
@@ -124,14 +124,14 @@
         "Image": "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/0ccdb7116a1f866349b2d83565130916.png?16555706387228?16555706387228",
         "Start": "5/20/2022",
         "End": " 6/21/2022",
-        "Description": "Whale Pack for Choice Space Characters with Gems",
+        "Description": "",
         "Link": "https://api-us.ten-sura-m.wfs.games/web/announcement/400000030?region=1&language=2&phoneType=1"
     },
     "Story Event: I'm Going to Confess My Love to Myulan!": {
         "Image": "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/90c348e43543bad8bdcb10d7f19b5098.png?16555706387228?16555706387228",
         "Start": "5/20/2022",
         "End": " 6/20/2022",
-        "Description": "Scenarios from the season 2 limited edition Blu-ray special drama CDs have come to Isekai Memories!",
+        "Description": "",
         "Link": "https://api-us.ten-sura-m.wfs.games/web/announcement/4001002058?region=1&language=2&phoneType=1"
     },
     "Troop Recruit: Space Character Selection": {

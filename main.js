@@ -88,13 +88,46 @@ function ListEvents(selector, show) {
                 frag.innerHTML = `<div><img src="" alt=""></div>
                 <p><strong id = "title">`+key+`</strong></p>
                 <p id = "description">`+(EventsData[key].Description ?? "").replaceAll("\n", "<br>")+`</p>
-                <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>`
+                <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>
+                <button type = "button" Link = "`+`" id ="iframeanchor" class="unittypebutton">More</button>
+                `
                 frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true") };
                 frag.children[0].children[0].src = EventsData[key].Image;
+                frag.querySelector("button").onclick = function(){
+                    MakeIframe(EventsData[key].Link)
+                }
                 fragment.appendChild(frag)
             }
         })
         elem.appendChild(fragment)
+    })
+}
+
+async function MakeIframe(Link){
+    const fragment = new DocumentFragment()
+    const frag = document.createElement("div")
+    frag.setAttribute("class", "iframepopup")
+    frag.innerHTML = `
+    <div>
+        <iframe class="iframe" id = "linktoapp" src="`+Link+`" ></iframe>
+    </div>
+    <button type = "button" id ="closepopup" class="unittypebutton"> <img src="https://cdn.discordapp.com/attachments/633768073068806144/987785342511882290/Grey_close_x.svg.png" alt=""> </button>
+    `
+    fragment.appendChild(frag)
+    document.querySelector(".homebasecontainer").appendChild(fragment)
+    waitForElm(".iframepopup").then(async function (elem) {
+        elem.querySelector(".iframe").addEventListener("load", async function() {
+            await new Promise(r => setTimeout(r, 100))
+            elem.setAttribute("toggle", "true")
+        });
+    })
+        
+    waitForElm('#closepopup').then(async function (elem) {
+        $(elem).click(async function () {
+            $(".iframepopup").attr("toggle", "false")
+            await new Promise(r => setTimeout(r, 250))
+            $(".iframepopup").remove()
+        })
     })
 }
 
@@ -895,7 +928,6 @@ function UpdatePage() {
                     $("#latestcharacters").hide()
             })
             ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
-
         }  
     })
 }
