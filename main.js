@@ -865,7 +865,7 @@ function UpdatePage() {
                 waitForElm("#limitedpulled").then((ele) => { 
                     $("#limitedpulled").text(Filters.LimitedFiveStars)
                     $("#standardpulled").text(Filters.StandardFiveStars)
-                    $("#percentage").text(round(((Filters.LimitedFiveStars+Filters.StandardFiveStars)/Filters.Everything)*100,1) + "%")
+                    $("#percentage").text((round(((Filters.LimitedFiveStars+Filters.StandardFiveStars)/Filters.Everything)*100,1) || 0) + "%")
                     $("#magicrystals").text(Filters.Everything*30)
                     $("#usd").text(round((Filters.Everything*30)*(39.99/475),2)+"$")
                 })
