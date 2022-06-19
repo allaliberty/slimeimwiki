@@ -17,23 +17,6 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-function sendMessage() {
-        const request = new XMLHttpRequest();
-        request.open("POST", "https://discord.com/api/webhooks/987294637230264330/ZoYs2XNszGPBgNc3uyhFYGdF7r4wmyutvm4c-ADHPZn27asfb07MhpZpyVR89_vDHXgi");
-
-        request.setRequestHeader('Content-type', 'application/json');
-
-        const params = {
-        username: "someone landed",
-        avatar_url: "",
-        content: window.location.href
-        }
-        request.send(JSON.stringify(params));
-}
-
-if (window.location.href.includes("slimeim.wiki"))
-    sendMessage()
-
 $(function () {
     $("#nav-placeholder").append(`
     <nav class="topbar">
@@ -77,6 +60,15 @@ if (window.history) {
     });
 }
 
+function ReturnDate(key) {
+    if (EventsData[key].End == EventsData[key].Start) {
+        return new Date(EventsData[key].Start).toLocaleDateString()
+    }
+    else {
+        return (new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()
+    }
+}
+
 
 function ListEvents(selector, show) {
     waitForElm(selector).then((elem) => {
@@ -89,13 +81,16 @@ function ListEvents(selector, show) {
                 frag.innerHTML = `<div><img src="" alt=""></div>
                 <p><strong id = "title">`+key+`</strong></p>
                 <p id = "description">`+(EventsData[key].Description ?? "").replaceAll("\n", "<br>")+`</p>
-                <p id = "date">`+(new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()+`</p>
+                <p id = "date">`+ReturnDate(key)+`</p>
                 <button type = "button" Link = "`+`" id ="iframeanchor" class="unittypebutton">More</button>
                 `
                 frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true") };
                 frag.children[0].children[0].src = EventsData[key].Image;
                 frag.querySelector("button").onclick = function(){
                     MakeIframe(EventsData[key].Link)
+                }
+                if (EventsData[key].Current == false) {
+                    frag.querySelector("button").setAttribute("dont","true")
                 }
                 fragment.appendChild(frag)
             }
@@ -772,8 +767,10 @@ function UpdatePage() {
             $(function () {
                 $("#character-placeholder").load("/eventsbody");
             })
-            ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
-            ListEvents('#ongoingevents[time="all"]', function (key) {const now = new Date(); if ((now >= new Date(EventsData[key].End))){return true}})
+            //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
+            //ListEvents('#ongoingevents[time="all"]', function (key) {const now = new Date(); if ((now >= new Date(EventsData[key].End))){return true}})
+            ListEvents('#ongoingevents', function (key) {if ((EventsData[key].Current == true)){return true}})
+            ListEvents('#ongoingevents[time="all"]', function (key) {if ((EventsData[key].Current != true)){return true}})
         }
         else if (index === "gacha") {
             waitForElm('title').then((elem) => { elem.innerHTML = "Gacha Simulator - SLIMEIM.WIKI" })
@@ -936,7 +933,8 @@ function UpdatePage() {
                 if (amount == 0)
                     $("#latestcharacters").hide()
             })
-            ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
+            //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
+            ListEvents('#ongoingevents', function (key) {if ((EventsData[key].Current == true)){return true}})
         }  
     })
 }
