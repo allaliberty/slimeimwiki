@@ -752,12 +752,20 @@ div {
     gap: 10px;
 }
 .skillicon {
-    width: 75px;
+    min-width: 75px;
+    max-width: 75px;
+    opacity: 0;
     object-fit: contain;
+    transition: all 0.5s;
+}
+
+.skillicon[turnon="true"] {
+    opacity: 1;
 }
 
 .skillicon[src=""] {
-    width: 0px;
+    min-width: 0px;
+    max-width: 0px;
 }
 
 .skilltext {
