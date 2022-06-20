@@ -83,6 +83,7 @@ function ListEvents(selector, show) {
                 <p id = "description">`+(EventsData[key].Description ?? "").replaceAll("\n", "<br>")+`</p>
                 <p id = "date">`+ReturnDate(key)+`</p>
                 <button type = "button" Link = "`+`" id ="iframeanchor" class="unittypebutton">More</button>
+                <p class ="newtext">NEW<p>
                 `
                 frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true") };
                 frag.children[0].children[0].src = EventsData[key].Image;
@@ -91,6 +92,9 @@ function ListEvents(selector, show) {
                 }
                 if (EventsData[key].Current == false) {
                     frag.querySelector("button").setAttribute("dont","true")
+                }
+                if (EventsData[key].New != true) {
+                    frag.querySelector(".newtext").setAttribute("dont","true")
                 }
                 fragment.appendChild(frag)
             }
