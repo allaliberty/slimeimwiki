@@ -285,14 +285,22 @@ const UnitTypeButtonTL = {
 
 }
 
+function SkillTextFilter(text){
+    if (text) {
+        text = text.replaceAll("\n", '')
+        text = text.replaceAll("Lv.1/", '<br>Lv.1/')
+        text = text.replaceAll(" (", '.<br>(')
+        text = text.replaceAll(").", ')')
+        text = text.replaceAll(")", ')<br>')
+        text = text.replaceAll("Lv.1/Lv.10 ", '')
+        text = text.replaceAll(".<br>Cost", '.<br><br>Cost')
+        text = text.replaceAll("Soul of Protection", 'Soul of Divine Protection')
+    }
+    return text
+}
+
 function FilterElementText(elem) {
-    elem.innerHTML = elem.innerHTML.replaceAll("\n", '')
-    elem.innerHTML = elem.innerHTML.replaceAll("Lv.1/", '<br>Lv.1/')
-    elem.innerHTML = elem.innerHTML.replaceAll(" (", '.<br>(')
-    elem.innerHTML = elem.innerHTML.replaceAll(").", ')')
-    elem.innerHTML = elem.innerHTML.replaceAll(")", ')<br>')
-    elem.innerHTML = elem.innerHTML.replaceAll("Lv.1/Lv.10 ", '')
-    elem.innerHTML = elem.innerHTML.replaceAll(".<br>Cost", '.<br><br>Cost')
+    elem.innerHTML = SkillTextFilter(elem.innerHTML)
 }
 
 function getKeyByValue(object, value) {
@@ -477,7 +485,7 @@ function UpdatePage() {
                             Filters.Skills.forEach(function (yek) {
                                 let thing = yek.replaceAll(":", ' ').split(".")
                                 FilterKeywords[thing[0]][thing[1]].forEach(function (yek) {
-                                    if ((cdata[key].Skill1 ?? "").includes(yek) || (cdata[key].Skill2 ?? "").includes(yek) || (cdata[key].ProtectionSkill ?? "").includes(yek) || (cdata[key].DivineProtection ?? "").includes(yek)) {
+                                    if ((SkillTextFilter(cdata[key].Skill1) ?? "").includes(yek) || (SkillTextFilter(cdata[key].Skill2) ?? "").includes(yek) || (SkillTextFilter(cdata[key].ProtectionSkill) ?? "").includes(yek) || (SkillTextFilter(cdata[key].DivineProtection) ?? "").includes(yek)) {
                                         can = can + 1
                                         return;
                                     }
@@ -491,7 +499,7 @@ function UpdatePage() {
                             Filters.Traits.forEach(function (yek) {
                                 let thing = yek.replaceAll(":", ' ').split(".")
                                 TraitFilterKeywords[thing[0]][thing[1]].forEach(function (yek) {
-                                    if ((cdata[key].Trait1 ?? "").includes(yek) || (cdata[key].Trait1A ?? "").includes(yek)) {
+                                    if ((SkillTextFilter(cdata[key].Trait1) ?? "").includes(yek) || (SkillTextFilter(cdata[key].Trait1A) ?? "").includes(yek)) {
                                         can = can + 1
                                         return;
                                     }
