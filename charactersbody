@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="types">
-                <div id = "types" class="typeselectcontainer" big = true>
+                <div id = "types" class="typeselectcontainer" big = "true">
                     <button id = "Fire"><img src="https://i.imgur.com/QndVudD.png" alt=""></button>
                     <button id = "Earth"><img  src="https://i.imgur.com/AHPti72.png" alt=""></button>
                     <button id = "Space"><img src="https://i.imgur.com/z8bnSYg.png" alt=""></button>
@@ -40,7 +40,7 @@
                     <button id = "Magic"><img src="https://i.imgur.com/SsC1hEj.png" alt=""></button>
                 </div>
 
-                <div id = "weapon" class="typeselectcontainer">
+                <div id = "weapon" class="typeselectcontainer" sorry = "true">
                     <button id = "Sword"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982523252985446460/unknown.png" alt=""></button>
                     <button id = "Katana"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982523309382053898/unknown.png" alt=""></button>
                     <button id = "Hammer"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982527713015373824/Layer_3.png" alt=""></button>
@@ -48,6 +48,10 @@
                     <button id = "Greatsword"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982523229736402964/unknown.png" alt=""></button>
                     <button id = "Tome"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982523214364291112/unknown.png" alt=""></button>
                     <button id = "Fist"><img src="https://cdn.discordapp.com/attachments/633768073068806144/985207460614774835/Layer_32.png" alt=""></button>
+                </div>
+
+                <div id = "other" class="typeselectcontainer" smallest = "true">
+                    <button id = "Octagram"><img src="https://cdn.discordapp.com/attachments/633768073068806144/992075952970551417/unknown.png" alt=""></button>
                 </div>
 
                 <div id = "growth" class="typeselectcontainer" small = "true">
@@ -67,7 +71,7 @@
                     <button id = "TypeSingle"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982528147880828948/icSpTypeSingle.png" alt=""></button>
                 </div>
 
-                <div id = "stars" class="typeselectcontainer" biggest = true>
+                <div id = "stars" class="typeselectcontainer" biggest = "true">
                     <button id = "3"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982527856418648135/3star.png" alt=""></button>
                     <button id = "4"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982527856775143484/4star.png" alt=""></button>
                     <button id = "5"><img src="https://cdn.discordapp.com/attachments/633768073068806144/982527856162799626/5star.png" alt=""></button>

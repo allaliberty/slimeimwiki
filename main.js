@@ -38,9 +38,12 @@ $(function () {
 const cdata = await fetchcdata(`/data.json`)
 const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 const TraitFilterKeywords = await fetchcdata(`/traitsfilterkeywords.json`)
-const EventsData = await fetchcdata(`/events.json`)
-
-
+const EventsDataUnsorted = await fetchcdata(`/events.json`)
+let EventsData = {}
+let sortedarray = Object.keys(EventsDataUnsorted).sort(function (a, b) { return -((new Date(EventsDataUnsorted[a].Start)) - (new Date(EventsDataUnsorted[b].Start)))})
+sortedarray.forEach((key) => { 
+    EventsData[key] = EventsDataUnsorted[key]
+})
 
 if (window.history) {
     var myOldUrl = window.location.href;
@@ -418,7 +421,7 @@ function UpdatePage() {
                 waitForElm('#atktype').then((elem) => { elem.setAttribute("src", "") })
                 waitForElm('#skill1').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split(" Lv.")[0] + " Lv.MAX" })
                 waitForElm('#skill1desc').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split("Lv.MAX:")[1]; FilterElementText(elem) })
-                waitForElm('#skill2').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split(" Lv.")[0]; })
+                waitForElm('#skill2').then((elem) => { elem.innerHTML = "Supporting Divine Protection"; })
                 waitForElm('#skill2desc').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split("Lv.MAX:")[1]; FilterElementText(elem) })
                 waitForElm('#skill1icon').then((elem) => { elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png"); elem.onload = function () { elem.setAttribute("turnon", "true")} })
                 waitForElm('#skill2icon').then((elem) => { elem.setAttribute("src", "") })
@@ -488,6 +491,8 @@ function UpdatePage() {
                         if (Filters.SecretType != "All" && ("Type" + cdata[key].SecretType != Filters.SecretType))
                             return;
                         if (Filters.Stars != "All" && (cdata[key].Rarity != Filters.Stars))
+                            return;
+                        if (Filters.Other == "Octagram" && cdata[key].Octagram != true)
                             return;
                         if (Filters.Skills.length != 0) {
                             let can = 0
@@ -623,6 +628,21 @@ function UpdatePage() {
                         Filters.SecretType = $(this).attr("id")
                     }
                     sessionStorage.setItem("SecretType", Filters.SecretType)
+                    updatelist()
+                });
+            })
+
+            waitForElm("#other > button").then((ele) => {
+                $("#other > button").click(function () {
+                    $("#other > button").attr("toggle", "false")
+                    if (Filters.Other == $(this).attr("id")) {
+                        Filters.Other = "All"
+                    }
+                    else {
+                        $(this).attr("toggle", "true")
+                        Filters.Other = $(this).attr("id")
+                    }
+                    sessionStorage.setItem("Other", Filters.Other)
                     updatelist()
                 });
             })

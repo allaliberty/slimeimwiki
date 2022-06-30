@@ -1316,6 +1316,10 @@ button[toggle="true"] > img {
         width:100%;
     }
 
+    .typeselectcontainer[sorry="true"] {
+        width: 67.5%;
+    }
+
     #skillsfilterbutton, #traitsfilterbutton {
         width:26%;
     }
@@ -1376,9 +1380,20 @@ button[toggle="true"] > img {
         width:20%;
     }
     .typeselectcontainer > button {
+        width: 10%;
+        height: auto;
+        aspect-ratio: 1;
     }
     .typeselectcontainer[small="true"] > button {
+        width: 25%;
+    }
+    .typeselectcontainer[sorry="true"] > button {
+        width: 13%;
     }
     .typeselectcontainer[smallest="true"] > button {
+        width: 45%;
+    }
+    .typeselectcontainer[smallest="true"] > button {
+        width: 50%;
     }
   }
