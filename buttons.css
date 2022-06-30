@@ -233,8 +233,9 @@ div {
     height:25%;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
     word-wrap: break-word;
+    overflow: hidden;
+    width: 75%;
 }
 
 .statsback[protector="true"] > [noprotector="true"] {
@@ -249,6 +250,7 @@ div {
     white-space: nowrap;
     text-overflow: ellipsis;
     word-wrap: break-word;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -1184,6 +1186,9 @@ button[toggle="true"] > img {
 @media (max-width: 52rem) {
     .characterart {
         width: 100%;
+        max-height: auto;
+        min-height: 0px;
+        margin-bottom: 20px;
     }
     .secondpart {
         width: 100%;
@@ -1198,9 +1203,6 @@ button[toggle="true"] > img {
     }
     .firstpartofsecondpart > div {
         width: 100%;
-    }
-    .characterart {
-        height: 100vw;
     }
     .sep {
         flex: 0;

@@ -287,6 +287,12 @@ const UnitTypeButtonTL = {
 
 function SkillTextFilter(text){
     if (text) {
+        let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h","i", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "w", "z"]
+        alphabet.forEach((letter) =>{
+            alphabet.forEach((letter2) => { 
+                text = text.replaceAll(letter + letter2.toUpperCase(), letter + ". " + letter2.toUpperCase())
+            })
+        })
         text = text.replaceAll("\n", '')
         text = text.replaceAll("Lv.1/", '<br>Lv.1/')
         text = text.replaceAll(" (", '.<br>(')
@@ -294,6 +300,9 @@ function SkillTextFilter(text){
         text = text.replaceAll(")", ')<br>')
         text = text.replaceAll("Lv.1/Lv.10 ", '')
         text = text.replaceAll(".<br>Cost", '.<br><br>Cost')
+        text = text.replaceAll(". Cost", '.<br><br>Cost')
+        text = text.replaceAll(")<br>Cost", ')<br><br>Cost')
+        text = text.replaceAll(") Cost", ')<br><br>Cost')
         text = text.replaceAll("Soul of Protection", 'Soul of Divine Protection')
     }
     return text
@@ -485,7 +494,7 @@ function UpdatePage() {
                             Filters.Skills.forEach(function (yek) {
                                 let thing = yek.replaceAll(":", ' ').split(".")
                                 FilterKeywords[thing[0]][thing[1]].forEach(function (yek) {
-                                    if ((SkillTextFilter(cdata[key].Skill1) ?? "").includes(yek) || (SkillTextFilter(cdata[key].Skill2) ?? "").includes(yek) || (SkillTextFilter(cdata[key].ProtectionSkill) ?? "").includes(yek) || (SkillTextFilter(cdata[key].DivineProtection) ?? "").includes(yek)) {
+                                    if ((SkillTextFilter(cdata[key].Skill1) ?? "").toLowerCase().includes(yek.toLowerCase()) || (SkillTextFilter(cdata[key].Skill2) ?? "").toLowerCase().includes(yek.toLowerCase()) || (SkillTextFilter(cdata[key].ProtectionSkill) ?? "").toLowerCase().includes(yek.toLowerCase()) || (SkillTextFilter(cdata[key].DivineProtection) ?? "").toLowerCase().includes(yek.toLowerCase())) {
                                         can = can + 1
                                         return;
                                     }
@@ -499,7 +508,7 @@ function UpdatePage() {
                             Filters.Traits.forEach(function (yek) {
                                 let thing = yek.replaceAll(":", ' ').split(".")
                                 TraitFilterKeywords[thing[0]][thing[1]].forEach(function (yek) {
-                                    if ((SkillTextFilter(cdata[key].Trait1) ?? "").includes(yek) || (SkillTextFilter(cdata[key].Trait1A) ?? "").includes(yek)) {
+                                    if ((SkillTextFilter(cdata[key].Trait1) ?? "").toLowerCase().includes(yek.toLowerCase()) || (SkillTextFilter(cdata[key].Trait1A) ?? "").toLowerCase().includes(yek.toLowerCase())) {
                                         can = can + 1
                                         return;
                                     }
