@@ -14,7 +14,7 @@ function jqSelector(id) {
 }
 
 function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 $(function () {
@@ -33,15 +33,15 @@ $(function () {
 
 //import cdata from "/data.json" assert { type: "json" }
 //import FilterKeywords from "/filterkeywords.json" assert { type: "json" }
- 
+
 
 const cdata = await fetchcdata(`/data.json`)
 const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 const TraitFilterKeywords = await fetchcdata(`/traitsfilterkeywords.json`)
 const EventsDataUnsorted = await fetchcdata(`/events.json`)
 let EventsData = {}
-let sortedarray = Object.keys(EventsDataUnsorted).sort(function (a, b) { return -((new Date(EventsDataUnsorted[a].Start)) - (new Date(EventsDataUnsorted[b].Start)))})
-sortedarray.forEach((key) => { 
+let sortedarray = Object.keys(EventsDataUnsorted).sort(function (a, b) { return -((new Date(EventsDataUnsorted[a].Start)) - (new Date(EventsDataUnsorted[b].Start))) })
+sortedarray.forEach((key) => {
     EventsData[key] = EventsDataUnsorted[key]
 })
 
@@ -68,7 +68,7 @@ function ReturnDate(key) {
         return new Date(EventsData[key].Start).toLocaleDateString()
     }
     else {
-        return (new Date(EventsData[key].Start)).toLocaleDateString() + " - "+(new Date(EventsData[key].End)).toLocaleDateString()
+        return (new Date(EventsData[key].Start)).toLocaleDateString() + " - " + (new Date(EventsData[key].End)).toLocaleDateString()
     }
 }
 
@@ -77,27 +77,27 @@ function ListEvents(selector, show) {
     waitForElm(selector).then((elem) => {
         const fragment = new DocumentFragment()
         Object.keys(EventsData).forEach((key) => {
-            if (show(key)){
+            if (show(key)) {
                 const frag = document.createElement("div")
                 frag.setAttribute("id", "event");
                 frag.setAttribute("class", "homecategory");
                 frag.innerHTML = `<div><img src="" alt=""></div>
-                <p><strong id = "title">`+key+`</strong></p>
-                <p id = "description">`+(EventsData[key].Description ?? "").replaceAll("\n", "<br>")+`</p>
-                <p id = "date">`+ReturnDate(key)+`</p>
-                <button type = "button" Link = "`+`" id ="iframeanchor" class="unittypebutton">More</button>
+                <p><strong id = "title">`+ key + `</strong></p>
+                <p id = "description">`+ (EventsData[key].Description ?? "").replaceAll("\n", "<br>") + `</p>
+                <p id = "date">`+ ReturnDate(key) + `</p>
+                <button type = "button" Link = "`+ `" id ="iframeanchor" class="unittypebutton">More</button>
                 <p class ="newtext">NEW<p>
                 `
                 frag.children[0].children[0].onload = function () { frag.setAttribute("turnon", "true") };
                 frag.children[0].children[0].src = EventsData[key].Image;
-                frag.querySelector("button").onclick = function(){
+                frag.querySelector("button").onclick = function () {
                     MakeIframe(EventsData[key].Link)
                 }
                 if (EventsData[key].Current == false) {
-                    frag.querySelector("button").setAttribute("dont","true")
+                    frag.querySelector("button").setAttribute("dont", "true")
                 }
                 if (EventsData[key].New != true) {
-                    frag.querySelector(".newtext").setAttribute("dont","true")
+                    frag.querySelector(".newtext").setAttribute("dont", "true")
                 }
                 fragment.appendChild(frag)
             }
@@ -106,7 +106,7 @@ function ListEvents(selector, show) {
     })
 }
 
-async function MakeIframe(Link){
+async function MakeIframe(Link) {
     if (iframeopen == false) {
         iframeopen = true
         const fragment = new DocumentFragment()
@@ -114,19 +114,19 @@ async function MakeIframe(Link){
         frag.setAttribute("class", "iframepopup")
         frag.innerHTML = `
         <div>
-            <iframe class="iframe" id = "linktoapp" src="`+Link+`" ></iframe>
+            <iframe class="iframe" id = "linktoapp" src="`+ Link + `" ></iframe>
         </div>
         <button type = "button" id ="closepopup" class="unittypebutton"> <img src="https://cdn.discordapp.com/attachments/633768073068806144/987785342511882290/Grey_close_x.svg.png" alt=""> </button>
         `
         fragment.appendChild(frag)
         document.querySelector(".homebasecontainer").appendChild(fragment)
         waitForElm(".iframepopup").then(async function (elem) {
-            elem.querySelector(".iframe").addEventListener("load", async function() {
+            elem.querySelector(".iframe").addEventListener("load", async function () {
                 await new Promise(r => setTimeout(r, 100))
                 elem.setAttribute("toggle", "true")
             });
         })
-            
+
         waitForElm('#closepopup').then(async function (elem) {
             $(elem).click(async function () {
                 $(".iframepopup").attr("toggle", "false")
@@ -158,15 +158,15 @@ function MakeCharacterIcon(elem, key, fragment, off) {
     //})
     if (!(loadedimages.includes(cdata[key].Icon))) {
         if (off != true)
-        para.children[0].onload = function () { para.setAttribute("turnon", "true"); loadedimages.push(cdata[key].Icon) };
+            para.children[0].onload = function () { para.setAttribute("turnon", "true"); loadedimages.push(cdata[key].Icon) };
         para.children[0].src = cdata[key].Icon;
     }
-    else
-    {  
+    else {
         para.children[0].src = cdata[key].Icon;
         if (off != true) {
             para.setAttribute("removetransition", "true")
-            para.setAttribute("turnon", "true")}
+            para.setAttribute("turnon", "true")
+        }
     }
     para.children[1].src = stars[cdata[key].Rarity - 1];
     para.children[2].src = types[cdata[key].Type] ?? cdata[key].Type
@@ -259,6 +259,7 @@ let Filters = {
     LimitedFiveStars: 0,
     StandardFiveStars: 0,
     Everything: sessionStorage.getItem("Everything") ?? 0,
+    Server: localStorage.getItem("Server") ?? "NA",
 }
 
 Object.keys(FilterKeywords).forEach(function (index) {
@@ -288,11 +289,11 @@ const UnitTypeButtonTL = {
 
 }
 
-function SkillTextFilter(text){
+function SkillTextFilter(text) {
     if (text) {
-        let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h","i", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "w", "z"]
-        alphabet.forEach((letter) =>{
-            alphabet.forEach((letter2) => { 
+        let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "w", "z"]
+        alphabet.forEach((letter) => {
+            alphabet.forEach((letter2) => {
                 text = text.replaceAll(letter + letter2.toUpperCase(), letter + ". " + letter2.toUpperCase())
             })
         })
@@ -378,19 +379,19 @@ function UpdatePage() {
             waitForElm('#output1percent').then((elem) => { elem.innerHTML = "+".concat(cdata[page].Town1.split(" +")[1]) })
             waitForElm('#output2').then((elem) => { elem.innerHTML = cdata[page].Town2.split(" +")[0] })
             waitForElm('#output2percent').then((elem) => { elem.innerHTML = "+".concat(cdata[page].Town2.split(" +")[1]) })
-            waitForElm('#trait1').then((elem) => { elem.innerHTML = cdata[page].Trait1.replaceAll("★","*").split(" (5* Awaken x1):")[0] })
-            waitForElm('#trait1desc').then((elem) => { elem.innerHTML = cdata[page].Trait1.replaceAll("★","*").split(" (5* Awaken x1):")[1] })
-            waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = cdata[page].Trait1A.replaceAll("★","*").split(" (5* Awaken x3):")[1] })
+            waitForElm('#trait1').then((elem) => { elem.innerHTML = cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[0] })
+            waitForElm('#trait1desc').then((elem) => { elem.innerHTML = cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[1] })
+            waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = cdata[page].Trait1A.replaceAll("★", "*").split(" (5* Awaken x3):")[1] })
 
-            waitForElm('#trait1icon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon || ""); elem.onload = function () { elem.setAttribute("turnon", "true")}  })
-            waitForElm('#trait1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon || ""); elem.onload = function () { elem.setAttribute("turnon", "true")}  })
+            waitForElm('#trait1icon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon || ""); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+            waitForElm('#trait1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon || ""); elem.onload = function () { elem.setAttribute("turnon", "true") } })
 
             waitForElm('#exability1').then((elem) => { elem.innerHTML = (cdata[page].EXAbility1 ?? ":").split(":")[0] })
             waitForElm('#exability1desc').then((elem) => { elem.innerHTML = (cdata[page].EXAbility1 ?? ":").split(":")[1] })
             waitForElm('#exability2').then((elem) => { elem.innerHTML = (cdata[page].EXAbility2 ?? ":").split(":")[0] })
             waitForElm('#exability2desc').then((elem) => { elem.innerHTML = (cdata[page].EXAbility2 ?? ":").split(":")[1] })
-            waitForElm('#exability1icon').then((elem) => { elem.setAttribute("src", cdata[page].EXAbility1Icon ?? ""); elem.onload = function () { elem.setAttribute("turnon", "true")} })
-            waitForElm('#exability2icon').then((elem) => { elem.setAttribute("src", cdata[page].EXAbility2Icon ?? ""); elem.onload = function () { elem.setAttribute("turnon", "true")}  })
+            waitForElm('#exability1icon').then((elem) => { elem.setAttribute("src", cdata[page].EXAbility1Icon ?? ""); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+            waitForElm('#exability2icon').then((elem) => { elem.setAttribute("src", cdata[page].EXAbility2Icon ?? ""); elem.onload = function () { elem.setAttribute("turnon", "true") } })
 
             if (cdata[page].UnitType != "Protection Characters") {
                 waitForElm('#weapon').then((elem) => { elem.setAttribute("src", weapons[cdata[page].Weapon] || cdata[page].Weapon) })
@@ -423,9 +424,9 @@ function UpdatePage() {
                 waitForElm('#skill1desc').then((elem) => { elem.innerHTML = cdata[page].DivineProtection.split("Lv.MAX:")[1]; FilterElementText(elem) })
                 waitForElm('#skill2').then((elem) => { elem.innerHTML = "Supporting Divine Protection"; })
                 waitForElm('#skill2desc').then((elem) => { elem.innerHTML = cdata[page].SupportDivineProtection.split("Lv.MAX:")[1]; FilterElementText(elem) })
-                waitForElm('#skill1icon').then((elem) => { elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png"); elem.onload = function () { elem.setAttribute("turnon", "true")} })
+                waitForElm('#skill1icon').then((elem) => { elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
                 waitForElm('#skill2icon').then((elem) => { elem.setAttribute("src", "") })
-                waitForElm('#secreticon').then((elem) => { elem.setAttribute("src", cdata[page].ProtectionSkillIcon ?? "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png"); elem.onload = function () { elem.setAttribute("turnon", "true")} })
+                waitForElm('#secreticon').then((elem) => { elem.setAttribute("src", cdata[page].ProtectionSkillIcon ?? "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
                 waitForElm('#secret').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split(" Lv.1")[0] + " Lv.1/Lv.10" })
                 waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split("10:")[1]; FilterElementText(elem) })
                 waitForElm('.statsback2').then((elem) => { elem.remove() })
@@ -814,15 +815,15 @@ function UpdatePage() {
             })
             //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
             //ListEvents('#ongoingevents[time="all"]', function (key) {const now = new Date(); if ((now >= new Date(EventsData[key].End))){return true}})
-            ListEvents('#ongoingevents', function (key) {if ((EventsData[key].Current == true)){return true}})
-            ListEvents('#ongoingevents[time="all"]', function (key) {if ((EventsData[key].Current != true)){return true}})
+            ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true)) { return true } })
+            ListEvents('#ongoingevents[time="all"]', function (key) { if ((EventsData[key].Current != true)) { return true } })
         }
         else if (index === "gacha") {
             waitForElm('title').then((elem) => { elem.innerHTML = "Gacha Simulator - SLIMEIM.WIKI" })
             $(function () {
                 $("#character-placeholder").load("/gachabody");
             })
-            waitForElm('.moreunits').then((ele) => { 
+            waitForElm('.moreunits').then((ele) => {
                 $("#unitsexpand.filterexpand").click(function (bro) {
                     if ($(this).attr("toggle") == "true") {
                         $(ele).attr("toggle", "false")
@@ -837,12 +838,12 @@ function UpdatePage() {
             let currentbanner = "Troop Recruit: Mushroom Hazard"
             let Featured5StarsBattle = [];
             let Featured5StarsProt = [];
-            let Standard5StarsBattle = ["Rimuru6", "Diablo1", "Milim4", "Veldora2", "Veldora1", "Luminus1","Rimuru2","Milim2", "Gobta1","Guy2", "Rimuru4", "Milim6", "Gazel1", "Shion1", "Shizue2", "Shuna1", "Souei2", "Treyni1", "Hakurou1", "Benimaru1", "Beretta1", "Ranga1", "Milim5", "Rimuru1"];
+            let Standard5StarsBattle = ["Rimuru6", "Diablo1", "Milim4", "Veldora2", "Veldora1", "Luminus1", "Rimuru2", "Milim2", "Gobta1", "Guy2", "Rimuru4", "Milim6", "Gazel1", "Shion1", "Shizue2", "Shuna1", "Souei2", "Treyni1", "Hakurou1", "Benimaru1", "Beretta1", "Ranga1", "Milim5", "Rimuru1"];
             let Standard5StarsProt = ["Shion6", "Shuna6", "Rimuru10", "Ifrit1", "Veldora4", "Elemental1", "Orc1", "Charybdis1", "Milim8", "Ramiris2"];
-            let Standard4Stars = ["Suphia1","Grucius1", "Gabiru1", "Chloe1", "Kurobe1","Geld1", "Gelmud1", "Gobta2", "Shion5", "Souei3", "Trya1", "Hakurou2","Phobio1", "Benimaru4", "Milim7", "Yuuki1", "Ranga3", "Rimuru8", "Shuna3","Rimuru7","Shuna4","Shion3","Benimaru3","Souei4","Veldora5","Kaijin1","Gard1","Salamander1","Sky1","Fuze1","Vesta1","Light1"];
-            let Standard3Stars = ["Gale1","Alice2", "Kurobe2","Kenya1","Rigurd1","Ryota1","Psychic1","Garm1","Gobuichi1","Dord1","Haruna1","Butterflies1","Myrd1"];
-            let Units = [EventsData[currentbanner].Banner, Standard5StarsBattle.concat(Standard5StarsProt), Standard4Stars,Standard3Stars]
-            EventsData[currentbanner].Banner.forEach(function(key){
+            let Standard4Stars = ["Suphia1", "Grucius1", "Gabiru1", "Chloe1", "Kurobe1", "Geld1", "Gelmud1", "Gobta2", "Shion5", "Souei3", "Trya1", "Hakurou2", "Phobio1", "Benimaru4", "Milim7", "Yuuki1", "Ranga3", "Rimuru8", "Shuna3", "Rimuru7", "Shuna4", "Shion3", "Benimaru3", "Souei4", "Veldora5", "Kaijin1", "Gard1", "Salamander1", "Sky1", "Fuze1", "Vesta1", "Light1"];
+            let Standard3Stars = ["Gale1", "Alice2", "Kurobe2", "Kenya1", "Rigurd1", "Ryota1", "Psychic1", "Garm1", "Gobuichi1", "Dord1", "Haruna1", "Butterflies1", "Myrd1"];
+            let Units = [EventsData[currentbanner].Banner, Standard5StarsBattle.concat(Standard5StarsProt), Standard4Stars, Standard3Stars]
+            EventsData[currentbanner].Banner.forEach(function (key) {
                 if (cdata[key].UnitType == "Protection Characters")
                     Featured5StarsProt.push(key)
                 else
@@ -851,12 +852,12 @@ function UpdatePage() {
 
             waitForElm('#bannerunitlist').then((ele) => {
                 let i = 0
-                document.querySelectorAll("#bannerunitlist").forEach(function(element){
+                document.querySelectorAll("#bannerunitlist").forEach(function (element) {
                     const fragment = new DocumentFragment()
-                    Units[i].forEach(function(unit){
+                    Units[i].forEach(function (unit) {
                         MakeCharacterIcon(elem, unit, fragment)
                     })
-                    i = i+1
+                    i = i + 1
                     element.appendChild(fragment)
                 })
             })
@@ -864,30 +865,17 @@ function UpdatePage() {
             function GetRandomCharacter() {
                 let Rarity = Math.random() * 101
                 let FinalChoices = []
-                if (Rarity <= 4)
-                {
+                if (Rarity <= 4) {
                     if (Rarity <= Featured5StarsProt.length + Featured5StarsBattle.length)
-                        FinalChoices =  Featured5StarsProt.concat(Featured5StarsBattle)
-                    else if (Rarity <= 1 - (Featured5StarsProt.length*0.7))
+                        FinalChoices = Featured5StarsProt.concat(Featured5StarsBattle)
+                    else if (Rarity <= 1 - (Featured5StarsProt.length * 0.7))
                         FinalChoices = Standard5StarsProt
                     else
                         FinalChoices = Standard5StarsBattle
                 }
-                else if (Rarity <= 15+4) {
-                    Standard4Stars.forEach(function(pick) {
-                        if (Rarity <= 5+4)
-                        {
-                            if (cdata[pick].UnitType == "Protection Characters")
-                                FinalChoices.push(pick)
-                        }
-                        else if (cdata[pick].UnitType != "Protection Characters")
-                            FinalChoices.push(pick)
-                    })
-                    }
-                else {
-                    Standard3Stars.forEach(function(pick) {
-                        if (Rarity <= 27+4+15)
-                        {
+                else if (Rarity <= 15 + 4) {
+                    Standard4Stars.forEach(function (pick) {
+                        if (Rarity <= 5 + 4) {
                             if (cdata[pick].UnitType == "Protection Characters")
                                 FinalChoices.push(pick)
                         }
@@ -895,27 +883,36 @@ function UpdatePage() {
                             FinalChoices.push(pick)
                     })
                 }
-                return FinalChoices[Math.floor(Math.random()*FinalChoices.length)]
+                else {
+                    Standard3Stars.forEach(function (pick) {
+                        if (Rarity <= 27 + 4 + 15) {
+                            if (cdata[pick].UnitType == "Protection Characters")
+                                FinalChoices.push(pick)
+                        }
+                        else if (cdata[pick].UnitType != "Protection Characters")
+                            FinalChoices.push(pick)
+                    })
+                }
+                return FinalChoices[Math.floor(Math.random() * FinalChoices.length)]
             }
             let debounce = false
             function round(value, precision) {
                 var multiplier = Math.pow(10, precision || 0);
                 return Math.round(value * multiplier) / multiplier;
             }
-            function UpdateStats()
-            {
-                waitForElm("#limitedpulled").then((ele) => { 
+            function UpdateStats() {
+                waitForElm("#limitedpulled").then((ele) => {
                     $("#limitedpulled").text(Filters.LimitedFiveStars)
                     $("#standardpulled").text(Filters.StandardFiveStars)
-                    $("#percentage").text((round(((Filters.LimitedFiveStars+Filters.StandardFiveStars)/Filters.Everything)*100,1) || 0) + "%")
-                    $("#magicrystals").text(Filters.Everything*30)
-                    $("#usd").text(round((Filters.Everything*30)*(39.99/475),2)+"$")
+                    $("#percentage").text((round(((Filters.LimitedFiveStars + Filters.StandardFiveStars) / Filters.Everything) * 100, 1) || 0) + "%")
+                    $("#magicrystals").text(Filters.Everything * 30)
+                    $("#usd").text(round((Filters.Everything * 30) * (39.99 / 475), 2) + "$")
                 })
-                
+
             }
-            async function Pull(amount, elem){
+            async function Pull(amount, elem) {
                 $("#rollresults").attr("toggle", "true")
-                if (debounce == false){
+                if (debounce == false) {
                     if ($("#rollresults").attr("flow") != "true")
                         await new Promise(r => setTimeout(r, 50));
                     $("#rollresults").attr("flow", "true")
@@ -925,12 +922,10 @@ function UpdatePage() {
                         Filters.Everything = Filters.Everything + 1
                         const fragment = new DocumentFragment()
                         let rand = GetRandomCharacter()
-                        if (Featured5StarsProt.includes(rand) || Featured5StarsBattle.includes(rand))
-                        {
+                        if (Featured5StarsProt.includes(rand) || Featured5StarsBattle.includes(rand)) {
                             Filters.LimitedFiveStars = Filters.LimitedFiveStars + 1
                         }
-                        else if (cdata[rand].Rarity == 5)
-                        {
+                        else if (cdata[rand].Rarity == 5) {
                             Filters.StandardFiveStars = Filters.StandardFiveStars + 1
                         }
                         UpdateStats()
@@ -945,14 +940,14 @@ function UpdatePage() {
             }
             waitForElm('#x10').then((ele) => {
                 waitForElm('.actualrollresults').then((elem) => {
-                    $(ele).click(async function(){
+                    $(ele).click(async function () {
                         Pull(10, elem)
                     })
                 })
             })
             waitForElm('#x1').then((ele) => {
                 waitForElm('.actualrollresults').then((elem) => {
-                    $(ele).click(async function(){
+                    $(ele).click(async function () {
                         Pull(1, elem)
                     })
                 })
@@ -979,8 +974,107 @@ function UpdatePage() {
                     $("#latestcharacters").hide()
             })
             //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
-            ListEvents('#ongoingevents', function (key) {if ((EventsData[key].Current == true)){return true}})
-        }  
+            ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true)) { return true } })
+            let currentdate = new Date()
+            waitForElm('.serverselect > .unittypebutton').then(() => {
+                $(".serverselect > .unittypebutton").attr("toggle", "false")
+                $(".serverselect > #" + Filters.Server).attr("toggle", "true")
+            })
+            let updatedate
+            let resetdate
+            let hourdata = {
+                "NA": {
+                    resethour: 11,
+                    updatehour: 2,
+                },
+                "EU": {
+                    resethour: 4,
+                    updatehour: 2,
+                },
+                "Asia": {
+                    resethour: 19,
+                    updatehour: 2,
+                },
+            }
+            let resethour = hourdata[Filters.Server].resethour
+            let updatehour = hourdata[Filters.Server].updatehour
+            function UpdateEndDate(){
+                updatedate = new Date()
+                resetdate = new Date()
+                if (resetdate.getUTCHours() >= resethour) {
+                    resetdate.setUTCDate(resetdate.getUTCDate() + 1)
+                }
+                if (updatedate.getUTCHours() >= updatehour) {
+                    updatedate.setUTCDate(updatedate.getUTCDate() + 1)
+                }
+                resetdate.setUTCHours(resethour, 0, 0, 0)
+                updatedate.setUTCHours(updatehour, 0, 0, 0)
+            }
+
+            UpdateEndDate()
+            
+
+            waitForElm(".serverselect > .unittypebutton").then((ele) => {
+                $(".serverselect > .unittypebutton").click(function () {
+                    $(".serverselect > .unittypebutton").attr("toggle", "false")
+                    $(this).attr("toggle", "true")
+                    Filters.Server = $(this).attr("id")
+                    localStorage.setItem("Server", Filters.Server)
+                    resethour = hourdata[Filters.Server].resethour
+                    updatehour = hourdata[Filters.Server].updatehour
+                    console.log(resethour)
+                    console.log(updatehour)
+                    UpdateEndDate()
+                    UpdateTimers()
+                });
+            })
+
+            let x
+
+            function UpdateTimers() {
+                let currentdate = new Date()
+                let distance = resetdate.getTime() - currentdate.getTime();
+                let distance2 = updatedate.getTime() - currentdate.getTime();
+
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                let days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
+                let hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+                
+
+                if (!document.getElementById("reset")) {
+                    clearInterval(x);
+                    return;
+                }
+                if (distance <= 0) {
+                    resetdate.setUTCDate(resetdate.getUTCDate() + 1)
+                    resetdate.setUTCHours(resethour, 0, 0, 0)
+                }
+                if (distance2 <= 0) {
+                    updatedate.setUTCDate(updatedate.getUTCDate() + 1)
+                    updatedate.setUTCHours(updatehour, 0, 0, 0)
+                }
+
+                document.getElementById("reset").innerHTML = hours.toString().padStart(2, '0') + ":"
+                    + minutes.toString().padStart(2, '0') + ":" + seconds.toString().padStart(2, '0')
+                document.getElementById("update").innerHTML = hours2.toString().padStart(2, '0') + ":"
+                    + minutes2.toString().padStart(2, '0') + ":" + seconds2.toString().padStart(2, '0')
+                    $("#reset.date").text(resetdate.toDateString() + " " + resetdate.toTimeString().split(" ")[0])
+                    $("#update.date").text(updatedate.toDateString() + " " + updatedate.toTimeString().split(" ")[0])
+                }
+
+            waitForElm('#reset').then((elem) => {
+                UpdateTimers()
+                x = setInterval(function () {
+                    UpdateTimers()
+                }, 1000);
+            })
+        }
     })
 }
 

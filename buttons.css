@@ -936,7 +936,24 @@ div {
     border-radius: 15px;
 }
 
+.serverselect {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    padding: 5px 5px 5px 5px;
+    position: absolute;
+    background-color: #0c121a;
+    top: -20px;
+    border-radius: 15px;    
+}
+
 .unittypeselect > p {
+    margin: 0px 20px 0px 20px;
+    font-size: 15px;
+    line-height: 30px;
+    font-weight: 600;
+}
+
+.serverselect > p {
     margin: 0px 20px 0px 20px;
     font-size: 15px;
     line-height: 30px;
@@ -1182,8 +1199,46 @@ button[toggle="true"] > img {
     font-size: 20px;
 }
 
+#timers {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 25%;
+}
+
+.timercontainer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    position: relative;
+}
+
+.timer {
+    font-size: 3em;
+    width: 100%;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.date {
+    position: absolute;
+    width: 150%;
+    top: 20px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+
+
 
 @media (max-width: 52rem) {
+    .timercontainer {
+        width: 100%;
+    }
+
     .characterart {
         width: 100%;
         max-height: auto;
@@ -1373,6 +1428,9 @@ button[toggle="true"] > img {
         max-height: 3000px;
     }
 
+    .serverselect {
+        width: 50%;
+    }
   }
 
   @media (max-width: 500px) {

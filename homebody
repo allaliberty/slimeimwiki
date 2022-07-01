@@ -7,6 +7,24 @@
         </div>
         <p class = "statstitle">Latest Characters</p>
         <div id = "latestcharacters" class="homecategory"></div>
+        <p class = "statstitle">Timers</p>
+        <div id = "timers" class="homecategory">
+            <div class="serverselect">
+                <button type = "button" id ="NA" class="unittypebutton" toggle = "true">NA</button>
+                <button type = "button" id ="EU" class="unittypebutton">EU</button>
+                <button type = "button" id ="Asia" class="unittypebutton">Asia</button>
+            </div>
+            <div class = "timercontainer">
+                <p class = "timername">Reset</p>
+                <p id = "reset" class = "timer"></p>
+                <p id = "reset" class = "date"></p>
+            </div>
+            <div class = "timercontainer">
+                <p class = "timername">Update</p>
+                <p id = "update" class = "timer"></p>
+                <p id = "update" class = "date"></p>
+            </div>
+        </div>
         <p class = "statstitle">Ongoing Events</p>
         <div id = "ongoingevents" class="homecategory">
                 <a type = "button" href = "#/events" id ="anchor" class="unittypebutton">All Events</a>
