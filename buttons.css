@@ -1225,7 +1225,7 @@ button[toggle="true"] > img {
 
 .date {
     position: absolute;
-    width: 150%;
+    width: 100%;
     top: 20px;
     font-size: 0.9em;
     text-align: center;
