@@ -485,9 +485,9 @@ function UpdatePage() {
                             return;
                         if (Filters.Weapons != "All" && (cdata[key].Weapon != Filters.Weapons))
                             return;
-                        if (Filters.Growth != "All" && (cdata[key].Growth != growth[Filters.Growth]))
+                        if (Filters.Growth != "All" && ((growth[cdata[key].Growth] ?? cdata[key].Growth) != growth[Filters.Growth]))
                             return;
-                        if (Filters.AttackType != "All" && (cdata[key].AtkType != atktype[Filters.AttackType]))
+                        if (Filters.AttackType != "All" && ((atktype[cdata[key].AtkType] ?? cdata[key].AtkType) != atktype[Filters.AttackType]))
                             return;
                         if (Filters.SecretType != "All" && ("Type" + cdata[key].SecretType != Filters.SecretType))
                             return;
