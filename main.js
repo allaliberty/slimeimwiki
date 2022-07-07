@@ -231,7 +231,7 @@ const atktype = {
 }
 const growth = {
     Attack: "https://i.imgur.com/yduAVsz.png",
-    Health: "https://i.imgur.com/MLuLYZy.png",
+    Balance: "https://i.imgur.com/MLuLYZy.png",
     Defense: "https://i.imgur.com/P4N7gFs.png"
 }
 
@@ -368,7 +368,7 @@ function UpdatePage() {
             waitForElm('#art').then((elem) => { elem.setAttribute("src", cdata[page].Art); elem.onload = function () { elem.setAttribute("turnon", "true") }; })
             waitForElm('#rarity').then((elem) => { elem.setAttribute("src", stars[cdata[page].Rarity - 1]) })
             waitForElm('#type').then((elem) => { elem.setAttribute("src", types[cdata[page].Type] || cdata[page].Type) })
-            waitForElm('#growth').then((elem) => { elem.setAttribute("src", growth[cdata[page].Growth] || cdata[page].Growth) })
+            waitForElm('#growth').then((elem) => { elem.setAttribute("src", growth[cdata[page].Growth] ?? cdata[page].Growth) })
             waitForElm('#attack').then((elem) => { elem.innerHTML = cdata[page].MinAtk.toString().concat(" - ", cdata[page].MaxAtk.toString()) })
             waitForElm('#health').then((elem) => { elem.innerHTML = cdata[page].MinHp.toString().concat(" - ", cdata[page].MaxHp.toString()) })
             waitForElm('#defense').then((elem) => { elem.innerHTML = cdata[page].MinDef.toString().concat(" - ", cdata[page].MaxDef.toString()) })
