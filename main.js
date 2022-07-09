@@ -855,7 +855,14 @@ function UpdatePage() {
                     }
                 })
             })
-            let currentbanner = "Troop Recruit: Mushroom Hazard"
+            let currentbanner
+            Object.keys(EventsData).forEach((key) =>  { 
+                if (EventsData[key].Type == "Recruit")
+                {
+                    currentbanner = key;
+                    return;
+                }
+            })
             let Featured5StarsBattle = [];
             let Featured5StarsProt = [];
             let Standard5StarsBattle = ["Rimuru6", "Diablo1", "Milim4", "Veldora2", "Veldora1", "Luminus1", "Rimuru2", "Milim2", "Gobta1", "Guy2", "Rimuru4", "Milim6", "Gazel1", "Shion1", "Shizue2", "Shuna1", "Souei2", "Treyni1", "Hakurou1", "Benimaru1", "Beretta1", "Ranga1", "Milim5", "Rimuru1"];
