@@ -401,7 +401,7 @@ div {
 }
 
 
-#ongoingevents {
+.ongoingevents {
     align-items: flex-start;
     justify-content:center;
     flex-wrap: wrap;

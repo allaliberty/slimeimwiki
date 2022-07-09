@@ -41,12 +41,13 @@ const TraitFilterKeywords = await fetchcdata(`/traitsfilterkeywords.json`)
 const EventsDataUnsorted = await fetchcdata(`/events.json`)
 let EventsData = {}
 let sortedarray = Object.keys(EventsDataUnsorted).sort(function (a, b) {
-    if (EventsDataUnsorted[a].Start == "")
-        return 1
-    else if (EventsDataUnsorted[b].Start == "")
-        return -1
     if ((EventsDataUnsorted[a].New == true && EventsDataUnsorted[b].New == true) || (EventsDataUnsorted[a].New == false && EventsDataUnsorted[b].New == false))
-        return -((new Date(EventsDataUnsorted[a].Start)) - (new Date(EventsDataUnsorted[b].Start)))
+        if (EventsDataUnsorted[a].Start == "")
+            return 1
+        else if (EventsDataUnsorted[b].Start == "")
+            return -1
+        else
+            return -((new Date(EventsDataUnsorted[a].Start)) - (new Date(EventsDataUnsorted[b].Start)))
     else if (EventsDataUnsorted[a].New == true)
         return -1
     else
@@ -76,6 +77,12 @@ if (window.history) {
 }
 
 function ReturnDate(key) {
+    if (EventsData[key].Start == "" && EventsData[key].Start == "")
+        return ""
+    else if (EventsData[key].Start == "")
+        EventsData[key].Start = EventsData[key].End
+    else if (EventsData[key].End == "")
+        EventsData[key].End = EventsData[key].Start
     if (EventsData[key].End == EventsData[key].Start) {
         return new Date(EventsData[key].Start).toLocaleDateString()
     }
@@ -986,7 +993,10 @@ function UpdatePage() {
                     $("#latestcharacters").hide()
             })
             //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
-            ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true)) { return true } })
+            ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End != EventsData[key].Start) && !(key.includes("Pack")))) { return true } })
+            ListEvents('#announcements', function (key) { if ((EventsData[key].Current == true  && EventsData[key].New != true && (EventsData[key].End == EventsData[key].Start) && !(key.includes("Pack")))) { return true } })
+            ListEvents('#packs', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (key.includes("Pack")))) { return true } })
+            ListEvents('#newevents', function (key) { if ((EventsData[key].Current == true  && EventsData[key].New == true)) { return true } })
             let currentdate = new Date()
             waitForElm('.serverselect > .unittypebutton').then(() => {
                 $(".serverselect > .unittypebutton").attr("toggle", "false")

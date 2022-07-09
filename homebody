@@ -25,9 +25,20 @@
                 <p id = "update" class = "date"></p>
             </div>
         </div>
+        
+        <p class = "statstitle">New Events</p>
+        <div id = "newevents" class="homecategory ongoingevents">
+            <a type = "button" href = "#/events" id ="anchor" class="unittypebutton">All Events</a>
+
+        </div>
         <p class = "statstitle">Ongoing Events</p>
-        <div id = "ongoingevents" class="homecategory">
-                <a type = "button" href = "#/events" id ="anchor" class="unittypebutton">All Events</a>
+        <div id = "ongoingevents" class="homecategory ongoingevents">
+        </div>
+        <p class = "statstitle">Announcements</p>
+        <div id = "announcements" class="homecategory ongoingevents">
+        </div>
+        <p class = "statstitle">Packs</p>
+        <div id = "packs" class="homecategory ongoingevents">
         </div>
     </div>
 </div>
