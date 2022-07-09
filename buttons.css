@@ -41,6 +41,15 @@ a.unittypebutton {
     transition: all 0.25s;
 }
 
+.iframepopup > div {
+    opacity: 0;
+    transition: all 0.25s;
+}
+
+.iframepopup[loaded="true"] > div {
+    opacity: 1;
+}
+
 .iframepopup[toggle="true"] {
     opacity: 1;
     transform: scale(1);

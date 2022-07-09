@@ -142,10 +142,11 @@ async function MakeIframe(Link) {
         waitForElm(".iframepopup").then(async function (elem) {
             elem.querySelector(".iframe").addEventListener("load", async function () {
                 await new Promise(r => setTimeout(r, 100))
-                elem.setAttribute("toggle", "true")
+                elem.setAttribute("loaded", "true")
             });
+            await new Promise(r => setTimeout(r, 100))
+            elem.setAttribute("toggle", "true")
         })
-
         waitForElm('#closepopup').then(async function (elem) {
             $(elem).click(async function () {
                 $(".iframepopup").attr("toggle", "false")
