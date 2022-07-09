@@ -40,7 +40,19 @@ const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 const TraitFilterKeywords = await fetchcdata(`/traitsfilterkeywords.json`)
 const EventsDataUnsorted = await fetchcdata(`/events.json`)
 let EventsData = {}
-let sortedarray = Object.keys(EventsDataUnsorted).sort(function (a, b) { return -((new Date(EventsDataUnsorted[a].Start)) - (new Date(EventsDataUnsorted[b].Start))) })
+let sortedarray = Object.keys(EventsDataUnsorted).sort(function (a, b) {
+    if (EventsDataUnsorted[a].Start == "")
+        return 1
+    else if (EventsDataUnsorted[b].Start == "")
+        return -1
+    if ((EventsDataUnsorted[a].New == true && EventsDataUnsorted[b].New == true) || (EventsDataUnsorted[a].New == false && EventsDataUnsorted[b].New == false))
+        return -((new Date(EventsDataUnsorted[a].Start)) - (new Date(EventsDataUnsorted[b].Start)))
+    else if (EventsDataUnsorted[a].New == true)
+        return -1
+    else
+        return 1
+    return (EventsDataUnsorted[a].New == true ? -1 : -((new Date(EventsDataUnsorted[a].Start)) - (new Date(EventsDataUnsorted[b].Start))))
+})
 sortedarray.forEach((key) => {
     EventsData[key] = EventsDataUnsorted[key]
 })
