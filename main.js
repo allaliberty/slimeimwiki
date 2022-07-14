@@ -395,6 +395,7 @@ function waitForElm(selector) {
 }
 
 function UpdatePage(category) {
+    console.log(category)
     let start = Date.now()
     let index = category.index
     let page = category.page
