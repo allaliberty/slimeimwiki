@@ -1,8 +1,10 @@
-console.log(window.location.href)
-console.log(window.location.pathname)
+
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
 
 
-function trimSlashes(link)
+function trimSlashes(link, scroll)
 {
     let linksplit = (link || window.location.pathname).split("/");
     if (linksplit[linksplit.length - 1].length == 0) {
@@ -10,7 +12,7 @@ function trimSlashes(link)
     }
     let page = linksplit[2];
     let index = linksplit[1];
-    return {page: page, index: index}
+    return {page: page, index: index, scroll: scroll ?? 0}
 }
 
 
@@ -81,20 +83,21 @@ if (window.history) {
     var myOldUrl = window.location.href;
     window.addEventListener('click', function (evt) {
         if (!(evt.target.getAttribute("href") || evt.target.parentElement.getAttribute("href"))) return;
+        if ($(".buttonsdiv").attr("clicked") == "true")
+            waitForElm('.buttonsdiv').then((elem) => { elem.setAttribute("clicked", "false") })
         evt.preventDefault();
+        window.history.replaceState({category: trimSlashes(null, document.documentElement.scrollTop || document.body.scrollTop)}, '')
+        //window.history.state.category.scroll = document.documentElement.scrollTop || document.body.scrollTop
         var category = trimSlashes((evt.target.getAttribute("href") || evt.target.parentElement.getAttribute("href")));
-
+        category.scroll = 0;
         UpdatePage(category);
-
         window.history.pushState({category: category}, window.title, (evt.target.getAttribute("href") || evt.target.parentElement.getAttribute("href")));
     });
 
     window.addEventListener('popstate', function (evt) {
+        console.log(evt)
         var category = evt.state ? evt.state.category : trimSlashes(window.location.pathname);
         UpdatePage(category);
-        if ($(".buttonsdiv").attr("clicked") == "true") {
-            waitForElm('.buttonsdiv').then((elem) => { elem.setAttribute("clicked", "false") })
-        }
       });
 
     /*window.addEventListener('hashchange', async function () {
@@ -395,11 +398,10 @@ function waitForElm(selector) {
 }
 
 function UpdatePage(category) {
-    console.log(category)
     let start = Date.now()
     let index = category.index
     let page = category.page
-    window.scrollTo(0, 0)
+    window.scrollTo(0, category.scroll)
     $('.navbutton').each(function () {
         if ($(this).attr("href") == ('/' + (page ?? index)))
             $(this).attr("current", "true")
