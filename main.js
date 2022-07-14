@@ -1164,7 +1164,7 @@ function UpdatePage(category) {
     })
 }
 
-UpdatePage(trimSlashes)
+UpdatePage(trimSlashes())
 
 waitForElm('.hamb').then(() => {
     const List = document.querySelector('.buttonsdiv')
