@@ -1,6 +1,6 @@
 
 if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
+    history.scrollRestoration = 'auto';
 }
 
 
@@ -86,6 +86,7 @@ if (window.history) {
         if ($(".buttonsdiv").attr("clicked") == "true")
             waitForElm('.buttonsdiv').then((elem) => { elem.setAttribute("clicked", "false") })
         evt.preventDefault();
+        console.log(document.documentElement.scrollTop || document.body.scrollTop)
         window.history.replaceState({category: trimSlashes(null, document.documentElement.scrollTop || document.body.scrollTop)}, '')
         //window.history.state.category.scroll = document.documentElement.scrollTop || document.body.scrollTop
         var category = trimSlashes((evt.target.getAttribute("href") || evt.target.parentElement.getAttribute("href")));
@@ -401,7 +402,6 @@ function UpdatePage(category) {
     let start = Date.now()
     let index = category.index
     let page = category.page
-    window.scrollTo(0, category.scroll)
     $('.navbutton').each(function () {
         if ($(this).attr("href") == ('/' + (page ?? index)))
             $(this).attr("current", "true")
@@ -1163,6 +1163,10 @@ function UpdatePage(category) {
                 }, 1000);
             })
         }
+
+        $("body").css("min-height", category.scroll + window.innerHeight > window.innerHeight + 200 ? category.scroll + window.innerHeight : window.innerHeight + 200)
+        window.scrollTo(0, category.scroll)
+        
     })
 }
 

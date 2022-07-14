@@ -1,3 +1,0 @@
-#Alternate default index pages
-DirectoryIndex first.html index.htm index.html index.php
-ErrorDocument 404 /index.html
