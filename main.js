@@ -1,9 +1,26 @@
-let linksplit = window.location.href.split("/");
+console.log(window.location.href)
+console.log(window.location.pathname)
+
+
+function trimSlashes(link)
+{
+    let linksplit = (link || window.location.pathname).split("/");
+    if (linksplit[linksplit.length - 1].length == 0) {
+        linksplit.pop()
+    }
+    let page = linksplit[2];
+    let index = linksplit[1];
+    return {page: page, index: index}
+}
+
+
+
+/*let linksplit = window.location.href.split("/");
 if (linksplit[linksplit.length - 1].length == 0) {
     linksplit.pop()
 }
 let page = linksplit[5];
-let index = linksplit[4]
+let index = linksplit[4]*/
 let created = 1
 let iframeopen = false
 let loadedimages = []
@@ -21,11 +38,11 @@ $(function () {
     $("#nav-placeholder").append(`
     <nav class="topbar">
         <div class="topbarinside">
-            <a href="/#" class="sitename"><img class = "logo" src="https://cdn.discordapp.com/attachments/633768073068806144/985179869463859230/RimuruSlimeManga_1.png"> .WIKI</p>
+            <a href="/" class="sitename"><img class = "logo" src="https://cdn.discordapp.com/attachments/633768073068806144/985179869463859230/RimuruSlimeManga_1.png"> .WIKI</p>
                 <div clicked=false class="buttonsdiv">
-                <a href="#/characters" class="navbutton">Characters</a>
-                <a href="#/events" class="navbutton">Events</a>
-                <a href="#/gacha" class="navbutton">Gacha Simulator</a>
+                <a href="/characters" class="navbutton">Characters</a>
+                <a href="/events" class="navbutton">Events</a>
+                <a href="/gacha" class="navbutton">Gacha Simulator</a>
                 </div><button class="hamb"></button>
         </div>
     </nav>`);
@@ -54,26 +71,38 @@ let sortedarray = Object.keys(EventsDataUnsorted).sort(function (a, b) {
         return 1
     return (EventsDataUnsorted[a].New == true ? -1 : -((new Date(EventsDataUnsorted[a].Start)) - (new Date(EventsDataUnsorted[b].Start))))
 })
+
+
 sortedarray.forEach((key) => {
     EventsData[key] = EventsDataUnsorted[key]
 })
 
 if (window.history) {
     var myOldUrl = window.location.href;
-    window.addEventListener('hashchange', async function () {
-        linksplit = window.location.href.split("/");
-        if (linksplit[linksplit.length - 1].length == 0) {
-            linksplit.pop()
-        }
-        page = linksplit[5];
-        index = linksplit[4];
+    window.addEventListener('click', function (evt) {
+        if (!(evt.target.getAttribute("href") || evt.target.parentElement.getAttribute("href"))) return;
+        evt.preventDefault();
+        var category = trimSlashes((evt.target.getAttribute("href") || evt.target.parentElement.getAttribute("href")));
+
+        UpdatePage(category);
+
+        window.history.pushState({category: category}, window.title, (evt.target.getAttribute("href") || evt.target.parentElement.getAttribute("href")));
+    });
+
+    window.addEventListener('popstate', function (evt) {
+        var category = evt.state ? evt.state.category : trimSlashes(window.location.pathname);
+        UpdatePage(category);
         if ($(".buttonsdiv").attr("clicked") == "true") {
             waitForElm('.buttonsdiv').then((elem) => { elem.setAttribute("clicked", "false") })
-            await new Promise(r => setTimeout(r, 250));
         }
+      });
+
+    /*window.addEventListener('hashchange', async function () {
+        
+        
         myOldUrl = window.location.href
         UpdatePage()
-    });
+    });*/
 }
 
 function ReturnDate(key) {
@@ -162,7 +191,7 @@ function MakeCharacterIcon(elem, key, fragment, off) {
     const para = document.createElement("a");
     para.setAttribute("class", "charcontainer")
     para.setAttribute("id", key)
-    para.setAttribute("href", "#/characters/" + key)
+    para.setAttribute("href", "/characters/" + key)
     //$(para).load('/charactericon')
     para.innerHTML = `
     <img id = "icon" class = "charicon" src="" alt="">
@@ -365,15 +394,17 @@ function waitForElm(selector) {
     });
 }
 
-function UpdatePage() {
+function UpdatePage(category) {
     let start = Date.now()
+    let index = category.index
+    let page = category.page
     window.scrollTo(0, 0)
-    $('.navbutton').each(function () {
+    /*$('.navbutton').each(function () {
         if ($(this).attr("href") == ('#/' + linksplit[linksplit.length - 1]))
             $(this).attr("current", "true")
         else
             $(this).attr("current", "false")
-    })
+    })*/
     waitForElm("#character-placeholder").then((elem) => {
         elem.replaceChildren();
         iframeopen = false
@@ -381,7 +412,7 @@ function UpdatePage() {
             $(function () {
                 $("#character-placeholder").load("/character");
             })
-            waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name })
+            waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name + " - SLIMEIM.WIKI"})
             waitForElm('#title').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0] })
             waitForElm('#name').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[0] })
             waitForElm('#icon').then((elem) => { elem.setAttribute("src", cdata[page].Icon) })
@@ -1132,7 +1163,7 @@ function UpdatePage() {
     })
 }
 
-UpdatePage()
+UpdatePage(trimSlashes)
 
 waitForElm('.hamb').then(() => {
     const List = document.querySelector('.buttonsdiv')
