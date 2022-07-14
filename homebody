@@ -2,7 +2,7 @@
     <div class="homebase">
         <h1 class = "statstitle">Welcome to SLIMEIM.WIKI!</h1>
         <div class="homecategory">
-            <h2>SLIMEIM.WIKI is a Database and Wiki for SLIME - Isekai Memories currently in development and aiming to be as complete as can possibly be.</h2>
+            <h2>SLIMEIM.WIKI is a Database for SLIME - Isekai Memories, the That Time I Got Reincarnated as a Slime mobile game developed by WFS and published by Bandai Namco Entertainment.</h2>
             <!--button type = "button" id ="all" class="unittypebutton">Characters</button-->
         </div>
         <p class = "statstitle">Latest Characters</p>
