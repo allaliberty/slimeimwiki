@@ -40,6 +40,9 @@
         </div>
         <div id="gachastats" class="homecategory">
             <div>
+                <p>• Pulls: <strong id="pulls">0</strong></p>
+            </div>
+            <div>
                 <p>• Limited</p>
                 <img class="bannerstars"src="https://cdn.discordapp.com/attachments/633768073068806144/982527856162799626/5star.png" alt="">
                 <p>Pulled: <strong id="limitedpulled">0</strong></p>

@@ -857,7 +857,7 @@ function UpdatePage() {
             })
             let currentbanner
             Object.keys(EventsData).forEach((key) =>  { 
-                if (EventsData[key].Type == "Recruit")
+                if (EventsData[key].Type == "Recruit" && currentbanner == null)
                 {
                     currentbanner = key;
                     return;
@@ -869,13 +869,28 @@ function UpdatePage() {
             let Standard5StarsProt = ["Shion6", "Shuna6", "Rimuru10", "Ifrit1", "Veldora4", "Elemental1", "Orc1", "Charybdis1", "Milim8", "Ramiris2"];
             let Standard4Stars = ["Suphia1", "Grucius1", "Gabiru1", "Chloe1", "Kurobe1", "Geld1", "Gelmud1", "Gobta2", "Shion5", "Souei3", "Trya1", "Hakurou2", "Phobio1", "Benimaru4", "Milim7", "Yuuki1", "Ranga3", "Rimuru8", "Shuna3", "Rimuru7", "Shuna4", "Shion3", "Benimaru3", "Souei4", "Veldora5", "Kaijin1", "Gard1", "Salamander1", "Sky1", "Fuze1", "Vesta1", "Light1"];
             let Standard3Stars = ["Gale1", "Alice2", "Kurobe2", "Kenya1", "Rigurd1", "Ryota1", "Psychic1", "Garm1", "Gobuichi1", "Dord1", "Haruna1", "Butterflies1", "Myrd1"];
-            let Units = [EventsData[currentbanner].Banner, Standard5StarsBattle.concat(Standard5StarsProt), Standard4Stars, Standard3Stars]
+            console.log("started")
+            let prots = 0
+            let battle = 0
             EventsData[currentbanner].Banner.forEach(function (key) {
-                if (cdata[key].UnitType == "Protection Characters")
-                    Featured5StarsProt.push(key)
-                else
-                    Featured5StarsBattle.push(key)
+                    if (cdata[key].UnitType == "Protection Characters") 
+                    {
+                        prots += 1
+                        if (prots == 1 && !Standard5StarsProt.includes(key))
+                            Featured5StarsProt.push(key)
+                        else if (!Standard5StarsProt.includes(key))
+                            Standard5StarsProt = [key].concat(Standard5StarsProt)
+                    }
+                    else if (cdata[key].UnitType != "Protection Characters")
+                    {
+                        battle += 1
+                        if (battle == 1 && !Standard5StarsBattle.includes(key))
+                            Featured5StarsBattle.push(key)
+                        else if (!Standard5StarsBattle.includes(key))
+                            Standard5StarsBattle = [key].concat(Standard5StarsBattle)
+                    }
             })
+            let Units = [Featured5StarsBattle.concat(Featured5StarsProt), Standard5StarsBattle.concat(Standard5StarsProt), Standard4Stars, Standard3Stars]
 
             waitForElm('#bannerunitlist').then((ele) => {
                 let i = 0
@@ -889,18 +904,25 @@ function UpdatePage() {
                 })
             })
 
-            function GetRandomCharacter() {
+            function GetRandomCharacter(number) {
                 let Rarity = Math.random() * 101
                 let FinalChoices = []
                 if (Rarity <= 4) {
-                    if (Rarity <= Featured5StarsProt.length + Featured5StarsBattle.length)
-                        FinalChoices = Featured5StarsProt.concat(Featured5StarsBattle)
-                    else if (Rarity <= 1 - (Featured5StarsProt.length * 0.7))
+                    if (Rarity <= 0.7)
+                    {
+                        FinalChoices = []
+                        if (Featured5StarsBattle[0])
+                            FinalChoices.push(Featured5StarsBattle[0])
+                        if (Featured5StarsProt[0])
+                            FinalChoices.push(Featured5StarsProt[0])
+                        
+                    }
+                    else if (Rarity <= 0.7 + (1 - (Featured5StarsProt.length * 0.7)))
                         FinalChoices = Standard5StarsProt
                     else
                         FinalChoices = Standard5StarsBattle
                 }
-                else if (Rarity <= 15 + 4) {
+                else if (Rarity <= 15 + 4 || number == 9) {
                     Standard4Stars.forEach(function (pick) {
                         if (Rarity <= 5 + 4) {
                             if (cdata[pick].UnitType == "Protection Characters")
@@ -929,6 +951,7 @@ function UpdatePage() {
             }
             function UpdateStats() {
                 waitForElm("#limitedpulled").then((ele) => {
+                    $("#pulls").text(Filters.Everything)
                     $("#limitedpulled").text(Filters.LimitedFiveStars)
                     $("#standardpulled").text(Filters.StandardFiveStars)
                     $("#percentage").text((round(((Filters.LimitedFiveStars + Filters.StandardFiveStars) / Filters.Everything) * 100, 1) || 0) + "%")
@@ -948,7 +971,8 @@ function UpdatePage() {
                     for (let i = 0; i < amount; i++) {
                         Filters.Everything = Filters.Everything + 1
                         const fragment = new DocumentFragment()
-                        let rand = GetRandomCharacter()
+                        let rand = GetRandomCharacter(i)
+                        console.log(rand)
                         if (Featured5StarsProt.includes(rand) || Featured5StarsBattle.includes(rand)) {
                             Filters.LimitedFiveStars = Filters.LimitedFiveStars + 1
                         }
