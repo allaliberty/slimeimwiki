@@ -400,12 +400,12 @@ function UpdatePage(category) {
     let index = category.index
     let page = category.page
     window.scrollTo(0, 0)
-    /*$('.navbutton').each(function () {
-        if ($(this).attr("href") == ('#/' + linksplit[linksplit.length - 1]))
+    $('.navbutton').each(function () {
+        if ($(this).attr("href") == ('/' + (page ?? index)))
             $(this).attr("current", "true")
         else
             $(this).attr("current", "false")
-    })*/
+    })
     waitForElm("#character-placeholder").then((elem) => {
         elem.replaceChildren();
         iframeopen = false
