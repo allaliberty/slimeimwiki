@@ -29,7 +29,6 @@
         <p class = "statstitle">New Events</p>
         <div id = "newevents" class="homecategory ongoingevents">
             <a type = "button" href = "#/events" id ="anchor" class="unittypebutton">All Events</a>
-
         </div>
         <p class = "statstitle">Ongoing Events</p>
         <div id = "ongoingevents" class="homecategory ongoingevents">
