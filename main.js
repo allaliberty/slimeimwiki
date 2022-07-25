@@ -891,7 +891,7 @@ function UpdatePage(category) {
             })
             let currentbanner
             Object.keys(EventsData).forEach((key) =>  { 
-                if (EventsData[key].Type == "Recruit" && currentbanner == null)
+                if (EventsData[key].Type == "Recruit" && currentbanner == null && EventsData[key].Banner != undefined && EventsData[key].Banner != null)
                 {
                     currentbanner = key;
                     return;
