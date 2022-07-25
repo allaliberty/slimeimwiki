@@ -15,12 +15,12 @@
                 <button type = "button" id ="Asia" class="unittypebutton">Asia</button>
             </div>
             <div class = "timercontainer">
-                <p class = "timername">Reset</p>
+                <p class = "timername">Daily Reset Time</p>
                 <p id = "reset" class = "timer"></p>
                 <p id = "reset" class = "date"></p>
             </div>
             <div class = "timercontainer">
-                <p class = "timername">Update</p>
+                <p class = "timername">Content Update</p>
                 <p id = "update" class = "timer"></p>
                 <p id = "update" class = "date"></p>
             </div>
