@@ -120,7 +120,7 @@ function ReturnDate(key, difference) {
         return new Date(EventsData[key].Start).toLocaleDateString()
     }
     else {
-        if (difference == true)
+        /*if (difference == true)
         {
             let End = new Date(EventsData[key].End)
             End.setUTCDate(End.getUTCDate() + 1)
@@ -128,7 +128,7 @@ function ReturnDate(key, difference) {
             console.log(End)
             return "Ending in " + Math.floor(Math.abs((End.getTime()  - (new Date()).getTime()) / 1000) / 60 / 60) + " hours."
         }
-        else
+        else*/
             return (new Date(EventsData[key].Start)).toLocaleDateString() + " - " + (new Date(EventsData[key].End)).toLocaleDateString()
     }
 }
@@ -396,7 +396,7 @@ function getKeyByValue(object, value) {
 
 function EndingSoon(key) {
     let Difference = Math.floor(((new Date(EventsData[key].End)).getTime() - (new Date()).getTime()) / 1000)
-    if (Difference < 86400 && Difference > 0)
+    if (Difference < 86400 && Difference > -86400)
         return true
 }
 
