@@ -1085,11 +1085,14 @@ function UpdatePage(category) {
                 }
             })
             //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
-            ListEvents('#endingevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End != EventsData[key].Start && EndingSoon(key))) ) { return true } }, true)
+            ListEvents('#endingevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End != EventsData[key].Start) && EndingSoon(key)) ) { return true } }, true)
+            
             ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End != EventsData[key].Start) && !EndingSoon(key) && !(key.includes("Pack")))) { return true } })
+            
             ListEvents('#announcements', function (key) { if ((EventsData[key].Current == true  && EventsData[key].New != true && (EventsData[key].End == EventsData[key].Start) && !EndingSoon(key) && !(key.includes("Pack")))) { return true } })
+            
             ListEvents('#packs', function (key) { if ((EventsData[key].Current == true && !EndingSoon(key) && EventsData[key].New != true && (key.includes("Pack")))) { return true } })
-            ListEvents('#newevents', function (key) { if ((EventsData[key].Current == true && !EndingSoon(key) && EventsData[key].New == true)) { return true } })
+            ListEvents('#newevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New == true)) { return true } })
             let currentdate = new Date()
             waitForElm('.serverselect > .unittypebutton').then(() => {
                 $(".serverselect > .unittypebutton").attr("toggle", "false")
