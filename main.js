@@ -109,7 +109,7 @@ if (window.history) {
     });*/
 }
 
-function ReturnDate(key) {
+function ReturnDate(key, difference) {
     if (EventsData[key].Start == "" && EventsData[key].Start == "")
         return ""
     else if (EventsData[key].Start == "")
@@ -120,13 +120,23 @@ function ReturnDate(key) {
         return new Date(EventsData[key].Start).toLocaleDateString()
     }
     else {
-        return (new Date(EventsData[key].Start)).toLocaleDateString() + " - " + (new Date(EventsData[key].End)).toLocaleDateString()
+        if (difference == true)
+        {
+            let End = new Date(EventsData[key].End)
+            End.setUTCDate(End.getUTCDate() + 1)
+            End.setUTCHours(5, 59, 0 , 0, 0)
+            console.log(End)
+            return "Ending in " + Math.floor(Math.abs((End.getTime()  - (new Date()).getTime()) / 1000) / 60 / 60) + " hours."
+        }
+        else
+            return (new Date(EventsData[key].Start)).toLocaleDateString() + " - " + (new Date(EventsData[key].End)).toLocaleDateString()
     }
 }
 
 
-function ListEvents(selector, show) {
-    waitForElm(selector).then((elem) => {
+async function ListEvents(selector, show, difference) {
+    let amount = 0
+    await waitForElm(selector).then((elem) => {
         const fragment = new DocumentFragment()
         Object.keys(EventsData).forEach((key) => {
             if (show(key)) {
@@ -136,7 +146,7 @@ function ListEvents(selector, show) {
                 frag.innerHTML = `<div><img src="" alt=""></div>
                 <p><strong id = "title">`+ key + `</strong></p>
                 <p id = "description">`+ (EventsData[key].Description ?? "").replaceAll("\n", "<br>") + `</p>
-                <p id = "date">`+ ReturnDate(key) + `</p>
+                <p id = "date">`+ ReturnDate(key, difference) + `</p>
                 <button type = "button" Link = "`+ `" id ="iframeanchor" class="unittypebutton">More</button>
                 <p class ="newtext">NEW<p>
                 `
@@ -152,10 +162,16 @@ function ListEvents(selector, show) {
                     frag.querySelector(".newtext").setAttribute("dont", "true")
                 }
                 fragment.appendChild(frag)
+                amount = amount + 1
             }
         })
         elem.appendChild(fragment)
     })
+    if (amount == 0 && selector == "#endingevents") {
+        $("#endingevents").css("display", "none")
+        $("#endingevents").prev().css("display", "none")
+    }
+    return amount
 }
 
 async function MakeIframe(Link) {
@@ -376,6 +392,12 @@ function getKeyByValue(object, value) {
                 return prop;
         }
     }
+}
+
+function EndingSoon(key) {
+    let Difference = Math.floor(((new Date(EventsData[key].End)).getTime() - (new Date()).getTime()) / 1000)
+    if (Difference < 86400 && Difference > 0)
+        return true
 }
 
 function waitForElm(selector) {
@@ -1056,13 +1078,18 @@ function UpdatePage(category) {
                     }
                 })
                 if (amount == 0)
+                {
                     $("#latestcharacters").hide()
+                    $("#latestcharacters").prev().hide()
+
+                }
             })
             //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
-            ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End != EventsData[key].Start) && !(key.includes("Pack")))) { return true } })
-            ListEvents('#announcements', function (key) { if ((EventsData[key].Current == true  && EventsData[key].New != true && (EventsData[key].End == EventsData[key].Start) && !(key.includes("Pack")))) { return true } })
-            ListEvents('#packs', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (key.includes("Pack")))) { return true } })
-            ListEvents('#newevents', function (key) { if ((EventsData[key].Current == true  && EventsData[key].New == true)) { return true } })
+            ListEvents('#endingevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End != EventsData[key].Start && EndingSoon(key))) ) { return true } }, true)
+            ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End != EventsData[key].Start) && !EndingSoon(key) && !(key.includes("Pack")))) { return true } })
+            ListEvents('#announcements', function (key) { if ((EventsData[key].Current == true  && EventsData[key].New != true && (EventsData[key].End == EventsData[key].Start) && !EndingSoon(key) && !(key.includes("Pack")))) { return true } })
+            ListEvents('#packs', function (key) { if ((EventsData[key].Current == true && !EndingSoon(key) && EventsData[key].New != true && (key.includes("Pack")))) { return true } })
+            ListEvents('#newevents', function (key) { if ((EventsData[key].Current == true && !EndingSoon(key) && EventsData[key].New == true)) { return true } })
             let currentdate = new Date()
             waitForElm('.serverselect > .unittypebutton').then(() => {
                 $(".serverselect > .unittypebutton").attr("toggle", "false")
