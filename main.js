@@ -396,7 +396,7 @@ function getKeyByValue(object, value) {
 
 function EndingSoon(key) {
     let Difference = Math.floor(((new Date(EventsData[key].End)).getTime() - (new Date()).getTime()) / 1000)
-    if (Difference < 86400*3 && Difference > -86400)
+    if (Difference < 86400*3 && Difference > -86400*3)
         return true
 }
 
