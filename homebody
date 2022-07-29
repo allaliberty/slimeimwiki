@@ -29,7 +29,7 @@
         <div id = "newevents" class="homecategory ongoingevents">
             <a type = "button" href = "/events" id ="anchor" class="unittypebutton">All Events</a>
         </div>
-        <p class = "statstitle">Ending Tomorrow</p>
+        <p class = "statstitle">Ending Soon</p>
         <div id = "endingevents" class="homecategory ongoingevents">
         </div>
         <p class = "statstitle">Ongoing Events</p>

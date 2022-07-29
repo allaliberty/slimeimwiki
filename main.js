@@ -167,9 +167,9 @@ async function ListEvents(selector, show, difference) {
         })
         elem.appendChild(fragment)
     })
-    if (amount == 0 && selector == "#endingevents") {
-        $("#endingevents").css("display", "none")
-        $("#endingevents").prev().css("display", "none")
+    if (amount == 0) {
+        $(selector).css("display", "none")
+        $(selector).prev().css("display", "none")
     }
     return amount
 }
@@ -396,7 +396,7 @@ function getKeyByValue(object, value) {
 
 function EndingSoon(key) {
     let Difference = Math.floor(((new Date(EventsData[key].End)).getTime() - (new Date()).getTime()) / 1000)
-    if (Difference < 86400 && Difference > -86400)
+    if (Difference < 86400*3 && Difference > -86400)
         return true
 }
 
