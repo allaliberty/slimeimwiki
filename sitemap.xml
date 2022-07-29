@@ -1,6 +1,12 @@
 <urlset
 	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
+		<loc>https://slimeim.wiki/</loc>
+	</url>
+	<url>
+		<loc>https://slimeim.wiki/characters/</loc>
+	</url>
+	<url>
 		<loc>https://slimeim.wiki/characters/Milim9</loc>
 	</url>
 	<url>
@@ -368,5 +374,11 @@
 	</url>
 	<url>
 		<loc>https://slimeim.wiki/characters/Dord1</loc>
+	</url>
+	<url>
+		<loc>https://slimeim.wiki/events/</loc>
+	</url>
+	<url>
+		<loc>https://slimeim.wiki/gacha/</loc>
 	</url>
 </urlset>
