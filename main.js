@@ -505,9 +505,9 @@ function UpdatePage(category) {
                 waitForElm('#secreticon').then((elem) => { elem.setAttribute("src", cdata[page].ProtectionSkillIcon ?? "https://cdn.discordapp.com/attachments/633768073068806144/985265386582835320/icSkillBlessLeader.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
                 waitForElm('#secret').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split(" Lv.1")[0] + " Lv.1/Lv.10" })
                 waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].ProtectionSkill.split("10:")[1]; FilterElementText(elem) })
-                waitForElm('.statsback2').then((elem) => { elem.remove() })
                 waitForElm('.secondpart > .statsback').then((elem) => { elem.setAttribute("protector", "true") })
             }
+            waitForElm('.statsback2').then((elem) => { elem.remove() })
 
             waitForElm('#samename').then((elem) => {
                 let Name = cdata[page].Name.split("[")[0]
