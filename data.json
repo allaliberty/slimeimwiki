@@ -46,7 +46,7 @@
     "MaxOutput": 150,
     "Town1": "Clothing Store +30%",
     "Town2": "Tavern +10%",
-    "SecretType": "",
+    "SecretType": "All",
     "Secret": "Dancing Lance Lv.MAX:Unleashes an all-target space physical attack for 290％ normal damageDecreases all targets' guard power by 10％ (Turns: 2)",
     "Skill1": "Gala of Gaiety Lv.1/Lv.10:Chance to give frostbite to all targets: 80％ (Turns: 3)Deals 150％ basic space physical ATK damage to all targetsCost: 35",
     "Skill1Icon": "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/16610a5861f7969d5180f11b7f93ff09.png?16618656661626?16618656661626",
