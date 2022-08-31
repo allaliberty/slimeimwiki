@@ -22,28 +22,6 @@
 
 
 
-
-    --background: #000000;
-
-    --text: rgb(255, 255, 255);
-
-    --accent1: #0f0f0f;
-    --accent2: hsl(0, 0%, 4%);
-    --accent3:  var(--accent1);
-
-    --shadow1: hsla(0, 0%, 11%, 0);
-    --shadow2: hsla(0, 0%, 11%, 0);
-
-    --endingbackground: rgba(255,0,0,0.25);
-    --endingaccent2: rgba(255, 0, 0, 0.25);
-    --endingaccent1: rgb(66, 0, 0);
-
-    --menuactive: hsla(0, 0%, 14%, 0.75);
-    --buttonactive: gray;
-    
-    --invisible: rgba(255,255,255,0);
-
-
     margin: 0px;
     padding: 0px;
     font-family: "Poppins", sans-serif;
@@ -441,6 +419,25 @@ div {
     direction: row;
     flex-wrap: wrap;
     position: relative;
+}
+
+.homecategory > .dailyhalf {
+    background-color: var(--accent2);
+    padding: 10px;
+    flex-direction: column;
+}
+
+.dailycategory {
+    background-color: var(--accent2);
+    justify-content: space-between;
+    padding: 30px 30px 0px 30px;
+}
+
+.dailycategory > .homecategory {
+    width: 30%;
+    padding: 30px 10px 10px 10px ;
+    gap: 5px;
+    margin-bottom: 30px;
 }
 
 
@@ -1087,6 +1084,17 @@ div {
     flex:1;
 }
 
+.dailytitle {
+    user-select: none;
+    background-color: var(--accent1);
+    padding: 5px 30px 5px 30px;
+    border-radius: 15px;
+    border: 0px;
+    flex:1;
+}
+
+
+
 .homecategory > .unittypebutton {
     width:20%;
     padding: 5px 30px 5px 30px;
@@ -1096,6 +1104,19 @@ div {
     position: absolute;
     bottom: -10px;
     right: 10px;
+    border: 0px;
+}
+
+.homecategory > .dailytitle {
+    padding: 5px 30px 5px 30px;
+    white-space:nowrap;
+    font-size: 15px;
+    border-radius: 15px;
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    right:0px;
+    text-align: center;
     border: 0px;
 }
 
@@ -1306,6 +1327,16 @@ button[toggle="true"] > img {
     position: relative;
 }
 
+.dailyseparator {
+    width: 100%;
+    background-color: var(--accent1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
 .timer {
     font-size: 3em;
     width: 100%;
@@ -1328,6 +1359,11 @@ button[toggle="true"] > img {
     .timercontainer {
         width: 100%;
     }
+
+    .dailycategory > .homecategory {
+        width: 100%;
+    }
+    
 
     .characterart {
         width: 100%;

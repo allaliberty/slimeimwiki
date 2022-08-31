@@ -4,15 +4,14 @@ if ('scrollRestoration' in history) {
 }
 
 
-function trimSlashes(link, scroll)
-{
+function trimSlashes(link, scroll) {
     let linksplit = (link || window.location.pathname).split("/");
     if (linksplit[linksplit.length - 1].length == 0) {
         linksplit.pop()
     }
     let page = linksplit[2];
     let index = linksplit[1];
-    return {page: page, index: index, scroll: scroll ?? 0}
+    return { page: page, index: index, scroll: scroll ?? 0 }
 }
 
 
@@ -45,6 +44,7 @@ $(function () {
                 <a href="/characters" class="navbutton">Characters</a>
                 <a href="/events" class="navbutton">Events</a>
                 <a href="/gacha" class="navbutton">Gacha Simulator</a>
+                <a href="/daily" class="navbutton">Daily Story</a>
                 </div><button class="hamb"></button>
         </div>
     </nav>`);
@@ -58,6 +58,8 @@ const cdata = await fetchcdata(`/data.json`)
 const FilterKeywords = await fetchcdata(`/filterkeywords.json`)
 const TraitFilterKeywords = await fetchcdata(`/traitsfilterkeywords.json`)
 const EventsDataUnsorted = await fetchcdata(`/events.json`)
+const DailyCSV = await fetchcsv(`/daily.csv`)
+
 let EventsData = {}
 let sortedarray = Object.keys(EventsDataUnsorted).sort(function (a, b) {
     if ((EventsDataUnsorted[a].New == true && EventsDataUnsorted[b].New == true) || (EventsDataUnsorted[a].New == false && EventsDataUnsorted[b].New == false))
@@ -87,19 +89,19 @@ if (window.history) {
             waitForElm('.buttonsdiv').then((elem) => { elem.setAttribute("clicked", "false") })
         evt.preventDefault();
         console.log(document.documentElement.scrollTop || document.body.scrollTop)
-        window.history.replaceState({category: trimSlashes(null, document.documentElement.scrollTop || document.body.scrollTop)}, '')
+        window.history.replaceState({ category: trimSlashes(null, document.documentElement.scrollTop || document.body.scrollTop) }, '')
         //window.history.state.category.scroll = document.documentElement.scrollTop || document.body.scrollTop
         var category = trimSlashes((evt.target.getAttribute("href") || evt.target.parentElement.getAttribute("href")));
         category.scroll = 0;
         UpdatePage(category);
-        window.history.pushState({category: category}, window.title, (evt.target.getAttribute("href") || evt.target.parentElement.getAttribute("href")));
+        window.history.pushState({ category: category }, window.title, (evt.target.getAttribute("href") || evt.target.parentElement.getAttribute("href")));
     });
 
     window.addEventListener('popstate', function (evt) {
         console.log(evt)
         var category = evt.state ? evt.state.category : trimSlashes(window.location.pathname);
         UpdatePage(category);
-      });
+    });
 
     /*window.addEventListener('hashchange', async function () {
         
@@ -129,7 +131,7 @@ function ReturnDate(key, difference) {
             return "Ending in " + Math.floor(Math.abs((End.getTime()  - (new Date()).getTime()) / 1000) / 60 / 60) + " hours."
         }
         else*/
-            return (new Date(EventsData[key].Start)).toLocaleDateString() + " - " + (new Date(EventsData[key].End)).toLocaleDateString()
+        return (new Date(EventsData[key].Start)).toLocaleDateString() + " - " + (new Date(EventsData[key].End)).toLocaleDateString()
     }
 }
 
@@ -265,6 +267,67 @@ async function fetchcdata(file) {
     }
 }
 
+function CSVParse(csvString, delimiter = ",") {
+
+    if (!csvString || !csvString.length)
+        return [];
+
+    const pattern = new RegExp(
+        ("(\\" + delimiter + "|\\r?\\n|\\r|^)" +
+            "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
+            "([^\"\\" + delimiter + "\\r\\n]*))"
+        ), "gi"
+    );
+
+    let rows = [[]];
+    let matches = false;
+
+    while (matches = pattern.exec(csvString)) {
+
+        const matched_delimiter = matches[1];
+        const matched_cellQuote = matches[2];
+        const matched_cellNoQuote = matches[3];
+
+        /*
+         * Edge case: Data that starts with a delimiter
+         */
+        if (matches.index == 0 && matched_delimiter)
+            rows[rows.length - 1].push("");
+
+        /*
+         * Fix empty lines
+         */
+        if (!matches[2] && !matches[3])
+            continue;
+
+        if (matched_delimiter.length && matched_delimiter !== delimiter)
+            rows.push([]);
+
+        const matched_value = (matched_cellQuote)
+            ? matched_cellQuote.replace(
+                new RegExp("\"\"", "g"), "\""
+            )
+            : matched_cellNoQuote;
+
+        rows[rows.length - 1].push(matched_value);
+
+    }
+
+    return rows;
+}
+
+async function fetchcsv(file) {
+    try {
+        const response = await fetch(file);
+        const exam = await response.text();
+        let csvData = CSVParse(exam)
+        return csvData;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 const stars = ["https://cdn.discordapp.com/attachments/633768073068806144/982527855407792168/1star.png",
     "https://cdn.discordapp.com/attachments/633768073068806144/982527856968073227/2star.png",
     "https://cdn.discordapp.com/attachments/633768073068806144/982527856418648135/3star.png",
@@ -396,7 +459,7 @@ function getKeyByValue(object, value) {
 
 function EndingSoon(key) {
     let Difference = Math.floor(((new Date(EventsData[key].End)).getTime() - (new Date()).getTime()) / 1000)
-    if (Difference < 86400*3 && Difference > -86400*3)
+    if (Difference < 86400 * 3 && Difference > -86400 * 3)
         return true
 }
 
@@ -437,7 +500,7 @@ function UpdatePage(category) {
             $(function () {
                 $("#character-placeholder").load("/character");
             })
-            waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name + " - SLIMEIM.WIKI"})
+            waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name + " - SLIMEIM.WIKI" })
             waitForElm('#title').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0] })
             waitForElm('#name').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[0] })
             waitForElm('#icon').then((elem) => { elem.setAttribute("src", cdata[page].Icon) })
@@ -894,6 +957,57 @@ function UpdatePage(category) {
             ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true)) { return true } })
             ListEvents('#ongoingevents[time="all"]', function (key) { if ((EventsData[key].Current != true)) { return true } })
         }
+        else if (index === "daily") {
+            waitForElm('title').then((elem) => { elem.innerHTML = "Daily Story - SLIMEIM.WIKI" })
+            $(function () {
+                $("#character-placeholder").load("/dailybody");
+            })
+            var content = "";
+            function createTable(elem, tableData) {
+                let count = 0
+                tableData.forEach(function (rowData, i) {
+                    let content = ""
+                    if (rowData.length == 1) {
+                        content = content + `<div class = "dailyseparator">`+ rowData[0] +`</div>`
+                    }
+                    else if (count > 0) {
+                        content = `<div class="homecategory">
+                        <div class="dailytitle">` + rowData[0] + `</div>
+                        <div class="homecategory dailyhalf">
+                            <h5>Conditions</h5>`
+                        console.log(rowData.length)
+                        rowData.forEach(function (v, i) {
+                            if (i > 0 && v != "") {
+                                if (i != rowData.length - 1) {
+                                    content = content + `<p>• ` + v + `</p>`
+                                }
+                                else {
+                                    content = content + `</div>
+                                        <div class="homecategory dailyhalf">
+                                            <h5>Reward</h5>` + `<p>• ` + v + `</p>` + `
+                                        </div>
+                                    </div>`
+                                }
+                            }
+                        })
+                        console.log(content)
+                        console.log(elem)
+                        count = count + 1
+                    }
+                    else
+                    {
+                        count = count + 1
+                    }
+                    $(elem).append(content);
+                    
+                });
+            }
+
+            waitForElm(".dailycategory").then((elem) => {
+                console.error("DONE")
+                createTable(elem, DailyCSV);
+            })
+        }
         else if (index === "gacha") {
             waitForElm('title').then((elem) => { elem.innerHTML = "Gacha Simulator - SLIMEIM.WIKI" })
             $(function () {
@@ -912,9 +1026,8 @@ function UpdatePage(category) {
                 })
             })
             let currentbanner
-            Object.keys(EventsData).forEach((key) =>  { 
-                if (EventsData[key].Type == "Recruit" && currentbanner == null && ("Banner" in EventsData[key]) && EventsData[key].Banner.length > 0)
-                {
+            Object.keys(EventsData).forEach((key) => {
+                if (EventsData[key].Type == "Recruit" && currentbanner == null && ("Banner" in EventsData[key]) && EventsData[key].Banner.length > 0) {
                     currentbanner = key;
                     return;
                 }
@@ -929,22 +1042,20 @@ function UpdatePage(category) {
             let prots = 0
             let battle = 0
             EventsData[currentbanner].Banner.forEach(function (key) {
-                    if (cdata[key].UnitType == "Protection Characters") 
-                    {
-                        prots += 1
-                        if (prots == 1 && !Standard5StarsProt.includes(key))
-                            Featured5StarsProt.push(key)
-                        else if (!Standard5StarsProt.includes(key))
-                            Standard5StarsProt = [key].concat(Standard5StarsProt)
-                    }
-                    else if (cdata[key].UnitType != "Protection Characters")
-                    {
-                        battle += 1
-                        if (battle == 1 && !Standard5StarsBattle.includes(key))
-                            Featured5StarsBattle.push(key)
-                        else if (!Standard5StarsBattle.includes(key))
-                            Standard5StarsBattle = [key].concat(Standard5StarsBattle)
-                    }
+                if (cdata[key].UnitType == "Protection Characters") {
+                    prots += 1
+                    if (prots == 1 && !Standard5StarsProt.includes(key))
+                        Featured5StarsProt.push(key)
+                    else if (!Standard5StarsProt.includes(key))
+                        Standard5StarsProt = [key].concat(Standard5StarsProt)
+                }
+                else if (cdata[key].UnitType != "Protection Characters") {
+                    battle += 1
+                    if (battle == 1 && !Standard5StarsBattle.includes(key))
+                        Featured5StarsBattle.push(key)
+                    else if (!Standard5StarsBattle.includes(key))
+                        Standard5StarsBattle = [key].concat(Standard5StarsBattle)
+                }
             })
             let Units = [Featured5StarsBattle.concat(Featured5StarsProt), Standard5StarsBattle.concat(Standard5StarsProt), Standard4Stars, Standard3Stars]
 
@@ -964,14 +1075,13 @@ function UpdatePage(category) {
                 let Rarity = Math.random() * 101
                 let FinalChoices = []
                 if (Rarity <= 4) {
-                    if (Rarity <= 0.7)
-                    {
+                    if (Rarity <= 0.7) {
                         FinalChoices = []
                         if (Featured5StarsBattle[0])
                             FinalChoices.push(Featured5StarsBattle[0])
                         if (Featured5StarsProt[0])
                             FinalChoices.push(Featured5StarsProt[0])
-                        
+
                     }
                     else if (Rarity <= 0.7 + (1 - (Featured5StarsProt.length * 0.7)))
                         FinalChoices = Standard5StarsProt
@@ -1077,20 +1187,19 @@ function UpdatePage(category) {
                         waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key].Name.split(" ")[0] })
                     }
                 })
-                if (amount == 0)
-                {
+                if (amount == 0) {
                     $("#latestcharacters").hide()
                     $("#latestcharacters").prev().hide()
 
                 }
             })
             //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
-            ListEvents('#endingevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End != EventsData[key].Start) && EndingSoon(key)) ) { return true } }, true)
-            
+            ListEvents('#endingevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End != EventsData[key].Start) && EndingSoon(key))) { return true } }, true)
+
             ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End != EventsData[key].Start) && !EndingSoon(key) && !(key.includes("Pack")))) { return true } })
-            
-            ListEvents('#announcements', function (key) { if ((EventsData[key].Current == true  && EventsData[key].New != true && (EventsData[key].End == EventsData[key].Start) && !EndingSoon(key) && !(key.includes("Pack")))) { return true } })
-            
+
+            ListEvents('#announcements', function (key) { if ((EventsData[key].Current == true && EventsData[key].New != true && (EventsData[key].End == EventsData[key].Start) && !EndingSoon(key) && !(key.includes("Pack")))) { return true } })
+
             ListEvents('#packs', function (key) { if ((EventsData[key].Current == true && !EndingSoon(key) && EventsData[key].New != true && (key.includes("Pack")))) { return true } })
             ListEvents('#newevents', function (key) { if ((EventsData[key].Current == true && EventsData[key].New == true)) { return true } })
             let currentdate = new Date()
@@ -1116,7 +1225,7 @@ function UpdatePage(category) {
             }
             let resethour = hourdata[Filters.Server].resethour
             let updatehour = hourdata[Filters.Server].updatehour
-            function UpdateEndDate(){
+            function UpdateEndDate() {
                 updatedate = new Date()
                 resetdate = new Date()
                 if (resetdate.getUTCHours() >= resethour) {
@@ -1130,7 +1239,7 @@ function UpdatePage(category) {
             }
 
             UpdateEndDate()
-            
+
 
             waitForElm(".serverselect > .unittypebutton").then((ele) => {
                 $(".serverselect > .unittypebutton").click(function () {
@@ -1163,7 +1272,7 @@ function UpdatePage(category) {
                 let hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 let minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
                 let seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
-                
+
 
                 if (!document.getElementById("reset")) {
                     clearInterval(x);
@@ -1182,9 +1291,9 @@ function UpdatePage(category) {
                     + minutes.toString().padStart(2, '0') + ":" + seconds.toString().padStart(2, '0')
                 document.getElementById("update").innerHTML = hours2.toString().padStart(2, '0') + ":"
                     + minutes2.toString().padStart(2, '0') + ":" + seconds2.toString().padStart(2, '0')
-                    $("#reset.date").text(resetdate.toDateString() + " " + resetdate.toTimeString().split(" ")[0])
-                    $("#update.date").text(updatedate.toDateString() + " " + updatedate.toTimeString().split(" ")[0])
-                }
+                $("#reset.date").text(resetdate.toDateString() + " " + resetdate.toTimeString().split(" ")[0])
+                $("#update.date").text(updatedate.toDateString() + " " + updatedate.toTimeString().split(" ")[0])
+            }
 
             waitForElm('#reset').then((elem) => {
                 UpdateTimers()
@@ -1196,7 +1305,7 @@ function UpdatePage(category) {
 
         $("body").css("min-height", category.scroll + window.innerHeight > window.innerHeight + 200 ? category.scroll + window.innerHeight : window.innerHeight + 200)
         window.scrollTo(0, category.scroll)
-        
+
     })
 }
 

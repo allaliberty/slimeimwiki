@@ -1,0 +1,9 @@
+<div class="homebasecontainer">
+    <div class="homebase">
+        <h1 class="statstitle">Daily Story <span style="margin-left: 10px;font-size: 15px">By @HADES#5395</span></h1>
+        <div class="homecategory dailycategory">
+           
+        </div>
+        <div id="table"></h1>
+    </div>
+</div>
