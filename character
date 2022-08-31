@@ -126,7 +126,7 @@
                 </div>
             </div>
         </div>
-        <div class="statsback2" hidden>
+        <div class="statsback2">
             <p class="statstitle">Stats</p>
             <div class="detailedstats statsleft">
                 <div class="stat">
