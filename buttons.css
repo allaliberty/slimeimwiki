@@ -29,7 +29,7 @@
 
     --accent1: #0f0f0f;
     --accent2: hsl(0, 0%, 4%);
-    --accent3: rgba(0,0,0,0.5);
+    --accent3:  var(--accent1);
 
     --shadow1: hsla(0, 0%, 11%, 0.35);
     --shadow2: hsla(0, 0%, 11%, 0.35);
