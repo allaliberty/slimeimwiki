@@ -39,7 +39,7 @@ $(function () {
     $("#nav-placeholder").append(`
     <nav class="topbar">
         <div class="topbarinside">
-            <a href="/" class="sitename"><img class = "logo" src="https://cdn.discordapp.com/attachments/633768073068806144/985179869463859230/RimuruSlimeManga_1.png"> .WIKI</p>
+            <a href="/" class="sitename"><img class = "logo" src="https://media.discordapp.net/attachments/633768073068806144/1016333761232785529/SLIMEIM180.png"> .WIKI</p>
                 <div clicked=false class="buttonsdiv">
                 <a href="/characters" class="navbutton">Characters</a>
                 <a href="/events" class="navbutton">Events</a>
@@ -493,6 +493,7 @@ function UpdatePage(category) {
         else
             $(this).attr("current", "false")
     })
+    $('link[rel="canonical"]').remove()
     waitForElm("#character-placeholder").then((elem) => {
         elem.replaceChildren();
         iframeopen = false
@@ -500,6 +501,7 @@ function UpdatePage(category) {
             $(function () {
                 $("#character-placeholder").load("/character");
             })
+            $("head").append(`<link rel="canonical" href="`+"https://slimeim.wiki/characters/"+page+`/"/>`);
             waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name + " - SLIMEIM.WIKI" })
             waitForElm('#title').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0] })
             waitForElm('#name').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[0] })
@@ -595,6 +597,7 @@ function UpdatePage(category) {
             $(function () {
                 $("#character-placeholder").load("/charactersbody");
             })
+            $("head").append(`<link rel="canonical" href="`+"https://slimeim.wiki/characters"+`/"/>`);
             function updatelist() {
                 $('.charcontainer').hide()
                 let currentcreated = created
@@ -952,6 +955,7 @@ function UpdatePage(category) {
             $(function () {
                 $("#character-placeholder").load("/eventsbody");
             })
+            $("head").append(`<link rel="canonical" href="`+"https://slimeim.wiki/events"+`/"/>`);
             //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
             //ListEvents('#ongoingevents[time="all"]', function (key) {const now = new Date(); if ((now >= new Date(EventsData[key].End))){return true}})
             ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true)) { return true } })
@@ -962,6 +966,7 @@ function UpdatePage(category) {
             $(function () {
                 $("#character-placeholder").load("/dailybody");
             })
+            $("head").append(`<link rel="canonical" href="`+"https://slimeim.wiki/daily"+`/"/>`);
             var content = "";
             function createTable(elem, tableData) {
                 let count = 0
@@ -1013,6 +1018,7 @@ function UpdatePage(category) {
             $(function () {
                 $("#character-placeholder").load("/gachabody");
             })
+            $("head").append(`<link rel="canonical" href="`+"https://slimeim.wiki/gacha"+`/"/>`);
             waitForElm('.moreunits').then((ele) => {
                 $("#unitsexpand.filterexpand").click(function (bro) {
                     if ($(this).attr("toggle") == "true") {
@@ -1176,6 +1182,7 @@ function UpdatePage(category) {
             $(function () {
                 $("#character-placeholder").load("/homebody");
             })
+            $("head").append(`<link rel="canonical" href="`+"https://slimeim.wiki"+`/"/>`);
             waitForElm('#latestcharacters').then((elem) => {
                 let sortedarray = Object.keys(cdata)
                 //waitForElm('#samename > p').then((elem) => { elem.innerHTML = Name })

@@ -200,7 +200,6 @@ div {
   justify-content: flex-start;
   align-items: center;
   transition: all 0.5s;
-
 }
 
 .topbar {
@@ -917,7 +916,7 @@ div {
 }
 
 .logo {
-    height: 35px;
+    height: 41px;
     width:41px;
 }
 
@@ -1351,7 +1350,6 @@ button[toggle="true"] > img {
     font-size: 0.9em;
     text-align: center;
 }
-
 
 
 
