@@ -424,12 +424,13 @@ const UnitTypeButtonTL = {
 function SkillTextFilter(text) {
     if (text) {
         let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "w", "z"]
-        alphabet.forEach((letter) => {
+        let symbols = [")", "%"]
+        /*alphabet.forEach((letter) => {
             alphabet.forEach((letter2) => {
                 text = text.replaceAll(letter + letter2.toUpperCase(), letter + ". " + letter2.toUpperCase())
             })
-        })
-        text = text.replaceAll("\n", '')
+        })*/
+        /*text = text.replaceAll("\n", '')
         text = text.replaceAll("Lv.1/", '<br>Lv.1/')
         text = text.replaceAll(" (", '.<br>(')
         text = text.replaceAll(").", ')')
@@ -438,9 +439,68 @@ function SkillTextFilter(text) {
         text = text.replaceAll(".<br>Cost", '.<br><br>Cost')
         text = text.replaceAll(". Cost", '.<br><br>Cost')
         text = text.replaceAll(")<br>Cost", ')<br><br>Cost')
-        text = text.replaceAll(") Cost", ')<br><br>Cost')
+        text = text.replaceAll(") Cost", ')<br><br>Cost')*/
+
+        text = text.replaceAll("Lv.1/Lv.10 ", '')
         text = text.replaceAll("Soul of Protection", 'Soul of Divine Protection')
-    }
+        /*text = text.replaceAll(" (", '<h5>(')
+        alphabet.forEach((letter) => {
+            text = text.replaceAll(letter + "<br>" ,  letter + ". <br>")
+            text = text.replaceAll(letter.toUpperCase() + "<br>" ,  letter.toUpperCase() + ". <br>")
+            alphabet.forEach((letter2) => {
+                text = text.replaceAll(letter + letter2.toUpperCase(), letter + ". <br>" + letter2.toUpperCase())
+            })
+            
+        })
+        text = text.replaceAll(")" ,  ")</h5>")
+        /*symbols.forEach((symbol, i) => { 
+            text = text.replaceAll(symbol + "<br>" ,  symbol + (i != 0 ? "." : "</h5>") + " <br>")
+        })*/
+        /*
+        
+        text = text.replaceAll(". ", '. <br>')
+        text = text.replaceAll(" (", '<br><h5>(')
+        alphabet.forEach((letter) => {
+            text = text.replaceAll(letter + "<br>" ,  letter + ". <br>")
+            text = text.replaceAll(letter.toUpperCase() + "<br>" ,  letter.toUpperCase() + ". <br>")
+            alphabet.forEach((letter2) => {
+                text = text.replaceAll(letter + letter2.toUpperCase(), letter + ". <br>" + letter2.toUpperCase())
+            })
+            symbols.forEach((symbol) => { 
+                text = text.replaceAll(symbol + letter.toUpperCase(),symbol+"<br>" + letter.toUpperCase())
+            })
+        })
+        symbols.forEach((symbol, i) => { 
+            text = text.replaceAll(symbol + "<br>" ,  symbol + (i != 0 ? "." : "</h5>") + " <br>")
+        })*/
+
+
+        /*if (!text.includes("Cost:") && text[text.length] != ".") {
+            text = text + "."
+        }
+        else if (text.includes("Cost:")) { 
+            text = text + "</h4>"
+        }
+        text = text.replaceAll("Cost:", '<br><h4>Cost:')*/
+        text = text.replaceAll("Cost:", "<br><span class = 'cost'>• Cost:")
+        //text = text.replaceAll("ATK", "<span class = 'ATK'>ATK</span>")
+        if (text.includes("Cost:")) { 
+            text = text + " •</span> "
+        }
+        alphabet.forEach((letter) => {
+            text = text.replaceAll(". " + letter.toUpperCase(), ".<br>" + letter.toUpperCase())
+            alphabet.forEach((letter2) => {
+                text = text.replaceAll(letter + letter2.toUpperCase(), letter + ". <br>" + letter2.toUpperCase())
+            })
+            symbols.forEach((symbol) => { 
+                text = text.replaceAll(symbol + letter.toUpperCase(),symbol+"<br>" + letter.toUpperCase())
+            })
+        })
+        text = text.replaceAll("(","<br><span class = 'turns'>(")
+        text = text.replaceAll(").",")")
+        text = text.replaceAll("%/","/")
+        text = text.replaceAll(")",")</span>")
+    }   
     return text
 }
 
@@ -547,7 +607,7 @@ function UpdatePage(category) {
                 waitForElm('#secreticon').then((elem) => { elem.setAttribute("src", secrettype[cdata[page].SecretType] ?? cdata[page].SecretType); elem.onload = function () { elem.setAttribute("turnon", "true") }; })
 
                 waitForElm('#secret').then((elem) => { elem.innerHTML = cdata[page].Secret.split(" Lv.")[0] })
-                waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].Secret.split("Lv.MAX:")[1] })
+                waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].Secret.split("Lv.MAX:")[1]; FilterElementText(elem) })
                 cdata[page].Stats.forEach((element, index) => {
                     if (index < 6)
                         waitForElm('.statsleft').then((elem) => { elem.children.item(index).children.item(1).innerHTML = element.toString().concat("%") })
