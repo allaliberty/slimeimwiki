@@ -201,8 +201,7 @@ div {
 .sitename {
     color: var(--text);
     font-weight: bold;
-    font-size: 20px;
-    font-size: 20px;
+    font-size: 1.25em;
     margin-right: 10px;
     text-decoration: inherit;
     display:flex;
@@ -216,7 +215,7 @@ div {
 
 .homecategory > h2 {
     font-weight: 500;
-    font-size: 15px;
+    font-size: 0.95em;
 }
 
 .topbarinside {
@@ -255,7 +254,7 @@ div {
 
 .navbutton {
     color:var(--text);
-    font-size: 15px;
+    font-size: 0.95em;
     font-weight: 600;
     margin-left: 15px;
     opacity: 0.5;
@@ -328,13 +327,12 @@ div {
 
 .charactername {
     font-weight: bold;
-    font-size: 30px;
-    line-height: 30px;
+    font-size: 2em;
+    line-height: 100%;
     height:30%;
     white-space: nowrap;
     text-overflow: ellipsis;
     word-wrap: break-word;
-    overflow: hidden;
     width: 100%;
 }
 
@@ -607,7 +605,7 @@ div {
 
 .statstitle {
     font-weight: 600;
-    font-size: 25px;
+    font-size: 1.5em;
     width: 100%;
 }
 
@@ -617,7 +615,7 @@ div {
 
 .stat {
     font-weight: 300;
-    font-size: 20px;
+    font-size: 1.25em;
     width: 100%;
     display:flex;
 }
@@ -871,8 +869,8 @@ div {
     gap: 10px;
 }
 .skillicon {
-    min-width: 75px;
-    max-width: 75px;
+    width:75px;
+    height:75px;
     opacity: 0;
     object-fit: contain;
     transition: all 0.5s;
@@ -902,13 +900,13 @@ div {
 
 
 .skillicon[src=""] {
-    min-width: 0px;
-    max-width: 0px;
+    width: 0px;
+    height: 0px;
 }
 
 .skilltext {
     margin-top:5px;
-    font-size:16px;
+    font-size:1em;
     hyphens: auto;
 }
 
@@ -1065,14 +1063,14 @@ div {
 
 .unittypeselect > p {
     margin: 0px 20px 0px 20px;
-    font-size: 15px;
+    font-size: 1em;
     line-height: 30px;
     font-weight: 600;
 }
 
 .serverselect > p {
     margin: 0px 20px 0px 20px;
-    font-size: 15px;
+    font-size: 1em;
     line-height: 30px;
     font-weight: 600;
 }
@@ -1128,7 +1126,7 @@ div {
     width:20%;
     padding: 5px 30px 5px 30px;
     white-space:nowrap;
-    font-size: 15px;
+    font-size: 1em;
     border-radius: 15px;
     position: absolute;
     bottom: -10px;
@@ -1139,7 +1137,7 @@ div {
 .homecategory > .dailytitle {
     padding: 5px 30px 5px 30px;
     white-space:nowrap;
-    font-size: 15px;
+    font-size: 1em;
     border-radius: 15px;
     position: absolute;
     top: -10px;
@@ -1161,7 +1159,7 @@ div {
 
 
 .sortselect > .unittypebutton {
-    font-size: 10px;
+    font-size: 0.65em;
     padding: 3px 15px 3px 15px;
 }
 
@@ -1332,11 +1330,11 @@ button[toggle="true"] > img {
     border-radius: 15px;
     padding-right: 10%;
     padding-left: 10%;
-    font-size:12px;
+    font-size: 0.75em;
 }
 
 .traittitle {
-    font-size: 20px;
+    font-size: 1.25em;
 }
 
 #timers {
