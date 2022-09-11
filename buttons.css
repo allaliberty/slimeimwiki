@@ -871,6 +871,7 @@ div {
 .skillicon {
     width:75px;
     height:75px;
+    min-width: 75px;
     opacity: 0;
     object-fit: contain;
     transition: all 0.5s;
@@ -902,6 +903,7 @@ div {
 .skillicon[src=""] {
     width: 0px;
     height: 0px;
+    min-width: 0px;
 }
 
 .skilltext {
