@@ -581,10 +581,15 @@ function UpdatePage(category) {
             $(this).attr("current", "false")
     })
     $('link[rel="canonical"]').remove()
+    function ScrollFnc() {
+        $("body").css("min-height", category.scroll + window.innerHeight > window.innerHeight + 200 ? category.scroll + window.innerHeight : window.innerHeight + 200)
+        window.scrollTo(0, category.scroll)
+    }
+    
     waitForElm("#character-placeholder").then((elem) => {
         iframeopen = false
         if (index === "characters" && page != undefined) {
-            $("#character-placeholder").load("/character", function () {
+            $("#character-placeholder").load("/character", function () { ScrollFnc()
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/characters/" + page + `/"/>`);
                 waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name + " - SLIMEIM.WIKI" })
                 waitForElm('#title').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0] })
@@ -691,7 +696,7 @@ function UpdatePage(category) {
             });
         }
         else if (index === "characters") {
-            $("#character-placeholder").load("/charactersbody", function () {
+            $("#character-placeholder").load("/charactersbody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Characters - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/characters" + `/"/>`);
                 function updatelist() {
@@ -1048,7 +1053,7 @@ function UpdatePage(category) {
             });
         }
         else if (index === "events") {
-            $("#character-placeholder").load("/eventsbody", function () {
+            $("#character-placeholder").load("/eventsbody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Events - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/events" + `/"/>`);
                 //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
@@ -1058,7 +1063,7 @@ function UpdatePage(category) {
             });
         }
         else if (index === "daily") {
-            $("#character-placeholder").load("/dailybody", function () {
+            $("#character-placeholder").load("/dailybody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Daily Story - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/daily" + `/"/>`);
                 var content = "";
@@ -1104,7 +1109,7 @@ function UpdatePage(category) {
             });
         }
         else if (index === "gacha") {
-            $("#character-placeholder").load("/gachabody", function() {
+            $("#character-placeholder").load("/gachabody", function() { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Gacha Simulator - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/gacha" + `/"/>`);
                 waitForElm('.moreunits').then((ele) => {
@@ -1265,7 +1270,7 @@ function UpdatePage(category) {
             });
         }
         else {
-            $("#character-placeholder").load("/homebody", function () {
+            $("#character-placeholder").load("/homebody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Home - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki" + `/"/>`);
                 waitForElm('#latestcharacters').then((elem) => {
@@ -1394,8 +1399,7 @@ function UpdatePage(category) {
             });
         }
 
-        $("body").css("min-height", category.scroll + window.innerHeight > window.innerHeight + 200 ? category.scroll + window.innerHeight : window.innerHeight + 200)
-        window.scrollTo(0, category.scroll)
+        
 
     })
 }
