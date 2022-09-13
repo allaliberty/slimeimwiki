@@ -637,16 +637,16 @@ function UpdatePage(category) {
                 waitForElm('#output2').then((elem) => { elem.innerHTML = cdata[page].Town2.split(" +")[0] })
                 waitForElm('#output2percent').then((elem) => { elem.innerHTML = "+".concat(cdata[page].Town2.split(" +")[1]) })
                 waitForElm('#trait1').then((elem) => { elem.innerHTML = cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[0] })
-                waitForElm('#trait1desc').then((elem) => { elem.innerHTML = cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[1] })
-                waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = cdata[page].Trait1A.replaceAll("★", "*").split(" (5* Awaken x3):")[1] })
+                waitForElm('#trait1desc').then((elem) => { elem.innerHTML = cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[1]; FilterElementText(elem) })
+                waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = cdata[page].Trait1A.replaceAll("★", "*").split(" (5* Awaken x3):")[1]; FilterElementText(elem) })
 
                 waitForElm('#trait1icon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon || FindSimilarIcon( cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[0], "1")); elem.onload = function () { elem.setAttribute("turnon", "true") } })
                 waitForElm('#trait1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon || FindSimilarIcon( cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[0], "1")); elem.onload = function () { elem.setAttribute("turnon", "true") } })
 
                 waitForElm('#exability1').then((elem) => { elem.innerHTML = (cdata[page].EXAbility1 ?? ":").split(":")[0] })
-                waitForElm('#exability1desc').then((elem) => { elem.innerHTML = (cdata[page].EXAbility1 ?? ":").split(":")[1] })
+                waitForElm('#exability1desc').then((elem) => { elem.innerHTML = (cdata[page].EXAbility1 ?? ":").split(":")[1]; FilterElementText(elem) })
                 waitForElm('#exability2').then((elem) => { elem.innerHTML = (cdata[page].EXAbility2 ?? ":").split(":")[0] })
-                waitForElm('#exability2desc').then((elem) => { elem.innerHTML = (cdata[page].EXAbility2 ?? ":").split(":")[1] })
+                waitForElm('#exability2desc').then((elem) => { elem.innerHTML = (cdata[page].EXAbility2 ?? ":").split(":")[1]; FilterElementText(elem) })
                 waitForElm('#exability1icon').then((elem) => { elem.setAttribute("src", cdata[page].EXAbility1Icon ?? "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/fcac5e3898026b79a3a3c64707ab4c3d.png?16628694753195?16628694753195"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
                 waitForElm('#exability2icon').then((elem) => { elem.setAttribute("src", cdata[page].EXAbility2Icon ?? "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/fcac5e3898026b79a3a3c64707ab4c3d.png?16628694753195?16628694753195"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
 
