@@ -46,6 +46,15 @@
                         </div>
                         <p id="defense" class="statnumber">492-3005</p>
                     </div>
+                    <div class="stat">
+                        <div class="statname">
+                            <img style="width:30px;height:30px; aspect-ratio:1;margin-right: 10px;object-fit: contain;"
+                                src="https://cdn.discordapp.com/attachments/633768073068806144/1019152160958709760/icActionLvUp.png"
+                                alt="">
+                            <p>Existence</p>
+                        </div>
+                        <p id="EP" class="statnumber">492-3005</p>
+                    </div>
                 </div>
                 <div class="statsback">
                     <p id="skillstitle" class="statstitle">Battle Skills</p>

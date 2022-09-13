@@ -50,6 +50,8 @@ $(function () {
     </nav>`);
 })
 
+
+
 //import cdata from "/data.json" assert { type: "json" }
 //import FilterKeywords from "/filterkeywords.json" assert { type: "json" }
 
@@ -77,6 +79,10 @@ DataPromises.push(new Promise(async function (resolve, reject) {
     DailyCSV = await fetchcsv(`/daily.csv`); resolve()
 }))
 await Promise.all(DataPromises)
+
+Object.keys(cdata).forEach((key) => {
+    cdata[key].EP = cdata[key].MaxHp + ((cdata[key].MaxAtk*5) + (cdata[key].MaxDef*2.5))
+})
 
 let EventsData = {}
 let sortedarray = Object.keys(EventsDataUnsorted).sort(function (a, b) {
@@ -497,7 +503,8 @@ function SkillTextFilter(text) {
         }
         text = text.replaceAll("Cost:", '<br><h4>Cost:')*/
         text = text.replaceAll("Cost:", "<br><span class = 'cost'>• Cost:")
-        //text = text.replaceAll("ATK", "<span class = 'ATK'>ATK</span>")
+        /*text = text.replaceAll("ATK", "<span class = 'ATK'>ATK</span>")
+        text = text.replaceAll("HP", "<span class = 'HP'>HP</span>")*/
         if (text.includes("Cost:")) {
             text = text + " •</span> "
         }
@@ -514,6 +521,23 @@ function SkillTextFilter(text) {
         text = text.replaceAll(").", ")")
         text = text.replaceAll("%/", "/")
         text = text.replaceAll(")", ")</span>")
+        text = text.replaceAll(/\d+(?:\/\d+)?%?/g, function(match){
+            return "<span class = 'percentage'>" + match + "</span>"
+        })
+        /*let i = text.length;
+        while (i--) {
+            let letter = text.charAt(i)
+            if (letter == "%" && text.charAt(i + 1) != "<") {
+                let curi = i
+                let finalstring = ""
+                let inspan = false
+                while (curi >= 0 && text.charAt(curi) != " ") {
+                    finalstring = text.charAt(curi) + finalstring
+                    curi = curi - 1
+                }
+                text = text.replaceAll(finalstring, "<span class = 'percentage'>" +finalstring+"</span>")
+            }
+        }*/
     }
     return text
 }
@@ -605,6 +629,9 @@ function UpdatePage(category) {
                 waitForElm('#attack').then((elem) => { elem.innerHTML = cdata[page].MaxAtk.toString() })
                 waitForElm('#health').then((elem) => { elem.innerHTML = cdata[page].MaxHp.toString() })
                 waitForElm('#defense').then((elem) => { elem.innerHTML = cdata[page].MaxDef.toString() })
+                waitForElm('#EP').then((elem) => {
+                    elem.innerHTML = Math.floor(cdata[page].EP).toString()
+                })
                 waitForElm('#output1').then((elem) => { elem.innerHTML = cdata[page].Town1.split(" +")[0] })
                 waitForElm('#output1percent').then((elem) => { elem.innerHTML = "+".concat(cdata[page].Town1.split(" +")[1]) })
                 waitForElm('#output2').then((elem) => { elem.innerHTML = cdata[page].Town2.split(" +")[0] })
@@ -777,7 +804,7 @@ function UpdatePage(category) {
                             if (Filters.Sort == "No" || Filters.Sort == "Name")
                                 waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key].Name.split(" ")[0] })
                             else
-                                waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key][Filters.Sort] })
+                                waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = Math.floor(cdata[key][Filters.Sort]) })
 
                         });
 
@@ -1398,9 +1425,6 @@ function UpdatePage(category) {
                 })
             });
         }
-
-        
-
     })
 }
 
@@ -1421,6 +1445,20 @@ waitForElm('.hamb').then(() => {
             List.setAttribute("clicked", "false")
     })
 
-})
+})  
+
+/*$.get( "/eventsbody", function( data ) {
+    $.get( "/dailybody", function( data ) {
+        $.get( "/gachabody", function( data ) {
+            $.get( "/homebody", function( data ) {
+                $.get( "/charactersbody", function( data ) {
+                    $.get( "/character", function( data ) {
+                        console.log("preloaded")
+                    });
+                });
+            });
+        });
+    });
+});*/
 
 

@@ -25,6 +25,7 @@
                     <button type = "button" id ="MaxAtkSort" class="unittypebutton">Attack</button>
                     <button type = "button" id ="MaxDefSort" class="unittypebutton">Defense</button>
                     <button type = "button" id ="MaxHpSort" class="unittypebutton">Health</button>
+                    <button type = "button" id ="EPSort" class="unittypebutton">EP</button>
                 </div>
             </div>
             <div class="types">

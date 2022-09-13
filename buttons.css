@@ -70,6 +70,16 @@ button {
     box-sizing: border-box;
 }
 
+.percentage {
+    font-weight: 700;
+    font-style: italic;
+}
+
+.turns > .percentage {
+    color: black;
+    font-weight: 500;
+}
+
 .ATK:before {
     content: "";
     display: inline-block;
@@ -78,6 +88,18 @@ button {
     height: 1em;
     background-size: contain;
     background-position: center;
+    margin-right: 0.25em
+}
+
+.HP:before {
+    content: "";
+    display: inline-block;
+    background: url("https://cdn.discordapp.com/attachments/633768073068806144/982542179346051082/icHp.png") no-repeat;
+    width: 1em;
+    height: 1em;
+    background-size: contain;
+    background-position: center;
+    margin-right: 0.25em
 }
 
 .cost {
@@ -88,6 +110,12 @@ button {
     padding: 0em 0.3em 0em 0.3em;
     border-radius: 0.5em;
     box-sizing: border-box;
+}
+
+.cost > .percentage {
+    font-weight: 700;
+    margin-left:5px;
+    margin-right:5px;
 }
 
 a.unittypebutton {
@@ -106,7 +134,7 @@ a.unittypebutton {
     bottom: 10%;
     background-color: var(--accent2);
     z-index: 1000;
-    border-radius: 15px;
+    border-radius: 5px;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -189,7 +217,7 @@ a {
 
 body {
     background-color: var(--background);
-    padding-top: 75px;
+    padding-top: 70px;
     min-height:2000px;
 }
 
@@ -295,7 +323,7 @@ div {
     padding: 30px;
     box-sizing: border-box;
     gap: 25px;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .charactericon {
@@ -307,17 +335,22 @@ div {
 .characternames {
     display: flex;
     flex-direction: column;
-    align-items: space-between;
+    align-items: flex-start;
+    justify-content: flex-end;
+    position: relative;
     height: 100%;
     width:65%
 }
 
 .title {
-    height:25%;
+    height:10em;
     white-space: nowrap;
     text-overflow: ellipsis;
     word-wrap: break-word;
     overflow: hidden;
+    top:0;
+    bottom: 0px;
+    position: absolute;
     width: 75%;
 }
 
@@ -328,8 +361,10 @@ div {
 .charactername {
     font-weight: bold;
     font-size: 2em;
-    line-height: 150%;
-    height:50%;
+    top:0;
+    line-height: 275%;
+    bottom: 0;
+    position: absolute;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -362,7 +397,7 @@ div {
     padding: 30px;
     box-sizing: border-box;
     margin-top: 20px;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .firstpartofsecondpart {
@@ -399,7 +434,7 @@ div {
 .statsback {
     box-shadow: var(--shadow1) 0px 5px 15px;
     background-color: var(--background);
-    border-radius: 15px;
+    border-radius: 5px;
     display: flex;
     flex-wrap: wrap;
     padding-left: 30px;
@@ -421,7 +456,7 @@ div {
 .statsback2 {
     box-shadow: var(--shadow1) 0px 5px 15px;
     background-color: var(--background);
-    border-radius: 15px;
+    border-radius: 5px;
     display: flex;
     direction: row;
     flex-wrap: wrap;
@@ -438,7 +473,7 @@ div {
 
 .homecategory {
     background-color: var(--background);
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 30px;
     box-shadow: var(--shadow1) 0px 5px 15px;
     width:100%;
@@ -840,7 +875,7 @@ div {
     display: flex;
     padding: 0px 10px 0px 10px;
     background-color: var(--accent2);
-    border-radius: 15px;
+    border-radius: 5px;
     border: 0px;
     line-height: 175%;
     font-weight: 300;
@@ -928,14 +963,14 @@ div {
     width: 50%;
     text-align: center;
     background-color: var(--accent3);
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .statnumber2 {
     width: 40%;
     text-align: center;
     background-color: var(--accent3);
-    border-radius: 15px;
+    border-radius: 5px;
 }
 .sep {
     flex: 0.05;
@@ -965,7 +1000,7 @@ div {
     justify-content: flex-start;
     align-items: center;
     background-color: var(--accent1);
-    border-radius: 15px;
+    border-radius: 5px;
     padding-left: 20px;
     top: 0px;
     z-index: -5;
@@ -1001,7 +1036,7 @@ div {
     box-sizing: border-box;
     position: relative;
     gap: 20px;
-    border-radius: 15px;
+    border-radius: 5px;
     padding-top:125px;
     margin-top:25px
 }
@@ -1028,7 +1063,7 @@ div {
     box-sizing: border-box;
     position: relative;
     gap: 10px;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .sortingbox {
@@ -1050,7 +1085,7 @@ div {
     padding: 5px 5px 5px 5px;
     position: absolute;
     background-color: var(--accent2);
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .serverselect {
@@ -1060,7 +1095,7 @@ div {
     position: absolute;
     background-color: var(--accent2);
     top: -20px;
-    border-radius: 15px;    
+    border-radius: 5px;    
 }
 
 .unittypeselect > p {
@@ -1089,7 +1124,7 @@ div {
     position: absolute;
     background-color: var(--accent2);
     box-shadow: var(--shadow1) 0px 5px 15px;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .sortselect > p {
@@ -1108,7 +1143,7 @@ div {
     user-select: none;
     background-color: var(--accent1);
     padding: 5px 30px 5px 30px;
-    border-radius: 15px;
+    border-radius: 5px;
     border: 0px;
     flex:1;
 }
@@ -1117,7 +1152,7 @@ div {
     user-select: none;
     background-color: var(--accent1);
     padding: 5px 30px 5px 30px;
-    border-radius: 15px;
+    border-radius: 5px;
     border: 0px;
     flex:1;
 }
@@ -1129,7 +1164,7 @@ div {
     padding: 5px 30px 5px 30px;
     white-space:nowrap;
     font-size: 1em;
-    border-radius: 15px;
+    border-radius: 5px;
     position: absolute;
     bottom: -10px;
     right: 10px;
@@ -1140,7 +1175,7 @@ div {
     padding: 5px 30px 5px 30px;
     white-space:nowrap;
     font-size: 1em;
-    border-radius: 15px;
+    border-radius: 5px;
     position: absolute;
     top: -10px;
     left: 0px;
@@ -1171,7 +1206,7 @@ div {
     width:250px;
     height:30px;
     display:flex;
-    border-radius: 15px;
+    border-radius: 5px;
     align-items: center;
     justify-content:center;
     padding: 5px 5px 5px 5px;
@@ -1252,7 +1287,7 @@ button[toggle="true"] > img {
 }
 
 .unittypebutton[toggle="true"] {
-    filter: brightness(50%);
+    filter: brightness(50%) !important; 
 }
 
 
@@ -1329,7 +1364,7 @@ button[toggle="true"] > img {
     position: absolute;
     top:-7%;
     background-color: rgba(0,0,0,0.75);
-    border-radius: 15px;
+    border-radius: 5px;
     padding-right: 10%;
     padding-left: 10%;
     font-size: 0.75em;
@@ -1359,7 +1394,7 @@ button[toggle="true"] > img {
 .dailyseparator {
     width: 100%;
     background-color: var(--accent1);
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 20px;
     margin-bottom: 30px;
     justify-content: center;
@@ -1383,7 +1418,7 @@ button[toggle="true"] > img {
 
 
 
-@media (max-width: 52rem) {
+@media (max-width: 54rem) {
     .timercontainer {
         width: 100%;
     }
