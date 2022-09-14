@@ -606,7 +606,6 @@ function UpdatePage(category) {
     })
     $('link[rel="canonical"]').remove()
     function ScrollFnc() {
-        $("#character-placeholder").attr("style", "")
         $("body").css("min-height", category.scroll + window.innerHeight > window.innerHeight + 200 ? category.scroll + window.innerHeight : window.innerHeight + 200)
         window.scrollTo(0, category.scroll)
     }
@@ -721,6 +720,7 @@ function UpdatePage(category) {
                     if (amount == 0)
                         $("#samename").hide()
                 })
+                $("#character-placeholder").attr("style", "")
             });
         }
         else if (index === "characters") {
@@ -1078,6 +1078,7 @@ function UpdatePage(category) {
                     $("#traitfilter").attr("toggle", Filters.TraitsOpen)
                 })
 
+                $("#character-placeholder").attr("style", "")
             });
         }
         else if (index === "events") {
@@ -1088,6 +1089,7 @@ function UpdatePage(category) {
                 //ListEvents('#ongoingevents[time="all"]', function (key) {const now = new Date(); if ((now >= new Date(EventsData[key].End))){return true}})
                 ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true)) { return true } })
                 ListEvents('#ongoingevents[time="all"]', function (key) { if ((EventsData[key].Current != true)) { return true } })
+                $("#character-placeholder").attr("style", "")
             });
         }
         else if (index === "daily") {
@@ -1134,6 +1136,7 @@ function UpdatePage(category) {
                 waitForElm(".dailycategory").then((elem) => {
                     createTable(elem, DailyCSV);
                 })
+                $("#character-placeholder").attr("style", "")
             });
         }
         else if (index === "gacha") {
@@ -1295,6 +1298,7 @@ function UpdatePage(category) {
                     })
                 })
                 UpdateStats()
+                $("#character-placeholder").attr("style", "")
             });
         }
         else {
@@ -1424,6 +1428,7 @@ function UpdatePage(category) {
                         UpdateTimers()
                     }, 1000);
                 })
+                $("#character-placeholder").attr("style", "")
             });
         }
     })
