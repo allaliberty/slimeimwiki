@@ -606,6 +606,7 @@ function UpdatePage(category) {
     })
     $('link[rel="canonical"]').remove()
     function ScrollFnc() {
+        $("#character-placeholder").attr("style", "")
         $("body").css("min-height", category.scroll + window.innerHeight > window.innerHeight + 200 ? category.scroll + window.innerHeight : window.innerHeight + 200)
         window.scrollTo(0, category.scroll)
     }
