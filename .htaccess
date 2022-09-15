@@ -1,17 +1,17 @@
 RewriteEngine on
 
-# Redirect to domain with www.
+# Redirect to domain without www.
 RewriteCond %{HTTPS} off
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteRule .* http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule .* http://%1%{REQUEST_URI} [R=301,L]
 # Same for HTTPS:
 RewriteCond %{HTTPS} on
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule .* https://%1%{REQUEST_URI} [R=301,L]
 
 # Add Caching.
 <FilesMatch ".(ico|jpg|jpeg|png|gif|js|css|swf)$">
-    Header set Cache-Control "max-age=604800"
+    Header set Cache-Control "max-age=60"
 </FilesMatch>
 
 # Custom error pages.
