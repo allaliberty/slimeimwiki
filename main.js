@@ -614,7 +614,7 @@ function UpdatePage(category) {
         iframeopen = false
         if (index === "characters" && page != undefined) {
             $("#character-placeholder").load("/character", function () { ScrollFnc()
-                $("head").append(`<link rel="canonical" href="` + "https://www.slimeim.wiki/characters/" + page + `/"/>`);
+                $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/characters/" + page + `/"/>`);
                 waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name + " - SLIMEIM.WIKI" })
                 waitForElm('#title').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0] })
                 waitForElm('#name').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[0] })
@@ -726,7 +726,7 @@ function UpdatePage(category) {
         else if (index === "characters") {
             $("#character-placeholder").load("/charactersbody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Characters - SLIMEIM.WIKI" })
-                $("head").append(`<link rel="canonical" href="` + "https://www.slimeim.wiki/characters" + `/"/>`);
+                $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/characters" + `/"/>`);
                 function updatelist() {
                     $('.charcontainer').hide()
                     let currentcreated = created
@@ -1084,7 +1084,7 @@ function UpdatePage(category) {
         else if (index === "events") {
             $("#character-placeholder").load("/eventsbody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Events - SLIMEIM.WIKI" })
-                $("head").append(`<link rel="canonical" href="` + "https://www.slimeim.wiki/events" + `/"/>`);
+                $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/events" + `/"/>`);
                 //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
                 //ListEvents('#ongoingevents[time="all"]', function (key) {const now = new Date(); if ((now >= new Date(EventsData[key].End))){return true}})
                 ListEvents('#ongoingevents', function (key) { if ((EventsData[key].Current == true)) { return true } })
@@ -1095,7 +1095,7 @@ function UpdatePage(category) {
         else if (index === "daily") {
             $("#character-placeholder").load("/dailybody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Daily Story - SLIMEIM.WIKI" })
-                $("head").append(`<link rel="canonical" href="` + "https://www.slimeim.wiki/daily" + `/"/>`);
+                $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/daily" + `/"/>`);
                 var content = "";
                 function createTable(elem, tableData) {
                     let count = 0
@@ -1142,7 +1142,7 @@ function UpdatePage(category) {
         else if (index === "gacha") {
             $("#character-placeholder").load("/gachabody", function() { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Gacha Simulator - SLIMEIM.WIKI" })
-                $("head").append(`<link rel="canonical" href="` + "https://www.slimeim.wiki/gacha" + `/"/>`);
+                $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/gacha" + `/"/>`);
                 waitForElm('.moreunits').then((ele) => {
                     $("#unitsexpand.filterexpand").click(function (bro) {
                         if ($(this).attr("toggle") == "true") {
@@ -1304,7 +1304,7 @@ function UpdatePage(category) {
         else {
             $("#character-placeholder").load("/homebody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Home - SLIMEIM.WIKI" })
-                $("head").append(`<link rel="canonical" href="` + "https://www.slimeim.wiki" + `/"/>`);
+                $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki" + `/"/>`);
                 waitForElm('#latestcharacters').then((elem) => {
                     let sortedarray = Object.keys(cdata)
                     //waitForElm('#samename > p').then((elem) => { elem.innerHTML = Name })
