@@ -21,39 +21,51 @@
                     <p class="statstitle">Stats</p>
                     <div class="stat">
                         <div class="statname">
-                            <img style="width:30px; height:30px; aspect-ratio:1; margin-right: 10px;object-fit: contain;"
+                            <img class = "staticon"
                                 src="https://cdn.discordapp.com/attachments/633768073068806144/982542179346051082/icHp.png"
                                 alt="">
                             <p>Health</p>
                         </div>
                         <p id="health" class="statnumber">988-7142</p>
                     </div>
+                    <div id = "healthbar" class = "statbar"> 
+                        <div></div>
+                    </div>
                     <div class="stat">
                         <div class="statname">
-                            <img style="width:30px; height:30px; aspect-ratio:1; margin-right: 10px;object-fit: contain;"
+                            <img class = "staticon"
                                 src="https://cdn.discordapp.com/attachments/633768073068806144/982542253207748668/icAtk.png"
                                 alt="">
                             <p>Attack</p>
                         </div>
                         <p id="attack" class="statnumber">494-3007</p>
                     </div>
+                    <div id = "attackbar" class = "statbar"> 
+                        <div></div>
+                    </div>
                     <div class="stat">
                         <div class="statname">
-                            <img style="width:30px;height:30px; aspect-ratio:1;margin-right: 10px;object-fit: contain;"
+                            <img class = "staticon"
                                 src="https://cdn.discordapp.com/attachments/633768073068806144/982542305280024577/icDef.png"
                                 alt="">
                             <p>Defense</p>
                         </div>
                         <p id="defense" class="statnumber">492-3005</p>
                     </div>
+                    <div  id = "defensebar" class = "statbar"> 
+                        <div></div>
+                    </div>
                     <div class="stat">
                         <div class="statname">
-                            <img style="width:30px;height:30px; aspect-ratio:1;margin-right: 10px;object-fit: contain;"
+                            <img class = "staticon"
                                 src="https://cdn.discordapp.com/attachments/633768073068806144/1019152160958709760/icActionLvUp.png"
                                 alt="">
                             <p>Existence</p>
                         </div>
                         <p id="EP" class="statnumber">492-3005</p>
+                    </div>
+                    <div  id = "epbar" class = "statbar"> 
+                        <div></div>
                     </div>
                 </div>
                 <div class="statsback">

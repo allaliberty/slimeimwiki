@@ -623,15 +623,51 @@ function UpdatePage(category) {
                 waitForElm('#rarity').then((elem) => { elem.setAttribute("src", stars[cdata[page].Rarity - 1]) })
                 waitForElm('#type').then((elem) => { elem.setAttribute("src", types[cdata[page].Type] || cdata[page].Type) })
                 waitForElm('#growth').then((elem) => { elem.setAttribute("src", growth[cdata[page].Growth] ?? cdata[page].Growth) })
-                waitForElm('#attack').then((elem) => { elem.innerHTML = cdata[page].MinAtk.toString().concat(" - ", cdata[page].MaxAtk.toString()) })
+                
+                /*waitForElm('#attack').then((elem) => { elem.innerHTML = cdata[page].MinAtk.toString().concat(" - ", cdata[page].MaxAtk.toString()) })
                 waitForElm('#health').then((elem) => { elem.innerHTML = cdata[page].MinHp.toString().concat(" - ", cdata[page].MaxHp.toString()) })
-                waitForElm('#defense').then((elem) => { elem.innerHTML = cdata[page].MinDef.toString().concat(" - ", cdata[page].MaxDef.toString()) })
+                waitForElm('#defense').then((elem) => { elem.innerHTML = cdata[page].MinDef.toString().concat(" - ", cdata[page].MaxDef.toString()) })*/
+                let FilteredArray = Object.values(cdata).filter((value) => {
+                    if (cdata[page].UnitType == "Protection Characters" && value.UnitType == "Protection Characters") {
+                        return true
+                    }
+                    else if (cdata[page].UnitType != "Protection Characters" && value.UnitType != "Protection Characters")
+                    {
+                        return true
+                    }
+                    return false
+                })
+
                 waitForElm('#attack').then((elem) => { elem.innerHTML = cdata[page].MaxAtk.toString() })
+                waitForElm('#attackbar').then((elem) => {
+                    let maxvalue = Math.max(...FilteredArray.map(o => o.MaxAtk))
+                    let minvalue = Math.min(...FilteredArray.map(o => o.MaxAtk))
+                    $(elem.children[0]).css("width", Math.floor(((cdata[page].MaxAtk - minvalue) / (maxvalue - minvalue))*100)+"%")
+                 })
+
                 waitForElm('#health').then((elem) => { elem.innerHTML = cdata[page].MaxHp.toString() })
+                waitForElm('#healthbar').then((elem) => {
+                    let maxvalue = Math.max(...FilteredArray.map(o => o.MaxHp))
+                    let minvalue = Math.min(...FilteredArray.map(o => o.MaxHp))
+                    $(elem.children[0]).css("width", Math.floor(((cdata[page].MaxHp - minvalue) / (maxvalue - minvalue))*100)+"%")
+                })
+
                 waitForElm('#defense').then((elem) => { elem.innerHTML = cdata[page].MaxDef.toString() })
+                waitForElm('#defensebar').then((elem) => {
+                    let maxvalue = Math.max(...FilteredArray.map(o => o.MaxDef))
+                    let minvalue = Math.min(...FilteredArray.map(o => o.MaxDef))
+                    $(elem.children[0]).css("width", Math.floor(((cdata[page].MaxDef - minvalue) / (maxvalue - minvalue))*100)+"%")
+                })
+                
                 waitForElm('#EP').then((elem) => {
                     elem.innerHTML = Math.floor(cdata[page].EP).toString()
                 })
+                waitForElm('#epbar').then((elem) => {
+                    let maxvalue = Math.max(...FilteredArray.map(o => o.EP))
+                    let minvalue = Math.min(...FilteredArray.map(o => o.EP))
+                    $(elem.children[0]).css("width", Math.floor(((cdata[page].EP - minvalue) / (maxvalue - minvalue))*100)+"%")
+                })
+
                 waitForElm('#output1').then((elem) => { elem.innerHTML = cdata[page].Town1.split(" +")[0] })
                 waitForElm('#output1percent').then((elem) => { elem.innerHTML = "+".concat(cdata[page].Town1.split(" +")[1]) })
                 waitForElm('#output2').then((elem) => { elem.innerHTML = cdata[page].Town2.split(" +")[0] })
@@ -649,7 +685,6 @@ function UpdatePage(category) {
                 waitForElm('#exability2desc').then((elem) => { elem.innerHTML = (cdata[page].EXAbility2 ?? ":").split(":")[1]; FilterElementText(elem) })
                 waitForElm('#exability1icon').then((elem) => { elem.setAttribute("src", cdata[page].EXAbility1Icon ?? "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/fcac5e3898026b79a3a3c64707ab4c3d.png?16628694753195?16628694753195"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
                 waitForElm('#exability2icon').then((elem) => { elem.setAttribute("src", cdata[page].EXAbility2Icon ?? "https://ten-sura-m-assets-us.akamaized.net/web-assets/images/fcac5e3898026b79a3a3c64707ab4c3d.png?16628694753195?16628694753195"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
-
                 if (cdata[page].UnitType != "Protection Characters") {
                     if (!cdata[page].EXAbility1) {
                         waitForElm('.secondpart > .statsback').then((elem) => { elem.setAttribute("protector", "true") })
@@ -940,6 +975,7 @@ function UpdatePage(category) {
                         $(this).attr("toggle", "true")
                         if (Filters.Sort == $(this).attr("id").split("Sort")[0]) {
                             Filters.SortDir *= -1
+                            sessionStorage.setItem("SortDir", Filters.SortDir)
                         }
                         Filters.Sort = $(this).attr("id").split("Sort")[0]
                         sessionStorage.setItem("Sort", Filters.Sort)
