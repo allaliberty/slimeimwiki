@@ -1,4 +1,18 @@
 {
+    "Special": {
+        "Make Another Move": [
+            "Make another move"
+        ],
+        "Redraw": [
+            "Redraws soul in hand"
+        ],
+        "Self Taunt": [
+            "Chance to make self taunt"
+        ],
+        "Deals Damage": [
+            "Deals"
+        ]
+    },
     "From Soul": {
         "Another Random Character": [
             "Transfer another random character",
@@ -126,14 +140,6 @@
         ],
         "Skill Points": [
             "increases skill points", "increase skill points"
-        ]
-    },
-    "Unfair": {
-        "Make Another Move": [
-            "Make another move"
-        ],
-        "Redraw": [
-            "Redraws soul in hand"
         ]
     },
     "Buff All": {
