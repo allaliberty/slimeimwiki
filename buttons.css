@@ -649,6 +649,30 @@ div {
     width: 100%;
 }
 
+.statsback > .statstitle {
+    display: flex;
+    align-items: center;
+    text-shadow: 1px 1px 2px rgb(255, 255, 255);
+}
+
+.statsback > .statstitle:not(:first-child) {
+    margin-top: 0.5em;
+}
+
+.statsback > .statstitle:before {
+    content: "";
+    display: inline-block;
+    background: url("https://cdn.discordapp.com/attachments/633768073068806144/1035681297865130065/Untitled-6.png") no-repeat;
+    width: 0.75em;
+    height: 0.75em;
+    background-size: contain;
+    background-position: center;
+    filter: grayscale();
+    margin-right: 0.5em
+}
+
+
+
 #samename>.statstitle {
     margin-bottom: 10px;
 }
@@ -670,7 +694,9 @@ div {
     height: 25px;
 }
 
-.detailedstatsright {}
+.detailedstatsright {
+    
+}
 
 .statname {
     display: flex;
@@ -1412,9 +1438,14 @@ button[toggle="true"]>img {
     font-size: 0.75em;
 }
 
-.traittitle {
+.traittitle, .valortitle {
     font-size: 1.25em;
+    /* font-weight: 500; */
 }
+
+/* .skilldiv > div > p > strong {
+    font-weight: 500;
+} */
 
 #timers {
     display: flex;

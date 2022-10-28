@@ -516,11 +516,17 @@ function SkillTextFilter(text) {
             symbols.forEach((symbol) => {
                 text = text.replaceAll(symbol + letter.toUpperCase(), symbol + "<br>" + letter.toUpperCase())
             })
+            symbols.forEach((symbol) => {
+                text = text.replaceAll(symbol + "." + letter.toUpperCase(), symbol + "<br>" + letter.toUpperCase())
+            })
         })
+        text = text.replaceAll("(s)", "/s/")
         text = text.replaceAll("(", "<br><span class = 'turns'>(")
         text = text.replaceAll(").", ")")
         text = text.replaceAll("%/", "/")
+        text = text.replaceAll("<br>Max", ")<br><span class = 'turns'>(Max")
         text = text.replaceAll(")", ")</span>")
+        text = text.replaceAll("/s/", "(s)")
         text = text.replaceAll(/x?\d+(?:\/\d+)?%?/g, function(match){
             return "<span class = 'percentage'>" + match + "</span>"
         })
@@ -672,12 +678,41 @@ function UpdatePage(category) {
                 waitForElm('#output1percent').then((elem) => { elem.innerHTML = "+".concat(cdata[page].Town1.split(" +")[1]) })
                 waitForElm('#output2').then((elem) => { elem.innerHTML = cdata[page].Town2.split(" +")[0] })
                 waitForElm('#output2percent').then((elem) => { elem.innerHTML = "+".concat(cdata[page].Town2.split(" +")[1]) })
-                waitForElm('#trait1').then((elem) => { elem.innerHTML = cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[0] })
-                waitForElm('#trait1desc').then((elem) => { elem.innerHTML = cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[1]; FilterElementText(elem) })
-                waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = cdata[page].Trait1A.replaceAll("★", "*").split(" (5* Awaken x3):")[1]; FilterElementText(elem) })
+                waitForElm('#town2icon').then((elem) => { elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/1035679641375096883/facility_1101_02.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+                waitForElm('#town1icon').then((elem) => { elem.setAttribute("src", "https://cdn.discordapp.com/attachments/633768073068806144/1035679641375096883/facility_1101_02.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
 
-                waitForElm('#trait1icon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon || FindSimilarIcon( cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[0], "1")); elem.onload = function () { elem.setAttribute("turnon", "true") } })
-                waitForElm('#trait1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon || FindSimilarIcon( cdata[page].Trait1.replaceAll("★", "*").split(" (5* Awaken x1):")[0], "1")); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+                
+
+                function CleanTraitTitle(text)
+                {
+                    return (text.replaceAll("★", "*").replaceAll("（", "(").replaceAll("）", ")").split("):")[0] + ")").replaceAll("(5* Awaken x1)", "").replaceAll("(5* Awaken x3)", "").split("(")[0]
+                }
+                function CleanTraitText(text)
+                {
+                    return text.replaceAll("★", "*").replaceAll("（", "(").replaceAll("）", ")").split("):")[1]
+                }
+
+                waitForElm('#trait1').then((elem) => { elem.innerHTML = CleanTraitTitle(cdata[page].Trait1) })
+                waitForElm('#trait1desc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Trait1); FilterElementText(elem) })
+                waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Trait1A); FilterElementText(elem) })
+                waitForElm('#trait1icon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon || FindSimilarIcon( CleanTraitText(cdata[page].Trait1), "1") || "https://cdn.discordapp.com/attachments/633768073068806144/1035678739788484678/icPassiveSkill.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+                waitForElm('#trait1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon || FindSimilarIcon( CleanTraitText(cdata[page].Trait1A), "1") || "https://cdn.discordapp.com/attachments/633768073068806144/1035678739788484678/icPassiveSkill.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+               
+                if (cdata[page].Valor1 != undefined)
+                {
+                    waitForElm('#valor1').then((elem) => { elem.innerHTML = CleanTraitTitle(cdata[page].Valor1) })
+                    waitForElm('#valor1desc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Valor1); FilterElementText(elem) })
+                    waitForElm('#valor1adesc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Valor1A); FilterElementText(elem) })
+                    waitForElm('#valor1icon').then((elem) => { elem.setAttribute("src", cdata[page].Valor1Icon || FindSimilarIcon( CleanTraitText(cdata[page].Valor1), "1") || "https://cdn.discordapp.com/attachments/941320558786801674/1034822738822565898/IcRank_02_06_00.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+                    waitForElm('#valor1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Valor1AIcon || FindSimilarIcon( CleanTraitText(cdata[page].Valor1A), "1") || "https://cdn.discordapp.com/attachments/941320558786801674/1034822741641154560/IcRank_02_07_00.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+                }
+                else
+                {
+                    waitForElm('#valor1icon').then((elem) => {elem.parentElement.remove()})
+                    waitForElm('#valor1aicon').then((elem) => {elem.parentElement.remove()})
+                    waitForElm('#valor1icon').then((elem) => {elem.parentElement.remove()})
+                    waitForElm('.valorbigtitle').then((elem) => {elem.remove()})
+                }
 
                 waitForElm('#exability1').then((elem) => { elem.innerHTML = (cdata[page].EXAbility1 ?? ":").split(":")[0] })
                 waitForElm('#exability1desc').then((elem) => { elem.innerHTML = (cdata[page].EXAbility1 ?? ":").split(":")[1]; FilterElementText(elem) })

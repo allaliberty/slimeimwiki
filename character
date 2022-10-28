@@ -228,12 +228,12 @@
             </div>
         </div>
         <div class="statsback">
-            <p class="statstitle">Trait</p>
+            <p class="statstitle">Character Traits</p>
             <div class="skilldiv">
                 <img id="trait1icon" class="skillicon" src="" alt="" -->
                 <div>
                     <p><Strong class="traittitle" id="trait1">Troop - Protection UP</Strong></p>
-                    <p><Strong>Awakened Trait - Lvl:84</Strong></p>
+                    <p><Strong>Awaken 1/5</Strong></p>
                     <p class="skilltext" id="trait1desc">When your troop contains 3 or more battle characters, increases
                         protection gauge by 4 every 3 turns (available in support formation)
                     </p>
@@ -242,8 +242,27 @@
             <div class="skilldiv">
                 <img id="trait1aicon" class="skillicon" src="" alt="" -->
                 <div>
-                    <p><Strong id="trait1a">Awakened Trait - Lvl:92</Strong></p>
+                    <p><Strong id="trait1a">Awaken 3/5</Strong></p>
                     <p class="skilltext" id="trait1adesc">When your troop contains 3 or more battle characters,
+                        increases protection gauge by 6 every 3 turns (available in support formation)</p>
+                </div>
+            </div>
+            <p noprotector = "true" class="statstitle valorbigtitle" >Valor Traits</p>
+            <div noprotector = "true" class="skilldiv">
+                <img id="valor1icon" class="skillicon" src="" alt="" -->
+                <div>
+                    <p><Strong class="valortitle" id="valor1">Troop - Protection UP</Strong></p>
+                    <p><Strong>Awaken 0/5</Strong></p>
+                    <p class="skilltext" id="valor1desc">When your troop contains 3 or more battle characters, increases
+                        protection gauge by 4 every 3 turns (available in support formation)
+                    </p>
+                </div>
+            </div>
+            <div noprotector = "true" class="skilldiv">
+                <img id="valor1aicon" class="skillicon" src="" alt="" -->
+                <div>
+                    <p><Strong id="valor1a">Awaken 2/5</Strong></p>
+                    <p class="skilltext" id="valor1adesc">When your troop contains 3 or more battle characters,
                         increases protection gauge by 6 every 3 turns (available in support formation)</p>
                 </div>
             </div>
