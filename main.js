@@ -619,7 +619,10 @@ function UpdatePage(category) {
     waitForElm("#character-placeholder").then((elem) => {
         iframeopen = false
         if (index === "characters" && page != undefined) {
-            $("#character-placeholder").load("/character", function () { ScrollFnc()
+            let Template = "/charactersmall"
+            if (cdata[page].SecretSkillTrait)
+                Template = "/characterbig"
+            $("#character-placeholder").load(Template, function () { ScrollFnc()
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/characters/" + page + `/"/>`);
                 waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name + " - SLIMEIM.WIKI" })
                 waitForElm('#title').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0] })
@@ -697,7 +700,15 @@ function UpdatePage(category) {
                 waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Trait1A); FilterElementText(elem) })
                 waitForElm('#trait1icon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon || FindSimilarIcon( CleanTraitText(cdata[page].Trait1), "1") || "https://cdn.discordapp.com/attachments/633768073068806144/1035678739788484678/icPassiveSkill.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
                 waitForElm('#trait1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon || FindSimilarIcon( CleanTraitText(cdata[page].Trait1A), "1") || "https://cdn.discordapp.com/attachments/633768073068806144/1035678739788484678/icPassiveSkill.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
-               
+                if (cdata[page].SecretSkillTrait)
+                {
+                    waitForElm('#trait1b').then((elem) => { elem.innerHTML = CleanTraitTitle(cdata[page].Trait1) })
+                    waitForElm('#trait1descb').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Trait1); FilterElementText(elem) })
+                    waitForElm('#trait1adescb').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Trait1A); FilterElementText(elem) })
+                    waitForElm('#trait1iconb').then((elem) => { elem.setAttribute("src", cdata[page].Trait1Icon || FindSimilarIcon( CleanTraitText(cdata[page].Trait1), "1") || "https://cdn.discordapp.com/attachments/633768073068806144/1035678739788484678/icPassiveSkill.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+                    waitForElm('#trait1aiconb').then((elem) => { elem.setAttribute("src", cdata[page].Trait1AIcon || FindSimilarIcon( CleanTraitText(cdata[page].Trait1A), "1") || "https://cdn.discordapp.com/attachments/633768073068806144/1035678739788484678/icPassiveSkill.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+
+                }
                 if (cdata[page].Valor1 != undefined)
                 {
                     waitForElm('#valor1').then((elem) => { elem.innerHTML = CleanTraitTitle(cdata[page].Valor1) })
@@ -737,6 +748,11 @@ function UpdatePage(category) {
 
                     waitForElm('#secret').then((elem) => { elem.innerHTML = cdata[page].Secret.split(" Lv.")[0] })
                     waitForElm('#secretdesc').then((elem) => { elem.innerHTML = cdata[page].Secret.split("Lv.MAX:")[1]; FilterElementText(elem) })
+                    if (cdata[page].SecretSkillTrait)
+                    {
+                        waitForElm('#upgrade').then((elem) => { elem.innerHTML = "Awaken 5/5"})
+                        waitForElm('#upgradedesc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].SecretSkillTrait); FilterElementText(elem) })
+                    }
                     cdata[page].Stats.forEach((element, index) => {
                         if (index < 6)
                             waitForElm('.statsleft').then((elem) => { elem.children.item(index).children.item(1).innerHTML = element.toString().concat("%") })
