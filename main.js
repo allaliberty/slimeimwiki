@@ -64,19 +64,19 @@ var EventsDataUnsorted;
 var DailyCSV;
 
 DataPromises.push(new Promise(async function (resolve, reject) {
-    cdata = await fetchcdata(`/data.json`); resolve()
+    cdata = await fetchcdata(`/data/data.json`); resolve()
 }))
 DataPromises.push(new Promise(async function (resolve, reject) {
-    FilterKeywords = await fetchcdata(`/filterkeywords.json`); resolve()
+    FilterKeywords = await fetchcdata(`/data/filterkeywords.json`); resolve()
 }))
 DataPromises.push(new Promise(async function (resolve, reject) {
-    TraitFilterKeywords = await fetchcdata(`/traitsfilterkeywords.json`); resolve()
+    TraitFilterKeywords = await fetchcdata(`/data/traitsfilterkeywords.json`); resolve()
 }))
 DataPromises.push(new Promise(async function (resolve, reject) {
-    EventsDataUnsorted = await fetchcdata(`/events.json`); resolve()
+    EventsDataUnsorted = await fetchcdata(`/data/events.json`); resolve()
 }))
 DataPromises.push(new Promise(async function (resolve, reject) {
-    DailyCSV = await fetchcsv(`/daily.csv`); resolve()
+    DailyCSV = await fetchcsv(`/data/daily.csv`); resolve()
 }))
 await Promise.all(DataPromises)
 
@@ -233,7 +233,7 @@ function MakeCharacterIcon(elem, key, fragment, off) {
     const para = document.createElement("a");
     para.setAttribute("class", "charcontainer")
     para.setAttribute("id", key)
-    para.setAttribute("href", "/characters/" + key)
+    para.setAttribute("href", "/characters/" + key + "/")
     //$(para).load('/charactericon')
     para.innerHTML = `
     <img id = "icon" class = "charicon" src="" alt="">
@@ -619,9 +619,9 @@ function UpdatePage(category) {
     waitForElm("#character-placeholder").then((elem) => {
         iframeopen = false
         if (index === "characters" && page != undefined) {
-            let Template = "/charactersmall"
+            let Template = "/components/charactersmall"
             if (cdata[page].SecretSkillTrait)
-                Template = "/characterbig"
+                Template = "/components/characterbig"
             $("#character-placeholder").load(Template, function () { ScrollFnc()
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/characters/" + page + `/"/>`);
                 waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name + " - SLIMEIM.WIKI" })
@@ -810,7 +810,7 @@ function UpdatePage(category) {
             });
         }
         else if (index === "characters") {
-            $("#character-placeholder").load("/charactersbody", function () { ScrollFnc()
+            $("#character-placeholder").load("/components/charactersbody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Characters - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/characters" + `/"/>`);
                 function updatelist() {
@@ -1169,7 +1169,7 @@ function UpdatePage(category) {
             });
         }
         else if (index === "events") {
-            $("#character-placeholder").load("/eventsbody", function () { ScrollFnc()
+            $("#character-placeholder").load("/components/eventsbody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Events - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/events" + `/"/>`);
                 //ListEvents('#ongoingevents', function (key) {const now = new Date(); if ((now => new Date(EventsData[key].Start)) && (now < new Date(EventsData[key].End))){return true}})
@@ -1180,7 +1180,7 @@ function UpdatePage(category) {
             });
         }
         else if (index === "daily") {
-            $("#character-placeholder").load("/dailybody", function () { ScrollFnc()
+            $("#character-placeholder").load("/components/dailybody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Daily Story - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/daily" + `/"/>`);
                 var content = "";
@@ -1227,7 +1227,7 @@ function UpdatePage(category) {
             });
         }
         else if (index === "gacha") {
-            $("#character-placeholder").load("/gachabody", function() { ScrollFnc()
+            $("#character-placeholder").load("/components/gachabody", function() { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Gacha Simulator - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/gacha" + `/"/>`);
                 waitForElm('.moreunits').then((ele) => {
@@ -1249,64 +1249,91 @@ function UpdatePage(category) {
                         return;
                     }
                 })
+                waitForElm("#BannersList").then(elem => {
+                    Object.keys(EventsData).forEach((key) => {
+                        if (EventsData[key].Type == "Recruit" && ("Banner" in EventsData[key]) && EventsData[key].Banner.length > 0) {
+                            $(elem).append(`<option value="` + key + `">`+ key +`</option>`);
+                            // console.log(key);
+                        }
+                    })
+                    elem.addEventListener('change', (e) => {
+                        currentbanner = e.target.options[e.target.selectedIndex].value
+                        Update()
+                    })
+                })
+                
                 let Featured5StarsBattle = [];
                 let Featured5StarsProt = [];
-                let Standard5StarsBattle = ["Rimuru6", "Diablo1", "Milim4", "Veldora2", "Veldora1", "Luminus1", "Rimuru2", "Milim2", "Gobta1", "Guy2", "Rimuru4", "Milim6", "Gazel1", "Shion1", "Shizue2", "Shuna1", "Souei2", "Treyni1", "Hakurou1", "Benimaru1", "Beretta1", "Ranga1", "Milim5", "Rimuru1"];
-                let Standard5StarsProt = ["Shion6", "Shuna6", "Rimuru10", "Ifrit1", "Veldora4", "Elemental1", "Orc1", "Charybdis1", "Milim8", "Ramiris2"];
+                let Standard5StarsBattle = ["Shizue1", "Hinata1", "Leon2", "Alice1", "Velzard1", "Rimuru5", "Benimaru2", "Souei1", "Luminus2", "Rimuru6", "Diablo1", "Milim4", "Veldora2", "Veldora1", "Luminus1", "Rimuru2", "Milim2", "Gobta1", "Guy2", "Rimuru4", "Milim6", "Gazel1", "Shion1", "Shizue2", "Shuna1", "Souei2", "Treyni1", "Hakurou1", "Benimaru1", "Beretta1", "Ranga1", "Milim5", "Rimuru1"];
+                let Standard5StarsProt = ["Soka1", "Chloe2", "Hakurou3", "Shion6", "Shuna6", "Rimuru10", "Ifrit1", "Veldora4", "Elemental1", "Orc1", "Charybdis1", "Milim8", "Ramiris2"];
                 let Standard4Stars = ["Suphia1", "Grucius1", "Gabiru1", "Chloe1", "Kurobe1", "Geld1", "Gelmud1", "Gobta2", "Shion5", "Souei3", "Trya1", "Hakurou2", "Phobio1", "Benimaru4", "Milim7", "Yuuki1", "Ranga3", "Rimuru8", "Shuna3", "Rimuru7", "Shuna4", "Shion3", "Benimaru3", "Souei4", "Veldora5", "Kaijin1", "Gard1", "Salamander1", "Sky1", "Fuze1", "Vesta1", "Light1"];
                 let Standard3Stars = ["Gale1", "Alice2", "Kurobe2", "Kenya1", "Rigurd1", "Ryota1", "Psychic1", "Garm1", "Gobuichi1", "Dord1", "Haruna1", "Butterflies1", "Myrd1"];
                 let prots = 0
                 let battle = 0
-                EventsData[currentbanner].Banner.forEach(function (key) {
-                    if (cdata[key].UnitType == "Protection Characters") {
-                        prots += 1
-                        if (prots == 1 && !Standard5StarsProt.includes(key))
-                            Featured5StarsProt.push(key)
-                        else if (!Standard5StarsProt.includes(key))
-                            Standard5StarsProt = [key].concat(Standard5StarsProt)
-                    }
-                    else if (cdata[key].UnitType != "Protection Characters") {
-                        battle += 1
-                        if (battle == 1 && !Standard5StarsBattle.includes(key))
-                            Featured5StarsBattle.push(key)
-                        else if (!Standard5StarsBattle.includes(key))
-                            Standard5StarsBattle = [key].concat(Standard5StarsBattle)
-                    }
-                })
-                let Units = [Featured5StarsBattle.concat(Featured5StarsProt), Standard5StarsBattle.concat(Standard5StarsProt), Standard4Stars, Standard3Stars]
-    
-                waitForElm('#bannerunitlist').then((ele) => {
-                    let i = 0
-                    document.querySelectorAll("#bannerunitlist").forEach(function (element) {
-                        const fragment = new DocumentFragment()
-                        Units[i].forEach(function (unit) {
-                            MakeCharacterIcon(elem, unit, fragment)
-                        })
-                        i = i + 1
-                        element.appendChild(fragment)
+
+                function Update()
+                {
+                    Featured5StarsProt = []
+                    Featured5StarsBattle = []
+                    EventsData[currentbanner].Banner.forEach(function (key) {
+                        if (cdata[key].UnitType == "Protection Characters") {
+                            prots += 1
+                            // if (prots == 1 && !Standard5StarsProt.includes(key))
+                            //     Featured5StarsProt.push(key)
+                            // else if (!Standard5StarsProt.includes(key))
+                            //     Standard5StarsProt = [key].concat(Standard5StarsProt)
+                            if (!(Standard5StarsProt.includes(key) || Standard3Stars.includes(key) || Standard4Stars.includes(key)))
+                                    Featured5StarsProt.push(key)
+                        }
+                        else if (cdata[key].UnitType != "Protection Characters") {
+                            battle += 1
+                            // if (battle == 1 && !Standard5StarsBattle.includes(key))
+                            //     Featured5StarsBattle.push(key)
+                            // else if (!Standard5StarsBattle.includes(key))
+                            //     Standard5StarsBattle = [key].concat(Standard5StarsBattle)
+                            if (!(Standard5StarsBattle.includes(key) || Standard3Stars.includes(key) || Standard4Stars.includes(key)))
+                                    Featured5StarsBattle.push(key)
+                        }
                     })
-                })
+                    let Units = [Featured5StarsBattle.concat(Featured5StarsProt), Standard5StarsBattle.concat(Standard5StarsProt), Standard4Stars, Standard3Stars]
+        
+                    waitForElm('#bannerunitlist').then((ele) => {
+                        let i = 0
+                        document.querySelectorAll("#bannerunitlist").forEach(function (element) {
+                            element.innerHTML = ""
+                            const fragment = new DocumentFragment()
+                            Units[i].forEach(function (unit) {
+                                MakeCharacterIcon(elem, unit, fragment)
+                            })
+                            i = i + 1
+                            element.appendChild(fragment)
+                        })
+                    })
+                }
+                
+                Update()
+
+                function getRandomIntInclusive(min, max) {
+                    min = Math.ceil(min);
+                    max = Math.floor(max);
+                    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+                }
     
                 function GetRandomCharacter(number) {
-                    let Rarity = Math.random() * 101
+                    let Rarity = getRandomIntInclusive(0, 10000)/100
                     let FinalChoices = []
-                    if (Rarity <= 4) {
-                        if (Rarity <= 0.7) {
-                            FinalChoices = []
-                            if (Featured5StarsBattle[0])
-                                FinalChoices.push(Featured5StarsBattle[0])
-                            if (Featured5StarsProt[0])
-                                FinalChoices.push(Featured5StarsProt[0])
-    
-                        }
-                        else if (Rarity <= 0.7 + (1 - (Featured5StarsProt.length * 0.7)))
+                    let Rates = 5
+                    if (Rarity <= Rates) {
+                        if (Rarity <= 0.7) 
+                            FinalChoices = Featured5StarsProt.concat(Featured5StarsBattle)
+                        else if (Rarity <= 0.25 * Rates)
                             FinalChoices = Standard5StarsProt
                         else
                             FinalChoices = Standard5StarsBattle
                     }
-                    else if (Rarity <= 15 + 4 || number == 9) {
+                    else if (Rarity - Rates <= 15 || number == 9) {
                         Standard4Stars.forEach(function (pick) {
-                            if (Rarity <= 5 + 4) {
+                            if (getRandomIntInclusive(0, 100) <= 33) {
                                 if (cdata[pick].UnitType == "Protection Characters")
                                     FinalChoices.push(pick)
                             }
@@ -1316,7 +1343,7 @@ function UpdatePage(category) {
                     }
                     else {
                         Standard3Stars.forEach(function (pick) {
-                            if (Rarity <= 27 + 4 + 15) {
+                            if (getRandomIntInclusive(0, 100) <= 33) {
                                 if (cdata[pick].UnitType == "Protection Characters")
                                     FinalChoices.push(pick)
                             }
@@ -1389,7 +1416,7 @@ function UpdatePage(category) {
             });
         }
         else {
-            $("#character-placeholder").load("/homebody", function () { ScrollFnc()
+            $("#character-placeholder").load("/components/homebody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Home - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki" + `/"/>`);
                 waitForElm('#latestcharacters').then((elem) => {

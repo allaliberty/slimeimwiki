@@ -64,6 +64,14 @@ button {
 
 }
 
+#BannersList {
+    background-color: var(--accent2);
+    box-shadow: var(--shadow1) 0px 5px 15px;
+    border-radius: 5px;
+    padding-left: 5px;
+    max-width: 100%;
+}
+
 .turns {
     font-weight: 300;
     font-size: 0.75em;
@@ -1466,7 +1474,7 @@ button[toggle="true"]>img {
     font-size: 0.75em;
 }
 
-.traittitle, .valortitle {
+.traittitle, .valortitle, .traittitleb {
     font-size: 1.25em;
     /* font-weight: 500; */
 }
