@@ -26,6 +26,45 @@ let created = 1
 let iframeopen = false
 let loadedimages = []
 
+let TierList = [
+    {
+        Title: "SSS",
+        Color: "red",
+        Units: ["Masked1", "Shuna7", "Milim10"],
+        Protection: ["Veldora6", "Shizue3", "Hakurou3", "Veldora3", "Milim9"]
+    },
+    {
+        Title: "SS",
+        Color: "crimson",
+        Units: ["Shion2", "Gazel1", "Luminus3", "Diablo2", "Veldora2", "Myulan2", "Luminus2", "Milim3", "Carrion1",
+                "Rimuru4", "Milim6", "Diablo3", "Shion7", "Alice1", "Velzard1", "Rimuru12"],
+        Protection: ["Guy3", "Orc1", "Chloe2", "Gabiru2", "Charybdis1"]
+    },
+    {
+        Title: "S",
+        Color: "rgba(255, 0, 0, 0.624)",
+        Units: ["Leon2", "Leon1", "Daggrull1", "Diablo1", "Shion1", "Milim2", "Guy2", "Guy1", "Luminus1", "Benimaru2", "Souei1", "Milim1", "Ramiris1", "Deeno1", "Rimuru5", "Velzard2", "Leon3"],
+        Protection: ["Ramiris2", "Shion6", "Rimuru9", "Rimuru10", "Soka1", "Benimaru6"]
+    },
+    {
+        Title: "A",
+        Color: "orange",
+        Units: ["Rimuru3", "Shuna1", "Hinata1", "Beretta1", "Milim4", "Rimuru6", "Gobta1", "Shizue2", "Benimaru1", "Treyni1", "Milim5", "Daggrull2", "Clayman1", "Adalman1", "Rain1", "Veldora1",
+                "Hakurou1", "Souei2", "Rimuru1", "Frey1", "Rimuru11", "Izis1"],
+        Protection: ["Ifrit1", "Elemental1", "Shuna6", "Veldora4", "Milim8"]
+    },
+    {
+        Title: "B",
+        Color: "darkgoldenrod",
+        Units: ["Shizue1", "Ranga1", "Rimuru2", "Shuna2", "Shinsha1", "Eren1", "Misery1", "Geld2"]
+    },
+    {
+        Title: "C",
+        Color: "grey",
+        Units: ["Myulan1", "Benimaru5", "Shuna5", "Albis1", "Ranga2"]
+    }
+]
+
 
 function jqSelector(id) {
     return "#" + id.replace(/(:|\.|\[|\]|,)/g, "\\$1");
@@ -41,10 +80,11 @@ $(function () {
         <div class="topbarinside">
             <a href="/" class="sitename"><img class = "logo" src="https://media.discordapp.net/attachments/633768073068806144/1016333761232785529/SLIMEIM180.png"> .WIKI</p>
                 <div clicked=false class="buttonsdiv">
-                <a href="/characters" class="navbutton">Characters</a>
-                <a href="/events" class="navbutton">Events</a>
-                <a href="/gacha" class="navbutton">Gacha Simulator</a>
-                <a href="/daily" class="navbutton">Daily Story</a>
+                <a href="/characters/" class="navbutton">Characters</a>
+                <a href="/events/" class="navbutton">Events</a>
+                <a href="/gacha/" class="navbutton">Gacha Simulator</a>
+                <a href="/daily/" class="navbutton">Daily Story</a>
+                <a href="/tierlist/" class="navbutton">Tier List</a>
                 </div><button class="hamb"></button>
         </div>
     </nav>`);
@@ -1415,7 +1455,35 @@ function UpdatePage(category) {
                 $("#character-placeholder").attr("style", "")
             });
         }
-        else {
+        else if (index === "tierlist") {
+            $("#character-placeholder").load("/components/tierlistbody", function () { ScrollFnc()
+                waitForElm('title').then((elem) => { elem.innerHTML = "Tier List - SLIMEIM.WIKI" })
+                $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki" + `/"/>`);
+                waitForElm('.homebase').then((elem) => {
+                    TierList.forEach((key, i) => {
+                        console.log(key)
+                        const frag = document.createElement("div")
+                        frag.setAttribute("class", "charactersbase tier")
+                        frag.innerHTML = '<div class = "tiername" style="background-color: '+ key.Color +'">' + key.Title + '</div>'
+                        key.Units.forEach((key) => { MakeCharacterIcon(frag, key); waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key].Name.split(" ")[0] }) })
+                        if (key.Protection)
+                        {
+                            const split = document.createElement("div")
+                            split.setAttribute("class", "tiersplit")
+                            split.setAttribute("style", 'background-color: '+ key.Color)
+                            // split.innerHTML = "Protection"
+                            frag.appendChild(split)
+                            
+                            key.Protection.forEach((key) => { MakeCharacterIcon(frag, key); waitForElm("#" + key + ' > #name').then((ele) => { ele.innerHTML = cdata[key].Name.split(" ")[0] }) })
+                        }
+                        elem.appendChild(frag)
+                    })
+                })
+                $("#character-placeholder").attr("style", "")
+            })
+        } 
+        else
+        {
             $("#character-placeholder").load("/components/homebody", function () { ScrollFnc()
                 waitForElm('title').then((elem) => { elem.innerHTML = "Home - SLIMEIM.WIKI" })
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki" + `/"/>`);
