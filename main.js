@@ -645,7 +645,7 @@ function UpdatePage(category) {
     let index = category.index
     let page = category.page
     $('.navbutton').each(function () {
-        if ($(this).attr("href") == ('/' + (page ?? index)))
+        if ($(this).attr("href") == ('/' + (page ?? index) + '/'))
             $(this).attr("current", "true")
         else
             $(this).attr("current", "false")
