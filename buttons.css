@@ -478,6 +478,7 @@ div {
 .characterart {
     width: 100%;
     min-height: 758px;
+    flex: 1;;
     object-fit: contain;
     opacity: 0;
     transition: opacity 0.5s
@@ -501,7 +502,9 @@ bdiv {
 
 bdiv > .statsback {
     margin-right: 10px;
-    flex: 1;
+    /* flex:1; */
+    max-height: 400px;
+    /* flex-grow: 0.75; */
 }
 
 .characterart[turnon="true"] {

@@ -484,6 +484,7 @@ const UnitTypeButtonTL = {
 function SkillTextFilter(text) {
     if (text) {
         let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "w", "z"]
+        let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         let symbols = [")", "%"]
         /*alphabet.forEach((letter) => {
             alphabet.forEach((letter2) => {
@@ -550,6 +551,7 @@ function SkillTextFilter(text) {
         }
         alphabet.forEach((letter) => {
             text = text.replaceAll(". " + letter.toUpperCase(), ".<br>" + letter.toUpperCase())
+            text = text.replaceAll("." + letter.toUpperCase(), ".<br>" + letter.toUpperCase())
             alphabet.forEach((letter2) => {
                 text = text.replaceAll(letter + letter2.toUpperCase(), letter + ". <br>" + letter2.toUpperCase())
             })
@@ -558,6 +560,11 @@ function SkillTextFilter(text) {
             })
             symbols.forEach((symbol) => {
                 text = text.replaceAll(symbol + "." + letter.toUpperCase(), symbol + "<br>" + letter.toUpperCase())
+            })
+            numbers.forEach((letter2) => {
+                text = text.replaceAll(letter2 + letter.toUpperCase(), letter2 + "<br>" + letter.toUpperCase())
+                text = text.replaceAll(letter2 + " " + letter.toUpperCase(), letter2 + "<br>" + letter.toUpperCase())
+                text = text.replaceAll(letter2 + "  " + letter.toUpperCase(), letter2 + "<br>" + letter.toUpperCase())
             })
         })
         text = text.replaceAll("(s)", "/s/")
