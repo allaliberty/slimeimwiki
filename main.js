@@ -563,8 +563,8 @@ function SkillTextFilter(text) {
             })
             numbers.forEach((letter2) => {
                 text = text.replaceAll(letter2 + letter.toUpperCase(), letter2 + "<br>" + letter.toUpperCase())
-                text = text.replaceAll(letter2 + " " + letter.toUpperCase(), letter2 + "<br>" + letter.toUpperCase())
-                text = text.replaceAll(letter2 + "  " + letter.toUpperCase(), letter2 + "<br>" + letter.toUpperCase())
+                // text = text.replaceAll(letter2 + " " + letter.toUpperCase(), letter2 + "<br>" + letter.toUpperCase())
+                // text = text.replaceAll(letter2 + "  " + letter.toUpperCase(), letter2 + "<br>" + letter.toUpperCase())
             })
         })
         text = text.replaceAll("(s)", "/s/")
@@ -574,6 +574,7 @@ function SkillTextFilter(text) {
         text = text.replaceAll("<br>Max", ")<br><span class = 'turns'>(Max")
         text = text.replaceAll(")", ")</span>")
         text = text.replaceAll("/s/", "(s)")
+        text = text.replaceAll(" Increases", "<br>Increases")
         text = text.replaceAll(/x?\d+(?:\/\d+)?%?/g, function(match){
             return "<span class = 'percentage'>" + match + "</span>"
         })
