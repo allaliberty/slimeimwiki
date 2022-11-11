@@ -30,8 +30,8 @@ let TierList = [
     {
         Title: "SSS",
         Color: "red",
-        Units: ["Masked1", "Shuna7", "Milim10"],
-        Protection: ["Veldora6", "Shizue3", "Hakurou3", "Veldora3", "Milim9",  "Rimuru12"]
+        Units: ["Masked1", "Shuna7", "Milim10", "Rimuru12"],
+        Protection: ["Veldora6", "Shizue3", "Hakurou3", "Veldora3", "Milim9"]
     },
     {
         Title: "SS",
