@@ -58,6 +58,8 @@
         "UnitType": "Battle Characters",
         "Type": "https://i.imgur.com/pzX6NRL.png",
         "AtkType": "https://i.imgur.com/tOS4FvO.png",
+        "Growth": "Attack",
+        "Weapon": "Fist",
         "Rarity": 5,
         "MinHp": 960,
         "MaxHp": 6982,
