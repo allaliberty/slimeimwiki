@@ -761,9 +761,19 @@ function UpdatePage(category) {
                 {
                     waitForElm('#valor1').then((elem) => { elem.innerHTML = CleanTraitTitle(cdata[page].Valor1) })
                     waitForElm('#valor1desc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Valor1); FilterElementText(elem) })
-                    waitForElm('#valor1adesc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Valor1A); FilterElementText(elem) })
                     waitForElm('#valor1icon').then((elem) => { elem.setAttribute("src", cdata[page].Valor1Icon || FindSimilarIcon( CleanTraitText(cdata[page].Valor1), "1") || "https://cdn.discordapp.com/attachments/941320558786801674/1034822738822565898/IcRank_02_06_00.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
-                    waitForElm('#valor1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Valor1AIcon || FindSimilarIcon( CleanTraitText(cdata[page].Valor1A), "1") || "https://cdn.discordapp.com/attachments/941320558786801674/1034822741641154560/IcRank_02_07_00.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+                    if (cdata[page].Valor1A)
+                    {
+                        waitForElm('#valor1adesc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Valor1A); FilterElementText(elem) })
+                        waitForElm('#valor1aicon').then((elem) => { elem.setAttribute("src", cdata[page].Valor1AIcon || FindSimilarIcon( CleanTraitText(cdata[page].Valor1A), "1") || "https://cdn.discordapp.com/attachments/941320558786801674/1034822741641154560/IcRank_02_07_00.png"); elem.onload = function () { elem.setAttribute("turnon", "true") } })
+                    }
+                    else
+                    {
+                        waitForElm('#valor1adesc').then((elem) => { elem.remove() })
+                        waitForElm('#valor1aicon').then((elem) => { elem.remove() })
+                        waitForElm('#valor1a').then((elem) => { elem.remove() })
+                    }
+                    
                 }
                 else
                 {
