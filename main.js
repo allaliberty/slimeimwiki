@@ -42,7 +42,7 @@ let TierList = [
     },
     {
         Title: "S",
-        Color: "rgba(255, 0, 0, 0.624)",
+        Color: "#A60D22",
         Units: ["Leon2", "Leon1", "Daggrull1", "Diablo1", "Shion1", "Milim2", "Guy2", "Guy1", "Luminus1", "Benimaru2", "Souei1", "Milim1", "Ramiris1", "Deeno1", "Rimuru5", "Velzard2", "Leon3", "Diablo4", "Deeno2"],
         Protection: ["Ramiris2", "Shion6", "Rimuru9", "Rimuru10", "Soka1", "Benimaru6"]
     },
