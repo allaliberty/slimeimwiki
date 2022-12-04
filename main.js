@@ -31,19 +31,19 @@ let TierList = [
         Title: "SSS",
         Color: "red",
         Units: ["Masked1", "Shuna7", "Milim10", "Rimuru12"],
-        Protection: ["Veldora6", "Shizue3", "Hakurou3", "Veldora3", "Milim9"]
+        Protection: ["Towa1", "Veldora6", "Shizue3", "Hakurou3", "Veldora3", "Milim9"]
     },
     {
         Title: "SS",
         Color: "crimson",
         Units: ["Shion2", "Gazel1", "Luminus3", "Diablo2", "Veldora2", "Myulan2", "Luminus2", "Milim3", "Carrion1",
-                "Rimuru4", "Milim6", "Diablo3", "Shion7", "Alice1", "Velzard1", "Shinsha2"],
+                "Rimuru4", "Milim6", "Diablo3", "Shion7", "Alice1", "Velzard1", "Shinsha2", "Benimaru7", "Violet1"],
         Protection: ["Guy3", "Orc1", "Chloe2", "Gabiru2", "Charybdis1"]
     },
     {
         Title: "S",
         Color: "rgba(255, 0, 0, 0.624)",
-        Units: ["Leon2", "Leon1", "Daggrull1", "Diablo1", "Shion1", "Milim2", "Guy2", "Guy1", "Luminus1", "Benimaru2", "Souei1", "Milim1", "Ramiris1", "Deeno1", "Rimuru5", "Velzard2", "Leon3", "Diablo4"],
+        Units: ["Leon2", "Leon1", "Daggrull1", "Diablo1", "Shion1", "Milim2", "Guy2", "Guy1", "Luminus1", "Benimaru2", "Souei1", "Milim1", "Ramiris1", "Deeno1", "Rimuru5", "Velzard2", "Leon3", "Diablo4", "Deeno2"],
         Protection: ["Ramiris2", "Shion6", "Rimuru9", "Rimuru10", "Soka1", "Benimaru6"]
     },
     {
@@ -56,12 +56,14 @@ let TierList = [
     {
         Title: "B",
         Color: "darkgoldenrod",
-        Units: ["Shizue1", "Ranga1", "Rimuru2", "Shuna2", "Shinsha1", "Eren1", "Misery1", "Geld2"]
+        Units: ["Shizue1", "Ranga1", "Rimuru2", "Shuna2", "Shinsha1", "Eren1", "Misery1", "Geld2", "Rimuru7", "Hiiro1"],
+        Protection: []
     },
     {
         Title: "C",
         Color: "grey",
-        Units: ["Myulan1", "Benimaru5", "Shuna5", "Albis1", "Ranga2"]
+        Units: ["Myulan1", "Benimaru5", "Shuna5", "Albis1", "Ranga2"],
+        Protection: []
     }
 ]
 
@@ -743,6 +745,18 @@ function UpdatePage(category) {
                     return text.replaceAll("★", "*").replaceAll("（", "(").replaceAll("）", ")").split("):")[1]
                 }
 
+                waitForElm('.iconrank').then((elem) => { 
+                    elem.innerHTML = ""
+                    TierList.forEach((Tier) => {
+                        if (Tier.Units.includes(page) || Tier.Protection.includes(page))
+                        {
+                            elem.innerHTML = Tier.Title
+                            elem.setAttribute("style", "color: " + Tier.Color)
+                            return ;
+                        }
+                    })
+                    
+                })
                 waitForElm('#trait1').then((elem) => { elem.innerHTML = CleanTraitTitle(cdata[page].Trait1) })
                 waitForElm('#trait1desc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Trait1); FilterElementText(elem) })
                 waitForElm('#trait1adesc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Trait1A); FilterElementText(elem) })
@@ -1380,7 +1394,7 @@ function UpdatePage(category) {
                 function GetRandomCharacter(number) {
                     let Rarity = getRandomIntInclusive(0, 10000)/100
                     let FinalChoices = []
-                    let Rates = 5
+                    let Rates = 4
                     if (Rarity <= Rates) {
                         if (Rarity <= 0.7) 
                             FinalChoices = Featured5StarsProt.concat(Featured5StarsBattle)

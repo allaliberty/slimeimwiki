@@ -19,7 +19,7 @@
     --buttonactive: gray;
 
     --invisible: rgba(255, 255, 255, 0);
-
+    --sitewidth: 1000px;
 
 
 
@@ -308,7 +308,7 @@ div {
     background-color: var(--invisible);
     height: 100%;
     width: 100%;
-    max-width: 1000px;
+    max-width: var(--sitewidth);
     padding-right: 100px;
     padding-left: 100px;
     display: flex;
@@ -374,7 +374,7 @@ div {
     box-shadow: var(--shadow1) 0px 5px 15px;
     background-color: var(--accent1);
     width: 100%;
-    max-width: 1000px;
+    max-width: var(--sitewidth);
     height: 160px;
     display: flex;
     align-items: center;
@@ -383,6 +383,21 @@ div {
     gap: 25px;
     border-radius: 5px;
     position: relative;
+}
+
+.iconrank {
+    position :absolute;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    bottom: 18px;
+    font-size: 1.25em;
+    color: rgba(255, 0, 0, 0.624);
+    text-shadow:1px 1px 2px #fff, 1px 1px 2px #ccc;
+    font-weight: 1000;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 .charactericon {
@@ -452,7 +467,7 @@ div {
 .secondpart {
     box-shadow: var(--shadow1) 0px 5px 15px;
     background-color: var(--accent1);
-    width: 1000px;
+    width: var(--sitewidth);
     padding: 30px;
     box-sizing: border-box;
     margin-top: 20px;
@@ -1185,7 +1200,7 @@ bdiv > .statsback {
     box-shadow: var(--shadow1) 0px 5px 15px;
     background-color: var(--accent1);
     width: 100%;
-    max-width: 1000px;
+    max-width: var(--sitewidth);
     display: flex;
     flex-wrap: wrap;
     padding: 30px;
@@ -1223,7 +1238,7 @@ bdiv > .statsback {
 .homebase {
     background-color: var(--accent1);
     width: 100%;
-    max-width: 1000px;
+    max-width: var(--sitewidth);
     display: flex;
     flex-wrap: wrap;
     padding: 30px;
