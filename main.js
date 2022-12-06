@@ -745,7 +745,7 @@ function UpdatePage(category) {
                     return text.replaceAll("★", "*").replaceAll("（", "(").replaceAll("）", ")").split("):")[1]
                 }
 
-                waitForElm('.iconrank').then((elem) => { 
+                waitForElm('.rankcontainer').then((elem) => { 
                     elem.innerHTML = ""
                     TierList.forEach((Tier) => {
                         if (Tier.Units.includes(page) || Tier.Protection.includes(page))

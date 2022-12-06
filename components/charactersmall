@@ -1,7 +1,7 @@
 <main class="pagebody">
     <div class="charactertop">
         <img id="icon" src="https://i.imgur.com/gXtUDyK.png" class="charactericon">
-        <div class="iconrank">SSS</div>
+        <div class="iconrank"><div class="rankcontainer">SSS</div></div>
         <div class="characternames">
             <p id="title" class="title">Federal Lord of the Devil</p>
             <p id="name" class="charactername">Rimuru Tempest</p>
