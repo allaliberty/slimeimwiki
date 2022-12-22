@@ -429,10 +429,11 @@ div {
     height: 1.2em;
     top: 0;
     bottom: 0px;
+    overflow: hidden;
     position: absolute;
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 90%;
 }
 
 .title > p {
@@ -440,7 +441,7 @@ div {
     text-overflow: ellipsis;
     word-wrap: break-word;
     overflow: hidden;
-    width: 75%;
+    width: 100%;
 }
 
 .statsback[protector="true"]>[noprotector="true"] {
