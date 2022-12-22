@@ -675,7 +675,7 @@ function UpdatePage(category) {
             $("#character-placeholder").load(Template, function () { ScrollFnc()
                 $("head").append(`<link rel="canonical" href="` + "https://slimeim.wiki/characters/" + page + `/"/>`);
                 waitForElm('title').then((elem) => { elem.innerHTML = cdata[page].Name + " - SLIMEIM.WIKI" })
-                waitForElm('#title').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[1].split("]")[0] })
+                waitForElm('#title > p').then((elem) => { elem.textContent = cdata[page].Name.split(" [")[1].split("]")[0] })
                 waitForElm('#name').then((elem) => { elem.innerHTML = cdata[page].Name.split(" [")[0] })
                 waitForElm('#icon').then((elem) => { elem.setAttribute("src", cdata[page].Icon) })
                 waitForElm('#art').then((elem) => { elem.setAttribute("src", cdata[page].Art); elem.onload = function () { elem.setAttribute("turnon", "true") }; })

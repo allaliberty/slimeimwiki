@@ -1,9 +1,11 @@
 <main class="pagebody">
     <div class="charactertop">
         <img id="icon" src="https://i.imgur.com/gXtUDyK.png" class="charactericon">
-        <div class="iconrank"><div class="rankcontainer">SSS</div></div>
         <div class="characternames">
-            <p id="title" class="title">Federal Lord of the Devil</p>
+            <div id="title" class="title">
+                <a href = "/tierlist/" class="iconrank"><div class="rankcontainer">SSS</div></a>
+                <p></p>
+            </div>
             <p id="name" class="charactername">Rimuru Tempest</p>
             <div class="characteristics">
                 <img id="rarity" src="" class="characteristicsicons">
