@@ -31,39 +31,37 @@ let TierList = [
         Title: "SSS",
         Color: "red",
         Units: [ "Violet1", "Masked1", "Shuna7", "Milim10", "Rimuru12"],
-        Protection: ["Towa1", "Veldora6", "Shizue3", "Hakurou3", "Veldora3", "Milim9"]
+        Protection: ["Towa1", "Shizue3", "Hakurou3","Guy3", "Veldora3", "Milim9"]
     },
     {
         Title: "SS",
         Color: "crimson",
         Units: ["Shion2", "Gazel1", "Luminus3", "Diablo2", "Veldora2", "Myulan2", "Luminus2", "Milim3", "Carrion1",
                 "Rimuru4", "Milim6", "Diablo3", "Shion7", "Alice1", "Velzard1", "Shinsha2", "Benimaru7","Velzard3"],
-        Protection: ["Guy3", "Orc1", "Chloe2", "Gabiru2", "Charybdis1"]
+        Protection: ["Veldora6", "Orc1", "Chloe2", "Gabiru2", "Charybdis1", "Benimaru6"]
     },
     {
         Title: "S",
         Color: "#A60D22",
         Units: ["Leon2", "Leon1", "Daggrull1", "Diablo1", "Shion1", "Milim2", "Guy2", "Guy1", "Luminus1", "Benimaru2", "Souei1", "Milim1", "Ramiris1", "Deeno1", "Rimuru5", "Velzard2", "Leon3", "Diablo4", "Deeno2", "Shizue4"],
-        Protection: ["Ramiris2", "Shion6", "Rimuru9", "Rimuru10", "Soka1", "Benimaru6"]
+        Protection: ["Ramiris2", "Shion6", "Rimuru9", "Rimuru10", "Soka1" , "Elemental1"]
     },
     {
         Title: "A",
         Color: "orange",
         Units: ["Rimuru3", "Shuna1", "Hinata1", "Beretta1", "Milim4", "Rimuru6", "Gobta1", "Shizue2", "Benimaru1", "Treyni1", "Milim5", "Daggrull2", "Clayman1", "Adalman1", "Rain1", "Veldora1",
                 "Hakurou1", "Souei2", "Rimuru1", "Frey1", "Rimuru11", "Izis1"],
-        Protection: ["Ifrit1", "Elemental1", "Shuna6", "Veldora4", "Milim8"]
+        Protection: ["Ifrit1", "Shuna6", "Veldora4", "Milim8"]
     },
     {
         Title: "B",
         Color: "darkgoldenrod",
         Units: ["Shizue1", "Ranga1", "Rimuru2", "Shuna2", "Shinsha1", "Eren1", "Misery1", "Geld2", "Rimuru7", "Hiiro1", "Rimuru13"],
-        Protection: []
     },
     {
         Title: "C",
         Color: "grey",
         Units: ["Myulan1", "Benimaru5", "Shuna5", "Albis1", "Ranga2"],
-        Protection: []
     }
 ]
 
