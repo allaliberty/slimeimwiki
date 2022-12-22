@@ -427,15 +427,19 @@ div {
 
 .title {
     height: 1.2em;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    overflow: hidden;
     top: 0;
     bottom: 0px;
     position: absolute;
     display: flex;
     align-items: center;
+    width: 100%;
+}
+
+.title > p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
     width: 75%;
 }
 
