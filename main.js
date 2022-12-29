@@ -746,7 +746,7 @@ function UpdatePage(category) {
                 waitForElm('.rankcontainer').then((elem) => { 
                     elem.innerHTML = ""
                     TierList.forEach((Tier) => {
-                        if (Tier.Units.includes(page) || Tier.Protection.includes(page))
+                        if (Tier.Units.includes(page) || (Tier.Protection && Tier.Protection.includes(page)))
                         {
                             elem.innerHTML = Tier.Title
                             elem.setAttribute("style", "color: " + Tier.Color)
@@ -754,7 +754,7 @@ function UpdatePage(category) {
                         }
                     })
                     if (elem.innerHTML == "")
-                     waitForElm('.iconrank').then((elem) => {elem.remove()})
+                        waitForElm('.iconrank').then((elem) => {elem.remove()})
                 })
                 waitForElm('#trait1').then((elem) => { elem.innerHTML = CleanTraitTitle(cdata[page].Trait1) })
                 waitForElm('#trait1desc').then((elem) => { elem.innerHTML = CleanTraitText(cdata[page].Trait1); FilterElementText(elem) })
