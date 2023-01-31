@@ -37,9 +37,9 @@ let TierList = [
         Title: "SS",
         Color: "crimson",
         Units: ["Shion2", "Gazel1", "Luminus3", "Diablo2", "Veldora2", "Myulan2", "Luminus2", "Milim3", "Carrion1",
-                "Rimuru4", "Milim6", "Diablo3", "Shion7", "Alice1", "Velzard1", "Shinsha2", "Benimaru7","Velzard3", "Milim11",
-                "Rimuru14"],
-        Protection: ["Veldora6", "Orc1", "Chloe2", "Gabiru2", "Charybdis1", "Benimaru6"]
+                "Rimuru4", "Milim6", "Diablo3", "Shion7", "Alice1", "Velzard1", "Shinsha2", "Benimaru7","Velzard3", "Milim11", "Luminus4",
+                "Rimuru14", "Shion8"],
+        Protection: ["Veldora6", "Orc1", "Chloe2", "Gabiru2", "Charybdis1", "Benimaru6", "Ramiris3"]
     },
     {
         Title: "S",
@@ -57,7 +57,7 @@ let TierList = [
     {
         Title: "B",
         Color: "darkgoldenrod",
-        Units: ["Shizue1", "Ranga1", "Rimuru2", "Shuna2", "Shinsha1", "Eren1", "Misery1", "Geld2", "Rimuru7", "Hiiro1", "Rimuru13", "Soka2"],
+        Units: ["Shizue1", "Ranga1", "Rimuru2", "Shuna2", "Shinsha1", "Eren1", "Misery1", "Geld2", "Rimuru7", "Hiiro1", "Rimuru13", "Soka2", "Suphia2"],
     },
     {
         Title: "C",
@@ -544,6 +544,9 @@ function SkillTextFilter(text) {
             text = text + "</h4>"
         }
         text = text.replaceAll("Cost:", '<br><h4>Cost:')*/
+        console.log(text)
+        text = text.replace(/%[a-zA-Z]/g, (match) => match.slice(0, 1) + "<br>" + match.slice(1));
+        text = text.replace(/％[a-zA-Z]/g, (match) => match.slice(0, 1) + "<br>" + match.slice(1));
         text = text.replaceAll("Cost:", "<br><span class = 'cost'>• Cost:")
         /*text = text.replaceAll("ATK", "<span class = 'ATK'>ATK</span>")
         text = text.replaceAll("HP", "<span class = 'HP'>HP</span>")*/
