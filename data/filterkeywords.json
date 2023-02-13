@@ -17,6 +17,9 @@
         ],
         "Burn Single": [
             "Burns a single target"
+        ],
+        "Skill Cost Reset": [
+            "Decreases the skill cost"
         ]
     },
     "From Soul": {
@@ -166,7 +169,7 @@
             "all allies' counterattack resistance"
         ],
         "Counterattack Rate": [
-            "own counterattack rate"
+            "allies' counterattack rate"
         ],
 
         "Critical Damage": [
