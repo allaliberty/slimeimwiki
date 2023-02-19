@@ -30,7 +30,7 @@ let TierList = [
     {
         Title: "SSS",
         Color: "red",
-        Units: [ "Violet1", "Masked1", "Shuna7", "Milim10", "Rimuru12"],
+        Units: [ "Violet1", "Masked1", "Shuna7", "Milim10", "Rimuru12", "Shinsha3"],
         Protection: ["Shuna8", "Towa1", "Shizue3", "Hakurou3","Guy3", "Veldora3", "Milim9"]
     },
     {
@@ -38,7 +38,7 @@ let TierList = [
         Color: "crimson",
         Units: ["Shion2", "Gazel1", "Luminus3", "Diablo2", "Veldora2", "Myulan2", "Luminus2", "Milim3", "Carrion1",
                 "Rimuru4", "Milim6", "Diablo3", "Shion7", "Alice1", "Velzard1", "Shinsha2", "Benimaru7","Velzard3", "Milim11", "Luminus4",
-                "Rimuru14", "Shion8"],
+                "Rimuru14", "Shion8", "Yuuki2"],
         Protection: ["Veldora6", "Orc1", "Chloe2", "Gabiru2", "Charybdis1", "Benimaru6", "Ramiris3"]
     },
     {
